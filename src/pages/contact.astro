@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 
-// TODO: create a Cal.com account on saran@salet.uk, create a 30 minute "Discovery call" event type,
-// then set CAL_LINK below to the booking URL (for example "https://cal.com/salet/discovery").
-// While CAL_LINK is empty the page shows the interim panel instead of the embed.
-const CAL_LINK = '';
+// Booking runs on the same Calendly account as sarangandhi.com (sarangandhi1), per Saran 5 Jul 2026.
+// TODO (optional, later): create a Salet-branded "Discovery call" event type on that Calendly account
+// and swap the URL here, so property bookings are labelled separately from consulting ones.
+const CALENDLY_URL = 'https://calendly.com/sarangandhi1/30min';
 ---
 <Base
   title="Book a discovery call | Salet"
@@ -21,30 +21,27 @@ const CAL_LINK = '';
   <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
     <div class="grid gap-14 lg:grid-cols-12">
       <div class="lg:col-span-7">
-        {
-          CAL_LINK ? (
-            <div class="reveal border border-line bg-ivory p-2" style="min-height: 560px;">
-              <iframe
-                src={CAL_LINK}
-                title="Book a discovery call with Salet"
-                class="h-[560px] w-full border-0"
-                loading="lazy"
-              />
-            </div>
-          ) : (
-            <div class="reveal border border-line bg-ivory-2/60 p-9 lg:p-12">
-              <p class="text-xs uppercase tracking-[0.24em] text-green-2">Online booking arrives shortly</p>
-              <h2 class="mt-4 font-display text-2xl font-medium leading-snug">
-                Until then, two ways to reach us today
-              </h2>
-              <p class="mt-4 leading-relaxed text-stone">
-                Email <a href="mailto:saran@salet.uk" class="text-green-2 underline underline-offset-4">saran@salet.uk</a>
-                with a line about your situation and two or three times that suit you, or use the form on this page.
-                You will hear back from the founder, usually within one working day.
-              </p>
-            </div>
-          )
-        }
+        <div class="reveal border border-line bg-ivory p-2">
+          <div
+            class="calendly-inline-widget"
+            data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=faf8f2&text_color=1b1a17&primary_color=2e5a40`}
+            style="min-width:320px;height:700px;"
+          >
+          </div>
+          <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <noscript>
+            <p style="padding:1.5rem;">
+              Book directly at
+              <a href="https://calendly.com/sarangandhi1/30min">calendly.com/sarangandhi1/30min</a>
+              or email <a href="mailto:saran@salet.uk">saran@salet.uk</a>.
+            </p>
+          </noscript>
+        </div>
+        <p class="reveal mt-4 text-xs leading-relaxed text-mist">
+          Booking not loading? Go direct:
+          <a href={CALENDLY_URL} class="text-green-2 underline underline-offset-4" rel="noopener" target="_blank">book the call here</a>
+          or email <a href="mailto:saran@salet.uk" class="text-green-2 underline underline-offset-4">saran@salet.uk</a>.
+        </p>
 
         <div class="reveal reveal-d1 mt-8 border border-line bg-ivory p-9 lg:p-12">
           <p class="text-xs uppercase tracking-[0.24em] text-green-2">What the call covers</p>
