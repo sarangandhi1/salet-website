@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+
+// TODO: populate after first three engagements. Structure below is the template:
+// each case study is { context, brief, challenge, result } with anonymised, client-approved
+// figures (price achieved vs asking, time to complete, problems solved).
+// NEVER invent numbers, clients or outcomes.
+const caseStudies: { context: string; brief: string; challenge: string; result: string }[] = [];
+---
+<Base
+  title="Track record | Salet"
+  description="How Salet reports its work: anonymised case studies in a fixed format of brief, challenge and result, published only as engagements complete and only with client permission."
+>
+  <PageHero
+    eyebrow="Track record"
+    title="Results we will publish, not promises we will make"
+    lede="Salet's concierge practice is new, and we would rather show you an empty page than an invented one. As engagements complete, anonymised case studies appear here with the client's permission, in the fixed format below."
+    compact
+  />
+
+  <section class="mx-auto max-w-4xl px-6 py-16 lg:px-8 lg:py-24">
+    {
+      caseStudies.length === 0 && (
+        <div class="reveal border border-line bg-ivory-2/60 p-9 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">The format every case study will follow</p>
+          <div class="mt-8 space-y-8">
+            <div class="border-l border-line pl-7">
+              <h2 class="font-display text-xl font-medium">The brief</h2>
+              <p class="mt-2 text-sm leading-relaxed text-stone">
+                Who the client was in anonymised terms, what they set out to buy, from where, and within what
+                constraints.
+              </p>
+            </div>
+            <div class="border-l border-line pl-7">
+              <h2 class="font-display text-xl font-medium">The challenge</h2>
+              <p class="mt-2 text-sm leading-relaxed text-stone">
+                What made it hard: the market, the distance, the chain, the survey, the negotiation.
+              </p>
+            </div>
+            <div class="border-l border-line pl-7">
+              <h2 class="font-display text-xl font-medium">The result</h2>
+              <p class="mt-2 text-sm leading-relaxed text-stone">
+                Price achieved against asking, time to complete, problems solved, and what the client said afterwards,
+                verbatim and with permission.
+              </p>
+            </div>
+          </div>
+          <div class="rule mt-10" />
+          <p class="mt-8 text-sm leading-relaxed text-stone">
+            The founder's operating history is on the <a class="text-green-2 underline underline-offset-4" href="/about">About page</a>,
+            and the discipline behind the work is described in
+            <a class="text-green-2 underline underline-offset-4" href="/how-we-work">How we work</a>. In the meantime,
+            the fairest evidence we can offer is a conversation: bring your brief to a discovery call and judge the
+            thinking directly.
+          </p>
+        </div>
+      )
+    }
+  </section>
+
+  <CTABand />
+</Base>

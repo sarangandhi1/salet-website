@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found | Salet" description="The page you were looking for does not exist." noindex>
+  <section class="flex min-h-[70vh] items-center bg-ink text-ivory">
+    <div class="mx-auto w-full max-w-6xl px-6 pt-24 lg:px-8">
+      <p class="text-xs uppercase tracking-[0.28em] text-green-3">404</p>
+      <h1 class="mt-5 max-w-2xl font-display text-4xl font-medium leading-tight sm:text-5xl">
+        This page does not exist. The right one is a click away.
+      </h1>
+      <div class="mt-10 flex flex-wrap gap-6 text-sm">
+        <a href="/" class="border border-green-3/50 bg-green-2/20 px-6 py-4 tracking-wide transition-colors hover:bg-green-2">Home</a>
+        <a href="/services" class="border border-line-dark px-6 py-4 tracking-wide text-mist transition-colors hover:text-ivory">Services</a>
+        <a href="/contact" class="border border-line-dark px-6 py-4 tracking-wide text-mist transition-colors hover:text-ivory">Book a discovery call</a>
+      </div>
+    </div>
+  </section>
+</Base>

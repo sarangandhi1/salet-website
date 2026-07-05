@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+
+const phases = [
+  {
+    phase: 'Before anything',
+    steps: [
+      ['The discovery call', 'Thirty minutes, free, no obligation. Your situation, your brief and your timeline. We tell you honestly whether Salet is the right fit, and we expect you to judge us the same way. If we are not right for you, we say so on the call.'],
+      ['The proposal and engagement', 'A written proposal: scope, fee structure, timeline, what we do and what you do. The fee model is simple. An engagement retainer opens the search and is deducted in full from a success fee agreed now and payable only at exchange of contracts.'],
+    ],
+  },
+  {
+    phase: 'The search',
+    steps: [
+      ['The written brief', 'Your requirements become a signed-off document: purpose, areas, budget, constraints, deal-breakers. Every candidate is judged against it, which keeps everyone honest, including us.'],
+      ['Area strategy and search', 'Street-level area analysis, then a whole-of-market search: portals, agent relationships, pre-market and off-market. You see contenders, not noise.'],
+      ['Analysis before enthusiasm', 'Every shortlisted property gets a dossier before a viewing is booked: comparable sales, fair-value view, condition and title flags, realistic running costs.'],
+      ['Viewings that tell the truth', 'Attended in person, with you or for you. Remote clients receive full walk-through video with commentary, faults included. We are paid by you, so we report to you.'],
+    ],
+  },
+  {
+    phase: 'The purchase',
+    steps: [
+      ['Negotiation', 'Offer strategy built on evidence, delivered by your sole representative. We keep negotiating through the survey and legal findings, which is where most buyers quietly lose money.'],
+      ['Progression', 'Solicitors, surveyors, brokers and agents chased weekly. One progress note keeps you current. Problems reach you early, framed with options rather than panic.'],
+      ['Exchange and completion', 'Exchange makes it binding; the success fee falls due. We then run completion: funds confirmed, keys collected, utilities live, documents assembled into your completion pack.'],
+    ],
+  },
+  {
+    phase: 'Beyond the keys',
+    steps: [
+      ['The relationship continues', 'Management oversight, vacant property care and, in time, a managed sale. Each is optional and each is being introduced as our first clients complete. The point stands: the person who helped you buy stays accountable for what you bought.'],
+    ],
+  },
+];
+---
+<Base
+  title="How we work | Salet"
+  description="The Salet client journey step by step: discovery call, written brief, whole-of-market search, analysis, viewings, negotiation, exchange, completion and the relationship beyond the keys."
+>
+  <PageHero
+    eyebrow="How we work"
+    title="A process you can hold us to"
+    lede="Buyer-only representation, stated plainly: Salet acts exclusively for you. No listings, no seller mandates, no referral payments. Here is the journey, end to end."
+    compact
+  />
+
+  <section class="mx-auto max-w-4xl px-6 py-16 lg:px-8 lg:py-24">
+    {
+      phases.map((group) => (
+        <div class="mb-16 last:mb-0">
+          <p class="reveal text-xs uppercase tracking-[0.28em] text-green-2">{group.phase}</p>
+          <div class="mt-8 space-y-12">
+            {group.steps.map(([title, body]) => (
+              <div class="reveal border-l border-line pl-8">
+                <h2 class="font-display text-2xl font-medium leading-snug">{title}</h2>
+                <p class="mt-3.5 leading-relaxed text-stone">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+
+    <div class="reveal mt-4 border border-green-2/30 bg-green/5 p-8 lg:p-10">
+      <p class="text-xs uppercase tracking-[0.24em] text-green-2">The self-funding point</p>
+      <p class="mt-4 leading-relaxed text-stone">
+        Buyers who negotiate through a disciplined representative tend to buy better than buyers negotiating alone
+        against a professional. In many engagements the negotiated difference is larger than the fee. We make no
+        promise about your particular purchase, but we will happily walk through the logic, with numbers, on the
+        discovery call.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

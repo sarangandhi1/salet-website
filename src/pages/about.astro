@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+---
+<Base
+  title="About | Salet"
+  description="Salet is a UK property concierge founded by Saran Gandhi: Indian Army officer, nine years a senior operations leader at Amazon in Europe, now an independent buyer-only adviser."
+>
+  <PageHero
+    eyebrow="About"
+    title="From the Indian Army to Amazon to your side of the table"
+    lede="Salet exists because the founder made the journey his clients are making, and found the UK property process stacked against the buyer at every step."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="prose-salet lg:col-span-7">
+        <h2>The arc</h2>
+        <p>
+          Saran Gandhi was commissioned as an officer in the Indian Army, where the standards were simple: know the
+          ground, plan in writing, be accountable for the outcome. He then spent nine years at Amazon in Europe as a
+          senior leader in operations, responsible for learning and development across a frontline workforce of more
+          than 100,000 people, and owned the accuracy of delivery promises made to millions of customers.
+        </p>
+        <p>
+          In 2026 he left to build his own firms. Salet is the property practice: the product of moving from India to
+          the UK, buying and analysing property here, and watching intelligent, careful people accept worse purchases
+          than they should, because every professional in the transaction was working for somebody else.
+        </p>
+        <h2>Why Salet exists</h2>
+        <p>
+          The UK system gives the seller an agent whose job is the highest price. It gives the buyer portals,
+          opinions and pressure. For NRIs and overseas buyers the asymmetry is sharper still: unfamiliar process,
+          unfamiliar pricing, and 4,500 miles between you and the property.
+        </p>
+        <p>
+          Salet is the correction: a concierge that acts only for the buyer, applies institutional discipline to
+          ordinary purchases, and stays accountable after completion. It is a deliberately personal firm. You deal
+          with the founder, his standards and his network, not an office of juniors.
+        </p>
+        <h2>The concierge philosophy</h2>
+        <ul>
+          <li><strong>Written beats verbal.</strong> Briefs, proposals, progress notes and reports, all in writing.</li>
+          <li><strong>Evidence beats enthusiasm.</strong> Analysis first; viewings second; feelings last.</li>
+          <li><strong>Bad news travels fastest.</strong> Problems reach you early, framed with options.</li>
+          <li><strong>The relationship outlasts the transaction.</strong> The ladder of services exists so that accountability does not end at the keys.</li>
+        </ul>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Credentials</p>
+          <ul class="mt-5 space-y-3.5 text-sm leading-relaxed text-stone">
+            <li>Salet Ltd, registered in England and Wales, company no. 16662600</li>
+            <li>Professional indemnity insurance held</li>
+            <li>Founder: ex-Indian Army officer; nine years senior operations leadership, Amazon EU</li>
+          </ul>
+          <!-- TODO: add The Property Ombudsman and PropertyMark entries here once membership is actually held. Display nothing until then. -->
+          <p class="mt-6 text-xs leading-relaxed text-mist">
+            Salet provides property consulting and buyer representation. It does not provide financial, tax or
+            investment advice, and does not market property or investments to the public.
+          </p>
+        </div>
+        <div class="reveal reveal-d1 mt-6 border border-line bg-ivory p-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Direct line</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Salet is founder-led by design. Questions land with the person accountable for the answer.
+          </p>
+          <a href="mailto:saran@salet.uk" class="mt-4 inline-block text-sm text-green-2 underline underline-offset-4">saran@salet.uk</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

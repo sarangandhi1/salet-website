@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const chapters = [
+  'How the UK purchase process actually works, start to finish',
+  'Leasehold and freehold, explained for buyers from freehold cultures',
+  'What everything costs: stamp duty, surcharges, fees and the running costs nobody mentions',
+  'Financing from the UK and from India, and the documents lawyers will demand',
+  'Finding and reading property: portals, sold prices and the off-market layer',
+  'Offers, gazumping and the undefended weeks between agreement and exchange',
+  'Surveys, negotiation and completion day',
+  'After the keys: letting, managing and holding from abroad',
+];
+---
+<Base
+  title="The UK Property Buying Guide for NRIs and Overseas Buyers | Salet"
+  description="Salet's free guide to buying UK property as an NRI or overseas buyer: the process end to end, leasehold, costs, financing, negotiation and holding from abroad."
+>
+  <PageHero
+    eyebrow="The buying guide"
+    title="The UK Property Buying Guide for NRIs and Overseas Buyers"
+    lede="Everything Salet explains on discovery calls, written down: the UK purchase process end to end, for buyers who grew up in a different property culture. Free, in exchange for your email address."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <p class="reveal text-xs uppercase tracking-[0.28em] text-green-2">Inside the guide</p>
+        <ol class="mt-8 space-y-5">
+          {
+            chapters.map((c, i) => (
+              <li class="reveal flex gap-5 border-b border-line pb-5">
+                <span class="font-display text-sm text-green-2">0{i + 1}</span>
+                <span class="leading-relaxed text-ink-3">{c}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div class="lg:col-span-6">
+        <div class="reveal reveal-d1 border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-12">
+          <h2 class="font-display text-2xl font-medium leading-snug">Get the guide</h2>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Enter your email and read the full guide immediately. We will occasionally send you useful writing on UK
+            buying for overseas buyers. No listings, no pressure, unsubscribe any time.
+          </p>
+          <!-- TODO: create a Formspree (or equivalent) form endpoint and replace FORM_ENDPOINT_PLACEHOLDER.
+               TODO: pick an email/newsletter tool and wire the list. No email tool exists in registry/accounts.md as of 5 Jul 2026. -->
+          <form
+            method="POST"
+            action="https://formspree.io/f/FORM_ENDPOINT_PLACEHOLDER"
+            class="mt-8 space-y-4"
+          >
+            <input type="hidden" name="_next" value="https://salet.uk/guide/read" />
+            <input type="hidden" name="form" value="buying-guide" />
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">Your name</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">Email address</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              />
+            </label>
+            <button
+              type="submit"
+              class="w-full border border-green-2 bg-green px-6 py-4 text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+            >
+              Read the guide
+            </button>
+          </form>
+          <p class="mt-5 text-xs leading-relaxed text-mist">
+            Your details stay with Salet. No third parties, no lists sold, ever.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

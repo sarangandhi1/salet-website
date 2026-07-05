@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const articles = [
+  {
+    href: '/insights/what-uk-nris-get-wrong',
+    tag: 'Process explainer',
+    title: 'What UK-based NRIs get wrong about buying property here versus back home',
+    summary: 'Freehold instincts in a leasehold market, verbal deals that mean nothing, and the agent who was never on your side. The six assumptions that cost NRI buyers the most.',
+    date: 'July 2026',
+  },
+  {
+    href: '/insights/how-a-buying-concierge-earns-its-fee',
+    tag: 'Process explainer',
+    title: 'How a buying concierge actually earns its fee',
+    summary: 'The fee model explained openly: retainer, success fee, and the four places in a purchase where representation tends to pay for itself.',
+    date: 'July 2026',
+  },
+  {
+    href: '/insights/london-area-guide',
+    tag: 'Area guide',
+    title: 'London for overseas buyers: reading the city before you choose a postcode',
+    summary: 'How to think about London area selection from abroad: the corridors NRI buyers gravitate to, what each trades away, and the questions that matter more than the postcode.',
+    date: 'July 2026',
+  },
+  {
+    href: '/insights/west-midlands-area-guide',
+    tag: 'Area guide',
+    title: 'The West Midlands: an overseas buyer’s guide to Birmingham, Coventry and Warwick',
+    summary: 'England’s second city and its hinterland, read honestly: where the value case comes from, what each town is actually like to own in, and the local traps.',
+    date: 'July 2026',
+  },
+];
+---
+<Base
+  title="Insights | Salet"
+  description="Market thinking, process explainers and area guides for NRIs and overseas buyers of UK property, written by the Salet founder."
+>
+  <PageHero
+    eyebrow="Insights"
+    title="Thinking you can use before you spend a pound"
+    lede="Process explainers and area guides written for NRI and overseas buyers. No listings, no tips, no predictions. Just how the UK market actually works."
+    compact
+  />
+
+  <section class="mx-auto max-w-4xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="space-y-6">
+      {
+        articles.map((a, i) => (
+          <a
+            href={a.href}
+            class={`reveal ${i % 2 === 1 ? 'reveal-d1' : ''} group block border border-line bg-ivory p-8 transition-all duration-300 hover:border-green-2/50 hover:shadow-[0_18px_50px_-20px_rgba(27,26,23,0.18)] lg:p-10`}
+          >
+            <div class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em]">
+              <span class="text-green-2">{a.tag}</span>
+              <span class="text-mist">{a.date}</span>
+            </div>
+            <h2 class="mt-4 font-display text-2xl font-medium leading-snug transition-colors group-hover:text-green-2">
+              {a.title}
+            </h2>
+            <p class="mt-3 leading-relaxed text-stone">{a.summary}</p>
+            <span class="mt-6 inline-flex items-center gap-2 text-sm text-green-2">
+              Read
+              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-14 border border-green-2/30 bg-green/5 p-8 lg:p-10">
+      <p class="text-xs uppercase tracking-[0.24em] text-green-2">The buying guide</p>
+      <p class="mt-4 leading-relaxed text-stone">
+        The long-form version of all of this is the Salet buying guide: the UK purchase process end to end, written
+        for NRIs and overseas buyers.
+      </p>
+      <a href="/guide" class="mt-5 inline-block text-sm text-green-2 underline underline-offset-4">Get the guide</a>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

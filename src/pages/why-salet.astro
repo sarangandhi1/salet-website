@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+import TestimonialSlot from '../components/TestimonialSlot.astro';
+
+const reasons = [
+  {
+    title: 'Buyer-only, without exception',
+    body: 'Salet holds no listings, accepts no seller mandates and takes no referral payments from anyone we introduce. Every incentive in the engagement points the same way: your purchase, on your terms. Ask any estate agent who pays them, then ask us.',
+  },
+  {
+    title: 'Cross-border fluency',
+    body: 'The UK process and the India context, held in one head. What a UK solicitor will demand and how buyers from India usually prepare for it, what leasehold means to someone used to freehold norms, why gazumping is legal and how to defend against it, and the practicalities of moving money and staying compliant while you do.',
+  },
+  {
+    title: 'Discretion as a default',
+    body: 'Private clients stay private. We do not publish client names, purchase details or photographs of your home. Case studies appear only anonymised and only with permission. What you buy and what you paid is your business.',
+  },
+  {
+    title: 'An operating record, not a sales record',
+    body: 'The founder spent nine years running large-scale operations at Amazon in Europe and served as an Indian Army officer before that. The habits transfer: written briefs, evidence before opinion, weekly cadence, no surprises. Property is analysed with institutional discipline because that is the standard the founder worked to for two decades.',
+  },
+];
+---
+<Base
+  title="Why Salet | Salet"
+  description="Why clients choose Salet: buyer-only representation without exception, cross-border fluency between the UK process and the India context, discretion as a default, and a founder with an operating record."
+>
+  <PageHero
+    eyebrow="Why Salet"
+    title="Four reasons clients choose us, stated plainly"
+    lede="No superlatives, no awards wall. The case for Salet rests on structure: who we work for, what we know, how we behave and who is accountable."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {
+        reasons.map((r, i) => (
+          <div class={`reveal ${i % 2 === 1 ? 'reveal-d1' : ''} border border-line bg-ivory p-9 lg:p-12`}>
+            <span class="font-display text-sm text-green-2">0{i + 1}</span>
+            <h2 class="mt-4 font-display text-2xl font-medium leading-snug">{r.title}</h2>
+            <p class="mt-4 leading-relaxed text-stone">{r.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mx-auto mt-16 max-w-2xl">
+      <TestimonialSlot />
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

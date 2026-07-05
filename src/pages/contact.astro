@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+// TODO: create a Cal.com account on saran@salet.uk, create a 30 minute "Discovery call" event type,
+// then set CAL_LINK below to the booking URL (for example "https://cal.com/salet/discovery").
+// While CAL_LINK is empty the page shows the interim panel instead of the embed.
+const CAL_LINK = '';
+---
+<Base
+  title="Book a discovery call | Salet"
+  description="Book a free 30 minute discovery call with Salet: your situation, your brief and an honest view on whether buyer-only representation fits. Or write to saran@salet.uk."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Book a discovery call"
+    lede="Thirty minutes, free, no obligation. Bring your brief however rough. India-based callers: evening slots in Indian time are available."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        {
+          CAL_LINK ? (
+            <div class="reveal border border-line bg-ivory p-2" style="min-height: 560px;">
+              <iframe
+                src={CAL_LINK}
+                title="Book a discovery call with Salet"
+                class="h-[560px] w-full border-0"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div class="reveal border border-line bg-ivory-2/60 p-9 lg:p-12">
+              <p class="text-xs uppercase tracking-[0.24em] text-green-2">Online booking arrives shortly</p>
+              <h2 class="mt-4 font-display text-2xl font-medium leading-snug">
+                Until then, two ways to reach us today
+              </h2>
+              <p class="mt-4 leading-relaxed text-stone">
+                Email <a href="mailto:saran@salet.uk" class="text-green-2 underline underline-offset-4">saran@salet.uk</a>
+                with a line about your situation and two or three times that suit you, or use the form on this page.
+                You will hear back from the founder, usually within one working day.
+              </p>
+            </div>
+          )
+        }
+
+        <div class="reveal reveal-d1 mt-8 border border-line bg-ivory p-9 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">What the call covers</p>
+          <ul class="mt-6 space-y-4 text-sm leading-relaxed text-stone">
+            <li><strong class="text-ink">Your situation.</strong> Where you are based, why you are buying, and when.</li>
+            <li><strong class="text-ink">Your brief.</strong> What, where, budget and funding position.</li>
+            <li><strong class="text-ink">The process.</strong> How Salet works and what buyer-only representation means.</li>
+            <li><strong class="text-ink">The fees.</strong> Retainer and success fee, walked through openly with numbers.</li>
+            <li><strong class="text-ink">Fit, honestly.</strong> A clear next step, or a straight answer that we are not the right firm for you.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="reveal reveal-d1 border border-line bg-ivory-2/60 p-8 lg:p-10">
+          <h2 class="font-display text-2xl font-medium leading-snug">Or write to us</h2>
+          <!-- TODO: create a Formspree (or equivalent) account and replace FORM_ENDPOINT_PLACEHOLDER with the live endpoint. -->
+          <form method="POST" action="https://formspree.io/f/FORM_ENDPOINT_PLACEHOLDER" class="mt-7 space-y-4">
+            <input type="hidden" name="form" value="contact" />
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">Your name</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">Email address</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">Where are you based?</span>
+              <select
+                name="based"
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              >
+                <option>United Kingdom</option>
+                <option>India</option>
+                <option>Elsewhere</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-[0.2em] text-stone">A line about your plans</span>
+              <textarea
+                name="message"
+                rows="5"
+                required
+                class="mt-2 w-full border border-line bg-ivory px-4 py-3.5 text-ink outline-none transition-colors focus:border-green-2"
+              ></textarea>
+            </label>
+            <button
+              type="submit"
+              class="w-full border border-green-2 bg-green px-6 py-4 text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+            >
+              Send
+            </button>
+          </form>
+          <p class="mt-5 text-xs leading-relaxed text-mist">
+            Direct email always works: <a href="mailto:saran@salet.uk" class="text-green-2">saran@salet.uk</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
