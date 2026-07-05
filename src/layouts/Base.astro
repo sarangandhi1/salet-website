@@ -31,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <div id="scroll-progress" aria-hidden="true"></div>
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-green focus:text-ivory focus:px-4 focus:py-2"
@@ -53,7 +54,51 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         },
         { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
       );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => observer.observe(el));
+
+      // Scroll progress bar
+      const bar = document.getElementById('scroll-progress');
+      let ticking = false;
+      const paint = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        if (bar) bar.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
+        ticking = false;
+      };
+      addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(paint);
+          }
+        },
+        { passive: true }
+      );
+      paint();
+
+      // Animated counters
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      const counterObs = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            counterObs.unobserve(entry.target);
+            const el = entry.target as HTMLElement;
+            const target = parseFloat(el.dataset.count || '0');
+            const suffix = el.dataset.suffix || '';
+            const dur = 1600;
+            const t0 = performance.now();
+            const step = (now: number) => {
+              const p = Math.min((now - t0) / dur, 1);
+              el.textContent = Math.round(ease(p) * target).toLocaleString('en-GB') + suffix;
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          }
+        },
+        { threshold: 0.4 }
+      );
+      document.querySelectorAll('[data-count]').forEach((el) => counterObs.observe(el));
     </script>
   </body>
 </html>

@@ -8,6 +8,8 @@ interface Props {
 const { eyebrow, title, lede, compact = false } = Astro.props;
 ---
 <section class:list={['relative overflow-hidden bg-ink text-ivory', compact ? 'pb-16 pt-36' : 'pb-24 pt-44']}>
+  <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
+  <div class="grain" aria-hidden="true"></div>
   <svg
     class="pointer-events-none absolute -right-24 top-0 h-full w-auto opacity-[0.07]"
     viewBox="0 0 400 600"

@@ -9,7 +9,7 @@ const nav = [
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
-<header class="absolute inset-x-0 top-0 z-40">
+<header id="site-header" class="fixed inset-x-0 top-0 z-40">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 lg:px-8">
     <a href="/" class="font-display text-2xl font-medium tracking-tight text-ivory" aria-label="Salet home">
       Salet<span class="text-green-3">.</span>
@@ -67,6 +67,22 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <script>
+  const header = document.getElementById('site-header');
+  let hTick = false;
+  addEventListener(
+    'scroll',
+    () => {
+      if (hTick) return;
+      hTick = true;
+      requestAnimationFrame(() => {
+        header?.classList.toggle('scrolled', scrollY > 40);
+        hTick = false;
+      });
+    },
+    { passive: true }
+  );
+  header?.classList.toggle('scrolled', scrollY > 40);
+
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   toggle?.addEventListener('click', () => {

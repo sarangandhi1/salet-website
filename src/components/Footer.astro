@@ -1,8 +1,9 @@
 ---
 const year = new Date().getFullYear();
 ---
-<footer class="bg-ink text-ivory">
-  <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
+<footer class="relative overflow-hidden bg-ink text-ivory">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-green-3/40 to-transparent" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
     <div class="grid gap-12 md:grid-cols-12">
       <div class="md:col-span-4">
         <p class="font-display text-2xl font-medium tracking-tight">Salet<span class="text-green-3">.</span></p>
@@ -62,5 +63,8 @@ const year = new Date().getFullYear();
       </p>
       <p>&copy; {year} Salet Ltd. All rights reserved.</p>
     </div>
+  </div>
+  <div class="pointer-events-none relative -mb-8 flex justify-center overflow-hidden" aria-hidden="true">
+    <span class="watermark">Salet.</span>
   </div>
 </footer>
