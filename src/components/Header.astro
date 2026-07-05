@@ -21,8 +21,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           <a
             href={item.href}
             class:list={[
-              'text-sm tracking-wide transition-colors duration-200',
-              path.startsWith(item.href) ? 'text-ivory' : 'text-mist hover:text-ivory',
+              'text-glow text-sm tracking-wide transition-colors duration-200',
+              path.startsWith(item.href) ? 'text-white' : 'text-ivory/85 hover:text-white',
             ]}
           >
             {item.label}
