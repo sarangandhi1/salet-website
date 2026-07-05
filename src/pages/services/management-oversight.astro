@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const steps = [
+  ['Agent selection', 'We shortlist and appoint the letting or managing agent on evidence: fees, responsiveness, local coverage and how they handle the awkward months, not just the good ones.'],
+  ['Terms negotiated', 'Management agreements are negotiable. We negotiate them for you and remove the quiet extras before they start.'],
+  ['Statements reviewed', 'Every monthly statement checked: rent in, deductions queried, maintenance charges challenged when they deserve to be.'],
+  ['Annual inspection', 'At least one Salet visit a year with a photographic condition report, separate from anything the agent reports about itself.'],
+  ['Escalation, filtered', 'Routine noise stays with the agent. Decisions that need the owner reach you as one clear recommendation with the trade-offs stated.'],
+];
+---
+<Base
+  title="Management oversight | Salet"
+  description="Post-purchase management oversight from Salet: we appoint and supervise the letting agent, review statements, inspect annually and escalate what matters. Being introduced now."
+>
+  <PageHero
+    eyebrow="Service 03 · Coming"
+    title="Management oversight"
+    lede="Letting agents manage the property. Almost nobody manages the agent. For owners abroad, Salet becomes the layer that does: appointing, supervising and auditing on your behalf."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="reveal font-display text-3xl font-medium leading-tight">How oversight works</h2>
+        <div class="mt-10 space-y-10">
+          {
+            steps.map(([title, body], i) => (
+              <div class="reveal grid gap-4 border-l border-line pl-7 sm:grid-cols-12">
+                <span class="font-display text-sm text-green-2 sm:col-span-2">0{i + 1}</span>
+                <div class="sm:col-span-10">
+                  <h3 class="font-display text-xl font-medium">{title}</h3>
+                  <p class="mt-2.5 leading-relaxed text-stone">{body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Status</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Being introduced as our first acquisition clients complete. Concierge clients are offered it first.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Owners who live abroad or simply do not want to be the agent's point of contact. Particularly suited to
+            India-based owners with UK lettings.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            A monthly oversight fee alongside the agent's own management fee, discussed at discovery. Salet oversees;
+            the appointed agent manages and holds any client money under its own protections.
+          </p>
+          <a
+            href="/contact"
+            class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+          >
+            Register interest
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

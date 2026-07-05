@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const steps = [
+  ['Everything in the search service', 'The concierge builds on acquisition search and representation: brief, search, analysis, viewings and negotiation, exactly as described on that page.'],
+  ['Professional team assembled', 'Introductions to conveyancing solicitors and mortgage brokers who are used to NRI and overseas-buyer files, chosen for responsiveness rather than kickbacks. We accept no referral payments.'],
+  ['Compliance signposting', 'UK lawyers will ask for identity and source-of-funds documentation, and overseas buyers face extra checks and the non-resident stamp duty surcharge. We tell you what will be asked, when, and how buyers usually prepare, so nothing stalls. We signpost; we do not give financial or tax advice.'],
+  ['Currency and funding signposting', 'Moving money across borders has timing and cost consequences. We introduce currency specialists and keep transfers aligned with the legal timetable.'],
+  ['Progression management', 'One weekly note covering the whole file: what moved, what is stuck, who is chasing what. You are never the person coordinating five professionals from another time zone.'],
+  ['Completion day, handled', 'Funds flow confirmed, keys collected and held to your instruction, meter readings taken, utilities and council tax set up in your name.'],
+  ['The completion pack', 'Every document, contact, account and warranty in one organised pack. The starting file for management oversight, if you want us to stay on.'],
+];
+---
+<Base
+  title="End to end purchase concierge | Salet"
+  description="Salet's purchase concierge: search and representation plus solicitors, brokers, compliance and currency signposting, progression management and completion day, handled by one point of contact."
+>
+  <PageHero
+    eyebrow="Service 02 · Live"
+    title="End to end purchase concierge"
+    lede="For buyers who want one accountable point of contact from first call to keys in hand, with every professional in the chain introduced, briefed and chased on your behalf."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="reveal font-display text-3xl font-medium leading-tight">What happens, step by step</h2>
+        <div class="mt-10 space-y-10">
+          {
+            steps.map(([title, body], i) => (
+              <div class="reveal grid gap-4 border-l border-line pl-7 sm:grid-cols-12">
+                <span class="font-display text-sm text-green-2 sm:col-span-2">0{i + 1}</span>
+                <div class="sm:col-span-10">
+                  <h3 class="font-display text-xl font-medium">{title}</h3>
+                  <p class="mt-2.5 leading-relaxed text-stone">{body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Remote buyers especially: India-based clients, and UK-based NRIs who would rather one person owned the
+            whole process than coordinate it themselves.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            For current clients the concierge layer is included within the acquisition engagement: one retainer, one
+            success fee at exchange, everything above delivered to completion. Discussed at discovery.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">What you do</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Decide, sign and fund. Everything else is chased for you.
+          </p>
+          <a
+            href="/contact"
+            class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+          >
+            Book a discovery call
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

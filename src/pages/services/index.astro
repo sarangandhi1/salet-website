@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+---
+<Base
+  title="Services | Salet"
+  description="The Salet service ladder: acquisition search and representation, end to end purchase concierge, management oversight, vacant property care, managed sale, and institutional work."
+>
+  <PageHero
+    eyebrow="Services"
+    title="One relationship, the whole property lifecycle"
+    lede="Most firms handle one transaction and disappear. Salet is built as a ladder: each service picks up where the last one ends, so the person who helped you buy is the person looking after what you bought."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-6 md:grid-cols-2">
+      <ServiceCard
+        href="/services/acquisition-search"
+        number="01"
+        title="Acquisition search and representation"
+        body="The core engagement. A written brief, a whole-of-market search, institutional-grade analysis, attended viewings and negotiation by your sole representative, through to exchange."
+      />
+      <ServiceCard
+        href="/services/purchase-concierge"
+        number="02"
+        title="End to end purchase concierge"
+        body="Everything in the search service, plus the orchestration: solicitor and broker introductions, compliance signposting, utilities and council tax live on completion day."
+        delay="reveal-d1"
+      />
+      <ServiceCard
+        href="/services/management-oversight"
+        number="03"
+        title="Management oversight"
+        body="We appoint and supervise the letting agent, review statements, inspect annually and escalate what matters. You deal with Salet only."
+        status="coming"
+      />
+      <ServiceCard
+        href="/services/vacant-property-care"
+        number="04"
+        title="Vacant property care"
+        body="Inspections with photo reports, key-holding, contractor coordination, bills and mail. For owners abroad whose UK property stands empty."
+        status="coming"
+        delay="reveal-d1"
+      />
+      <ServiceCard
+        href="/services/managed-sale"
+        number="05"
+        title="Managed sale"
+        body="Exit with the same discipline as entry: sale strategy, agent selection and management, progression to completion."
+        status="coming"
+      />
+      <ServiceCard
+        href="/services/institutional"
+        number="06"
+        title="For institutions"
+        body="Deal sourcing, screening and analysis for institutional clients, delivered privately under contract. Transaction advisory on request."
+        delay="reveal-d1"
+      />
+    </div>
+
+    <div class="reveal mt-16 border border-line bg-ivory-2/60 p-8 lg:p-10">
+      <p class="max-w-3xl leading-relaxed text-stone">
+        Fees are discussed openly at the discovery call: an engagement retainer deducted in full from a success fee
+        payable at exchange. Services marked coming are being introduced as our first clients complete; join them and
+        you will be first in the queue.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const steps = [
+  ['Scheduled inspections', 'Fortnightly or monthly visits with a photographic report each time: external condition, internal walk-through, signs of damp, leaks or entry.'],
+  ['Insurance-condition compliance', 'Most policies on empty homes require regular documented inspections. Our reports create that record for you.'],
+  ['Key-holding', 'Keys held securely and released only to your written instruction: family arriving, contractors attending, agents valuing.'],
+  ['Contractor coordination', 'A vetted local network for repairs and maintenance, quoted, instructed and checked, with photographs before and after.'],
+  ['Bills and mail', 'Post collected and scanned, utilities monitored, council tax and service bills kept in order while the property stands empty.'],
+];
+---
+<Base
+  title="Vacant property care | Salet"
+  description="Vacant property care from Salet: scheduled inspections with photo reports, key-holding, contractor coordination, bills and mail, for owners whose UK property stands empty."
+>
+  <PageHero
+    eyebrow="Service 04 · Coming"
+    title="Vacant property care"
+    lede="An empty UK property is a quiet liability: insurance conditions, weather, post piling up behind the door. For owners abroad, Salet keeps it inspected, documented and cared for."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="reveal font-display text-3xl font-medium leading-tight">What the service covers</h2>
+        <div class="mt-10 space-y-10">
+          {
+            steps.map(([title, body], i) => (
+              <div class="reveal grid gap-4 border-l border-line pl-7 sm:grid-cols-12">
+                <span class="font-display text-sm text-green-2 sm:col-span-2">0{i + 1}</span>
+                <div class="sm:col-span-10">
+                  <h3 class="font-display text-xl font-medium">{title}</h3>
+                  <p class="mt-2.5 leading-relaxed text-stone">{body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Status</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Being introduced. Priority goes to purchase clients whose homes will stand empty between completion and
+            family use.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            India-based owners holding a UK home for future use, families between tenancies, and buyers completing
+            ahead of a move.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            A fixed monthly fee set by visit frequency, agreed in writing before the first inspection. Discussed at
+            discovery.
+          </p>
+          <a
+            href="/contact"
+            class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+          >
+            Register interest
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

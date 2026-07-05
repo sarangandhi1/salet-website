@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+import TestimonialSlot from '../components/TestimonialSlot.astro';
+---
+<Base
+  title="For India-based buyers | Salet"
+  description="Buying UK property from India. Salet is your representative on the ground: viewings, verification, negotiation, completion and ongoing care, with one accountable point of contact."
+>
+  <PageHero
+    eyebrow="For India-based buyers"
+    title="Buying in the UK from India comes down to one question: who do you trust on the ground?"
+    lede="A child starting university, a family move on the horizon, or simply a sterling asset in a stable market. The intent is clear. The distance is the problem. Salet exists to be your eyes, your hands and your representative in the UK."
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="prose-salet lg:col-span-7">
+        <h2>Remote buying fails at the verification step</h2>
+        <p>
+          Anyone can send you a portal link. What you cannot do from Mumbai or Delhi is stand in the property, hear
+          the traffic, see the damp patch behind the wardrobe, or read the room in a negotiation. Photographs are
+          marketing. Video calls show what the person holding the phone chooses to show.
+        </p>
+        <p>
+          The UK process also assumes presence: viewings at short notice, surveyors to instruct, solicitors who post
+          documents, completion days with keys to collect. Without someone accountable on the ground, each step
+          becomes a favour asked of a relative or a leap of faith with a stranger.
+        </p>
+        <h2>What Salet does for remote buyers</h2>
+        <ul>
+          <li><strong>Represents only you.</strong> We hold no listings and take nothing from sellers. Our fee comes from you, so our advice answers to you.</li>
+          <li><strong>Views and verifies in person.</strong> Every shortlisted property is walked, photographed and reported honestly, including the reasons to say no.</li>
+          <li><strong>Analyses like an institution.</strong> Comparable sales, street-level pricing, leasehold and title flags, realistic running costs.</li>
+          <li><strong>Negotiates and progresses.</strong> Offer strategy, survey interpretation, solicitor chasing, completion handled.</li>
+          <li><strong>Signposts the cross-border practicalities.</strong> The identity and source-of-funds documentation UK lawyers will ask of you, and introductions to currency and mortgage specialists. We advise on property; we do not give financial or tax advice.</li>
+          <li><strong>Stays after completion.</strong> Management oversight and vacant property care are being introduced, so the asset is looked after when you are not here.</li>
+        </ul>
+        <h2>One point of contact, in your evening hours</h2>
+        <p>
+          You deal with the founder directly, on WhatsApp and on calls scheduled around the time difference. One
+          person accountable from first call to keys, and afterwards.
+        </p>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">A good fit if</p>
+          <ul class="mt-5 space-y-3.5 text-sm leading-relaxed text-stone">
+            <li>You are buying at £250,000 or above, for family use or as a long-term hold</li>
+            <li>Funds are in place, with source-of-funds documentation available</li>
+            <li>You want one accountable representative rather than a chain of intermediaries</li>
+            <li>You expect honest reports, including the ones that say do not buy this</li>
+          </ul>
+          <p class="mt-6 text-xs leading-relaxed text-mist">
+            Salet does not market properties or investment schemes. If you are looking for guaranteed returns, we are
+            not the right firm.
+          </p>
+        </div>
+        <div class="reveal reveal-d1 mt-8">
+          <TestimonialSlot context="Words from India-based clients will appear here as engagements complete." />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand
+    title="Start with a call in your time zone"
+    body="A 30 minute discovery call, scheduled for Indian evening hours if that suits. Your situation, the process, and the honest economics of buying from abroad."
+  />
+</Base>

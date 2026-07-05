@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const steps = [
+  ['Exit strategy', 'Timing, target buyer profile, works worth doing before sale and works that would never pay back. Evidence first, then the decision.'],
+  ['Agent selection and terms', 'The selling agent chosen on performance data and negotiated terms, then managed against them.'],
+  ['Preparation', 'Presentation, paperwork and legal file assembled before listing, so the sale does not stall in week six on a missing document.'],
+  ['Sale management', 'Offers qualified, buyers verified, progression chased weekly. You receive one clear note, not a dozen calls.'],
+  ['Completion and repatriation signposting', 'Completion handled; for overseas sellers we signpost the currency and reporting practicalities to raise with your advisers. We do not give tax advice.'],
+];
+---
+<Base
+  title="Managed sale | Salet"
+  description="Managed sale from Salet: exit strategy, selling agent selection and management, preparation and progression to completion, run with the same discipline as the purchase."
+>
+  <PageHero
+    eyebrow="Service 05 · Coming"
+    title="Managed sale"
+    lede="The lifecycle ends the way it began: represented. When it is time to sell, Salet runs the exit with the same evidence and discipline as the purchase."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="reveal font-display text-3xl font-medium leading-tight">How a managed sale runs</h2>
+        <div class="mt-10 space-y-10">
+          {
+            steps.map(([title, body], i) => (
+              <div class="reveal grid gap-4 border-l border-line pl-7 sm:grid-cols-12">
+                <span class="font-display text-sm text-green-2 sm:col-span-2">0{i + 1}</span>
+                <div class="sm:col-span-10">
+                  <h3 class="font-display text-xl font-medium">{title}</h3>
+                  <p class="mt-2.5 leading-relaxed text-stone">{body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Status</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Coming later in the ladder, offered first to existing Salet clients as their plans mature.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Existing clients restructuring or exiting, and overseas owners who cannot run a UK sale from abroad.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            A fee on sale, agreed in writing at engagement. Discussed at discovery.
+          </p>
+          <a
+            href="/contact"
+            class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+          >
+            Register interest
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

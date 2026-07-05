@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+import TestimonialSlot from '../components/TestimonialSlot.astro';
+---
+<Base
+  title="For UK-based NRIs | Salet"
+  description="You live and work in the UK. Buying property here is still a foreign process. Salet gives NRIs buyer-only representation: search, analysis, negotiation and completion, handled."
+>
+  <PageHero
+    eyebrow="For UK-based NRIs"
+    title="You live here. The property process still treats you like a stranger."
+    lede="You have the deposit, the income and the intent. What you do not have is ten years of fluency in leasehold, chains, gazumping and survey small print, or an agent who is on your side. That is the gap Salet closes."
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="prose-salet lg:col-span-7">
+        <h2>The problem is not effort. It is asymmetry.</h2>
+        <p>
+          Every property you view is marketed by an agent whose legal duty is to the seller. Every glossy listing is
+          an argument for a higher price. Buying well in the UK is a full-time job done against professionals, in
+          spare evenings, with rules you learned from forum threads.
+        </p>
+        <p>
+          Most NRIs we speak to are not confused about money. They are careful people buying carefully. What they
+          lack is process fluency: what a fair price actually is street by street, when a leasehold term should end a
+          conversation, what a survey result means for a negotiation, and when to walk away.
+        </p>
+        <h2>What working with Salet looks like</h2>
+        <ul>
+          <li><strong>A written brief</strong> before anything else: what you are buying, why, and the limits.</li>
+          <li><strong>The whole market searched</strong>, including homes that never reach the portals.</li>
+          <li><strong>Analysis before viewings</strong>: every candidate screened against your brief so your weekends are spent on genuine contenders only.</li>
+          <li><strong>Negotiation by your representative</strong>, with evidence, not emotion.</li>
+          <li><strong>Progression to completion</strong>: solicitors chased, questions answered, keys in hand.</li>
+        </ul>
+        <p>
+          Fees are simple: an engagement retainer, deducted in full from a success fee agreed at the start and payable
+          only when you exchange. In practice, disciplined negotiation tends to cover the fee. We walk through the
+          numbers openly on the discovery call.
+        </p>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">A good fit if</p>
+          <ul class="mt-5 space-y-3.5 text-sm leading-relaxed text-stone">
+            <li>You are buying a home or a first UK investment property at £250,000 or above</li>
+            <li>Your funds are in place or your mortgage is agreed in principle</li>
+            <li>You want to buy within the next 12 months</li>
+            <li>You value your evenings and weekends more than the fee</li>
+          </ul>
+          <p class="mt-6 text-xs leading-relaxed text-mist">
+            We do not sell investments or source deals for the public. We represent you, the buyer, and nothing else.
+          </p>
+        </div>
+        <div class="reveal reveal-d1 mt-8">
+          <TestimonialSlot context="Words from UK-based NRI clients will appear here as engagements complete." />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand
+    title="Talk it through first"
+    body="A 30 minute discovery call. Bring your brief, however rough. You will leave with a clearer picture of the process, whatever you decide about us."
+  />
+</Base>

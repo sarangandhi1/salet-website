@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const steps = [
+  ['The brief', 'A structured conversation that becomes a written brief: purpose, areas, budget, constraints, timeline, and the things you will not compromise on. We do not search until the brief is signed off by you.'],
+  ['Area strategy', 'Street-level shortlisting of where to buy, with evidence: prices, rental context where relevant, transport, schools, and how each area has actually behaved rather than how it is marketed.'],
+  ['Whole-of-market search', 'Portals are the surface. We work agent relationships for pre-market and off-market homes, and screen everything against the brief before it reaches you.'],
+  ['Analysis and shortlist', 'Every serious candidate gets a dossier: comparable sales, condition flags, leasehold and title checks to instruct on, realistic running costs, and a fair-value view.'],
+  ['Viewings', 'Attended in person, on your behalf or alongside you, with honest reports. For remote clients, full walk-through video with commentary, including the faults.'],
+  ['Negotiation', 'Offer strategy built on evidence. We negotiate as your sole representative and keep negotiating through survey results and solicitor findings.'],
+  ['To exchange', 'Momentum management: solicitors chased weekly, questions translated into plain English, problems surfaced early. The engagement completes at exchange of contracts.'],
+];
+---
+<Base
+  title="Acquisition search and representation | Salet"
+  description="Salet's core service: a written brief, whole-of-market search, institutional-grade analysis, attended viewings and buyer-only negotiation, through to exchange of contracts."
+>
+  <PageHero
+    eyebrow="Service 01 · Live"
+    title="Acquisition search and representation"
+    lede="The core Salet engagement. We find, verify, analyse and negotiate your purchase as your sole representative. The seller's agent works for the seller. We work for you."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="reveal font-display text-3xl font-medium leading-tight">What happens, step by step</h2>
+        <div class="mt-10 space-y-10">
+          {
+            steps.map(([title, body], i) => (
+              <div class="reveal grid gap-4 border-l border-line pl-7 sm:grid-cols-12">
+                <span class="font-display text-sm text-green-2 sm:col-span-2">0{i + 1}</span>
+                <div class="sm:col-span-10">
+                  <h3 class="font-display text-xl font-medium">{title}</h3>
+                  <p class="mt-2.5 leading-relaxed text-stone">{body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            NRIs in the UK and buyers in India purchasing a home or a long-term hold at £250,000 or above, with funds
+            in place and a timeline inside 12 months.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            An engagement retainer opens the search, deducted in full from a success fee agreed at the outset and
+            payable at exchange of contracts. If we never exchange, the success fee is never due. Exact figures are
+            walked through at the discovery call.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Typical timeline</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Search to accepted offer: commonly 4 to 12 weeks. Offer to exchange: commonly 8 to 12 weeks, dependent on
+            the chain and the lawyers.
+          </p>
+          <a
+            href="/contact"
+            class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
+          >
+            Book a discovery call
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>
