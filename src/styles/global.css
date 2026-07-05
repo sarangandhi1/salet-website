@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
+
+@theme {
+  --color-ink: #1b1a17;
+  --color-ink-2: #242320;
+  --color-ink-3: #35332d;
+  --color-ivory: #faf8f2;
+  --color-ivory-2: #f2eee4;
+  --color-stone: #6d6a5e;
+  --color-mist: #b3af9f;
+  --color-line: #e4dfd2;
+  --color-line-dark: #3d3b33;
+  --color-green: #21422f;
+  --color-green-2: #2e5a40;
+  --color-green-3: #9db8a6;
+
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-green);
+  color: var(--color-ivory);
+}
+
+/* Display type defaults */
+.font-display {
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.02em;
+}
+
+/* Scroll-triggered reveals */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.22s; }
+.reveal-d3 { transition-delay: 0.34s; }
+.reveal-d4 { transition-delay: 0.46s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hairline rules used as quiet ornament */
+.rule {
+  height: 1px;
+  background: linear-gradient(to right, var(--color-line), transparent);
+}
+.rule-dark {
+  height: 1px;
+  background: linear-gradient(to right, var(--color-line-dark), transparent);
+}
+
+/* Prose defaults for long-form pages */
+.prose-salet {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--color-ink-3);
+}
+.prose-salet h2 {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 40;
+  letter-spacing: -0.015em;
+  font-weight: 560;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: var(--color-ink);
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+}
+.prose-salet h3 {
+  font-weight: 620;
+  font-size: 1.125rem;
+  color: var(--color-ink);
+  margin-top: 2rem;
+  margin-bottom: 0.65rem;
+}
+.prose-salet p {
+  margin-bottom: 1.15rem;
+}
+.prose-salet ul {
+  list-style: none;
+  margin: 1.15rem 0;
+  padding: 0;
+}
+.prose-salet ul li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+.prose-salet ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.85rem;
+  height: 1px;
+  background: var(--color-green-2);
+}
+.prose-salet strong {
+  color: var(--color-ink);
+  font-weight: 620;
+}
+.prose-salet a {
+  color: var(--color-green-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}

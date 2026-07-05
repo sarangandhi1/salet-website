@@ -1,0 +1,87 @@
+---
+const nav = [
+  { href: '/services', label: 'Services' },
+  { href: '/how-we-work', label: 'How we work' },
+  { href: '/why-salet', label: 'Why Salet' },
+  { href: '/track-record', label: 'Track record' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/about', label: 'About' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="absolute inset-x-0 top-0 z-40">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 lg:px-8">
+    <a href="/" class="font-display text-2xl font-medium tracking-tight text-ivory" aria-label="Salet home">
+      Salet<span class="text-green-3">.</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Main">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'text-sm tracking-wide transition-colors duration-200',
+              path.startsWith(item.href) ? 'text-ivory' : 'text-mist hover:text-ivory',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contact"
+        class="border border-green-3/40 bg-green-2/20 px-5 py-2.5 text-sm tracking-wide text-ivory transition-all duration-200 hover:border-green-3 hover:bg-green-2"
+      >
+        Book a discovery call
+      </a>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
+      <span class="block h-px w-6 bg-ivory transition-opacity duration-300"></span>
+      <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-line-dark bg-ink px-6 pb-8 pt-4 lg:hidden">
+    <nav class="flex flex-col gap-1" aria-label="Mobile">
+      {
+        nav.map((item) => (
+          <a href={item.href} class="border-b border-line-dark/60 py-3.5 text-base text-ivory/90">
+            {item.label}
+          </a>
+        ))
+      }
+      <a href="/contact" class="mt-5 bg-green-2 px-5 py-3.5 text-center text-base text-ivory">
+        Book a discovery call
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+    const bars = toggle.querySelectorAll('span');
+    if (open) {
+      bars[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      bars[1].style.opacity = '0';
+      bars[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      bars.forEach((b) => {
+        b.style.transform = '';
+        b.style.opacity = '';
+      });
+    }
+  });
+</script>

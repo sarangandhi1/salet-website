@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  compact?: boolean;
+}
+const { eyebrow, title, lede, compact = false } = Astro.props;
+---
+<section class:list={['relative overflow-hidden bg-ink text-ivory', compact ? 'pb-16 pt-36' : 'pb-24 pt-44']}>
+  <svg
+    class="pointer-events-none absolute -right-24 top-0 h-full w-auto opacity-[0.07]"
+    viewBox="0 0 400 600"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path d="M60 600V220C60 130 130 60 220 60s160 70 160 160v380" stroke="#faf8f2" stroke-width="1.5" />
+    <path d="M120 600V240c0-55 45-100 100-100s100 45 100 100v360" stroke="#faf8f2" stroke-width="1" />
+    <line x1="0" y1="600" x2="400" y2="600" stroke="#faf8f2" stroke-width="1" />
+  </svg>
+  <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
+    {eyebrow && <p class="reveal text-xs uppercase tracking-[0.28em] text-green-3">{eyebrow}</p>}
+    <h1
+      class="reveal reveal-d1 mt-5 max-w-3xl font-display text-4xl font-medium leading-[1.08] sm:text-5xl lg:text-6xl"
+    >
+      {title}
+    </h1>
+    {lede && <p class="reveal reveal-d2 mt-7 max-w-2xl text-lg leading-relaxed text-mist">{lede}</p>}
+    <slot />
+  </div>
+</section>

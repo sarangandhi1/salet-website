@@ -1,0 +1,35 @@
+---
+interface Props {
+  href: string;
+  number: string;
+  title: string;
+  body: string;
+  status?: 'live' | 'coming';
+  delay?: string;
+}
+const { href, number, title, body, status = 'live', delay = '' } = Astro.props;
+---
+<a
+  href={href}
+  class:list={[
+    'reveal group relative flex flex-col border border-line bg-ivory p-8 transition-all duration-300 hover:border-green-2/50 hover:shadow-[0_18px_50px_-20px_rgba(27,26,23,0.18)] lg:p-10',
+    delay,
+  ]}
+>
+  <div class="flex items-baseline justify-between">
+    <span class="font-display text-sm text-green-2">{number}</span>
+    {
+      status === 'coming' && (
+        <span class="border border-line px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-stone">
+          Coming
+        </span>
+      )
+    }
+  </div>
+  <h3 class="mt-5 font-display text-2xl font-medium leading-snug">{title}</h3>
+  <p class="mt-4 flex-1 text-sm leading-relaxed text-stone">{body}</p>
+  <span class="mt-7 inline-flex items-center gap-2 text-sm text-green-2">
+    Explore
+    <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+  </span>
+</a>
