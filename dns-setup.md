@@ -14,14 +14,14 @@ No DKIM record was found at `default._domainkey.salet.uk` and no DMARC record ex
 
 ## Records to change (only these two)
 
-After the site is deployed to Cloudflare Pages you will have a deployment URL of the form `<project>.pages.dev` [TODO: insert the actual URL after Stage 3 deploy].
+After the site is deployed to Cloudflare Pages you will have a deployment URL of the form `salet.pages.dev` (project domain; each deploy also gets a unique preview URL).
 
 In Namecheap → Domain List → salet.uk → Advanced DNS:
 
 1. **Delete** the existing A record: Host `@` → 192.64.119.40 (the parking page).
 2. **Delete** the existing CNAME/URL record for Host `www` → parkingpage.namecheap.com.
-3. **Add** ALIAS record: Host `@`, value `<project>.pages.dev`, TTL automatic. (Namecheap supports ALIAS at the apex; if the ALIAS type is not offered on your plan, use Cloudflare Pages' "custom domain" IP instructions instead, shown in the Pages dashboard when you add salet.uk.)
-4. **Add** CNAME record: Host `www`, value `<project>.pages.dev`, TTL automatic.
+3. **Add** ALIAS record: Host `@`, value `salet.pages.dev`, TTL automatic. (Namecheap supports ALIAS at the apex; if the ALIAS type is not offered on your plan, use Cloudflare Pages' "custom domain" IP instructions instead, shown in the Pages dashboard when you add salet.uk.)
+4. **Add** CNAME record: Host `www`, value `salet.pages.dev`, TTL automatic.
 
 Then in the Cloudflare Pages project → Custom domains → add both `salet.uk` and `www.salet.uk`. Cloudflare will verify and issue certificates automatically.
 
@@ -37,7 +37,7 @@ From any terminal:
 
 ```sh
 dig +short A salet.uk          # should stop returning 192.64.119.40
-dig +short CNAME www.salet.uk  # should return <project>.pages.dev
+dig +short CNAME www.salet.uk  # should return salet.pages.dev
 dig +short MX salet.uk         # must STILL return mx1/mx2.privateemail.com
 dig +short TXT salet.uk        # must STILL include v=spf1 include:spf.privateemail.com
 ```

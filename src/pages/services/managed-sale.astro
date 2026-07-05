@@ -4,21 +4,21 @@ import PageHero from '../../components/PageHero.astro';
 import CTABand from '../../components/CTABand.astro';
 
 const steps = [
-  ['Exit strategy', 'Timing, target buyer profile, works worth doing before sale and works that would never pay back. Evidence first, then the decision.'],
-  ['Agent selection and terms', 'The selling agent chosen on performance data and negotiated terms, then managed against them.'],
+  ['Exit strategy and research', 'Timing, target buyer profile, street-level pricing research from sold-price evidence, works worth doing before sale and works that would never pay back. Evidence first, then the decision.'],
+  ['Agent selection', 'We shortlist estate agents on performance data, interview them with you or for you, and negotiate their terms before you sign. Your appointed agent markets the property and introduces buyers; that is their job, under their licence.'],
   ['Preparation', 'Presentation, paperwork and legal file assembled before listing, so the sale does not stall in week six on a missing document.'],
-  ['Sale management', 'Offers qualified, buyers verified, progression chased weekly. You receive one clear note, not a dozen calls.'],
+  ['Sale oversight', 'We stay on your side of the table while the agent runs the market: offers reviewed against the evidence, buyer credibility questioned, progression chased weekly. You receive one clear note, not a dozen calls.'],
   ['Completion and repatriation signposting', 'Completion handled; for overseas sellers we signpost the currency and reporting practicalities to raise with your advisers. We do not give tax advice.'],
 ];
 ---
 <Base
-  title="Managed sale | Salet"
-  description="Managed sale from Salet: exit strategy, selling agent selection and management, preparation and progression to completion, run with the same discipline as the purchase."
+  title="Sale advisory and managed sale | Salet"
+  description="Selling UK property? Salet advises owners: pricing research, exit strategy, estate agent selection and sale oversight. Your appointed agent markets the property; Salet stays on your side."
 >
   <PageHero
-    eyebrow="Service 05 · Coming"
-    title="Managed sale"
-    lede="The lifecycle ends the way it began: represented. When it is time to sell, Salet runs the exit with the same evidence and discipline as the purchase."
+    eyebrow="Service 05 · Advisory live now"
+    title="Sale advisory and managed sale"
+    lede="Owners get the same discipline buyers get. We research your exit, help you choose and manage the right estate agent, and oversee the sale to completion. Your agent markets the property; Salet advises you."
     compact
   />
 
@@ -44,26 +44,37 @@ const steps = [
         <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
           <p class="text-xs uppercase tracking-[0.24em] text-green-2">Status</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            Coming later in the ladder, offered first to existing Salet clients as their plans mature.
+            Sale advisory and research support are available now. Full end to end sale management is offered as
+            engagements allow, existing clients first.
           </p>
           <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            Existing clients restructuring or exiting, and overseas owners who cannot run a UK sale from abroad.
+            Owners selling UK property, at home or from abroad, who want evidence and representation on their side
+            before and after they appoint an estate agent.
           </p>
           <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Engagement model</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            A fee on sale, agreed in writing at engagement. Discussed at discovery.
+            Advisory fee agreed in writing at engagement, discussed at discovery.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">The clean-roles principle</p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            Salet does not market your property, list it or introduce buyers to it; your appointed estate agent does
+            that under their own licence. We advise you, and only you. Salet never acts for both sides of a
+            transaction.
           </p>
           <a
             href="/contact"
             class="mt-9 inline-block w-full border border-green-2 bg-green px-6 py-4 text-center text-sm tracking-wide text-ivory transition-colors hover:bg-green-2"
           >
-            Register interest
+            Book a discovery call
           </a>
         </div>
       </aside>
     </div>
   </section>
 
-  <CTABand />
+  <CTABand
+    title="Selling well starts before the agent"
+    body="A 30 minute discovery call on your exit: what the evidence says about price and timing, and how to choose the agent who will actually earn their commission."
+  />
 </Base>
