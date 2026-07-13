@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABand from '../components/CTABand.astro';
+
+// The widget is served by Salet's refurb-check service (the same deterministic
+// cost engine that runs our internal underwriting) and wears the site palette
+// via query params, exactly like the price check embed.
+const WIDGET_URL =
+  'https://dealforge-2fkp.onrender.com/refurb-widget?primary=2e5a40&accent=2e5a40&bg=f2eee4&btn=C2410C';
+
+// WhatsApp destination for the photo estimate, the page's conversion goal.
+const WA_LINK = 'https://wa.me/447878781100';
+---
+<Base
+  title="Free refurb cost check | What will the work cost? | Salet"
+  description="Tick what a property needs, add a postcode, and get an instant guide cost range from our standing cost book, priced for a typical three-bed house. The full line by line breakdown lands in your inbox."
+>
+  <PageHero
+    eyebrow="Free refurb check"
+    title="What will the refurb cost?"
+    lede="Weighing up a place that needs work. Tick what it needs and we cost it from our standing cost book, priced for a typical three-bed house. Evidence first, no charge, and no valuation."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <div class="reveal border border-line bg-ivory p-2">
+          <iframe
+            src={WIDGET_URL}
+            title="Salet refurb cost check"
+            style="width:100%;height:1240px;border:0;display:block;background:#ffffff;"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="reveal mt-4 text-xs leading-relaxed text-mist">
+          Guide ranges from our standing cost book, not a valuation. Every home is different, which is
+          why we offer the photo estimate. Five free checks per day.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="reveal border border-line bg-ivory p-9 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">How it works</p>
+          <ul class="mt-6 space-y-4 text-sm leading-relaxed text-stone">
+            <li>
+              <strong class="text-ink">1. Tick what the property needs.</strong> A new kitchen, a
+              rewire, damp treatment, plus how many windows, rooms and skips.
+            </li>
+            <li>
+              <strong class="text-ink">2. We cost it from our standing cost book.</strong> The same
+              figures we use when we underwrite a purchase, priced for a typical three-bed house and
+              built up line by line.
+            </li>
+            <li>
+              <strong class="text-ink">3. You get the full breakdown.</strong> The headline range on
+              screen, with a working range and a separate contingency line, and every cost line by
+              line in your inbox.
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-d1 mt-8 border border-line bg-ivory-2/60 p-9 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.24em] text-green-2">Why we give this away</p>
+          <p class="mt-5 text-sm leading-relaxed text-stone">
+            Because sizing up the work is where buyers get caught out, and a bad guess costs far more
+            than a survey. It shows how we work: evidence first, always on the buyer's side. When you
+            want a figure for a specific home, send us three to five photos and we will send a proper
+            eyes-on estimate back.
+          </p>
+          <a
+            href={WA_LINK}
+            class="mt-6 inline-block bg-[#c2410c] px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-200 hover:bg-[#e0763a]"
+          >
+            WhatsApp us your photos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

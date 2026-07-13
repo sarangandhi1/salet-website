@@ -6,6 +6,10 @@ const nav = [
   { href: '/track-record', label: 'Track record' },
   { href: '/insights', label: 'Insights' },
   { href: '/about', label: 'About' },
+  // The refurb cost check is a free lead-magnet tool, linked as a nav item.
+  // The price check keeps the single orange CTA button below; a second orange
+  // button would overflow the bar and dilute the primary call to action.
+  { href: '/refurb-check', label: 'Refurb check' },
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
