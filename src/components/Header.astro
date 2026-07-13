@@ -30,6 +30,12 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         ))
       }
       <a
+        href="/price-check"
+        class="border border-[#e0763a]/60 bg-[#c2410c]/20 px-5 py-2.5 text-sm font-medium tracking-wide text-ivory transition-all duration-200 hover:border-[#e0763a] hover:bg-[#c2410c]"
+      >
+        Free price check
+      </a>
+      <a
         href="/contact"
         class="border border-green-3/40 bg-green-2/20 px-5 py-2.5 text-sm tracking-wide text-ivory transition-all duration-200 hover:border-green-3 hover:bg-green-2"
       >
@@ -59,7 +65,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         ))
       }
-      <a href="/contact" class="mt-5 bg-green-2 px-5 py-3.5 text-center text-base text-ivory">
+      <a href="/price-check" class="mt-5 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
+        Free price check
+      </a>
+      <a href="/contact" class="mt-3 bg-green-2 px-5 py-3.5 text-center text-base text-ivory">
         Book a discovery call
       </a>
     </nav>
