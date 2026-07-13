@@ -6,11 +6,10 @@ const nav = [
   { href: '/track-record', label: 'Track record' },
   { href: '/insights', label: 'Insights' },
   { href: '/about', label: 'About' },
-  // The refurb cost check is a free lead-magnet tool, linked as a nav item.
-  // The price check keeps the single orange CTA button below; a second orange
-  // button would overflow the bar and dilute the primary call to action.
-  { href: '/refurb-check', label: 'Refurb check' },
 ];
+// The two free tools (refurbishment cost and price check) render as a matched
+// pair of highlighted orange boxes below, set apart from the green discovery
+// call. Kept out of the plain text nav array on purpose.
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header id="site-header" class="fixed inset-x-0 top-0 z-40">
@@ -33,6 +32,12 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         ))
       }
+      <a
+        href="/refurb-check"
+        class="border border-[#e0763a]/60 bg-[#c2410c]/20 px-5 py-2.5 text-sm font-medium tracking-wide text-ivory transition-all duration-200 hover:border-[#e0763a] hover:bg-[#c2410c]"
+      >
+        Refurbishment cost
+      </a>
       <a
         href="/price-check"
         class="border border-[#e0763a]/60 bg-[#c2410c]/20 px-5 py-2.5 text-sm font-medium tracking-wide text-ivory transition-all duration-200 hover:border-[#e0763a] hover:bg-[#c2410c]"
@@ -69,7 +74,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         ))
       }
-      <a href="/price-check" class="mt-5 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
+      <a href="/refurb-check" class="mt-5 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
+        Refurbishment cost
+      </a>
+      <a href="/price-check" class="mt-3 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
         Free price check
       </a>
       <a href="/contact" class="mt-3 bg-green-2 px-5 py-3.5 text-center text-base text-ivory">
