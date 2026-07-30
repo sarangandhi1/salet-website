@@ -1,84 +1,198 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
-import CTABand from '../components/CTABand.astro';
 
 // PackForge, the report product, runs as its own application at
-// reports.salet.uk. It shares the engine behind the free tools on this site,
-// so a visitor who has used the price check meets the same discipline here.
+// reports.salet.uk on a navy and metallic-sky identity. This page carries
+// that identity rather than the site's ivory, so a visitor arrives at the
+// product already recognising it. The scheme is scoped to .reports-page and
+// touches nothing else on salet.uk.
 const REPORTS_URL = 'https://reports.salet.uk';
+const SAMPLE_LEGAL = `${REPORTS_URL}/sample/legal-pack`;
+const SAMPLE_INTEL = `${REPORTS_URL}/sample/intelligence`;
 ---
 <Base
-  title="Property reports | Legal pack review | Salet"
-  description="Upload an auction pack, a lease or a management pack and get back what the documents actually say, with the document and page behind every finding. Free while we launch."
+  title="Property reports | Legal pack review and buyer intelligence | Salet"
+  description="Upload an auction pack and get back what the documents actually say, with the page behind every finding. Or an address in, and the sold evidence out as a range. Free while we launch."
 >
-  <PageHero
-    eyebrow="Reports"
-    title="Read the pack before you bid"
-    lede="An auction legal pack is where the cost hides. We read it against a named risk checklist and report what it says, with the page behind every finding. What the pack does not answer is reported too, with the question to send your solicitor."
-    compact
-  />
-
-  <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24">
-    <div class="grid gap-14 lg:grid-cols-12">
-      <div class="lg:col-span-7">
-        <h2 class="reveal font-display text-3xl font-medium tracking-tight text-ink">
-          Legal Pack Review
-        </h2>
-        <p class="reveal mt-5 text-lg leading-relaxed text-slate">
-          Upload the pack. Every finding comes back with the document and the page number it rests
-          on, graded by whether it changes the price, needs an answer before exchange, or is simply
-          worth knowing.
+  <div class="reports-page">
+    <header class="rp-hero">
+      <div class="rp-wrap">
+        <p class="rp-eyebrow">Salet Property Intelligence</p>
+        <h1 class="rp-h1">The evidence, before you commit</h1>
+        <p class="rp-lede">
+          Two reports for buyers of UK property. One reads the legal pack and cites the page behind
+          every finding. The other reports what the sold evidence supports, as a range. Both are
+          free while we launch.
         </p>
-        <p class="reveal mt-4 text-lg leading-relaxed text-slate">
+        <p class="rp-samples">
+          Read a full example first:
+          <a href={SAMPLE_LEGAL}>sample Legal Pack Review</a>
+          <span class="rp-dot">·</span>
+          <a href={SAMPLE_INTEL}>sample Buyer Intelligence Report</a>
+        </p>
+      </div>
+    </header>
+
+    <section class="rp-wrap rp-cards">
+      <article class="rp-card">
+        <p class="rp-tag">01 · Documents in, findings out</p>
+        <h2>Legal Pack Review</h2>
+        <p>
+          Upload an auction pack, a lease, a management pack or a TA6. We work through a named risk
+          checklist and report what the documents say, with the document and the page behind every
+          finding, graded by whether it changes the price, needs an answer before exchange, or is
+          simply worth knowing.
+        </p>
+        <p>
           The part most reviews skip is the part that costs money: what the pack leaves out. Missing
           searches, absent service charge accounts and unanswered title questions are reported as
           gaps, each with the question to put to the solicitor or the auctioneer.
         </p>
-
-        <ul class="reveal mt-8 space-y-3 text-base text-slate">
-          <li class="border-l-2 border-green-2 pl-4">
-            Special conditions read clause by clause, because that is where costs move to the buyer.
-          </li>
-          <li class="border-l-2 border-green-2 pl-4">
-            Ground rent, lease term, service charge arrears and s20 notices, quoted with their figures.
-          </li>
-          <li class="border-l-2 border-green-2 pl-4">
-            Tenancies, covenants, searches and the full fee stack on top of the hammer price.
-          </li>
+        <ul class="rp-list">
+          <li>Special conditions read clause by clause, because that is where costs move to the buyer</li>
+          <li>Ground rent, lease term, service charge arrears and s20 notices, quoted with their figures</li>
+          <li>Tenancies, covenants, searches and the full fee stack on top of the hammer price</li>
         </ul>
+        <p class="rp-price">Free while we launch</p>
+        <a class="rp-btn" href={`${REPORTS_URL}/legal-pack`}>Upload a legal pack</a>
+        <p class="rp-fine"><a href={SAMPLE_LEGAL}>See a full sample report</a></p>
+      </article>
 
-        <a
-          href={REPORTS_URL}
-          class="reveal mt-10 inline-block bg-[#c2410c] px-7 py-4 text-base font-medium text-ivory transition-colors hover:bg-[#a33608]"
-        >
-          Upload a legal pack
-        </a>
-        <p class="reveal mt-4 text-xs leading-relaxed text-mist">
-          Free while we launch. Your documents are deleted 90 days after the report completes, and
-          you can delete them yourself at any time. The review states what the documents say. It is
-          not legal advice, and a solicitor must review the pack before exchange.
+      <article class="rp-card">
+        <p class="rp-tag">02 · An address in, the evidence out</p>
+        <h2>Buyer Intelligence Report</h2>
+        <p>
+          What recent sold prices support as a range, the comparable sales behind it, the stamp duty
+          on both bases, the official energy certificate, what it lets for locally, and the area:
+          planning applications, flood risk, crime by offence, named schools and licensed shared
+          housing nearby.
         </p>
-      </div>
+        <p>
+          Every figure is a range. Every block states its source and the date it was pulled. Where a
+          source returns nothing, the report says so rather than leaving it out.
+        </p>
+        <ul class="rp-list">
+          <li>Stamp duty at both ends of the range, as your only home and as an additional dwelling</li>
+          <li>Like-for-like sales: the true peers by type and size, as a cross-check</li>
+          <li>Rent led by actual lettings near the address, not a whole-city average</li>
+        </ul>
+        <p class="rp-price">Free while we launch</p>
+        <a class="rp-btn" href={`${REPORTS_URL}/intelligence`}>Run a report</a>
+        <p class="rp-fine"><a href={SAMPLE_INTEL}>See a full sample report</a></p>
+      </article>
+    </section>
 
-      <aside class="lg:col-span-5">
-        <div class="reveal border border-line bg-ivory p-8">
-          <h3 class="font-display text-xl font-medium tracking-tight text-ink">
-            Already used the free tools?
-          </h3>
-          <p class="mt-4 text-base leading-relaxed text-slate">
-            The report runs on the same engine as the three free checks on this site. If the numbers
-            stack up and you are heading for the auction room, the pack is the next thing to read.
-          </p>
-          <div class="mt-6 space-y-3 text-base">
-            <a href="/deal-check" class="block text-green-2 underline">What should I offer?</a>
-            <a href="/price-check" class="block text-green-2 underline">House price estimate</a>
-            <a href="/refurb-check" class="block text-green-2 underline">Refurbishment calculator</a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <CTABand />
+    <section class="rp-wrap rp-note">
+      <h3>What these reports do not do</h3>
+      <p>
+        They report evidence. They do not tell you what to offer, what to bid, or whether to buy. A
+        legal pack review states what the documents say and is not legal advice: a solicitor must
+        review the pack before exchange. A survey and your own viewing complete the picture on any
+        property.
+      </p>
+      <p class="rp-fine">
+        Already used the free tools? The reports run on the same engine as the
+        <a href="/deal-check">deal check</a>, <a href="/price-check">price check</a> and
+        <a href="/refurb-check">refurbishment calculator</a> on this site.
+      </p>
+    </section>
+  </div>
 </Base>
+
+<style>
+  /* The report product's identity: royal navy with a metallic sky gradient,
+     matching reports.salet.uk exactly. Scoped to .reports-page so the rest of
+     salet.uk keeps its ivory and green untouched. */
+  .reports-page {
+    --navy-900: #08152c;
+    --navy-800: #0f2244;
+    --navy-700: #17325f;
+    --navy-600: #1f437c;
+    --sky-500: #5b8fc9;
+    --sky-400: #86b0dc;
+    --sky-300: #aecbea;
+    --sky-100: #e8f1fa;
+    --rp-paper: #f4f8fc;
+    --rp-ink: #0b1626;
+    --rp-slate: #5b6b80;
+    --rp-line: #d5e0ec;
+    --gold: #c8a95e;
+
+    background: var(--navy-900);
+    color: var(--rp-ink);
+  }
+
+  .rp-wrap { max-width: 68rem; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  .rp-hero {
+    background:
+      radial-gradient(90% 160% at 85% -30%, rgba(174, 203, 234, 0.28) 0%, rgba(174, 203, 234, 0) 60%),
+      linear-gradient(100deg, var(--navy-900) 0%, var(--navy-700) 58%, var(--navy-600) 100%);
+    padding: 5rem 0 4.5rem;
+    position: relative;
+  }
+  .rp-hero::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--sky-400) 42%, transparent 100%);
+  }
+  .rp-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sky-400); font-weight: 600; margin: 0 0 1rem;
+  }
+  .rp-h1 {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 72;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.05; color: #fff; margin: 0 0 1.25rem; font-weight: 500;
+  }
+  .rp-lede { color: var(--sky-300); font-size: 1.15rem; line-height: 1.6; max-width: 42rem; margin: 0 0 1.5rem; }
+  .rp-samples { color: var(--sky-300); font-size: 0.95rem; margin: 0; }
+  .rp-samples a { color: var(--sky-400); font-weight: 600; text-underline-offset: 3px; }
+  .rp-dot { opacity: 0.5; margin: 0 0.4rem; }
+
+  .rp-cards { display: grid; gap: 1.75rem; padding-top: 4rem; padding-bottom: 1rem; }
+  @media (min-width: 56rem) { .rp-cards { grid-template-columns: 1fr 1fr; } }
+
+  .rp-card {
+    background: var(--rp-paper);
+    border: 1px solid var(--rp-line);
+    border-top: 3px solid var(--sky-500);
+    padding: 2.25rem 2rem 2.5rem;
+  }
+  .rp-card h2 {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 72;
+    letter-spacing: -0.02em;
+    font-size: 1.7rem; line-height: 1.15; margin: 0 0 1rem; color: var(--rp-ink); font-weight: 500;
+  }
+  .rp-card p { color: var(--rp-slate); line-height: 1.65; margin: 0 0 1rem; }
+  .rp-tag {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--navy-600); font-weight: 700; margin: 0 0 0.75rem;
+  }
+  .rp-list { margin: 0 0 1.5rem; padding: 0; list-style: none; }
+  .rp-list li {
+    border-left: 2px solid var(--sky-500);
+    padding: 0 0 0 0.9rem; margin: 0 0 0.65rem;
+    color: var(--rp-slate); font-size: 0.95rem; line-height: 1.55;
+  }
+  .rp-price { font-weight: 700; color: var(--navy-700) !important; }
+  .rp-btn {
+    display: inline-block; background: var(--navy-700); color: #fff;
+    padding: 0.85rem 1.5rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .rp-btn:hover { background: var(--navy-600); }
+  .rp-fine { font-size: 0.85rem; margin: 1rem 0 0 !important; }
+  .rp-fine a { color: var(--navy-600); }
+
+  .rp-note { padding-top: 2rem; padding-bottom: 5rem; }
+  .rp-note h3 {
+    font-family: var(--font-display); font-size: 1.15rem;
+    color: var(--sky-300); margin: 0 0 0.75rem; font-weight: 500;
+  }
+  .rp-note p { color: var(--sky-300); opacity: 0.85; line-height: 1.65; max-width: 46rem; }
+  .rp-note .rp-fine a { color: var(--sky-400); }
+</style>
