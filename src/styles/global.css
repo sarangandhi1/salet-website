@@ -16,6 +16,21 @@
   --color-green-2: #2e5a40;
   --color-green-3: #9db8a6;
 
+  /* THE DOT.
+     The full stop after "Salet" is the brand's one flourish, and its rule is
+     that it always CONTRASTS with whatever it sits on. It is never a shade of
+     the surrounding palette: a green dot on a green-family brand reads as
+     part of the wordmark rather than as a mark.
+
+     salet.uk is green and its wordmark sits on ink, so the dot is purple.
+     reports.salet.uk is navy, so the dot there is fluorescent green (#2fff8b).
+     Any future surface picks its own bright contrasting colour by the same
+     test, and declares it here rather than inlining it.
+
+     #b47dff measures 6.06:1 on the ink header, 4.41:1 on the navy hero, so it
+     holds on every surface this wordmark actually meets. */
+  --color-dot: #b47dff;
+
   --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
