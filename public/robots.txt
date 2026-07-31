@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /guide/read
+
+Sitemap: https://salet.uk/sitemap-index.xml
