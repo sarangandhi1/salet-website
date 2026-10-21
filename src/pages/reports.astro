@@ -24,8 +24,12 @@ const SAMPLE_INTEL = `${REPORTS_URL}/sample/intelligence`;
           evidence supports, as a range, with the area behind it. The other reads the legal pack and
           cites the page behind every finding. Both start with a free preview, and you pay only to unlock the rest.
         </p>
+        <div class="rp-actions">
+          <a class="rp-btn rp-btn-light" href={`${REPORTS_URL}/intelligence`}>Start a free property report</a>
+          <a class="rp-btn-ghost" href={SAMPLE_INTEL}>See the sample report</a>
+        </div>
         <p class="rp-samples">
-          Read a full example first:
+          The sample now includes "Is this area getting busier?". Read a full example first:
           <a href={SAMPLE_INTEL}>sample property report</a>
           <span class="rp-dot">·</span>
           <a href={SAMPLE_LEGAL}>sample paperwork review</a>
@@ -51,6 +55,7 @@ const SAMPLE_INTEL = `${REPORTS_URL}/sample/intelligence`;
           <li>Stamp duty at both ends of the range, as your only home and as an additional dwelling</li>
           <li>Like-for-like sales: the true peers by type and size, as a cross-check</li>
           <li>Rent led by actual lettings near the address, not a whole-city average</li>
+          <li>Is this area getting busier? How fast homes are coming to market compared with a year ago</li>
         </ul>
         <p class="rp-price">Free preview</p>
         <a class="rp-btn" href={`${REPORTS_URL}/intelligence`}>Run a report</a>
@@ -150,6 +155,14 @@ const SAMPLE_INTEL = `${REPORTS_URL}/sample/intelligence`;
   .rp-lede { color: var(--sky-300); font-size: 1.15rem; line-height: 1.6; max-width: 42rem; margin: 0 0 1.5rem; }
   .rp-samples { color: var(--sky-300); font-size: 0.95rem; margin: 0; }
   .rp-samples a { color: var(--sky-400); font-weight: 600; text-underline-offset: 3px; }
+  .rp-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0 0 1.25rem; }
+  .rp-btn.rp-btn-light { background: var(--sky-400); color: var(--navy-700); }
+  .rp-btn.rp-btn-light:hover { background: var(--sky-300); }
+  .rp-btn-ghost {
+    display: inline-block; border: 1px solid var(--sky-400); color: var(--sky-300);
+    padding: 0.85rem 1.5rem; font-weight: 600; text-decoration: none; transition: background 0.2s;
+  }
+  .rp-btn-ghost:hover { background: rgba(255, 255, 255, 0.06); }
   .rp-dot { opacity: 0.5; margin: 0 0.4rem; }
 
   .rp-cards { display: grid; gap: 1.75rem; padding-top: 4rem; padding-bottom: 1rem; }
