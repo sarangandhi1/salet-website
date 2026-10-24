@@ -1,0 +1,45 @@
+---
+import TileVisual from './TileVisual.astro';
+import { DETAILS, LAUNCH_PILL, artFor } from '../data/details';
+
+// The picture at the top of a card or tile: the product's artwork, full
+// bleed, with its badges laid over it and a slow zoom on hover. Products
+// without artwork fall back to the real report page visual.
+interface Props {
+  productKey: string;
+  alt: string;
+  flag?: string;
+  flagTone?: 'accent' | 'soon' | 'navy';
+  launch?: boolean;
+  /** Width the image shows at, for the browser's srcset choice. */
+  sizes?: string;
+  eager?: boolean;
+}
+const { productKey, alt, flag, flagTone = 'accent', launch = false, sizes = '(min-width: 64rem) 380px, (min-width: 40rem) 50vw, 100vw', eager = false } = Astro.props;
+const art = artFor(productKey);
+const det = DETAILS[productKey];
+---
+<div class:list={['ah', { 'ah--art': art }]}>
+  {
+    art ? (
+      <img
+        src={`${art}-800.webp`}
+        srcset={`${art}-800.webp 800w, ${art}-1168.webp 1168w`}
+        sizes={sizes}
+        width="800"
+        height="603"
+        alt={alt}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    ) : det ? (
+      <TileVisual device={det.device} icon={det.icon} img={det.img} alt={alt} />
+    ) : null
+  }
+  {(flag || launch) && (
+    <div class="ah-badges">
+      {flag && <span class:list={['ah-flag', `is-${flagTone}`]}>{flag}</span>}
+      {launch && <span class="pc-pill">{LAUNCH_PILL}</span>}
+    </div>
+  )}
+</div>

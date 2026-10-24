@@ -10,10 +10,25 @@
 // published refund terms must say the same before this goes live.
 export const GUARANTEE = 'Not useful? Full refund, no questions.';
 
-// Launch pricing: the struck price is the list price that applies after
-// launch, labelled as such, never a past price that was not charged.
+// Launch pricing, in the lawful form: no struck "was" price (these products
+// never sold higher), just the launch price and the date it rises. PackForge
+// raises the prices on that date.
 export const LAUNCH_PILL = 'Launch price';
-export const afterLaunch = (was: string) => `${was} after launch`;
+export const RISE_DATE = '1 December 2026';
+export const risesTo = (to: string) => `Rising to ${to} on ${RISE_DATE}`;
+
+// Custom artwork per product (green, ivory and copper; no text), served from
+// /images/art/<slug>-800.webp and -1168.webp on both sites. Products without
+// art fall back to the report page visual.
+const ART: Record<string, string> = {
+  intelligence: 'buyer-intelligence', legal: 'legal-pack', decision: 'decision-pack', five: 'five-pack',
+  'deal-analyser': 'deal-analyser', hmo: 'hmo-viability', 'auction-lot': 'auction-lot', shortlist: 'home-search',
+  'photo-refurb': 'photo-refurb', 'pack-builder': 'investor-pack', offmarket: 'offmarket-leads',
+  'seller-leads': 'seller-leads', 'sourcer-pass': 'sourcer-pass', 'valuation-evidence': 'valuation-evidence',
+  'market-brief': 'area-market-brief', 'demand-board': 'buyer-demand-board', 'letter-kit': 'letter-kit',
+  'data-licence': 'area-data-licence', bespoke: 'bespoke-research',
+};
+export const artFor = (key: string) => (ART[key] ? `/images/art/${ART[key]}` : undefined);
 
 export type Icon =
   | 'eye' | 'house' | 'scales' | 'stack' | 'document' | 'docs' | 'search' | 'handshake'

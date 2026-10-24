@@ -369,3 +369,42 @@
     background: #fff4d6; border: 1px solid #f1d58a; color: #5c3d00; padding: 0.8rem 1rem; margin: 0 auto 1.75rem; max-width: 46rem; font-size: 0.92rem;
   }
   .reports-page .pb-banner strong { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; }
+
+  /* Artwork heroes: full bleed at the top of every card and tile, rounded
+     corners, badges laid over the image, a slow zoom on hover. */
+  .reports-page .pc, .reports-page .rp-tile { border-radius: 16px; overflow: hidden; }
+  .reports-page .pc.is-flag { overflow: hidden; }
+  .reports-page .ah {
+    position: relative; overflow: hidden; aspect-ratio: 1168 / 880; background: #f3efe6;
+    margin: -1.75rem -1.5rem 1.25rem;
+  }
+  .reports-page .rp-tile .ah { margin: 0; }
+  .reports-page .ah > img {
+    display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reports-page .ah .tv { margin: 0; height: 100%; aspect-ratio: auto; border-bottom: 0; }
+  @media (hover: hover) {
+    .reports-page .pc:hover .ah > img, .reports-page .rp-tile:hover .ah > img { transform: scale(1.06); }
+  }
+  .reports-page .ah-badges {
+    position: absolute; top: 0.85rem; left: 0.85rem; right: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; z-index: 2;
+  }
+  .reports-page .ah-flag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.38rem 0.7rem; border-radius: 999px; color: #fff; box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.35);
+  }
+  .reports-page .ah-flag.is-accent { background: var(--cta); }
+  .reports-page .ah-flag.is-navy { background: var(--navy-700); }
+  .reports-page .ah-flag.is-soon { background: #5b6b80; }
+  .reports-page .ah-badges .pc-pill { box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.25); padding: 0.3rem 0.65rem; }
+  .reports-page .pc .pc-flag, .reports-page .rp-tile .rp-flag { display: none; }
+  .reports-page .pc { grid-row: span 8; }
+  .reports-page .pb-cards { grid-template-rows: repeat(8, auto); }
+  .reports-page .rp-launch { font-size: 0.82rem; color: #8a5a00; font-weight: 600; margin: -0.5rem 0 0.9rem; }
+  .reports-page .rp-tile .pc-peek, .reports-page .pc .pc-peek { margin-top: 0.9rem; }
+
+  /* Artwork in page heroes. */
+  .reports-page .rp-hero-grid { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 56rem) { .reports-page .rp-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3rem; } }
+  .reports-page .rp-hero-art { border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); }
+  .reports-page .rp-hero-art .ah { margin: 0; }

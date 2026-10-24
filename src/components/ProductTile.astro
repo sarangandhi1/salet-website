@@ -1,7 +1,7 @@
 ---
 import type { Product } from '../data/reports';
-import TileVisual from './TileVisual.astro';
-import { DETAILS, GUARANTEE, LAUNCH_PILL, afterLaunch } from '../data/details';
+import ArtHero from './ArtHero.astro';
+import { DETAILS, GUARANTEE, risesTo } from '../data/details';
 
 interface Props {
   p: Product;
@@ -16,26 +16,25 @@ const page = p.slug ? `/reports/${p.slug}` : null;
 const det = DETAILS[p.key];
 const gets = det?.deliverables ?? p.points;
 const paid = p.price.startsWith('£') && p.price !== '£0';
+const flag = p.popular ? 'Top pick' : p.badge;
+const sample = det?.img ?? p.img;
 ---
 <article class:list={['rp-tile', { 'is-popular': p.popular }]} id={p.key}>
-  {p.popular && <span class="rp-flag is-popular">Top pick</span>}
-  {!p.popular && p.badge && <span class:list={['rp-flag', { 'is-soon': p.notify }]}>{p.badge}</span>}
   <a class="rp-tile-vis" href={page ?? (p.href || undefined)} tabindex="-1" aria-hidden="true">
-    {det ? <TileVisual device={det.device} icon={det.icon} img={det.img ?? p.img} /> : <TileVisual device="doc" icon="document" img={p.img} />}
+    <ArtHero productKey={p.key} alt="" flag={flag} flagTone={p.popular ? 'accent' : p.notify ? 'soon' : 'navy'} launch={!!p.rises} />
   </a>
   <div class="rp-tile-body">
     <h3>{page ? <a href={page}>{p.name}</a> : p.name}</h3>
     <p class="rp-promise">{p.promise}</p>
     <ul class="rp-points">{gets.map((pt) => <li>{pt}</li>)}</ul>
     {det && <p class="pc-format">{det.format}</p>}
-    {p.was && <p class="rp-launch"><span class="pc-pill">{LAUNCH_PILL}</span> {afterLaunch(p.was)}</p>}
     <div class="rp-price-row">
-      {p.was && <s class="pc-was">{p.was}</s>}
       <span class="rp-price">{p.price}</span>
       <span class="rp-price-note">
         {p.key === 'free' ? 'no card needed' : p.price.startsWith('from') ? p.unit : p.unit ? `${p.unit}, one payment` : 'one payment, no subscription'}
       </span>
     </div>
+    {p.rises && <p class="rp-launch">{risesTo(p.rises)}</p>}
     {
       p.notify ? (
         <form class="rp-notify" method="POST" action={NOTIFY_ACTION}>
@@ -53,5 +52,13 @@ const paid = p.price.startsWith('£') && p.price !== '£0';
     }
     {paid && !p.notify && <p class="pc-guarantee">{GUARANTEE}</p>}
     {page && <a class="rp-more" href={page}>What is inside</a>}
+    {
+      sample && (
+        <details class="pc-peek">
+          <summary>See a real example</summary>
+          <img src={sample} width="800" height="600" alt={`A real page from the ${p.name} sample`} loading="lazy" decoding="async" />
+        </details>
+      )
+    }
   </div>
 </article>

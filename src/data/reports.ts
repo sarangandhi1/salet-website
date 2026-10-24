@@ -63,7 +63,7 @@ export interface Product {
   popular?: boolean;
   badge?: string;
   unit?: string; // shown beside the price, e.g. "per pack", "30 days"
-  was?: string; // list price after launch, struck through beside the launch price
+  rises?: string; // the price from 1 December 2026, shown beside the launch price
   notify?: boolean; // not built yet: the tile collects an email instead of selling
 }
 
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     name: 'Buyer Intelligence Report',
     price: '£19',
     promise: 'Never overpay again. See what every home nearby really sold for.',
-    was: '£29',
+    rises: '£29',
     points: [
       'The price range recent sales support',
       'Stamp duty you will really pay',
@@ -139,7 +139,7 @@ export const PRODUCTS: Product[] = [
     name: 'Decision Pack',
     price: '£69',
     promise: 'Walk in knowing your number. Every likely price, fully costed.',
-    was: '£99',
+    rises: '£99',
     points: [
       'The full Buyer Intelligence Report',
       'Five price scenarios, each with stamp duty, works and fees',

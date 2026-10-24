@@ -4,6 +4,10 @@ import ProductTile from '../../../src/components/ProductTile.astro';
 import ProTrust from '../components/ProTrust.astro';
 import LeadSheet from '../components/LeadSheet.astro';
 import { AUDIENCES, LEADS, PACKS, PASSES, DATA, SITE } from '../data/pro';
+import ArtHero from '../../../src/components/ArtHero.astro';
+
+// Artwork for each audience tile.
+const AUD_ART: Record<string, string> = { sourcers: 'offmarket', agents: 'seller-leads' };
 
 const groups = [
   { id: 'leads', h: 'Leads', sub: 'Homes whose owners may want to sell, found in public records, every week.', items: LEADS },
@@ -17,7 +21,8 @@ const groups = [
   description="Homes in your area whose owners may want to sell, every week, branded investor packs and valuation evidence. For deal sourcers and estate agents."
 >
   <header class="rp-hero">
-    <div class="rp-wrap">
+    <div class="rp-wrap rp-hero-grid">
+      <div>
       <p class="rp-eyebrow">Salet Pro · for property professionals</p>
       <h1 class="rp-h1">The leads your competitors don&rsquo;t have</h1>
       <p class="rp-lede">
@@ -28,6 +33,8 @@ const groups = [
         <a class="rp-btn" href="/sample-leads">See a sample lead sheet</a>
         <a class="rp-btn is-soon" href="/pricing">Pricing</a>
       </div>
+      </div>
+      <div class="rp-hero-art"><ArtHero productKey="offmarket" alt="" sizes="(min-width: 56rem) 520px, 100vw" eager /></div>
     </div>
   </header>
 
@@ -40,7 +47,7 @@ const groups = [
       <div class="rp-tiles" style="margin-top:1.5rem">
         {AUDIENCES.map((a) => (
           <a href={`/${a.slug}`} class="rp-tile" style="text-decoration:none;color:inherit">
-            <span class="rp-tile-img"><img src={a.img} width="800" height="600" alt="" loading="lazy" decoding="async" /></span>
+            <span class="rp-tile-vis"><ArtHero productKey={AUD_ART[a.slug]} alt="" /></span>
             <span class="rp-tile-body">
               <h3>{a.label}</h3>
               <span class="rp-promise">{a.h1}.</span>

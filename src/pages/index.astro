@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { AUDIENCES } from '../data/reports';
+import { artFor } from '../data/details';
 import CTABand from '../components/CTABand.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TestimonialSlot from '../components/TestimonialSlot.astro';
@@ -81,8 +82,8 @@ import TestimonialSlot from '../components/TestimonialSlot.astro';
       {
         AUDIENCES.map((a) => (
           <a href={`/for/${a.slug}`} class="group flex flex-col border border-line bg-white transition-shadow hover:shadow-md">
-            <span class="block aspect-[4/3] overflow-hidden border-b border-line bg-[#f4f8fc]">
-              <img src={a.img} width="800" height="600" alt="" loading="lazy" decoding="async" class="h-full w-full object-cover object-top" />
+            <span class="block aspect-[1168/880] overflow-hidden border-b border-line bg-[#f3efe6]">
+              <img src={`${artFor(a.slug === 'investors' ? 'deal-analyser' : 'intelligence')}-800.webp`} width="800" height="603" alt="" loading="lazy" decoding="async" class="h-full w-full object-cover" />
             </span>
             <span class="flex flex-1 flex-col px-5 pb-5 pt-4">
               <span class="font-display text-xl font-medium text-ink">{a.label}</span>

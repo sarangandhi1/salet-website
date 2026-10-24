@@ -2,6 +2,8 @@
 import ReportsShell from '../../components/ReportsShell.astro';
 import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
+import ArtHero from '../../components/ArtHero.astro';
+import { artFor } from '../../data/details';
 import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
 
 // One hub per kind of buyer: home buyers and investors. Tools for sourcers
@@ -15,17 +17,22 @@ const { audience } = Astro.params as { audience: string };
 const a = AUDIENCES.find((x) => x.slug === audience)!;
 const back = `/for/${a.slug}`;
 const others = AUDIENCES.filter((x) => x.slug !== a.slug);
+// The hero shows the artwork of the first product this audience can buy.
+const lead = a.products.find((p) => p.key !== 'free' && artFor(p.key))!;
 
 ---
 <ReportsShell title={a.title} description={a.lede}>
   <header class="rp-hero">
-    <div class="rp-wrap">
-      <p class="rp-eyebrow">For {a.label.toLowerCase()}</p>
-      <h1 class="rp-h1">{a.h1}</h1>
-      <p class="rp-lede">{a.lede}</p>
-      <p class="rp-lede" style="font-size:0.95rem;margin:0">
-        Read one first: <a class="rp-link" href={SAMPLE_INTEL}>sample property report</a>.
-      </p>
+    <div class="rp-wrap rp-hero-grid">
+      <div>
+        <p class="rp-eyebrow">For {a.label.toLowerCase()}</p>
+        <h1 class="rp-h1">{a.h1}</h1>
+        <p class="rp-lede">{a.lede}</p>
+        <p class="rp-lede" style="font-size:0.95rem;margin:0">
+          Read one first: <a class="rp-link" href={SAMPLE_INTEL}>sample property report</a>.
+        </p>
+      </div>
+      <div class="rp-hero-art"><ArtHero productKey={lead.key} alt="" sizes="(min-width: 56rem) 520px, 100vw" eager /></div>
     </div>
   </header>
 

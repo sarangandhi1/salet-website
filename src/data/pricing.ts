@@ -1,8 +1,8 @@
 // salet.uk pricing board: what each job costs, three cards per job.
-// Launch pricing: `was` with `launch` is the list price that applies after
-// launch, labelled "after launch". Bundle savings are true sums at launch
-// prices. There are no sales yet, so the flagged card says "Top pick" or
-// "Best value", never "most popular". No testimonials, counts or timers.
+// Launch pricing: `rises` is the price from 1 December 2026, shown as
+// "Rising to £29 on 1 December 2026", never as a struck "was" price. `was` is
+// only for real savings against today's prices (bundle, 5 pack). No sales
+// yet, so flags say "Our pick" or "Best value", never "most popular".
 //
 // Decision Pack, 5 report pack and Home Search Shortlist are not on sale
 // yet: their cards collect an email. When PackForge sells one, give its
@@ -18,8 +18,7 @@ const report = {
   name: 'Never overpay again',
   promise: 'See what every home nearby really sold for, before you make an offer.',
   price: '£19',
-  was: '£29',
-  launch: true,
+  rises: '£29',
   unit: 'per report',
   ticks: ['The price range recent sales support', 'Stamp duty you will really pay', 'Rent, flood, crime, planning, schools'],
   cta: 'Check a property',
@@ -48,12 +47,11 @@ export const SALET_TABS: Tab[] = [
       report,
       {
         id: 'decision',
-        flag: 'Top pick',
+        flag: 'Our pick',
         name: 'Walk in knowing your number',
         promise: 'Every likely price, fully costed with stamp duty, works and fees. No nasty surprises.',
         price: '£69',
-        was: '£99',
-        launch: true,
+        rises: '£99',
         unit: 'per property',
         ticks: ['The full Buyer Intelligence Report', 'Five prices, each with stamp duty, works and fees', 'A works budget, line by line'],
         cta: 'Tell me when it is live',
@@ -146,10 +144,10 @@ export const PAGE_CARD: Record<string, ReturnType<typeof cardFor>> = {
 
 export const SALET_COMPARE = [
   { name: 'Free preview', price: '£0', what: 'The street, energy certificate, Land Registry record, neighbourhood type and local rents for one address.' },
-  { name: 'Buyer Intelligence Report', price: '£19 (£29 after launch)', what: 'Price range from recent sales, comparables, stamp duty, rent, flood, crime, planning, schools, area activity.', href: '/reports/buyer-intelligence' },
+  { name: 'Buyer Intelligence Report', price: '£19 (£29 from 1 Dec 2026)', what: 'Price range from recent sales, comparables, stamp duty, rent, flood, crime, planning, schools, area activity.', href: '/reports/buyer-intelligence' },
   { name: 'Legal Pack Review', price: '£29', what: 'Every finding with its page, what the pack leaves out, questions for your solicitor.', href: '/reports/legal-pack' },
   { name: 'Auction bundle', price: '£39', what: 'One Buyer Intelligence Report and one Legal Pack Review.' },
-  { name: 'Decision Pack (this week)', price: '£69 (£99 after launch)', what: 'The full report plus five costed prices, a works budget and fees.', href: '/reports/decision-pack' },
+  { name: 'Decision Pack (this week)', price: '£69 (£99 from 1 Dec 2026)', what: 'The full report plus five costed prices, a works budget and fees.', href: '/reports/decision-pack' },
   { name: '5 report pack (this week)', price: '£79', what: 'Five Buyer Intelligence Reports, used within 12 months.', href: '/reports/five-pack' },
   { name: 'Home Search Shortlist (soon)', price: '£149', what: 'Homes that fit your brief, each checked.' },
   { name: 'Buying agent', price: 'Agreed upfront', what: 'Search, negotiation and the whole purchase, acting only for you.', href: '/services' },
@@ -165,7 +163,7 @@ export const SALET_FAQS = [
 
 export const SALET_PROOF = [
   'Built on 30 years of Land Registry sales',
-  'Every home in England and Wales covered',
+  'Every home in England covered',
   '2,000+ areas tracked every month',
 ];
 

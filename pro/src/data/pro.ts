@@ -99,8 +99,7 @@ export const LEAD_SAMPLE = [
 ];
 
 // Pricing board: pick the job, see three cards, the middle one flagged.
-// Savings shown only where the list prices add up: ten packs at £15 plus
-// 30 days of leads at £49 is £199 against the £99 pass.
+// Launch prices rise on 1 December 2026 (`rises`); no struck prices.
 const PER_30 = 'One payment by card. Ends after 30 days, never renews.';
 const PER_PACK = 'Pay per pack by card. No subscription.';
 const o = (key: string) => ORDER[key];
@@ -119,7 +118,7 @@ export const PRO_TABS: Tab[] = [
       {
         id: 'sourcer-pass', flag: 'Best value', name: 'Your next 10 deals, packaged',
         promise: 'The Sourcer Pass: ten packs plus the leads your competitors don\u2019t have.',
-        price: '£99', unit: '30 days', was: '£199', launch: true, perUnit: '£9.90 a pack, leads included',
+        price: '£99', unit: '30 days', rises: '£199', perUnit: '£9.90 a pack, leads included',
         ticks: ['Ten Investor Pack Builder packs', 'Off-market leads for one area, weekly', 'Letter Kit included'],
         cta: 'Start my pass', href: o('sourcer-pass').href, risk: PER_30, img: '/images/reports/planning.webp',
       },
@@ -142,8 +141,8 @@ export const PRO_TABS: Tab[] = [
         cta: o('valuation-evidence').cta, href: o('valuation-evidence').href, risk: PER_PACK, img: '/images/reports/like-for-like.webp',
       },
       {
-        id: 'seller-leads', flag: 'Best value', name: 'Know who will sell next', promise: 'Seller Leads: reach owners before they call another agent.',
-        price: '£79', unit: '30 days per patch', was: '£129', launch: true,
+        id: 'seller-leads', flag: 'Our pick', name: 'Know who will sell next', promise: 'Seller Leads: reach owners before they call another agent.',
+        price: '£79', unit: '30 days per patch', rises: '£129',
         ticks: ['Licences ending and permissions lapsing', 'Refused plans and failed auctions', 'Which sectors are getting busier'],
         cta: 'Get my seller leads', href: o('seller-leads').href, risk: PER_30, img: '/images/reports/area-activity.webp',
       },
@@ -189,7 +188,7 @@ export const PRO_COMPARE = [
   { name: 'Off-market leads', price: '£49 / 30 days', what: 'Each week, homes in one area whose owners may want to sell.' },
   { name: 'Area Market Brief (soon)', price: '£49 / 30 days', what: 'Monthly branded brief for vendors and applicants.' },
   { name: 'Photo Refurb Estimate (soon)', price: '£15', what: 'A costed refurbishment from the listing photos.' },
-  { name: 'Seller Leads', price: '£79 / 30 days (£129 after launch)', what: 'Homes in one patch likely to come to market.' },
+  { name: 'Seller Leads', price: '£79 / 30 days (£129 from 1 Dec 2026)', what: 'Homes in one patch likely to come to market.' },
   { name: 'Sourcer Pass', price: '£99 / 30 days', what: 'Ten packs, weekly leads for one area and the Letter Kit.' },
   { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District figures as a spreadsheet or a direct connection.' },
   { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: '/contact?topic=research' },
@@ -205,7 +204,7 @@ export const PRO_FAQS = [
 
 export const PRO_PROOF = [
   'Built on 30 years of Land Registry sales',
-  'Every home in England and Wales covered',
+  'Every home in England covered',
   '2,000+ areas tracked every month',
 ];
 

@@ -3,6 +3,8 @@ import ReportsShell from '../../components/ReportsShell.astro';
 import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
 import PriceCard from '../../components/PriceCard.astro';
+import ArtHero from '../../components/ArtHero.astro';
+import { risesTo } from '../../data/details';
 import { PRODUCTS, PAGES, bySlug } from '../../data/reports';
 import { PAGE_CARD } from '../../data/pricing';
 
@@ -14,12 +16,13 @@ export function getStaticPaths() {
 const { slug } = Astro.params as { slug: string };
 const p = bySlug(slug);
 const pg = PAGES[slug];
-const card = { ...PAGE_CARD[slug], flag: undefined, img: undefined };
+const card = { ...PAGE_CARD[slug], flag: undefined };
 const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
 ---
 <ReportsShell title={pg.title} description={pg.lede}>
   <header class="rp-hero">
-    <div class="rp-wrap">
+    <div class="rp-wrap rp-hero-grid">
+      <div>
       <p class="rp-eyebrow">{p.name}{p.badge ? ` · ${p.badge}` : ''}</p>
       <h1 class="rp-h1">{pg.h1}</h1>
       <p class="rp-lede">{pg.lede}</p>
@@ -27,10 +30,15 @@ const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
         <a class:list={['rp-btn', { 'is-soon': p.soon }]} href={p.href}>{p.cta}</a>
         <span style="color:#fff"><span class="rp-price" style="color:#fff">{p.price}</span></span>
       </div>
+      {p.rises && <p class="rp-lede" style="font-size:0.85rem;margin:0.6rem 0 0;color:#f1d58a">Launch price. {risesTo(p.rises)}.</p>}
       <p class="rp-lede" style="font-size:0.92rem;margin:1rem 0 0">
         {p.soon ? 'Launching this week. Until then, start with the free property preview.' : 'Free preview first. Pay only if you want the full report.'}
         <a class="rp-link" href={pg.sample}>See a full sample report</a>
       </p>
+      </div>
+      <div class="rp-hero-art">
+        <ArtHero productKey={p.key} alt="" launch={!!p.rises} flag={p.popular ? 'Top pick' : p.badge} sizes="(min-width: 56rem) 520px, 100vw" eager />
+      </div>
     </div>
   </header>
 
@@ -65,7 +73,7 @@ const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
       <div class="rp-fact"><h3>How it is produced</h3><p>{pg.how}</p></div>
       <div class="rp-fact"><h3>Delivery</h3><p>{pg.delivery}</p></div>
       <div class="rp-fact"><h3>Our promise</h3><p><strong>Not useful? Full refund, no questions.</strong> And you see a free preview of your own address before you pay a penny.</p></div>
-      <div class="rp-fact"><h3>Price</h3><p><strong>{p.price}</strong>{p.was ? ` launch price, ${p.was} after launch` : ''}. One payment by card, no subscription.</p></div>
+      <div class="rp-fact"><h3>Price</h3><p><strong>{p.price}</strong>{p.rises ? ` launch price, rising to ${p.rises} on 1 December 2026` : ''}. One payment by card, no subscription.</p></div>
     </div>
   </section>
 
