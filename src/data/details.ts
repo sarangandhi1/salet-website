@@ -21,6 +21,7 @@ export const risesTo = (to: string) => `Rising to ${to} on ${RISE_DATE}`;
 // /images/art/<slug>-800.webp and -1168.webp on both sites. Products without
 // art fall back to the report page visual.
 const ART: Record<string, string> = {
+  free: 'free-preview', bundle: 'bundle', 'investor-pass': 'investor-pass', agent: 'buying-agent',
   intelligence: 'buyer-intelligence', legal: 'legal-pack', decision: 'decision-pack', five: 'five-pack',
   'deal-analyser': 'deal-analyser', hmo: 'hmo-viability', 'auction-lot': 'auction-lot', shortlist: 'home-search',
   'photo-refurb': 'photo-refurb', 'pack-builder': 'investor-pack', offmarket: 'offmarket-leads',

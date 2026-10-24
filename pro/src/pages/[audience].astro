@@ -15,13 +15,19 @@ export function getStaticPaths() {
 const { audience } = Astro.params as { audience: string };
 const a = AUDIENCES.find((x) => x.slug === audience)!;
 const other = AUDIENCES.find((x) => x.slug !== audience)!;
+const who = PRO_AUDIENCE_LINKS.find((l) => l.key === a.slug);
 ---
 <ProBase title={a.title} description={a.lede}>
   <header class="rp-hero rp-hero--compact">
-    <div class="rp-wrap">
-      <Breadcrumb trail={[{ label: 'Salet Pro', href: '/' }, { label: a.label }]} back={{ label: 'All tools and prices', href: '/pricing' }} />
-      <h1 class="rp-h1">{a.h1}</h1>
-      <p class="rp-lede" style="margin:0">{a.lede}</p>
+    <div class="rp-wrap rp-hero-grid">
+      <div>
+        <Breadcrumb trail={[{ label: 'Salet Pro', href: '/' }, { label: a.label }]} back={{ label: 'All tools and prices', href: '/pricing' }} />
+        <h1 class="rp-h1">{a.h1}</h1>
+        <p class="rp-lede" style="margin:0">{a.lede}</p>
+      </div>
+      {who && (
+        <img class="pro-who" src={`/images/art/${who.art}-800.webp`} srcset={`/images/art/${who.art}-800.webp 800w, /images/art/${who.art}-1168.webp 1168w`} sizes="420px" width="800" height="603" alt="" />
+      )}
     </div>
   </header>
 

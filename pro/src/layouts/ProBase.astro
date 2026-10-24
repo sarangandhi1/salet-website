@@ -101,6 +101,10 @@ const year = new Date().getFullYear();
   .reports-page .pro-foot a { color: var(--sky-400); }
   .reports-page .pro-sep { opacity: 0.5; margin: 0 0.4rem; }
   .reports-page .pro-nav-back { color: #f1d58a !important; font-weight: 600; }
+  .reports-page .pro-who { display: none; }
+  @media (min-width: 56rem) {
+    .reports-page .pro-who { display: block; width: 100%; max-width: 420px; justify-self: end; border-radius: 18px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); }
+  }
   .reports-page .rp-hero.rp-hero--chooser { padding: 2rem 0 3rem; }
   .reports-page .pro-scope { border-left: 3px solid var(--gold); background: var(--rp-paper); padding: 0.8rem 1rem; color: var(--rp-ink); font-size: 0.95rem; margin: 0 0 1.75rem; }
 </style>

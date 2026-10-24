@@ -16,15 +16,15 @@ export interface AudienceLink {
 // salet.uk: every kind of visitor finds their category first. Sourcers and
 // estate agents are served by Salet Pro.
 export const SALET_AUDIENCE_LINKS: AudienceLink[] = [
-  { key: 'home-buyers', label: 'Home buyers', choose: 'I’m buying a home', hook: 'Know what to pay before you offer', href: '/for/home-buyers', art: 'buyer-intelligence' },
-  { key: 'investors', label: 'Investors', choose: 'I’m an investor', hook: 'Run the numbers in minutes', href: '/for/investors', art: 'deal-analyser' },
-  { key: 'sourcers', label: 'Deal sourcers', choose: 'I source deals', hook: 'Find and package deals first', href: `${PRO_URL}/sourcers`, art: 'offmarket-leads' },
-  { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: `${PRO_URL}/agents`, art: 'seller-leads' },
+  { key: 'home-buyers', label: 'Home buyers', choose: 'I’m buying a home', hook: 'Know what to pay before you offer', href: '/for/home-buyers', art: 'who-home-buyer' },
+  { key: 'investors', label: 'Investors', choose: 'I’m an investor', hook: 'Run the numbers in minutes', href: '/for/investors', art: 'who-investor' },
+  { key: 'sourcers', label: 'Deal sourcers', choose: 'I source deals', hook: 'Find and package deals first', href: `${PRO_URL}/sourcers`, art: 'who-sourcer' },
+  { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: `${PRO_URL}/agents`, art: 'who-agent' },
 ];
 
 // Salet Pro's own chooser and tab bar.
 export const PRO_AUDIENCE_LINKS: AudienceLink[] = [
-  { key: 'sourcers', label: 'Deal sourcers', choose: 'I source deals', hook: 'Find and package deals first', href: '/sourcers', art: 'offmarket-leads' },
-  { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: '/agents', art: 'seller-leads' },
+  { key: 'sourcers', label: 'Deal sourcers', choose: 'I source deals', hook: 'Find and package deals first', href: '/sourcers', art: 'who-sourcer' },
+  { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: '/agents', art: 'who-agent' },
   { key: 'data', label: 'Data & research', choose: 'I need data', hook: 'Every district, every month', href: '/pricing#data', art: 'area-data-licence' },
 ];
