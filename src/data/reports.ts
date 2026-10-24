@@ -7,7 +7,7 @@
 //
 // Every product sells from reports.salet.uk. ORDER below holds each one's
 // order page; a product missing from it stays "Coming soon" and its tile
-// collects an email (today only the Area Market Brief).
+// collects an email (none today: every product is on sale).
 
 export const APP = 'https://reports.salet.uk';
 export const SAMPLE_INTEL = `${APP}/sample/intelligence`;
@@ -242,6 +242,7 @@ export const ORDER: Record<string, { href: string; cta: string }> = {
   'letter-kit': { href: `${APP}/checkout/letter_kit`, cta: 'Get the Letter Kit' },
   'demand-board': { href: `${APP}/checkout/demand_board`, cta: 'See the board' },
   'data-licence': { href: `${APP}/checkout/area_data`, cta: 'Get the data' },
+  'market-brief': { href: `${APP}/checkout/area_brief`, cta: 'Get my brief' },
 };
 
 export const MORE: Product[] = BUILT.map((p) =>
