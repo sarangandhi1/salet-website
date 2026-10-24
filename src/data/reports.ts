@@ -62,6 +62,8 @@ export interface Product {
   soon?: boolean;
   popular?: boolean;
   badge?: string;
+  unit?: string; // shown beside the price, e.g. "per pack", "30 days"
+  notify?: boolean; // not built yet: the tile collects an email instead of selling
 }
 
 export const PRODUCTS: Product[] = [
@@ -126,9 +128,8 @@ export const PRODUCTS: Product[] = [
       'Save £9 against buying both',
     ],
     img: '/images/reports/legal-summary.webp',
-    href: `${APP}/intelligence`,
-    cta: 'Coming this week',
-    soon: true,
+    href: `${APP}/pricing`,
+    cta: 'Buy the bundle',
   },
   {
     slug: 'decision-pack',
@@ -163,6 +164,140 @@ export const PRODUCTS: Product[] = [
     cta: 'Coming this week',
     soon: true,
     badge: 'New',
+  },
+];
+
+// Products still being built. Each tile shows the real report section the
+// product is built on and collects an email for launch day. When PackForge
+// sells one, move it into PRODUCTS with its real href.
+const soon = (
+  key: string,
+  name: string,
+  price: string,
+  unit: string,
+  promise: string,
+  points: string[],
+  img: string,
+): Product => ({
+  slug: null,
+  key,
+  name,
+  price,
+  unit,
+  promise,
+  points,
+  img: `/images/reports/${img}.webp`,
+  href: '',
+  cta: 'Tell me when it is live',
+  soon: true,
+  notify: true,
+  badge: 'Coming soon',
+});
+
+export const COMING: Product[] = [
+  soon('shortlist', 'Home Search Shortlist', '£149', 'one search', 'Your brief in, the homes that fit it out, each one checked.', ['Homes on the market that match your brief', 'Each one priced against its sold evidence', 'Area, flood and schools for every one'], 'area-type'),
+  soon('deal-analyser', 'Deal Analyser', '£29', 'per deal', 'Buy to let, BRRR or flip: does the deal stack up?', ['Yield, cash left in and return', 'A stress test on rate and rent', 'Built from local lettings and sold prices'], 'rent'),
+  soon('hmo', 'HMO Viability Report', '£29', 'per address', 'Can this house work as an HMO, and what would it let for?', ['Article 4 and licensing for the address', 'Local housing allowance and room rents', 'Licensed HMOs and refusals nearby'], 'hmo'),
+  soon('auction-lot', 'Auction Lot Report', '£39', 'per lot', 'The evidence on one lot, and the legal pack read, before you bid.', ['Sold evidence for the lot', 'The highest bid the evidence supports', 'The legal pack read with page references'], 'legal-findings'),
+  soon('investor-pass', 'Investor Pass', '£49', '30 days', 'Ten reports of any type in thirty days. One payment, no renewal.', ['Any mix of reports', 'One payment, no auto renewal', 'Every free preview stays free'], 'comparables'),
+  soon('pack-builder', 'Investor Pack Builder', '£15', 'per pack', 'Address and price in, a branded investor pack out.', ['Your branding on a full PDF pack', 'A one page summary for WhatsApp', 'Returns, comparables and area, all sourced'], 'valuation'),
+  soon('offmarket', 'Off-market leads', '£49', '30 days', 'Motivated seller signals for one area, every week.', ['Expiring HMO licences and refused plans', 'Pre-auction lots and energy rating pressure', 'Property level, never owner names'], 'planning'),
+  soon('sourcer-pass', 'Sourcer Pass', '£99', '30 days', 'Ten investor packs and the weekly leads for one area.', ['Ten Investor Pack Builder packs', 'Off-market leads for one area', 'One payment, no auto renewal'], 'price-paid'),
+  soon('seller-leads', 'Seller Leads', '£79', '30 days per patch', 'Homes in your patch likely to come to market soon.', ['Licences ending and permissions lapsing', 'Refused plans and failed auctions', 'Which sectors are getting busier'], 'area-activity'),
+  soon('market-brief', 'Area Market Brief', '£49', '30 days', 'A monthly branded brief for your vendors and applicants.', ['Activity in your sectors against a year ago', 'Sold evidence and local signals', 'Your branding, ready to send'], 'crime'),
+  soon('valuation-evidence', 'Valuation Evidence Pack', '£15', 'per instruction', 'Comparables, energy certificate and area for one instruction.', ['The comparable sales with dates', 'The energy certificate and floor area', 'The area in one page'], 'like-for-like'),
+];
+
+const ALL = [...PRODUCTS, ...COMING];
+const pick = (...keys: string[]) => keys.map((k) => ALL.find((p) => p.key === k)!);
+
+export interface Audience {
+  slug: string;
+  label: string; // nav heading
+  short: string; // homepage tile line
+  img: string;
+  title: string;
+  h1: string;
+  lede: string;
+  products: Product[];
+  free?: { href: string; label: string }[];
+  faqs: { q: string; a: string }[];
+  service?: string;
+}
+
+const REFUND =
+  'A credit you have not used can be cancelled within 14 days of payment for a full refund. If a report fails to run, or comes back with no data, we refund it in full. Once a report has been delivered it is not refundable.';
+
+export const AUDIENCES: Audience[] = [
+  {
+    slug: 'home-buyers',
+    label: 'Home buyers',
+    short: 'Is this house worth the asking price, and is the paperwork clean?',
+    img: '/images/reports/valuation.webp',
+    title: 'Reports for home buyers | From free | Salet',
+    h1: 'Buying a home? Check it before you offer',
+    lede: 'The sold evidence, the stamp duty and the area for any address, and the legal pack read with the page behind every finding. Every report starts with a free preview.',
+    products: pick('free', 'intelligence', 'legal', 'bundle', 'decision', 'shortlist'),
+    free: [
+      { href: '/deal-check', label: 'What should I offer?' },
+      { href: '/price-check', label: 'What is this property worth?' },
+      { href: '/refurb-check', label: 'What will the refurb cost?' },
+      { href: '/area', label: 'Is my area getting busier?' },
+    ],
+    faqs: [
+      { q: 'Is this a valuation?', a: 'No. It is not a RICS valuation or a survey. It reports what the public records show, as a range, so a survey and your own viewing still matter.' },
+      { q: 'How fast is it?', a: 'Minutes. The free preview usually takes under a minute, the full report a minute or two more. It lands in your account and in your inbox.' },
+      { q: 'Can I get a refund?', a: REFUND },
+      { q: 'Is my data shared?', a: 'No. We do not sell your data and we do not share it with anyone else.' },
+    ],
+    service: 'Want someone to negotiate for you? Salet also acts as your',
+  },
+  {
+    slug: 'investors',
+    label: 'Investors',
+    short: 'Rent, yield, HMO rules and auction lots, checked before you buy.',
+    img: '/images/reports/rent.webp',
+    title: 'Reports for property investors | Salet',
+    h1: 'Investing? Know the numbers before the viewing',
+    lede: 'Sold prices, real local rents and the area for any address today. Deal, HMO and auction reports are on the way.',
+    products: pick('intelligence', 'five', 'legal', 'deal-analyser', 'hmo', 'auction-lot', 'investor-pass'),
+    faqs: [
+      { q: 'Where do the rents come from?', a: 'Actual lettings near the address lead, with wider area figures beside them as a cross check. Every figure says where it came from and when.' },
+      { q: 'Do you predict prices?', a: 'No. The reports show what the evidence supports today, as a range. Nobody has a tested edge on where prices go next, and we do not pretend to.' },
+      { q: 'What is a pass?', a: 'One payment for a set number of reports used within 30 days. It does not renew. Real subscriptions only come later.' },
+      { q: 'Can I get a refund?', a: REFUND },
+    ],
+    service: 'Want us to find and negotiate the deal? Salet also acts as your',
+  },
+  {
+    slug: 'sourcers',
+    label: 'Deal sourcers',
+    short: 'Off-market signals and investor packs, built from official records.',
+    img: '/images/reports/planning.webp',
+    title: 'Tools for property deal sourcers | Salet',
+    h1: 'Sourcing deals? Find them first, pack them fast',
+    lede: 'Property level motivated seller signals for your area, every week, and a branded investor pack from an address and a price.',
+    products: pick('offmarket', 'pack-builder', 'sourcer-pass', 'intelligence', 'five'),
+    faqs: [
+      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal: an expiring licence, a refused plan, an auction lot, an energy rating a landlord must fix. How you approach the owner is up to you.' },
+      { q: 'Where does the data come from?', a: 'Council licence registers and planning portals, the EPC register, HM Land Registry and auction catalogues. Every lead says where it came from and when.' },
+      { q: 'What is a pass?', a: 'One payment for 30 days of packs and leads. It does not renew.' },
+    ],
+  },
+  {
+    slug: 'agents',
+    label: 'Estate agents',
+    short: 'Seller leads for your patch and evidence for every valuation.',
+    img: '/images/reports/area-activity.webp',
+    title: 'Tools for estate agents | Salet',
+    h1: 'Estate agent? Know who is likely to sell next',
+    lede: 'Homes in your patch likely to come to market, which sectors are getting busier, and the evidence pack for every valuation.',
+    products: pick('seller-leads', 'market-brief', 'valuation-evidence', 'intelligence'),
+    faqs: [
+      { q: 'How do you know a home is likely to sell?', a: 'From public signals: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },
+      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal.' },
+      { q: 'Can I put my branding on the brief?', a: 'Yes. The Area Market Brief is made to send to your vendors and applicants under your name.' },
+    ],
   },
 ];
 

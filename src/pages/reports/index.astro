@@ -2,7 +2,7 @@
 import ReportsShell from '../../components/ReportsShell.astro';
 import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
-import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL } from '../../data/reports';
+import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES } from '../../data/reports';
 
 // The pricing page: one tile per product, cheapest first, each with a real
 // crop of the report it sells and one button to reports.salet.uk. The
@@ -49,6 +49,15 @@ import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL } from '../../data/reports';
         <a href="/reports/legal-pack"><em>Have the legal pack and an auction date</em><b>Legal Pack Review, £29</b></a>
         <a href="/reports/decision-pack"><em>Serious about one property, pack in hand</em><b>Buyer Decision Pack, £69</b></a>
         <a href="/reports/five-pack"><em>Comparing a shortlist of homes</em><b>5 report pack, £79</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2" style="font-size:1.4rem">Shop by who you are</h2>
+      <div class="rp-chips" style="margin-top:1rem">
+        {AUDIENCES.map((a) => <a href={`/for/${a.slug}`}>For {a.label.toLowerCase()}</a>)}
       </div>
     </div>
   </section>
