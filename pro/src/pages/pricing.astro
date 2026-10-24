@@ -1,7 +1,7 @@
 ---
 import ProBase from '../layouts/ProBase.astro';
 import PricingBoard from '../../../src/components/PricingBoard.astro';
-import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, SITE } from '../data/pro';
+import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, PRO_BANNER, SITE } from '../data/pro';
 
 // Pick the job ("I source deals", "I am an estate agent", "I need data"),
 // then three cards. Everything else is in "Compare everything".
@@ -27,6 +27,7 @@ import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, SITE } from '../data/pro';
         compare={PRO_COMPARE}
         faqs={PRO_FAQS}
         proof={PRO_PROOF}
+        banner={PRO_BANNER}
         back={`${SITE}/pricing`}
         sticky={{ label: 'See a sample lead sheet', href: '/sample-leads' }}
       />

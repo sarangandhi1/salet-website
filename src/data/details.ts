@@ -6,6 +6,15 @@
 // Wording rule: talk like a property professional to a client. No system or
 // software words ("engine", "generated", "output", "signals", "feed").
 
+// Shown on every paid card and tile. PackForge has agreed to honour it; its
+// published refund terms must say the same before this goes live.
+export const GUARANTEE = 'Not useful? Full refund, no questions.';
+
+// Launch pricing: the struck price is the list price that applies after
+// launch, labelled as such, never a past price that was not charged.
+export const LAUNCH_PILL = 'Launch price';
+export const afterLaunch = (was: string) => `${was} after launch`;
+
 export type Icon =
   | 'eye' | 'house' | 'scales' | 'stack' | 'document' | 'docs' | 'search' | 'handshake'
   | 'camera' | 'calculator' | 'rooms' | 'gavel' | 'ticket' | 'briefcase' | 'pin' | 'bell'

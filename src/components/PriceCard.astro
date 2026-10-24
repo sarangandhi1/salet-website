@@ -1,6 +1,6 @@
 ---
 import TileVisual from './TileVisual.astro';
-import { DETAILS } from '../data/details';
+import { DETAILS, GUARANTEE, LAUNCH_PILL, afterLaunch } from '../data/details';
 
 // One pricing card: outcome name, promise, big price with its unit, a real
 // saving only where the arithmetic is true, three ticks, one action, and a
@@ -12,7 +12,8 @@ export interface Card {
   promise: string;
   price: string;
   unit?: string;
-  was?: string; // list price struck through; only when real
+  was?: string; // struck through: a real saving, or with `launch`, the price after launch
+  launch?: boolean;
   perUnit?: string; // e.g. "£15.80 a report"
   ticks: string[];
   cta: string;
@@ -36,6 +37,8 @@ const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
 // What you get comes from the shared product details when there are any.
 const det = DETAILS[c.id];
 const gets = det?.deliverables ?? c.ticks;
+const paid = c.price.startsWith('£') && c.price !== '£0';
+const per = [c.perUnit, c.launch && c.was ? afterLaunch(c.was) : ''].filter(Boolean).join(' \u00b7 ') || '\u00a0';
 ---
 <article class:list={['pc', { 'is-flag': c.flag }]} data-card={c.id}>
   {c.flag && <span class="pc-flag">{c.flag}</span>}
@@ -46,8 +49,9 @@ const gets = det?.deliverables ?? c.ticks;
     {c.was && <s class="pc-was" aria-label={`was ${c.was}`}>{c.was}</s>}
     <span class="pc-amount">{c.price}</span>
     {c.unit && <span class="pc-unit">{c.unit}</span>}
+    {c.launch && <span class="pc-pill">{LAUNCH_PILL}</span>}
   </div>
-  <p class="pc-per">{c.perUnit ?? ' '}</p>
+  <p class="pc-per">{per}</p>
   <div class="pc-gets">
     <ul class="pc-ticks">{gets.map((t) => <li>{t}</li>)}</ul>
     {det && <p class="pc-format">{det.format}</p>}
@@ -69,5 +73,6 @@ const gets = det?.deliverables ?? c.ticks;
       )
     }
     <p class="pc-risk">{c.risk}</p>
+    {paid && <p class="pc-guarantee">{GUARANTEE}</p>}
   </div>
 </article>

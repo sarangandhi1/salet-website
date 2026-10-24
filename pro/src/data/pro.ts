@@ -49,8 +49,8 @@ export const AUDIENCES: ProAudience[] = [
     label: 'Deal sourcers',
     img: '/images/reports/planning.webp',
     title: 'Off-market leads and investor packs for sourcers | Salet Pro',
-    h1: 'Find deals first, pack them fast',
-    lede: 'Homes in your area whose owners may want to sell, every week, and a branded investor pack from an address and a price.',
+    h1: 'Find deals before Rightmove does',
+    lede: 'Every week, the homes in your area whose owners may want to sell. Then package each deal for your investors in minutes, under your own brand.',
     products: pick('offmarket', 'pack-builder', 'sourcer-pass', 'demand-board', 'letter-kit', 'photo-refurb'),
     leads: true,
     faqs: [
@@ -65,12 +65,12 @@ export const AUDIENCES: ProAudience[] = [
     label: 'Estate agents',
     img: '/images/reports/area-activity.webp',
     title: 'Seller leads and market briefs for estate agents | Salet Pro',
-    h1: 'Know who is likely to sell next',
-    lede: 'Homes in your patch likely to come to market, which sectors are getting busier, and the evidence pack for every valuation.',
+    h1: 'Win the instruction before your rivals know it exists',
+    lede: 'Know which homes in your patch are about to come to market, which streets are heating up, and walk into every valuation with hard evidence.',
     products: pick('seller-leads', 'market-brief', 'valuation-evidence', 'letter-kit', 'data-licence'),
     leads: true,
     faqs: [
-      { q: 'How do you know a home is likely to sell?', a: 'From public records: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },
+      { q: 'How do you know a home is likely to sell?', a: 'From public records: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. We show you how often it has been right.' },
       { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and the public record behind it.' },
       { q: 'Which areas do you cover?', a: LEADS_SCOPE },
       { q: 'Can I put my branding on the brief?', a: 'Yes. The Area Market Brief is made to send to your vendors and applicants under your name.' },
@@ -111,20 +111,20 @@ export const PRO_TABS: Tab[] = [
     label: 'I source deals',
     cards: [
       {
-        id: 'pack-builder', name: 'Package one deal', promise: 'Address and price in, a branded investor pack out.',
+        id: 'pack-builder', name: 'Your next deal, packaged in minutes', promise: 'Address and price in. A branded pack your investors will read, out.',
         price: '£15', unit: 'per pack',
         ticks: ['Your branding on a full PDF pack', 'A one page summary to share', 'Returns, comparables and area, sourced'],
         cta: o('pack-builder').cta, href: o('pack-builder').href, risk: PER_PACK, img: '/images/reports/valuation.webp',
       },
       {
-        id: 'sourcer-pass', flag: 'Best value', name: 'Your next 10 deals packaged',
-        promise: 'The Sourcer Pass: ten packs and the weekly leads for one area.',
-        price: '£99', unit: '30 days', was: '£199', perUnit: '£9.90 a pack, leads included',
+        id: 'sourcer-pass', flag: 'Best value', name: 'Your next 10 deals, packaged',
+        promise: 'The Sourcer Pass: ten packs plus the leads your competitors don\u2019t have.',
+        price: '£99', unit: '30 days', was: '£199', launch: true, perUnit: '£9.90 a pack, leads included',
         ticks: ['Ten Investor Pack Builder packs', 'Off-market leads for one area, weekly', 'Letter Kit included'],
         cta: 'Start my pass', href: o('sourcer-pass').href, risk: PER_30, img: '/images/reports/planning.webp',
       },
       {
-        id: 'offmarket', name: 'Find sellers before the portals', promise: 'Off-market leads: homes in your area whose owners may want to sell.',
+        id: 'offmarket', name: 'Find deals before Rightmove does', promise: 'The leads your competitors don\u2019t have, every week, for your area.',
         price: '£49', unit: '30 days per area',
         ticks: ['Licences ending and refused plans', 'Auction lots and energy rating deadlines', 'Addresses only, never owner names'],
         cta: 'Get leads for my area', href: o('offmarket').href, risk: PER_30, img: '/images/reports/price-paid.webp',
@@ -136,19 +136,19 @@ export const PRO_TABS: Tab[] = [
     label: 'I am an estate agent',
     cards: [
       {
-        id: 'valuation-evidence', name: 'Back up every valuation', promise: 'The Valuation Evidence Pack for one instruction.',
+        id: 'valuation-evidence', name: 'Back every valuation with hard evidence', promise: 'Walk in with the numbers and win the instruction.',
         price: '£15', unit: 'per instruction',
         ticks: ['The comparable sales with dates', 'The energy certificate and floor area', 'The area on one page'],
         cta: o('valuation-evidence').cta, href: o('valuation-evidence').href, risk: PER_PACK, img: '/images/reports/like-for-like.webp',
       },
       {
-        id: 'seller-leads', flag: 'Best value', name: 'Know who will sell next', promise: 'Seller Leads: homes in your patch likely to come to market.',
-        price: '£79', unit: '30 days per patch',
+        id: 'seller-leads', flag: 'Best value', name: 'Know who will sell next', promise: 'Seller Leads: reach owners before they call another agent.',
+        price: '£79', unit: '30 days per patch', was: '£129', launch: true,
         ticks: ['Licences ending and permissions lapsing', 'Refused plans and failed auctions', 'Which sectors are getting busier'],
         cta: 'Get my seller leads', href: o('seller-leads').href, risk: PER_30, img: '/images/reports/area-activity.webp',
       },
       {
-        id: 'market-brief', name: 'Win the instruction', promise: 'A monthly Area Market Brief, branded for your vendors.',
+        id: 'market-brief', name: 'Win more instructions', promise: 'A monthly market brief, in your branding, that vendors actually keep.',
         price: '£49', unit: '30 days',
         ticks: ['Activity in your sectors against a year ago', 'Recent sales and what is changing locally', 'Your branding, ready to send'],
         cta: 'Tell me when it is live', notify: 'Area Market Brief', risk: 'Coming soon. ' + PER_30, img: '/images/reports/crime.webp',
@@ -160,19 +160,19 @@ export const PRO_TABS: Tab[] = [
     label: 'I need data',
     cards: [
       {
-        id: 'demand-board', name: 'See what investors want', promise: 'The Buyer Demand Board: live briefs by area.',
+        id: 'demand-board', name: 'See exactly what investors want', promise: 'Live buyer briefs, area by area. Source to order.',
         price: '£29', unit: '30 days',
         ticks: ['Strategy and budget by area', 'Updated as briefs come in', 'No names, ever'],
         cta: 'Tell me when it is live', notify: 'Buyer Demand Board', risk: 'Coming soon. ' + PER_30, img: '/images/reports/area-type.webp',
       },
       {
-        id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The Area Data Licence, as a spreadsheet or a direct connection.',
+        id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The market data your team needs, ready to use.',
         price: '£199', unit: 'per month',
         ticks: ['Sales and new energy certificates by district', 'How busy each postcode sector is against a year ago', 'As a spreadsheet or a direct connection'],
         cta: 'Tell me when it is live', notify: 'Area Data Licence', risk: 'Coming soon. Terms set out in full before launch.', img: '/images/reports/area-activity.webp',
       },
       {
-        id: 'bespoke', name: 'Research built for you', promise: 'Freehold, block and portfolio sweeps for funds and family offices.',
+        id: 'bespoke', name: 'Find the stock nobody else can', promise: 'Freeholds, blocks and whole portfolios, traced for funds and family offices.',
         price: 'from £500', unit: 'per project',
         ticks: ['Freehold and block ownership', 'Company owned stock and portfolios', 'Scoped and priced before we start'],
         cta: 'Scope a project', href: '/contact?topic=research', risk: 'Fixed price agreed before any work starts.',
@@ -189,7 +189,7 @@ export const PRO_COMPARE = [
   { name: 'Off-market leads', price: '£49 / 30 days', what: 'Each week, homes in one area whose owners may want to sell.' },
   { name: 'Area Market Brief (soon)', price: '£49 / 30 days', what: 'Monthly branded brief for vendors and applicants.' },
   { name: 'Photo Refurb Estimate (soon)', price: '£15', what: 'A costed refurbishment from the listing photos.' },
-  { name: 'Seller Leads', price: '£79 / 30 days', what: 'Homes in one patch likely to come to market.' },
+  { name: 'Seller Leads', price: '£79 / 30 days (£129 after launch)', what: 'Homes in one patch likely to come to market.' },
   { name: 'Sourcer Pass', price: '£99 / 30 days', what: 'Ten packs, weekly leads for one area and the Letter Kit.' },
   { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District figures as a spreadsheet or a direct connection.' },
   { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: '/contact?topic=research' },
@@ -204,7 +204,9 @@ export const PRO_FAQS = [
 ];
 
 export const PRO_PROOF = [
-  'From HM Land Registry, the EPC register, council registers and planning records',
-  'Every lead dated and sourced',
-  'No owner names, ever',
+  'Built on 30 years of Land Registry sales',
+  'Every home in England and Wales covered',
+  '2,000+ areas tracked every month',
 ];
+
+export const PRO_BANNER = 'Introductory prices while we launch. They go up after.';

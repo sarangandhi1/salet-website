@@ -22,11 +22,15 @@ interface Props {
   sticky: { label: string; href: string };
   back: string;
   proof: string[];
+  /** Launch pricing banner above the switcher. */
+  banner?: string;
 }
-const { tabs, compare, faqs, sticky, back, proof } = Astro.props;
+const { tabs, compare, faqs, sticky, back, proof, banner } = Astro.props;
 ---
 <div class="pb" data-board>
   <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+
+  {banner && <p class="pb-banner"><strong>Launch pricing</strong> {banner}</p>}
 
   <div class="pb-switch" role="tablist" aria-label="What are you doing?">
     {

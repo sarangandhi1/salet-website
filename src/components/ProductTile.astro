@@ -1,7 +1,7 @@
 ---
 import type { Product } from '../data/reports';
 import TileVisual from './TileVisual.astro';
-import { DETAILS } from '../data/details';
+import { DETAILS, GUARANTEE, LAUNCH_PILL, afterLaunch } from '../data/details';
 
 interface Props {
   p: Product;
@@ -15,9 +15,10 @@ const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
 const page = p.slug ? `/reports/${p.slug}` : null;
 const det = DETAILS[p.key];
 const gets = det?.deliverables ?? p.points;
+const paid = p.price.startsWith('£') && p.price !== '£0';
 ---
 <article class:list={['rp-tile', { 'is-popular': p.popular }]} id={p.key}>
-  {p.popular && <span class="rp-flag is-popular">Recommended</span>}
+  {p.popular && <span class="rp-flag is-popular">Top pick</span>}
   {!p.popular && p.badge && <span class:list={['rp-flag', { 'is-soon': p.notify }]}>{p.badge}</span>}
   <a class="rp-tile-vis" href={page ?? (p.href || undefined)} tabindex="-1" aria-hidden="true">
     {det ? <TileVisual device={det.device} icon={det.icon} img={det.img ?? p.img} /> : <TileVisual device="doc" icon="document" img={p.img} />}
@@ -27,7 +28,9 @@ const gets = det?.deliverables ?? p.points;
     <p class="rp-promise">{p.promise}</p>
     <ul class="rp-points">{gets.map((pt) => <li>{pt}</li>)}</ul>
     {det && <p class="pc-format">{det.format}</p>}
+    {p.was && <p class="rp-launch"><span class="pc-pill">{LAUNCH_PILL}</span> {afterLaunch(p.was)}</p>}
     <div class="rp-price-row">
+      {p.was && <s class="pc-was">{p.was}</s>}
       <span class="rp-price">{p.price}</span>
       <span class="rp-price-note">
         {p.key === 'free' ? 'no card needed' : p.price.startsWith('from') ? p.unit : p.unit ? `${p.unit}, one payment` : 'one payment, no subscription'}
@@ -48,6 +51,7 @@ const gets = det?.deliverables ?? p.points;
         <a class:list={['rp-btn', { 'is-soon': p.soon }]} href={p.href}>{p.cta}</a>
       )
     }
+    {paid && !p.notify && <p class="pc-guarantee">{GUARANTEE}</p>}
     {page && <a class="rp-more" href={page}>What is inside</a>}
   </div>
 </article>

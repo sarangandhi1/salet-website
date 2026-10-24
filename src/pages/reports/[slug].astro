@@ -64,8 +64,8 @@ const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
       <div class="rp-fact"><h3>The problem it solves</h3><p>{pg.problem}</p></div>
       <div class="rp-fact"><h3>How it is produced</h3><p>{pg.how}</p></div>
       <div class="rp-fact"><h3>Delivery</h3><p>{pg.delivery}</p></div>
-      <div class="rp-fact"><h3>What it is not</h3><ul>{pg.notIncluded.map((n) => <li>{n}</li>)}</ul></div>
-      <div class="rp-fact"><h3>Refunds</h3><p>If a report fails to run, or comes back with no data, we refund it in full. Salet Ltd is not VAT registered, so the price shown is the price you pay.</p></div>
+      <div class="rp-fact"><h3>Our promise</h3><p><strong>Not useful? Full refund, no questions.</strong> And you see a free preview of your own address before you pay a penny.</p></div>
+      <div class="rp-fact"><h3>Price</h3><p><strong>{p.price}</strong>{p.was ? ` launch price, ${p.was} after launch` : ''}. One payment by card, no subscription.</p></div>
     </div>
   </section>
 

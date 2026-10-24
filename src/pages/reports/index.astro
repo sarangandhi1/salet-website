@@ -2,7 +2,7 @@
 import ReportsShell from '../../components/ReportsShell.astro';
 import PricingBoard from '../../components/PricingBoard.astro';
 import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
-import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF } from '../../data/pricing';
+import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF, SALET_BANNER } from '../../data/pricing';
 
 // The pricing page. The visitor picks the job first ("Checking one home",
 // "Comparing a few", "Buying with help") and sees three cards for it.
@@ -30,6 +30,7 @@ import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF } from '../../data/p
         compare={SALET_COMPARE}
         faqs={SALET_FAQS}
         proof={SALET_PROOF}
+        banner={SALET_BANNER}
         back="https://salet.uk/reports"
         sticky={{ label: 'Check a property: free preview', href: 'https://reports.salet.uk/intelligence' }}
       />

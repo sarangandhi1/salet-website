@@ -345,3 +345,27 @@
   .reports-page .rp-tile-vis { display: block; }
   .reports-page .rp-tile-vis .tv { margin: 0; }
   .reports-page .rp-tile .pc-format { margin: -0.4rem 0 1.25rem; }
+
+  /* Launch pricing and the refund promise. */
+  .reports-page .pc-pill {
+    display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: #fff4d6; color: #8a5a00; border: 1px solid #f1d58a; padding: 0.2rem 0.5rem; border-radius: 999px; align-self: center;
+  }
+  .reports-page .rp-launch { font-size: 0.85rem; color: var(--rp-slate); margin: 0 0 0.4rem; }
+  .reports-page .pc-guarantee {
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin: 0.55rem 0 0;
+    font-size: 0.8rem; font-weight: 600; color: #1d6b3f;
+  }
+  .reports-page .pc-guarantee::before {
+    content: ""; width: 0.95rem; height: 1.05rem; flex: none;
+    background: #1d6b3f;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z'/%3E%3Cpath d='M8.5 12l2.5 2.5 4.5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z'/%3E%3Cpath d='M8.5 12l2.5 2.5 4.5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .reports-page .rp-tile .pc-guarantee { justify-content: flex-start; }
+  .reports-page .rp-tile .pc-was { margin-right: 0.15rem; }
+  .reports-page .pb-banner {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.4rem 0.75rem; text-align: center;
+    background: #fff4d6; border: 1px solid #f1d58a; color: #5c3d00; padding: 0.8rem 1rem; margin: 0 auto 1.75rem; max-width: 46rem; font-size: 0.92rem;
+  }
+  .reports-page .pb-banner strong { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; }
