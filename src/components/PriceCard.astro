@@ -1,0 +1,87 @@
+---
+import ArtHero from './ArtHero.astro';
+import CardPay from './CardPay.astro';
+import { DETAILS, GUARANTEE, risesTo } from '../data/details';
+
+// One pricing card: the product's artwork with its badges, outcome name,
+// promise, big price with its unit (and the date a launch price rises), what
+// you get, one action, a risk-reversal line, and the real report page on tap. Used by PricingBoard and on product
+// pages. Shared by salet.uk and Salet Pro.
+export interface Card {
+  id: string;
+  name: string;
+  promise: string;
+  price: string;
+  unit?: string;
+  was?: string; // struck through: only a real saving against today's prices
+  rises?: string; // launch price: the price from RISE_DATE
+  perUnit?: string; // e.g. "£15.80 a report"
+  ticks: string[];
+  cta: string;
+  href?: string;
+  notify?: string; // product name: collect an email instead of selling
+  risk: string;
+  img?: string;
+  imgAlt?: string;
+  flag?: string; // e.g. "Our pick", "Best value"
+}
+
+interface Props {
+  c: Card;
+  /** Full URL to come back to after a notify signup. */
+  back: string;
+  /** Solid primary button even without a flag (single card on a product page). */
+  primary?: boolean;
+}
+const { c, back, primary = false } = Astro.props;
+const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
+// What you get comes from the shared product details when there are any.
+const det = DETAILS[c.id];
+const gets = det?.deliverables ?? c.ticks;
+const paid = c.price.startsWith('£') && c.price !== '£0';
+const per = [c.perUnit, c.rises ? risesTo(c.rises) : ''].filter(Boolean).join(' \u00b7 ') || '\u00a0';
+const sample = det?.img ?? c.img;
+---
+<article class:list={['pc', { 'is-flag': c.flag }]} data-card={c.id}>
+  <ArtHero productKey={c.id} alt="" flag={c.flag} launch={!!c.rises} />
+  <h3 class="pc-name">{c.name}</h3>
+  <p class="pc-promise">{c.promise}</p>
+  <div class="pc-price">
+    {c.was && <s class="pc-was" aria-label={`was ${c.was}`}>{c.was}</s>}
+    <span class="pc-amount">{c.price}</span>
+    {c.unit && <span class="pc-unit">{c.unit}</span>}
+  </div>
+  <p class="pc-per">{per}</p>
+  <div class="pc-gets">
+    <ul class="pc-ticks">{gets.map((t) => <li>{t}</li>)}</ul>
+    {det && <p class="pc-format">{det.format}</p>}
+  </div>
+  <div class="pc-action">
+    {
+      c.notify ? (
+        <form class="pc-notify" method="POST" action={NOTIFY_ACTION} data-track={`notify:${c.id}`}>
+          <input type="hidden" name="form" value="notify" />
+          <input type="hidden" name="product" value={c.notify} />
+          <input type="hidden" name="_subject" value={`Tell me when it is live: ${c.notify}`} />
+          <input type="hidden" name="_next" value={`${back}?notified=1`} />
+          <label class="sr-only" for={`n-${c.id}`}>Email address</label>
+          <input id={`n-${c.id}`} type="email" name="email" required autocomplete="email" placeholder="Your email" />
+          <button class="pc-btn is-quiet" type="submit">{c.cta}</button>
+        </form>
+      ) : (
+        <a class:list={['pc-btn', { 'is-quiet': !c.flag && !primary }]} href={c.href} data-track={`price:${c.id}`}>{c.cta}</a>
+      )
+    }
+    <p class="pc-risk">{c.risk}</p>
+    {paid && <p class="pc-guarantee">{GUARANTEE}</p>}
+    {paid && !c.notify && <CardPay />}
+  </div>
+  {
+    sample && (
+      <details class="pc-peek">
+        <summary>See a real example</summary>
+        <img src={sample} width="800" height="600" alt={c.imgAlt ?? `A real page from the ${c.name.toLowerCase()} sample`} loading="lazy" decoding="async" />
+      </details>
+    )
+  }
+</article>

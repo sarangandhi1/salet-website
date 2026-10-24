@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { INTEL_FEATURES } from '../data/reports';
+import CardPay from '../components/CardPay.astro';
 
 // Ad landing page for the £19 property report. Deliberately not in the main
 // nav: paid traffic lands here and the page has one job, which is to get a
@@ -15,6 +16,7 @@ import { INTEL_FEATURES } from '../data/reports';
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
 const PRICE = '£19';
+const RISES = '£29'; // from 1 December 2026
 
 // What you get, as tiles: each a crop of the live sample report section it
 // describes, with one line on what it tells you.
@@ -58,8 +60,8 @@ const faqs = [
         Is this house worth the asking price?
       </h1>
       <p class="mt-5 max-w-2xl text-base leading-relaxed text-ivory/80 sm:text-lg">
-        Every recent sale nearby, the stamp duty you would pay, rent, flood, crime, planning and
-        schools for one address. Ready in minutes.
+        Never overpay again. See what every home nearby really sold for, your stamp duty, rent,
+        flood risk, crime, planning and schools. One address, ready in minutes.
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
@@ -74,12 +76,14 @@ const faqs = [
         </a>
         <p class="leading-tight">
           <span class="font-display text-4xl font-medium">{PRICE}</span>
-          <span class="ml-1 text-sm text-ivory/70">full report</span>
+          <span class="ml-2 inline-block rounded-full border border-[#f1d58a] bg-[#fff4d6] px-2 py-0.5 align-middle text-[0.68rem] font-bold uppercase tracking-wider text-[#8a5a00]">Launch price</span>
+          <span class="mt-1 block text-xs text-ivory/70">Rising to {RISES} on 1 December 2026</span>
         </p>
       </div>
       <p class="mt-4 text-sm text-ivory/80">
-        <strong class="font-medium text-ivory">Free preview first.</strong> Pay only if you want the full report.
+        <strong class="font-medium text-ivory">Free preview first.</strong> Not useful? Full refund, no questions.
       </p>
+      <CardPay tone="dark" align="start" />
       <p class="mt-5 text-sm">
         <a href={SAMPLE_URL} class="text-green-3 underline underline-offset-4 hover:text-ivory">See a full sample report</a>
       </p>
@@ -116,15 +120,14 @@ const faqs = [
   <section class="border-y border-line bg-ivory-2/60">
     <div class="mx-auto grid max-w-6xl gap-12 px-6 py-14 lg:grid-cols-12 lg:px-8 lg:py-20">
       <div class="lg:col-span-7">
-        <h2 class="font-display text-3xl font-medium leading-tight">Built from official records</h2>
+        <h2 class="font-display text-3xl font-medium leading-tight">Built on 30 years of Land Registry sales</h2>
         <p class="mt-5 text-base leading-relaxed text-stone">
-          HM Land Registry, the EPC register, PropertyData, ONS and the Environment Agency. Each
-          block in the report says where it came from and when it was pulled. Where a source has
-          nothing for an address, the report says so.
+          Every home in England covered, and more than 2,000 areas tracked every month. We bring
+          together the Land Registry, the EPC register, ONS, the Environment Agency and local planning
+          records, so you see everything the agent already knows.
         </p>
-        <p class="mt-8 border-l-2 border-green-2 pl-4 text-sm leading-relaxed text-stone">
-          <strong class="text-ink">What it is not:</strong> a RICS valuation, a survey or legal advice.
-          It reports what the public records show, so a survey and your own viewing still matter.
+        <p class="mt-8 border-l-2 border-green-2 pl-4 text-sm font-medium leading-relaxed text-ink">
+          Not useful? Full refund, no questions.
         </p>
       </div>
 
@@ -143,6 +146,7 @@ const faqs = [
             Start the free preview
           </a>
           <p class="mt-3 text-center text-xs text-stone">Full report {PRICE}. No subscription.</p>
+          <CardPay />
         </div>
       </div>
     </div>
@@ -183,6 +187,7 @@ const faqs = [
         Check a property
       </a>
       <p class="mt-4 text-sm text-ivory/75">Free preview first. Full report {PRICE}.</p>
+      <CardPay tone="dark" />
     </div>
   </section>
 

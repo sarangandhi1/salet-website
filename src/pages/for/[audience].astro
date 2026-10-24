@@ -1,0 +1,95 @@
+---
+import ReportsShell from '../../components/ReportsShell.astro';
+import ProductTile from '../../components/ProductTile.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import AudienceBar from '../../components/AudienceBar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { AUDIENCES } from '../../data/reports';
+import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
+
+// One hub per kind of buyer: home buyers and investors (sourcers and estate
+// agents are on Salet Pro). The page opens with that audience's product
+// tiles; the bold tab bar jumps between audiences without the back button.
+export function getStaticPaths() {
+  return AUDIENCES.map((a) => ({ params: { audience: a.slug } }));
+}
+
+const { audience } = Astro.params as { audience: string };
+const a = AUDIENCES.find((x) => x.slug === audience)!;
+const back = `/for/${a.slug}`;
+const others = AUDIENCES.filter((x) => x.slug !== a.slug);
+
+---
+<ReportsShell title={a.title} description={a.lede}>
+  <header class="rp-hero rp-hero--compact">
+    <div class="rp-wrap">
+      <Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: `For ${a.label.toLowerCase()}` }]} back={{ label: 'All reports', href: '/reports' }} />
+      <h1 class="rp-h1">{a.h1}</h1>
+      <p class="rp-lede" style="margin:0">{a.lede}</p>
+    </div>
+  </header>
+
+  <AudienceBar items={SALET_AUDIENCE_LINKS} active={a.slug} top={88} />
+
+  <section class="rp-section" style="padding-top:2rem">
+    <div class="rp-wrap">
+      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+      <div class="rp-tiles">
+        {a.products.map((p) => <ProductTile p={p} back={back} />)}
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  {
+    a.free && (
+      <section class="rp-section" style="padding-top:0" id="free">
+        <div class="rp-wrap">
+          <h2 class="rp-h2" style="font-size:1.5rem">Free checks, no account needed</h2>
+          <div class="rp-chips" style="margin-top:1rem">
+            {a.free.map((t) => <a href={t.href}>{t.label}</a>)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap" style="max-width:48rem">
+      <h2 class="rp-h2">Questions</h2>
+      <div class="rp-faq">
+        {a.faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2" style="font-size:1.4rem">Not you?</h2>
+      <div class="rp-chips" style="margin-top:1rem">
+        {others.map((o) => <a href={`/for/${o.slug}`}>For {o.label.toLowerCase()}</a>)}
+        <a href="/reports">All reports and prices</a>
+      </div>
+    </div>
+  </section>
+
+  {
+    a.service && (
+      <p class="rp-agent">
+        {a.service} <a href="/services">buying agent</a>.
+      </p>
+    )
+  }
+</ReportsShell>
+
+<script>
+  if (new URLSearchParams(location.search).has('notified')) {
+    document.getElementById('notified')?.removeAttribute('hidden');
+  }
+</script>

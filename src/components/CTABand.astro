@@ -1,9 +1,14 @@
 ---
+import { PAY_INVOICE_URL } from '../lib/sites';
+
 interface Props {
   title?: string;
   body?: string;
+  /** Show "Pay an invoice" for existing clients (services pages). */
+  invoice?: boolean;
 }
 const {
+  invoice = false,
   title = 'Begin with a conversation',
   body = 'A 30 minute discovery call. Your situation, your brief, and an honest view on whether Salet is the right fit. No obligation on either side.',
 } = Astro.props;
@@ -27,6 +32,11 @@ const {
             >&rarr;</span
           >
         </a>
+        {invoice && (
+          <p class="mt-5 text-sm text-mist lg:text-right">
+            Already a client? <a href={PAY_INVOICE_URL} class="text-ivory underline underline-offset-4">Pay an invoice by card</a>
+          </p>
+        )}
       </div>
     </div>
   </div>

@@ -1,0 +1,111 @@
+---
+import PriceCard, { type Card } from './PriceCard.astro';
+
+// The pricing page pattern for both sites: pick the job first, then see
+// three cards (good, better, best) for that job, the middle one flagged.
+// Below: a collapsed "Compare everything", a short FAQ, and on phones a
+// sticky bar with the one action most visitors want.
+//
+// Every price button carries data-track="price:<card>". salet.uk has no
+// analytics tool yet; the attributes are there for whichever one is added,
+// and nothing is sent anywhere today.
+export interface Tab {
+  id: string;
+  label: string;
+  cards: [Card, Card, Card];
+}
+
+interface Props {
+  tabs: Tab[];
+  compare: { name: string; price: string; what: string; href?: string }[];
+  faqs: { q: string; a: string }[];
+  sticky: { label: string; href: string };
+  back: string;
+  proof: string[];
+  /** Launch pricing banner above the switcher. */
+  banner?: string;
+}
+const { tabs, compare, faqs, sticky, back, proof, banner } = Astro.props;
+---
+<div class="pb" data-board>
+  <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+
+  {banner && <p class="pb-banner"><strong>Launch pricing</strong> {banner}</p>}
+
+  <div class="pb-switch" role="tablist" aria-label="What are you doing?">
+    {
+      tabs.map((t, i) => (
+        <button type="button" role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} data-tab={t.id}>
+          {t.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    tabs.map((t, i) => (
+      <div class="pb-cards" role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={i !== 0}>
+        {t.cards.map((c) => <PriceCard c={c} back={back} />)}
+      </div>
+    ))
+  }
+
+  <ul class="pb-proof">{proof.map((p) => <li>{p}</li>)}</ul>
+
+  <details class="pb-compare">
+    <summary>Compare everything</summary>
+    <div class="pb-table-wrap">
+      <table>
+        <thead><tr><th>Product</th><th>Price</th><th>What you get</th></tr></thead>
+        <tbody>
+          {compare.map((r) => (
+            <tr>
+              <td>{r.href ? <a href={r.href}>{r.name}</a> : r.name}</td>
+              <td class="pb-num">{r.price}</td>
+              <td>{r.what}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <div class="pb-faq rp-faq">
+    <h2 class="rp-h2" style="font-size:1.6rem">Questions</h2>
+    {faqs.map((f) => (<details><summary>{f.q}</summary><p set:html={f.a} /></details>))}
+  </div>
+
+  <a class="pb-sticky" href={sticky.href} data-track="sticky">{sticky.label}</a>
+</div>
+
+<script>
+  for (const board of document.querySelectorAll<HTMLElement>('[data-board]')) {
+    const tabs = [...board.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const show = (id: string) => {
+      for (const t of tabs) {
+        const on = t.dataset.tab === id;
+        t.setAttribute('aria-selected', String(on));
+        const panel = board.querySelector<HTMLElement>(`#panel-${t.dataset.tab}`);
+        if (panel) panel.hidden = !on;
+      }
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => {
+        show(t.dataset.tab!);
+        history.replaceState(null, '', `#${t.dataset.tab}`);
+      });
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        const next = tabs[(i + d + tabs.length) % tabs.length];
+        next.focus();
+        next.click();
+      });
+    });
+    const hash = location.hash.slice(1);
+    if (tabs.some((t) => t.dataset.tab === hash)) show(hash);
+  }
+  if (new URLSearchParams(location.search).has('notified')) {
+    document.getElementById('notified')?.removeAttribute('hidden');
+  }
+</script>

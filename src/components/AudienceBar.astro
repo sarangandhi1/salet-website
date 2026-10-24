@@ -1,0 +1,48 @@
+---
+import type { AudienceLink } from '../lib/sites';
+
+// The bold audience tabs: copper for where you are, green outline for the
+// rest. Sticky under the header on phones so you can jump between audiences
+// without the back button.
+interface Props {
+  items: AudienceLink[];
+  active?: string;
+  /** Height of a fixed site header above it, in px (0 when the header scrolls away). */
+  top?: number;
+}
+const { items, active, top = 0 } = Astro.props;
+---
+<nav class="ab" aria-label="Who are you?" style={`--ab-top:${top}px`}>
+  <div class="ab-in">
+    {
+      items.map((i) => (
+        <a href={i.href} class:list={['ab-tab', { 'is-on': i.key === active }]} aria-current={i.key === active ? 'page' : undefined}>
+          {i.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<style>
+  .ab {
+    background: #faf8f2; border-bottom: 1px solid #e4dfd2; z-index: 30;
+  }
+  @media (max-width: 47.99rem) {
+    .ab { position: sticky; top: var(--ab-top); box-shadow: 0 8px 18px -14px rgba(0, 0, 0, 0.35); }
+  }
+  .ab-in {
+    max-width: 72rem; margin: 0 auto; padding: 0.85rem 1rem; display: flex; gap: 0.6rem; overflow-x: auto; scrollbar-width: none;
+    justify-content: center;
+  }
+  .ab-in::-webkit-scrollbar { display: none; }
+  @media (max-width: 47.99rem) { .ab-in { justify-content: flex-start; padding: 0.65rem 1rem; } }
+  .ab-tab {
+    flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1.35rem; border-radius: 999px;
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.01em; text-decoration: none; white-space: nowrap;
+    color: #21422f; background: #fff; border: 2px solid #21422f; transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .ab-tab:hover { background: #21422f; color: #fff; }
+  .ab-tab.is-on { background: #c2410c; border-color: #c2410c; color: #fff; }
+  @media (max-width: 47.99rem) { .ab-tab { font-size: 0.92rem; min-height: 2.5rem; padding: 0 1rem; } }
+</style>

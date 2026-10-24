@@ -1,0 +1,112 @@
+---
+import '../styles/pro.css';
+import { SALET_URL } from '../../../src/lib/sites';
+import CardPay from '../../../src/components/CardPay.astro';
+
+// Salet Pro frame: the Salet wordmark with a "Pro" mark, its own short nav,
+// and a plain footer. Separate from salet.uk on purpose: Salet acts only for
+// buyers, and these are tools for sourcers and estate agents.
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  { href: '/sourcers', label: 'Sourcers' },
+  { href: '/agents', label: 'Estate agents' },
+  { href: '/sample-leads', label: 'Sample leads' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/contact', label: 'Contact' },
+];
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Salet Pro" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="theme-color" content="#08152c" />
+  </head>
+  <body>
+    <div class="reports-page">
+      <header class="pro-bar">
+        <div class="rp-wrap pro-bar-in">
+          <a href="/" class="pro-mark" aria-label="Salet Pro home">
+            <span class="font-display">Salet<span class="text-dot">.</span></span>
+            <span class="pro-badge">Pro</span>
+          </a>
+          <nav class="pro-nav" aria-label="Main">
+            <a href={SALET_URL} class="pro-nav-back">&larr; Salet for buyers</a>
+            {nav.map((n) => (
+              <a href={n.href} class:list={{ 'is-on': path.startsWith(n.href) }}>{n.label}</a>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="pro-foot">
+        <div class="rp-wrap">
+          <p>
+            <strong>Salet Pro</strong> is Salet Ltd&rsquo;s data service for property professionals. Leads and packs
+            are built from public records and name no owners. Not financial, legal or investment advice, and not a
+            RICS valuation.
+          </p>
+          <p>
+            Buying a home for yourself? <a href={SALET_URL}>salet.uk</a> acts only for buyers.
+            <span class="pro-sep">·</span>
+            <a href="mailto:saran@salet.uk">saran@salet.uk</a>
+          </p>
+          <CardPay tone="dark" align="start" />
+          <p>Salet Ltd, company no. 16662600. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ. &copy; {year} Salet Ltd.</p>
+        </div>
+      </footer>
+    </div>
+    <script>
+      if (new URLSearchParams(location.search).has('notified')) {
+        document.getElementById('notified')?.removeAttribute('hidden');
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  body { background: #fff; }
+  .reports-page .pro-bar { background: var(--navy-900); border-bottom: 1px solid rgba(174, 203, 234, 0.15); }
+  .reports-page .pro-bar-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; padding-top: 1rem; padding-bottom: 1rem; }
+  .reports-page .pro-mark { display: inline-flex; align-items: center; gap: 0.55rem; color: #fff; text-decoration: none; font-size: 1.5rem; font-weight: 500; }
+  .reports-page .pro-badge {
+    font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--navy-900); background: var(--gold); padding: 0.28rem 0.5rem 0.24rem;
+  }
+  .reports-page .pro-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-size: 0.9rem; }
+  .reports-page .pro-nav a { color: var(--sky-300); text-decoration: none; padding: 0.25rem 0; }
+  .reports-page .pro-nav a:hover, .reports-page .pro-nav a.is-on { color: #fff; }
+  .reports-page .pro-bar + main .rp-hero { padding-top: 3.5rem; }
+  @media (min-width: 40rem) { .reports-page .pro-bar + main .rp-hero { padding-top: 4.5rem; } }
+  .reports-page .pro-foot { background: var(--navy-900); color: var(--sky-300); padding: 2.5rem 0 3rem; font-size: 0.85rem; line-height: 1.6; }
+  .reports-page .pro-foot p { margin: 0 0 0.8rem; max-width: 52rem; }
+  .reports-page .pro-foot strong { color: #fff; }
+  .reports-page .pro-foot a { color: var(--sky-400); }
+  .reports-page .pro-sep { opacity: 0.5; margin: 0 0.4rem; }
+  .reports-page .pro-nav-back { color: #f1d58a !important; font-weight: 600; }
+  .reports-page .pro-who { display: none; }
+  @media (min-width: 56rem) {
+    .reports-page .pro-who { display: block; width: 100%; max-width: 420px; justify-self: end; border-radius: 18px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); }
+  }
+  .reports-page .rp-hero.rp-hero--chooser { padding: 2rem 0 3rem; }
+  .reports-page .pro-scope { border-left: 3px solid var(--gold); background: var(--rp-paper); padding: 0.8rem 1rem; color: var(--rp-ink); font-size: 0.95rem; margin: 0 0 1.75rem; }
+</style>

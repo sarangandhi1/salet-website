@@ -1,0 +1,67 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+import ProductTile from '../../../src/components/ProductTile.astro';
+import ProTrust from '../components/ProTrust.astro';
+import LeadSheet from '../components/LeadSheet.astro';
+import { AUDIENCES, SITE } from '../data/pro';
+import AudienceBar from '../../../src/components/AudienceBar.astro';
+import Breadcrumb from '../../../src/components/Breadcrumb.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
+
+// /sourcers and /agents.
+export function getStaticPaths() {
+  return AUDIENCES.map((a) => ({ params: { audience: a.slug } }));
+}
+const { audience } = Astro.params as { audience: string };
+const a = AUDIENCES.find((x) => x.slug === audience)!;
+const other = AUDIENCES.find((x) => x.slug !== audience)!;
+const who = PRO_AUDIENCE_LINKS.find((l) => l.key === a.slug);
+---
+<ProBase title={a.title} description={a.lede}>
+  <header class="rp-hero rp-hero--compact">
+    <div class="rp-wrap rp-hero-grid">
+      <div>
+        <Breadcrumb trail={[{ label: 'Salet Pro', href: '/' }, { label: a.label }]} back={{ label: 'All tools and prices', href: '/pricing' }} />
+        <h1 class="rp-h1">{a.h1}</h1>
+        <p class="rp-lede" style="margin:0">{a.lede}</p>
+      </div>
+      {who && (
+        <img class="pro-who" src={`/images/art/${who.art}-800.webp`} srcset={`/images/art/${who.art}-800.webp 800w, /images/art/${who.art}-1168.webp 1168w`} sizes="420px" width="800" height="603" alt="" />
+      )}
+    </div>
+  </header>
+
+  <AudienceBar items={PRO_AUDIENCE_LINKS} active={a.slug} />
+
+  <section class="rp-section" style="padding-top:2rem">
+    <div class="rp-wrap">
+      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+      <div class="rp-tiles">{a.products.map((p) => <ProductTile p={p} back={`${SITE}/${a.slug}`} />)}</div>
+    </div>
+  </section>
+
+  <ProTrust />
+
+  {a.leads && (
+    <section class="rp-section" style="padding-top:0">
+      <div class="rp-wrap">
+        <h2 class="rp-h2">What a lead sheet looks like</h2>
+        <LeadSheet limit={3} />
+      </div>
+    </section>
+  )}
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap" style="max-width:48rem">
+      <h2 class="rp-h2">Questions</h2>
+      <div class="rp-faq">
+        {a.faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+      <div class="rp-chips" style="margin-top:2rem">
+        <a href={`/${other.slug}`}>For {other.label.toLowerCase()}</a>
+        <a href="/pricing">All prices</a>
+        <a href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</ProBase>

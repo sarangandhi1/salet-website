@@ -1,0 +1,53 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+import ProductTile from '../../../src/components/ProductTile.astro';
+import ProTrust from '../components/ProTrust.astro';
+import LeadSheet from '../components/LeadSheet.astro';
+import { LEADS, PACKS, PASSES, DATA, SITE } from '../data/pro';
+import AudienceChooser from '../../../src/components/AudienceChooser.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
+
+const groups = [
+  { id: 'leads', h: 'Leads', sub: 'Homes whose owners may want to sell, found in public records, every week.', items: LEADS },
+  { id: 'packs', h: 'Packs', sub: 'Address in, a sourced and branded pack out.', items: PACKS },
+  { id: 'passes', h: 'Passes', sub: 'Thirty days of packs and leads for one payment.', items: PASSES },
+  { id: 'data', h: 'Data and research', sub: 'District figures for agents, lenders and property technology firms, and bespoke sweeps for funds and family offices.', items: DATA },
+];
+---
+<ProBase
+  title="Salet Pro | Off-market leads and property packs for professionals"
+  description="Homes in your area whose owners may want to sell, every week, branded investor packs and valuation evidence. For deal sourcers and estate agents."
+>
+  <header class="rp-hero rp-hero--chooser">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow" style="text-align:center">Salet Pro · the leads your competitors don&rsquo;t have</p>
+      <AudienceChooser items={PRO_AUDIENCE_LINKS} level={1} />
+      <p class="rp-lede" style="text-align:center;margin:1.75rem auto 0">
+        Every week, homes in your area whose owners may want to sell, before they reach Rightmove.
+        <a class="rp-link" href="/sample-leads">See a sample lead sheet</a>
+      </p>
+    </div>
+  </header>
+
+  <ProTrust />
+
+  <p id="notified" class="rp-thanks rp-wrap" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+
+  {groups.map((g, i) => (
+    <section class="rp-section" style={i ? 'padding-top:0' : undefined} id={g.id}>
+      <div class="rp-wrap">
+        <h2 class="rp-h2">{g.h}</h2>
+        <p class="rp-sub">{g.sub}</p>
+        <div class="rp-tiles">{g.items.map((p) => <ProductTile p={p} back={`${SITE}/`} />)}</div>
+      </div>
+    </section>
+  ))}
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">What a lead sheet looks like</h2>
+      <LeadSheet limit={3} />
+      <p style="margin-top:1rem"><a class="rp-link" style="color:var(--navy-600)" href="/sample-leads">See the full sample</a></p>
+    </div>
+  </section>
+</ProBase>

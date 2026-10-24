@@ -1,0 +1,39 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+import PricingBoard from '../../../src/components/PricingBoard.astro';
+import AudienceBar from '../../../src/components/AudienceBar.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
+import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, PRO_BANNER, SITE } from '../data/pro';
+
+// Pick the job ("I source deals", "I am an estate agent", "I need data"),
+// then three cards. Everything else is in "Compare everything".
+---
+<ProBase
+  title="Pricing | Salet Pro"
+  description="Investor packs from £15, the Sourcer Pass at £99 for 30 days, Seller Leads £79 per patch. One payment, nothing renews."
+>
+  <header class="rp-hero" style="padding-bottom:3rem">
+    <div class="rp-wrap" style="text-align:center">
+      <p class="rp-eyebrow">Salet Pro · pricing</p>
+      <h1 class="rp-h1" style="margin-left:auto;margin-right:auto">Pay once. Nothing renews.</h1>
+      <p class="rp-lede" style="margin:0 auto">
+        Pick what you do. Pay per pack, or for 30 days of leads.
+        <a class="rp-link" href="/sample-leads">See a sample lead sheet</a>
+      </p>
+    </div>
+  </header>
+  <AudienceBar items={PRO_AUDIENCE_LINKS} />
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <PricingBoard
+        tabs={PRO_TABS}
+        compare={PRO_COMPARE}
+        faqs={PRO_FAQS}
+        proof={PRO_PROOF}
+        banner={PRO_BANNER}
+        back={`${SITE}/pricing`}
+        sticky={{ label: 'See a sample lead sheet', href: '/sample-leads' }}
+      />
+    </div>
+  </section>
+</ProBase>

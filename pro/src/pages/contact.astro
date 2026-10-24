@@ -1,0 +1,64 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+---
+<ProBase title="Contact | Salet Pro" description="Talk to Salet Pro about leads for your area, packs or a pass.">
+  <header class="rp-hero">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow">Salet Pro · contact</p>
+      <h1 class="rp-h1">Tell us your area</h1>
+      <p class="rp-lede">Which postcodes you work, and what you need: leads, packs or both. We reply within one working day.</p>
+    </div>
+  </header>
+  <section class="rp-section">
+    <div class="rp-wrap" style="max-width:36rem">
+      <form method="POST" action="https://formspree.io/f/mrewjydk" class="pro-form">
+        <input type="hidden" name="form" value="pro-contact" />
+        <input type="hidden" name="_subject" value="Salet Pro enquiry" />
+        <input type="hidden" name="_next" value="https://pro.salet.uk/contact?notified=1" />
+        <p id="notified" class="rp-thanks" hidden>Thank you. We will reply within one working day.</p>
+        <label>Your name<input type="text" name="name" required autocomplete="name" /></label>
+        <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+        <label>I am a
+          <select name="role">
+            <option>Deal sourcer</option>
+            <option>Estate agent</option>
+            <option value="Fund or family office">Fund, family office or private investor</option>
+            <option>Lender or property technology firm</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label>Postcodes or areas you work<input type="text" name="areas" placeholder="For example B42, B43, M6" /></label>
+        <label>What do you need?
+          <select name="topic">
+            <option value="leads">Leads for my area</option>
+            <option value="packs">Packs</option>
+            <option value="research">Bespoke research (from £500)</option>
+            <option value="data">Area Data Licence</option>
+          </select>
+        </label>
+        <label>Anything else<textarea name="message" rows="4" placeholder="For research: what you want swept, where, and by when"></textarea></label>
+        <button class="rp-btn" type="submit">Send</button>
+      </form>
+      <p class="rp-sub" style="margin-top:1.5rem;font-size:0.9rem">Or email <a href="mailto:saran@salet.uk" style="color:var(--navy-600)">saran@salet.uk</a>.</p>
+    </div>
+  </section>
+</ProBase>
+
+<script>
+  // /contact?topic=research preselects the enquiry type from a tile.
+  const topic = new URLSearchParams(location.search).get('topic');
+  const sel = document.querySelector<HTMLSelectElement>('select[name="topic"]');
+  if (topic && sel) sel.value = topic;
+  if (topic === 'research') {
+    const role = document.querySelector<HTMLSelectElement>('select[name="role"]');
+    if (role) role.value = 'Fund or family office';
+  }
+</script>
+
+<style is:global>
+  .reports-page .pro-form { display: grid; gap: 1rem; }
+  .reports-page .pro-form label { display: grid; gap: 0.35rem; font-size: 0.85rem; font-weight: 600; color: var(--rp-ink); }
+  .reports-page .pro-form input, .reports-page .pro-form select, .reports-page .pro-form textarea {
+    border: 1px solid var(--rp-line); background: var(--rp-paper); padding: 0.8rem 0.9rem; font-size: 1rem; font-weight: 400;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+import ProTrust from '../components/ProTrust.astro';
+import LeadSheet from '../components/LeadSheet.astro';
+---
+<ProBase
+  title="Sample off-market lead sheet | Salet Pro"
+  description="A real lead sheet for Perry Barr, Birmingham, with addresses masked: licences ending, refused HMO plans, auction lots and energy rating deadlines."
+>
+  <header class="rp-hero">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow">Salet Pro · sample</p>
+      <h1 class="rp-h1">A real lead sheet, addresses masked</h1>
+      <p class="rp-lede">
+        Every lead is a property and the public record that put it on the list, with the last recorded sale and a route in. This is
+        what arrives each week for your area.
+      </p>
+    </div>
+  </header>
+  <ProTrust />
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <LeadSheet />
+      <div class="rp-chips" style="margin-top:2rem">
+        <a href="/sourcers">Off-market leads for sourcers</a>
+        <a href="/agents">Seller leads for estate agents</a>
+        <a href="/pricing">Pricing</a>
+      </div>
+    </div>
+  </section>
+</ProBase>
