@@ -1,99 +1,46 @@
 ---
 import ReportsShell from '../../components/ReportsShell.astro';
-import ProductTile from '../../components/ProductTile.astro';
-import TrustStrip from '../../components/TrustStrip.astro';
-import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES, pick } from '../../data/reports';
+import PricingBoard from '../../components/PricingBoard.astro';
+import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
+import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF } from '../../data/pricing';
 
-const coming = pick('shortlist', 'photo-refurb');
-
-// The pricing page: one tile per product, cheapest first, each with a real
-// crop of the report it sells and one button to reports.salet.uk. The
-// product the reports app actually sells by the address (the £19 report)
-// carries the "Most popular" flag.
+// The pricing page. The visitor picks the job first ("Checking one home",
+// "Comparing a few", "Buying with help") and sees three cards for it.
+// Everything else is one tap away in "Compare everything".
 ---
 <ReportsShell
-  title="Property reports and prices | From £0 | Salet"
-  description="Start with a free preview. Buyer Intelligence Report £19, Legal Pack Review £29, Decision Pack £69, 5 report pack £79. Every figure dated and sourced."
+  title="Pricing | Property reports from £19, free preview first | Salet"
+  description="Check one home for £19, see the full cost of buying it, or compare a shortlist. Every report starts with a free preview. One payment, no subscription."
 >
-  <header class="rp-hero">
-    <div class="rp-wrap">
-      <p class="rp-eyebrow">Salet property reports</p>
-      <h1 class="rp-h1">Know what you are buying before you offer</h1>
-      <p class="rp-lede">
-        Reports for buyers of UK property, built from official records. Every report starts with a
-        free preview, and you pay once only if you want the rest.
-      </p>
-      <p class="rp-lede" style="font-size:0.95rem;margin:0">
-        Read one first: <a class="rp-link" href={SAMPLE_INTEL}>sample property report</a>
-        or <a class="rp-link" href={SAMPLE_LEGAL}>sample legal pack review</a>.
+  <header class="rp-hero" style="padding-bottom:3rem">
+    <div class="rp-wrap" style="text-align:center">
+      <p class="rp-eyebrow">Pricing</p>
+      <h1 class="rp-h1" style="margin-left:auto;margin-right:auto">Simple prices. Free preview first.</h1>
+      <p class="rp-lede" style="margin:0 auto">
+        Pick what you are doing. Every report shows you real data on your address before you pay, and you pay once.
+        <a class="rp-link" href={SAMPLE_INTEL}>See a sample report</a>
       </p>
     </div>
   </header>
 
-  <TrustStrip />
-
   <section class="rp-section">
     <div class="rp-wrap">
-      <h2 class="rp-h2">Choose your report</h2>
-      <p class="rp-sub">One payment by card. No subscription. Salet Ltd is not VAT registered, so the price shown is the price you pay.</p>
-      <div class="rp-tiles">
-        {PRODUCTS.map((p) => <ProductTile p={p} />)}
-      </div>
+      <PricingBoard
+        tabs={SALET_TABS}
+        compare={SALET_COMPARE}
+        faqs={SALET_FAQS}
+        proof={SALET_PROOF}
+        back="https://salet.uk/reports"
+        sticky={{ label: 'Check a property: free preview', href: 'https://reports.salet.uk/intelligence' }}
+      />
     </div>
   </section>
 
   <section class="rp-section" style="padding-top:0">
-    <div class="rp-wrap">
-      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
-      <h2 class="rp-h2">Coming soon</h2>
-      <p class="rp-sub">Leave your email and we will tell you the day each one goes live.</p>
-      <div class="rp-tiles">{coming.map((p) => <ProductTile p={p} back="/reports" />)}</div>
-    </div>
-  </section>
-
-  <section class="rp-section" style="padding-top:0">
-    <div class="rp-wrap">
-      <h2 class="rp-h2">Which one do I need?</h2>
-      <p class="rp-sub">Pick by where you are in the purchase.</p>
-      <div class="rp-which">
-        <a href="/reports/buyer-intelligence"><em>Seen a house and want to know if the price is fair</em><b>Buyer Intelligence, £19</b></a>
-        <a href="/reports/legal-pack"><em>Have the legal pack and an auction date</em><b>Legal Pack Review, £29</b></a>
-        <a href="/reports/decision-pack"><em>Serious about one property and want the full cost at each price</em><b>Decision Pack, £69</b></a>
-        <a href="/reports/five-pack"><em>Comparing a shortlist of homes</em><b>5 report pack, £79</b></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="rp-section" style="padding-top:0">
-    <div class="rp-wrap">
-      <h2 class="rp-h2" style="font-size:1.4rem">Shop by who you are</h2>
-      <div class="rp-chips" style="margin-top:1rem">
+    <div class="rp-wrap" style="text-align:center">
+      <div class="rp-chips" style="justify-content:center">
         {AUDIENCES.map((a) => <a href={`/for/${a.slug}`}>For {a.label.toLowerCase()}</a>)}
       </div>
     </div>
   </section>
-
-  <section class="rp-section" style="padding-top:0">
-    <div class="rp-wrap">
-      <h2 class="rp-h2" style="font-size:1.3rem">What these reports do not do</h2>
-      <p class="rp-sub" style="margin:0">
-        They report evidence. They do not tell you what to offer, what to bid, or whether to buy. A
-        legal pack review states what the documents say and is not legal advice: a solicitor must
-        review the pack before exchange. A survey and your own viewing complete the picture on any
-        property. A credit you have not used can be cancelled within 14 days of payment for a full
-        refund. If a report fails to run, or comes back with no data, we refund it in full. Once a
-        report has been delivered it is not refundable. <a href={`${APP}/terms#refunds`} style="color:var(--navy-600)">Refund terms</a>.
-      </p>
-    </div>
-  </section>
-
-  <p class="rp-agent">
-    Want someone to negotiate this for you? Salet also acts as your <a href="/services">buying agent</a>.
-  </p>
 </ReportsShell>
-
-<script>
-  if (new URLSearchParams(location.search).has('notified')) {
-    document.getElementById('notified')?.removeAttribute('hidden');
-  }
-</script>

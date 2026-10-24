@@ -1,0 +1,71 @@
+---
+// One pricing card: outcome name, promise, big price with its unit, a real
+// saving only where the arithmetic is true, three ticks, one action, and a
+// risk-reversal line under the button. Used by PricingBoard and on product
+// pages. Shared by salet.uk and Salet Pro.
+export interface Card {
+  id: string;
+  name: string;
+  promise: string;
+  price: string;
+  unit?: string;
+  was?: string; // list price struck through; only when real
+  perUnit?: string; // e.g. "£15.80 a report"
+  ticks: string[];
+  cta: string;
+  href?: string;
+  notify?: string; // product name: collect an email instead of selling
+  risk: string;
+  img?: string;
+  imgAlt?: string;
+  flag?: string; // e.g. "Recommended", "Best value"
+}
+
+interface Props {
+  c: Card;
+  /** Full URL to come back to after a notify signup. */
+  back: string;
+  /** Solid primary button even without a flag (single card on a product page). */
+  primary?: boolean;
+}
+const { c, back, primary = false } = Astro.props;
+const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
+---
+<article class:list={['pc', { 'is-flag': c.flag }]} data-card={c.id}>
+  {c.flag && <span class="pc-flag">{c.flag}</span>}
+  <h3 class="pc-name">{c.name}</h3>
+  <p class="pc-promise">{c.promise}</p>
+  <div class="pc-price">
+    {c.was && <s class="pc-was" aria-label={`was ${c.was}`}>{c.was}</s>}
+    <span class="pc-amount">{c.price}</span>
+    {c.unit && <span class="pc-unit">{c.unit}</span>}
+  </div>
+  <p class="pc-per">{c.perUnit ?? ' '}</p>
+  <ul class="pc-ticks">{c.ticks.map((t) => <li>{t}</li>)}</ul>
+  <div class="pc-action">
+    {
+      c.notify ? (
+        <form class="pc-notify" method="POST" action={NOTIFY_ACTION} data-track={`notify:${c.id}`}>
+          <input type="hidden" name="form" value="notify" />
+          <input type="hidden" name="product" value={c.notify} />
+          <input type="hidden" name="_subject" value={`Tell me when it is live: ${c.notify}`} />
+          <input type="hidden" name="_next" value={`${back}?notified=1`} />
+          <label class="sr-only" for={`n-${c.id}`}>Email address</label>
+          <input id={`n-${c.id}`} type="email" name="email" required autocomplete="email" placeholder="Your email" />
+          <button class="pc-btn is-quiet" type="submit">{c.cta}</button>
+        </form>
+      ) : (
+        <a class:list={['pc-btn', { 'is-quiet': !c.flag && !primary }]} href={c.href} data-track={`price:${c.id}`}>{c.cta}</a>
+      )
+    }
+    <p class="pc-risk">{c.risk}</p>
+  </div>
+  {
+    c.img && (
+      <details class="pc-peek">
+        <summary>See a real example</summary>
+        <img src={c.img} width="800" height="600" alt={c.imgAlt ?? `Real report section for ${c.name}`} loading="lazy" decoding="async" />
+      </details>
+    )
+  }
+</article>

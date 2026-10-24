@@ -3,6 +3,7 @@
 // Pro-only copy. Until PackForge publishes an order URL a product stays
 // "Coming soon" and its tile collects an email.
 import { APP, pick as pickShared, type Product } from '../../../src/data/reports';
+import type { Tab } from '../../../src/components/PricingBoard.astro';
 
 export const SITE = 'https://pro.salet.uk';
 
@@ -95,4 +96,115 @@ export const LEAD_SAMPLE = [
   { type: 'Energy rating pressure', addr: 'A house in Perry Barr, B42 1', signal: 'EPC F, private rental', sale: '2004, £125k to £150k', route: 'Letter to the owner at their title address' },
   { type: 'Pre-auction', addr: 'A house in Great Barr, B43 5', signal: 'In a regional auction, guide £75k to £100k', sale: '2008, £100k to £125k', route: 'Pre-auction offer through the auctioneer, legal pack read first' },
   { type: 'HMO refused', addr: 'A house in Perry Barr, B42 2', signal: 'HMO change of use refused', sale: '2021, £175k to £200k', route: 'Letter to the owner, title checked first' },
+];
+
+// Pricing board: pick the job, see three cards, the middle one flagged.
+// Savings shown only where the list prices add up: ten packs at £15 plus
+// 30 days of leads at £49 is £199 against the £99 pass.
+const PER_30 = 'One payment by card. Ends after 30 days, never renews.';
+const PER_PACK = 'Pay per pack by card. No subscription.';
+const o = (key: string) => ORDER[key];
+
+export const PRO_TABS: Tab[] = [
+  {
+    id: 'sourcers',
+    label: 'I source deals',
+    cards: [
+      {
+        id: 'pack-builder', name: 'Package one deal', promise: 'Address and price in, a branded investor pack out.',
+        price: '£15', unit: 'per pack',
+        ticks: ['Your branding on a full PDF pack', 'A one page summary to share', 'Returns, comparables and area, sourced'],
+        cta: o('pack-builder').cta, href: o('pack-builder').href, risk: PER_PACK, img: '/images/reports/valuation.webp',
+      },
+      {
+        id: 'sourcer-pass', flag: 'Best value', name: 'Your next 10 deals packaged',
+        promise: 'The Sourcer Pass: ten packs and the weekly leads for one area.',
+        price: '£99', unit: '30 days', was: '£199', perUnit: '£9.90 a pack, leads included',
+        ticks: ['Ten Investor Pack Builder packs', 'Off-market leads for one area, weekly', 'Letter Kit included'],
+        cta: 'Start my pass', href: o('sourcer-pass').href, risk: PER_30, img: '/images/reports/planning.webp',
+      },
+      {
+        id: 'offmarket', name: 'Find sellers before the portals', promise: 'Off-market leads: motivated seller signals for one area.',
+        price: '£49', unit: '30 days per area',
+        ticks: ['Expiring licences and refused plans', 'Pre-auction lots and energy rating pressure', 'Property level, never owner names'],
+        cta: 'Get leads for my area', href: o('offmarket').href, risk: PER_30, img: '/images/reports/price-paid.webp',
+      },
+    ],
+  },
+  {
+    id: 'agents',
+    label: 'I am an estate agent',
+    cards: [
+      {
+        id: 'valuation-evidence', name: 'Back up every valuation', promise: 'The Valuation Evidence Pack for one instruction.',
+        price: '£15', unit: 'per instruction',
+        ticks: ['The comparable sales with dates', 'The energy certificate and floor area', 'The area on one page'],
+        cta: o('valuation-evidence').cta, href: o('valuation-evidence').href, risk: PER_PACK, img: '/images/reports/like-for-like.webp',
+      },
+      {
+        id: 'seller-leads', flag: 'Best value', name: 'Know who will sell next', promise: 'Seller Leads: homes in your patch likely to come to market.',
+        price: '£79', unit: '30 days per patch',
+        ticks: ['Licences ending and permissions lapsing', 'Refused plans and failed auctions', 'Which sectors are getting busier'],
+        cta: 'Get my seller leads', href: o('seller-leads').href, risk: PER_30, img: '/images/reports/area-activity.webp',
+      },
+      {
+        id: 'market-brief', name: 'Win the instruction', promise: 'A monthly Area Market Brief, branded for your vendors.',
+        price: '£49', unit: '30 days',
+        ticks: ['Activity in your sectors against a year ago', 'Sold evidence and local signals', 'Your branding, ready to send'],
+        cta: 'Tell me when it is live', notify: 'Area Market Brief', risk: 'Coming soon. ' + PER_30, img: '/images/reports/crime.webp',
+      },
+    ],
+  },
+  {
+    id: 'data',
+    label: 'I need data',
+    cards: [
+      {
+        id: 'demand-board', name: 'See what investors want', promise: 'The Buyer Demand Board: live briefs by area.',
+        price: '£29', unit: '30 days',
+        ticks: ['Strategy and budget by area', 'Updated as briefs come in', 'No names, ever'],
+        cta: 'Tell me when it is live', notify: 'Buyer Demand Board', risk: 'Coming soon. ' + PER_30, img: '/images/reports/area-type.webp',
+      },
+      {
+        id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The Area Data Licence, as CSV or API.',
+        price: '£199', unit: 'per month',
+        ticks: ['Sales volume and EPC lodgements by district', 'The area activity call for every sector', 'CSV download or API'],
+        cta: 'Tell me when it is live', notify: 'Area Data Licence', risk: 'Coming soon. Terms set out in full before launch.', img: '/images/reports/area-activity.webp',
+      },
+      {
+        id: 'bespoke', name: 'Research built for you', promise: 'Freehold, block and portfolio sweeps for funds and family offices.',
+        price: 'from £500', unit: 'per project',
+        ticks: ['Freehold and block ownership', 'Company owned stock and portfolios', 'Scoped and priced before we start'],
+        cta: 'Scope a project', href: '/contact?topic=research', risk: 'Fixed price agreed before any work starts.',
+      },
+    ],
+  },
+];
+
+export const PRO_COMPARE = [
+  { name: 'Investor Pack Builder', price: '£15 a pack', what: 'Branded PDF pack and a one page summary from an address and a price.' },
+  { name: 'Valuation Evidence Pack', price: '£15', what: 'Comparables, energy certificate and area for one instruction.' },
+  { name: 'Letter Kit (soon)', price: '£19 / 30 days', what: 'Ready letters per signal type and a mail merge file. Free with the Sourcer Pass.' },
+  { name: 'Buyer Demand Board (soon)', price: '£29 / 30 days', what: 'What investors are asking for, by area. No names.' },
+  { name: 'Off-market leads', price: '£49 / 30 days', what: 'Weekly motivated seller signals for one area.' },
+  { name: 'Area Market Brief (soon)', price: '£49 / 30 days', what: 'Monthly branded brief for vendors and applicants.' },
+  { name: 'Photo Refurb Estimate (soon)', price: '£15', what: 'A costed refurbishment from the listing photos.' },
+  { name: 'Seller Leads', price: '£79 / 30 days', what: 'Homes in one patch likely to come to market.' },
+  { name: 'Sourcer Pass', price: '£99 / 30 days', what: 'Ten packs, weekly leads for one area and the Letter Kit.' },
+  { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District data as CSV or API.' },
+  { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: '/contact?topic=research' },
+];
+
+export const PRO_FAQS = [
+  { q: 'Does anything renew?', a: 'No. Passes and leads are one payment for 30 days and then they end. Real subscriptions come later, and only if you ask for them.' },
+  { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal.' },
+  { q: 'Which areas do you cover?', a: LEADS_SCOPE },
+  { q: 'How do I pay?', a: 'By card, once, at checkout. Salet Ltd is not VAT registered, so the price shown is the price you pay.' },
+  { q: 'Can I see a sample first?', a: 'Yes. <a href="/sample-leads">See a real lead sheet</a> with the addresses masked.' },
+];
+
+export const PRO_PROOF = [
+  'Built from HM Land Registry, the EPC register, council registers and planning portals',
+  'Every lead dated and sourced',
+  'No owner names, ever',
 ];
