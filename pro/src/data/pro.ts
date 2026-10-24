@@ -1,27 +1,13 @@
 // Salet Pro catalogue. Products are defined once in the shared catalogue
 // (src/data/reports.ts); this file picks the professional ones and holds the
-// Pro-only copy. Until PackForge publishes an order URL a product stays
-// "Coming soon" and its tile collects an email.
-import { APP, pick as pickShared, type Product } from '../../../src/data/reports';
+// Pro-only copy. Order links live in the shared ORDER map; a product without
+// one stays "Coming soon" and its tile collects an email.
+import { APP, ORDER, pick as pickShared, type Product } from '../../../src/data/reports';
 import type { Tab } from '../../../src/components/PricingBoard.astro';
 
 export const SITE = 'https://pro.salet.uk';
 
-// Order pages in the Pro app (reports.salet.uk/pro) and the pass checkouts.
-// A product listed here sells from its tile; anything else keeps the
-// "Coming soon" email capture. Add a line when PackForge publishes one.
-const ORDER: Record<string, { href: string; cta: string }> = {
-  'pack-builder': { href: `${APP}/pro/investor-pack`, cta: 'Build a pack' },
-  'valuation-evidence': { href: `${APP}/pro/valuation-evidence`, cta: 'Order the pack' },
-  offmarket: { href: `${APP}/checkout/offmarket_leads`, cta: 'Get 30 days of leads' },
-  'seller-leads': { href: `${APP}/checkout/seller_leads`, cta: 'Get 30 days of leads' },
-  'sourcer-pass': { href: `${APP}/checkout/sourcer_pass`, cta: 'Buy the pass' },
-};
-
-const pick = (...keys: string[]): Product[] =>
-  pickShared(...keys).map((p) =>
-    ORDER[p.key] ? { ...p, ...ORDER[p.key], soon: false, notify: false, badge: undefined } : p,
-  );
+const pick = pickShared;
 
 export const LEADS_SCOPE = 'Leads cover every area except the few Salet sources in itself.';
 
@@ -162,19 +148,19 @@ export const PRO_TABS: Tab[] = [
         id: 'demand-board', name: 'See exactly what investors want', promise: 'Live buyer briefs, area by area. Source to order.',
         price: '£29', unit: '30 days',
         ticks: ['Strategy and budget by area', 'Updated as briefs come in', 'No names, ever'],
-        cta: 'Tell me when it is live', notify: 'Buyer Demand Board', risk: 'Coming soon. ' + PER_30, img: '/images/reports/area-type.webp',
+        cta: o('demand-board').cta, href: o('demand-board').href, risk: PER_30, img: '/images/reports/area-type.webp',
       },
       {
         id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The market data your team needs, ready to use.',
         price: '£199', unit: 'per month',
         ticks: ['Sales and new energy certificates by district', 'How busy each postcode sector is against a year ago', 'As a spreadsheet or a direct connection'],
-        cta: 'Tell me when it is live', notify: 'Area Data Licence', risk: 'Coming soon. Terms set out in full before launch.', img: '/images/reports/area-activity.webp',
+        cta: o('data-licence').cta, href: o('data-licence').href, risk: 'One payment by card for the month. Nothing renews on its own.', img: '/images/reports/area-activity.webp',
       },
       {
         id: 'bespoke', name: 'Find the stock nobody else can', promise: 'Freeholds, blocks and whole portfolios, traced for funds and family offices.',
         price: 'from £500', unit: 'per project',
         ticks: ['Freehold and block ownership', 'Company owned stock and portfolios', 'Scoped and priced before we start'],
-        cta: 'Scope a project', href: '/contact?topic=research', risk: 'Fixed price agreed before any work starts.',
+        cta: 'Scope a project', href: `${APP}/pro/research`, risk: 'Fixed price agreed before any work starts.',
       },
     ],
   },
@@ -183,15 +169,15 @@ export const PRO_TABS: Tab[] = [
 export const PRO_COMPARE = [
   { name: 'Investor Pack Builder', price: '£15 a pack', what: 'Branded PDF pack and a one page summary from an address and a price.' },
   { name: 'Valuation Evidence Pack', price: '£15', what: 'Comparables, energy certificate and area for one instruction.' },
-  { name: 'Letter Kit (soon)', price: '£19 / 30 days', what: 'A ready letter for each reason an owner might sell, and a mail merge file. Free with the Sourcer Pass.' },
-  { name: 'Buyer Demand Board (soon)', price: '£29 / 30 days', what: 'What investors are asking for, by area. No names.' },
+  { name: 'Letter Kit', price: '£19 / 30 days', what: 'A ready letter for each reason an owner might sell, and a mail merge file. Free with the Sourcer Pass.' },
+  { name: 'Buyer Demand Board', price: '£29 / 30 days', what: 'What investors are asking for, by area. No names.' },
   { name: 'Off-market leads', price: '£49 / 30 days', what: 'Each week, homes in one area whose owners may want to sell.' },
   { name: 'Area Market Brief (soon)', price: '£49 / 30 days', what: 'Monthly branded brief for vendors and applicants.' },
-  { name: 'Photo Refurb Estimate (soon)', price: '£15', what: 'A costed refurbishment from the listing photos.' },
+  { name: 'Photo Refurb Estimate', price: '£15', what: 'A costed refurbishment from the listing photos.' },
   { name: 'Seller Leads', price: '£79 / 30 days (£129 from 1 Dec 2026)', what: 'Homes in one patch likely to come to market.' },
   { name: 'Sourcer Pass', price: '£99 / 30 days', what: 'Ten packs, weekly leads for one area and the Letter Kit.' },
-  { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District figures as a spreadsheet or a direct connection.' },
-  { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: '/contact?topic=research' },
+  { name: 'Area Data Licence', price: '£199 / month', what: 'District figures as a spreadsheet or a direct connection.' },
+  { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: `${APP}/pro/research` },
 ];
 
 export const PRO_FAQS = [

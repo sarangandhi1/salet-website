@@ -5,9 +5,9 @@
 // Every image is a crop of the live sample reports at
 // reports.salet.uk/sample/intelligence and /sample/legal-pack, never a mock-up.
 //
-// `soon` products are being built in PackForge. Until their checkout exists
-// their buttons go to the property report and say "Coming this week"; when
-// reports.salet.uk serves the real page, set `href` and drop `soon`.
+// Every product sells from reports.salet.uk. ORDER below holds each one's
+// order page; a product missing from it stays "Coming soon" and its tile
+// collects an email (today only the Area Market Brief).
 
 export const APP = 'https://reports.salet.uk';
 export const SAMPLE_INTEL = `${APP}/sample/intelligence`;
@@ -130,7 +130,7 @@ export const PRODUCTS: Product[] = [
       'Save £9 against buying both',
     ],
     img: '/images/reports/legal-summary.webp',
-    href: `${APP}/pricing`,
+    href: `${APP}/checkout/auction_bundle`,
     cta: 'Buy the bundle',
   },
   {
@@ -147,9 +147,8 @@ export const PRODUCTS: Product[] = [
       'What the figures say, in plain words',
     ],
     img: '/images/reports/dp-scenarios.webp',
-    href: `${APP}/intelligence`,
-    cta: 'Coming this week',
-    soon: true,
+    href: `${APP}/decision-pack`,
+    cta: 'Get the Decision Pack',
     badge: 'New',
   },
   {
@@ -164,18 +163,15 @@ export const PRODUCTS: Product[] = [
       '£15.80 a report instead of £19',
     ],
     img: '/images/reports/comparables.webp',
-    href: `${APP}/intelligence`,
-    cta: 'Coming this week',
-    soon: true,
+    href: `${APP}/checkout/intelligence_5`,
+    cta: 'Buy 5 reports',
     badge: 'New',
   },
 ];
 
-// Products still being built. The professional ones (packs, leads, agent
-// tools) are sold only on Salet Pro (pro.salet.uk), never on salet.uk,
-// which acts only for buyers. Each tile shows the real report section the
-// product is built on and collects an email for launch day. When PackForge
-// sells one, move it into PRODUCTS with its real href.
+// The rest of the range. The professional ones (packs, leads, agent tools)
+// are sold on Salet Pro. `soon()` defines a product as coming soon with an
+// email signup; MORE below switches on every one that has an ORDER page.
 const soon = (
   key: string,
   name: string,
@@ -200,7 +196,7 @@ const soon = (
   badge: 'Coming soon',
 });
 
-export const COMING: Product[] = [
+const BUILT: Product[] = [
   {
     slug: null,
     key: 'bespoke',
@@ -210,8 +206,8 @@ export const COMING: Product[] = [
     promise: 'Find the stock nobody else can: freeholds, blocks and whole portfolios.',
     points: ['Freehold and block ownership sweeps', 'Company owned stock and portfolios', 'Scoped and priced before we start'],
     img: '/images/reports/price-paid.webp',
-    href: '/contact?topic=research',
-    cta: 'Ask about a project',
+    href: `${APP}/pro/research`,
+    cta: 'Scope a project',
   },
   soon('shortlist', 'Home Search Shortlist', '£149', 'one search', 'Tell us what you want. We find the homes, you pick your favourite.', ['Homes on the market that match your brief', 'Each one priced against its sold evidence', 'Area, flood and schools for every one'], 'area-type'),
   soon('deal-analyser', 'Deal Analyser', '£29', 'per deal', 'Know in minutes if the deal really stacks up.', ['Yield, cash left in and return', 'A stress test on rate and rent', 'Built from local lettings and sold prices'], 'rent'),
@@ -230,7 +226,29 @@ export const COMING: Product[] = [
   soon('valuation-evidence', 'Valuation Evidence Pack', '£15', 'per instruction', 'Back every valuation with hard evidence.', ['The comparable sales with dates', 'The energy certificate and floor area', 'The area in one page'], 'like-for-like'),
 ];
 
-const ALL = [...PRODUCTS, ...COMING];
+// Order pages for the products in BUILT, all on reports.salet.uk.
+export const ORDER: Record<string, { href: string; cta: string }> = {
+  shortlist: { href: `${APP}/home-search`, cta: 'Start my search' },
+  'deal-analyser': { href: `${APP}/deal-analyser`, cta: 'Analyse a deal' },
+  hmo: { href: `${APP}/hmo-viability`, cta: 'Check an HMO' },
+  'auction-lot': { href: `${APP}/auction-lot`, cta: 'Check a lot' },
+  'investor-pass': { href: `${APP}/checkout/investor_pass`, cta: 'Buy the pass' },
+  'photo-refurb': { href: `${APP}/photo-refurb`, cta: 'Price the refurb' },
+  'pack-builder': { href: `${APP}/pro/investor-pack`, cta: 'Build a pack' },
+  'valuation-evidence': { href: `${APP}/pro/valuation-evidence`, cta: 'Order the pack' },
+  offmarket: { href: `${APP}/checkout/offmarket_leads`, cta: 'Get leads for my area' },
+  'seller-leads': { href: `${APP}/checkout/seller_leads`, cta: 'Get my seller leads' },
+  'sourcer-pass': { href: `${APP}/checkout/sourcer_pass`, cta: 'Start my pass' },
+  'letter-kit': { href: `${APP}/checkout/letter_kit`, cta: 'Get the Letter Kit' },
+  'demand-board': { href: `${APP}/checkout/demand_board`, cta: 'See the board' },
+  'data-licence': { href: `${APP}/checkout/area_data`, cta: 'Get the data' },
+};
+
+export const MORE: Product[] = BUILT.map((p) =>
+  ORDER[p.key] ? { ...p, ...ORDER[p.key], soon: false, notify: false, badge: 'New' } : p,
+);
+
+const ALL = [...PRODUCTS, ...MORE];
 export const pick = (...keys: string[]) => keys.map((k) => ALL.find((p) => p.key === k)!);
 
 export interface Audience {
@@ -364,7 +382,7 @@ export const PAGES: Record<string, ProductPage> = {
       f('dp-summary', 'The summary first', 'The whole picture in a few lines, before any detail.'),
       ...INTEL_FEATURES.slice(0, 7),
     ],
-    sample: SAMPLE_INTEL,
+    sample: `${APP}/sample/decision-pack`,
   },
   'five-pack': {
     title: '5 report pack | £79 | Five Buyer Intelligence Reports | Salet',
