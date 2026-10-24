@@ -1,6 +1,9 @@
 ---
 import ReportsShell from '../../components/ReportsShell.astro';
 import PricingBoard from '../../components/PricingBoard.astro';
+import AudienceBar from '../../components/AudienceBar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
 import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
 import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF, SALET_BANNER } from '../../data/pricing';
 
@@ -14,6 +17,7 @@ import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF, SALET_BANNER } from
 >
   <header class="rp-hero" style="padding-bottom:3rem">
     <div class="rp-wrap" style="text-align:center">
+      <div style="display:flex;justify-content:center"><Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: 'Reports and prices' }]} /></div>
       <p class="rp-eyebrow">Pricing</p>
       <h1 class="rp-h1" style="margin-left:auto;margin-right:auto">Simple prices. Free preview first.</h1>
       <p class="rp-lede" style="margin:0 auto">
@@ -22,6 +26,8 @@ import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF, SALET_BANNER } from
       </p>
     </div>
   </header>
+
+  <AudienceBar items={SALET_AUDIENCE_LINKS} top={88} />
 
   <section class="rp-section">
     <div class="rp-wrap">

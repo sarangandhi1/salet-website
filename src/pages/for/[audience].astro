@@ -2,13 +2,14 @@
 import ReportsShell from '../../components/ReportsShell.astro';
 import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
-import ArtHero from '../../components/ArtHero.astro';
-import { artFor } from '../../data/details';
-import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
+import AudienceBar from '../../components/AudienceBar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { AUDIENCES } from '../../data/reports';
+import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
 
-// One hub per kind of buyer: home buyers and investors. Tools for sourcers
-// and estate agents live on Salet Pro, not here. Same tiles as /reports,
-// filtered to what that audience buys.
+// One hub per kind of buyer: home buyers and investors (sourcers and estate
+// agents are on Salet Pro). The page opens with that audience's product
+// tiles; the bold tab bar jumps between audiences without the back button.
 export function getStaticPaths() {
   return AUDIENCES.map((a) => ({ params: { audience: a.slug } }));
 }
@@ -17,37 +18,29 @@ const { audience } = Astro.params as { audience: string };
 const a = AUDIENCES.find((x) => x.slug === audience)!;
 const back = `/for/${a.slug}`;
 const others = AUDIENCES.filter((x) => x.slug !== a.slug);
-// The hero shows the artwork of the first product this audience can buy.
-const lead = a.products.find((p) => p.key !== 'free' && artFor(p.key))!;
 
 ---
 <ReportsShell title={a.title} description={a.lede}>
-  <header class="rp-hero">
-    <div class="rp-wrap rp-hero-grid">
-      <div>
-        <p class="rp-eyebrow">For {a.label.toLowerCase()}</p>
-        <h1 class="rp-h1">{a.h1}</h1>
-        <p class="rp-lede">{a.lede}</p>
-        <p class="rp-lede" style="font-size:0.95rem;margin:0">
-          Read one first: <a class="rp-link" href={SAMPLE_INTEL}>sample property report</a>.
-        </p>
-      </div>
-      <div class="rp-hero-art"><ArtHero productKey={lead.key} alt="" sizes="(min-width: 56rem) 520px, 100vw" eager /></div>
+  <header class="rp-hero rp-hero--compact">
+    <div class="rp-wrap">
+      <Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: `For ${a.label.toLowerCase()}` }]} back={{ label: 'All reports', href: '/reports' }} />
+      <h1 class="rp-h1">{a.h1}</h1>
+      <p class="rp-lede" style="margin:0">{a.lede}</p>
     </div>
   </header>
 
-  <TrustStrip />
+  <AudienceBar items={SALET_AUDIENCE_LINKS} active={a.slug} top={88} />
 
-  <section class="rp-section">
+  <section class="rp-section" style="padding-top:2rem">
     <div class="rp-wrap">
       <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
-      <h2 class="rp-h2">What we have for {a.label.toLowerCase()}</h2>
-      <p class="rp-sub">One payment by card. No subscription. Products marked coming soon take your email and tell you the day they go live.</p>
       <div class="rp-tiles">
         {a.products.map((p) => <ProductTile p={p} back={back} />)}
       </div>
     </div>
   </section>
+
+  <TrustStrip />
 
   {
     a.free && (

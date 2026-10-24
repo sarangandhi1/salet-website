@@ -1,0 +1,74 @@
+---
+import type { AudienceLink } from '../lib/sites';
+
+// "Which one are you?": one large picture tile per audience, the first thing
+// a visitor sees, so nobody has to search for their product.
+interface Props {
+  items: AudienceLink[];
+  title?: string;
+  /** 1 when the chooser is the page's main heading (the homepage). */
+  level?: 1 | 2;
+}
+const { items, title = 'Which one are you?', level = 2 } = Astro.props;
+const Heading = level === 1 ? 'h1' : 'h2';
+---
+<div class="ch">
+  <Heading class="ch-title">{title}</Heading>
+  <div class:list={['ch-grid', `n${items.length}`]}>
+    {
+      items.map((i, k) => (
+        <a class="ch-tile" href={i.href}>
+          <span class="ch-img">
+            <img
+              src={`/images/art/${i.art}-800.webp`}
+              srcset={`/images/art/${i.art}-800.webp 800w, /images/art/${i.art}-1168.webp 1168w`}
+              sizes="(min-width: 64rem) 280px, (min-width: 40rem) 50vw, 100vw"
+              width="800"
+              height="603"
+              alt=""
+              loading={k < 2 ? 'eager' : 'lazy'}
+              fetchpriority={k === 0 ? 'high' : undefined}
+            />
+          </span>
+          <span class="ch-body">
+            <span class="ch-name">{i.choose}</span>
+            <span class="ch-hook">{i.hook}</span>
+            <span class="ch-go">Show me &rarr;</span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .ch-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.05;
+    letter-spacing: -0.02em; color: #fff; margin: 0 0 1.5rem; text-align: center;
+  }
+  .ch-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 64rem) { .ch-grid.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .ch-grid.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 30rem) { .ch-grid { gap: 0.7rem; } }
+  .ch-tile {
+    display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; text-decoration: none;
+    background: #fff; border: 3px solid #21422f; box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+  }
+  .ch-tile:hover, .ch-tile:focus-visible { transform: translateY(-4px); border-color: #c2410c; box-shadow: 0 24px 48px -22px rgba(194, 65, 12, 0.55); }
+  .ch-img { display: block; aspect-ratio: 1168 / 880; overflow: hidden; background: #f3efe6; }
+  .ch-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .ch-tile:hover .ch-img img { transform: scale(1.06); }
+  .ch-body { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.95rem 1rem 1.05rem; }
+  .ch-name { font-weight: 800; font-size: 1.2rem; line-height: 1.2; color: #1b1a17; }
+  .ch-hook { font-size: 0.92rem; line-height: 1.35; color: #4f5f74; }
+  .ch-go {
+    margin-top: 0.5rem; align-self: flex-start; font-weight: 700; font-size: 0.85rem; color: #fff; background: #c2410c;
+    padding: 0.4rem 0.8rem; border-radius: 999px;
+  }
+  @media (max-width: 30rem) {
+    .ch-body { padding: 0.7rem 0.7rem 0.8rem; }
+    .ch-name { font-size: 1rem; }
+    .ch-hook { font-size: 0.8rem; }
+    .ch-go { font-size: 0.75rem; padding: 0.3rem 0.65rem; }
+  }
+</style>

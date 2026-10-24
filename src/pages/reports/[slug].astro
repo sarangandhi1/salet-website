@@ -4,6 +4,7 @@ import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
 import PriceCard from '../../components/PriceCard.astro';
 import ArtHero from '../../components/ArtHero.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import { risesTo } from '../../data/details';
 import { PRODUCTS, PAGES, bySlug } from '../../data/reports';
 import { PAGE_CARD } from '../../data/pricing';
@@ -23,6 +24,10 @@ const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
   <header class="rp-hero">
     <div class="rp-wrap rp-hero-grid">
       <div>
+      <Breadcrumb
+        trail={[{ label: 'Salet', href: '/' }, { label: 'For home buyers', href: '/for/home-buyers' }, { label: p.name }]}
+        back={{ label: 'All reports', href: '/reports' }}
+      />
       <p class="rp-eyebrow">{p.name}{p.badge ? ` · ${p.badge}` : ''}</p>
       <h1 class="rp-h1">{pg.h1}</h1>
       <p class="rp-lede">{pg.lede}</p>

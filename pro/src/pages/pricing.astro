@@ -1,6 +1,8 @@
 ---
 import ProBase from '../layouts/ProBase.astro';
 import PricingBoard from '../../../src/components/PricingBoard.astro';
+import AudienceBar from '../../../src/components/AudienceBar.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
 import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, PRO_BANNER, SITE } from '../data/pro';
 
 // Pick the job ("I source deals", "I am an estate agent", "I need data"),
@@ -20,6 +22,7 @@ import { PRO_TABS, PRO_COMPARE, PRO_FAQS, PRO_PROOF, PRO_BANNER, SITE } from '..
       </p>
     </div>
   </header>
+  <AudienceBar items={PRO_AUDIENCE_LINKS} />
   <section class="rp-section">
     <div class="rp-wrap">
       <PricingBoard

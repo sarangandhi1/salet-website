@@ -4,8 +4,9 @@ import ProductTile from '../../../src/components/ProductTile.astro';
 import ProTrust from '../components/ProTrust.astro';
 import LeadSheet from '../components/LeadSheet.astro';
 import { AUDIENCES, SITE } from '../data/pro';
-import ArtHero from '../../../src/components/ArtHero.astro';
-import { artFor } from '../../../src/data/details';
+import AudienceBar from '../../../src/components/AudienceBar.astro';
+import Breadcrumb from '../../../src/components/Breadcrumb.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
 
 // /sourcers and /agents.
 export function getStaticPaths() {
@@ -14,32 +15,26 @@ export function getStaticPaths() {
 const { audience } = Astro.params as { audience: string };
 const a = AUDIENCES.find((x) => x.slug === audience)!;
 const other = AUDIENCES.find((x) => x.slug !== audience)!;
-// The hero shows the artwork of the first product with artwork.
-const lead = a.products.find((p) => artFor(p.key))!;
 ---
 <ProBase title={a.title} description={a.lede}>
-  <header class="rp-hero">
-    <div class="rp-wrap rp-hero-grid">
-      <div>
-        <p class="rp-eyebrow">Salet Pro · for {a.label.toLowerCase()}</p>
-        <h1 class="rp-h1">{a.h1}</h1>
-        <p class="rp-lede">{a.lede}</p>
-        <a class="rp-btn" href="/sample-leads">See a sample lead sheet</a>
-      </div>
-      <div class="rp-hero-art"><ArtHero productKey={lead.key} alt="" sizes="(min-width: 56rem) 520px, 100vw" eager /></div>
+  <header class="rp-hero rp-hero--compact">
+    <div class="rp-wrap">
+      <Breadcrumb trail={[{ label: 'Salet Pro', href: '/' }, { label: a.label }]} back={{ label: 'All tools and prices', href: '/pricing' }} />
+      <h1 class="rp-h1">{a.h1}</h1>
+      <p class="rp-lede" style="margin:0">{a.lede}</p>
     </div>
   </header>
 
-  <ProTrust />
+  <AudienceBar items={PRO_AUDIENCE_LINKS} active={a.slug} />
 
-  <section class="rp-section">
+  <section class="rp-section" style="padding-top:2rem">
     <div class="rp-wrap">
       <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
-      <h2 class="rp-h2">Tools for {a.label.toLowerCase()}</h2>
-      <p class="rp-sub">One payment by card. Products marked coming soon take your email and tell you the day they go live.</p>
       <div class="rp-tiles">{a.products.map((p) => <ProductTile p={p} back={`${SITE}/${a.slug}`} />)}</div>
     </div>
   </section>
+
+  <ProTrust />
 
   {a.leads && (
     <section class="rp-section" style="padding-top:0">

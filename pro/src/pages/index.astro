@@ -3,11 +3,9 @@ import ProBase from '../layouts/ProBase.astro';
 import ProductTile from '../../../src/components/ProductTile.astro';
 import ProTrust from '../components/ProTrust.astro';
 import LeadSheet from '../components/LeadSheet.astro';
-import { AUDIENCES, LEADS, PACKS, PASSES, DATA, SITE } from '../data/pro';
-import ArtHero from '../../../src/components/ArtHero.astro';
-
-// Artwork for each audience tile.
-const AUD_ART: Record<string, string> = { sourcers: 'offmarket', agents: 'seller-leads' };
+import { LEADS, PACKS, PASSES, DATA, SITE } from '../data/pro';
+import AudienceChooser from '../../../src/components/AudienceChooser.astro';
+import { PRO_AUDIENCE_LINKS } from '../../../src/lib/sites';
 
 const groups = [
   { id: 'leads', h: 'Leads', sub: 'Homes whose owners may want to sell, found in public records, every week.', items: LEADS },
@@ -20,47 +18,23 @@ const groups = [
   title="Salet Pro | Off-market leads and property packs for professionals"
   description="Homes in your area whose owners may want to sell, every week, branded investor packs and valuation evidence. For deal sourcers and estate agents."
 >
-  <header class="rp-hero">
-    <div class="rp-wrap rp-hero-grid">
-      <div>
-      <p class="rp-eyebrow">Salet Pro · for property professionals</p>
-      <h1 class="rp-h1">The leads your competitors don&rsquo;t have</h1>
-      <p class="rp-lede">
-        Every week, the homes in your area whose owners may want to sell, before they reach Rightmove. Then package
-        the deal or win the instruction, in minutes. For deal sourcers and estate agents.
+  <header class="rp-hero rp-hero--chooser">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow" style="text-align:center">Salet Pro · the leads your competitors don&rsquo;t have</p>
+      <AudienceChooser items={PRO_AUDIENCE_LINKS} level={1} />
+      <p class="rp-lede" style="text-align:center;margin:1.75rem auto 0">
+        Every week, homes in your area whose owners may want to sell, before they reach Rightmove.
+        <a class="rp-link" href="/sample-leads">See a sample lead sheet</a>
       </p>
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-        <a class="rp-btn" href="/sample-leads">See a sample lead sheet</a>
-        <a class="rp-btn is-soon" href="/pricing">Pricing</a>
-      </div>
-      </div>
-      <div class="rp-hero-art"><ArtHero productKey="offmarket" alt="" sizes="(min-width: 56rem) 520px, 100vw" eager /></div>
     </div>
   </header>
 
   <ProTrust />
 
-  <section class="rp-section">
-    <div class="rp-wrap">
-      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
-      <h2 class="rp-h2">Who it is for</h2>
-      <div class="rp-tiles" style="margin-top:1.5rem">
-        {AUDIENCES.map((a) => (
-          <a href={`/${a.slug}`} class="rp-tile" style="text-decoration:none;color:inherit">
-            <span class="rp-tile-vis"><ArtHero productKey={AUD_ART[a.slug]} alt="" /></span>
-            <span class="rp-tile-body">
-              <h3>{a.label}</h3>
-              <span class="rp-promise">{a.h1}.</span>
-              <span class="rp-more" style="text-align:left">See the tools &rarr;</span>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+  <p id="notified" class="rp-thanks rp-wrap" hidden>Thank you. We will email you the day it goes live, and only then.</p>
 
-  {groups.map((g) => (
-    <section class="rp-section" style="padding-top:0" id={g.id}>
+  {groups.map((g, i) => (
+    <section class="rp-section" style={i ? 'padding-top:0' : undefined} id={g.id}>
       <div class="rp-wrap">
         <h2 class="rp-h2">{g.h}</h2>
         <p class="rp-sub">{g.sub}</p>

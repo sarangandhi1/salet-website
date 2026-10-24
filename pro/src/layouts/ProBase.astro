@@ -1,5 +1,6 @@
 ---
 import '../styles/pro.css';
+import { SALET_URL } from '../../../src/lib/sites';
 
 // Salet Pro frame: the Salet wordmark with a "Pro" mark, its own short nav,
 // and a plain footer. Separate from salet.uk on purpose: Salet acts only for
@@ -46,6 +47,7 @@ const year = new Date().getFullYear();
             <span class="pro-badge">Pro</span>
           </a>
           <nav class="pro-nav" aria-label="Main">
+            <a href={SALET_URL} class="pro-nav-back">&larr; Salet for buyers</a>
             {nav.map((n) => (
               <a href={n.href} class:list={{ 'is-on': path.startsWith(n.href) }}>{n.label}</a>
             ))}
@@ -63,7 +65,7 @@ const year = new Date().getFullYear();
             RICS valuation.
           </p>
           <p>
-            Buying a home for yourself? <a href="https://salet.uk">salet.uk</a> acts only for buyers.
+            Buying a home for yourself? <a href={SALET_URL}>salet.uk</a> acts only for buyers.
             <span class="pro-sep">·</span>
             <a href="mailto:saran@salet.uk">saran@salet.uk</a>
           </p>
@@ -98,5 +100,7 @@ const year = new Date().getFullYear();
   .reports-page .pro-foot strong { color: #fff; }
   .reports-page .pro-foot a { color: var(--sky-400); }
   .reports-page .pro-sep { opacity: 0.5; margin: 0 0.4rem; }
+  .reports-page .pro-nav-back { color: #f1d58a !important; font-weight: 600; }
+  .reports-page .rp-hero.rp-hero--chooser { padding: 2rem 0 3rem; }
   .reports-page .pro-scope { border-left: 3px solid var(--gold); background: var(--rp-paper); padding: 0.8rem 1rem; color: var(--rp-ink); font-size: 0.95rem; margin: 0 0 1.75rem; }
 </style>

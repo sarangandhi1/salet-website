@@ -1,5 +1,6 @@
 ---
 import { AUDIENCES, SAMPLE_INTEL } from '../data/reports';
+import { PRO_URL } from '../lib/sites';
 
 const nav = [
   { href: '/services', label: 'Services' },
@@ -10,11 +11,12 @@ const nav = [
   { href: '/about', label: 'About' },
 ];
 // Everything Salet sells sits in one highlighted "Products" menu, grouped by
-// who buys it. Each group heading opens that audience's hub. Kept out of the
-// plain text nav array on purpose; names and prices come from the catalogue.
+// who buys it: home buyers and investors here, sourcers and estate agents on
+// Salet Pro. Each group heading opens that audience's page. Names and prices
+// come from the catalogue.
 const groups = AUDIENCES.map((a) => ({
   href: `/for/${a.slug}`,
-  label: a.label,
+  label: `For ${a.label.toLowerCase()}`,
   items: [
     ...(a.free ? [{ href: `/for/${a.slug}#free`, label: 'Free checks', price: 'Free' }] : []),
     ...a.products
@@ -25,7 +27,16 @@ const groups = AUDIENCES.map((a) => ({
         price: p.notify ? 'Soon' : p.price,
       })),
   ],
-}));
+})).concat(
+  [
+    { slug: 'sourcers', label: 'For sourcers', line: 'Off-market leads, investor packs, passes' },
+    { slug: 'agents', label: 'For estate agents', line: 'Seller leads, market briefs, valuation packs' },
+  ].map((g) => ({
+    href: `${PRO_URL}/${g.slug}`,
+    label: g.label,
+    items: [{ href: `${PRO_URL}/${g.slug}`, label: `${g.line} on Salet Pro`, price: '' }],
+  })),
+);
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header id="site-header" class="fixed inset-x-0 top-0 z-40">
