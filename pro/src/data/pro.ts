@@ -2,9 +2,25 @@
 // (src/data/reports.ts); this file picks the professional ones and holds the
 // Pro-only copy. Until PackForge publishes an order URL a product stays
 // "Coming soon" and its tile collects an email.
-import { pick, type Product } from '../../../src/data/reports';
+import { APP, pick as pickShared, type Product } from '../../../src/data/reports';
 
 export const SITE = 'https://pro.salet.uk';
+
+// Order pages in the Pro app (reports.salet.uk/pro) and the pass checkouts.
+// A product listed here sells from its tile; anything else keeps the
+// "Coming soon" email capture. Add a line when PackForge publishes one.
+const ORDER: Record<string, { href: string; cta: string }> = {
+  'pack-builder': { href: `${APP}/pro/investor-pack`, cta: 'Build a pack' },
+  'valuation-evidence': { href: `${APP}/pro/valuation-evidence`, cta: 'Order the pack' },
+  offmarket: { href: `${APP}/checkout/offmarket_leads`, cta: 'Get 30 days of leads' },
+  'seller-leads': { href: `${APP}/checkout/seller_leads`, cta: 'Get 30 days of leads' },
+  'sourcer-pass': { href: `${APP}/checkout/sourcer_pass`, cta: 'Buy the pass' },
+};
+
+const pick = (...keys: string[]): Product[] =>
+  pickShared(...keys).map((p) =>
+    ORDER[p.key] ? { ...p, ...ORDER[p.key], soon: false, notify: false, badge: undefined } : p,
+  );
 
 export const LEADS_SCOPE = 'Leads cover every area except the few Salet sources in itself.';
 
