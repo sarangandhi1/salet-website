@@ -8,10 +8,11 @@ export const SITE = 'https://pro.salet.uk';
 
 export const LEADS_SCOPE = 'Leads cover every area except the few Salet sources in itself.';
 
-export const LEADS: Product[] = pick('offmarket', 'seller-leads');
-export const PACKS: Product[] = pick('pack-builder', 'valuation-evidence', 'market-brief');
+export const LEADS: Product[] = pick('offmarket', 'seller-leads', 'demand-board', 'letter-kit');
+export const PACKS: Product[] = pick('pack-builder', 'valuation-evidence', 'market-brief', 'photo-refurb');
 export const PASSES: Product[] = pick('sourcer-pass');
-export const ALL_PRO: Product[] = [...LEADS, ...PACKS, ...PASSES];
+export const DATA: Product[] = pick('data-licence', 'bespoke');
+export const ALL_PRO: Product[] = [...LEADS, ...PACKS, ...PASSES, ...DATA];
 
 export interface ProAudience {
   slug: string;
@@ -33,7 +34,7 @@ export const AUDIENCES: ProAudience[] = [
     title: 'Off-market leads and investor packs for sourcers | Salet Pro',
     h1: 'Find deals first, pack them fast',
     lede: 'Property level motivated seller signals for your area, every week, and a branded investor pack from an address and a price.',
-    products: pick('offmarket', 'pack-builder', 'sourcer-pass'),
+    products: pick('offmarket', 'pack-builder', 'sourcer-pass', 'demand-board', 'letter-kit', 'photo-refurb'),
     leads: true,
     faqs: [
       { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal: an expiring licence, a refused plan, an auction lot, an energy rating a landlord must fix. How you approach the owner is up to you.' },
@@ -49,7 +50,7 @@ export const AUDIENCES: ProAudience[] = [
     title: 'Seller leads and market briefs for estate agents | Salet Pro',
     h1: 'Know who is likely to sell next',
     lede: 'Homes in your patch likely to come to market, which sectors are getting busier, and the evidence pack for every valuation.',
-    products: pick('seller-leads', 'market-brief', 'valuation-evidence'),
+    products: pick('seller-leads', 'market-brief', 'valuation-evidence', 'letter-kit', 'data-licence'),
     leads: true,
     faqs: [
       { q: 'How do you know a home is likely to sell?', a: 'From public signals: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },

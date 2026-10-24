@@ -2,7 +2,9 @@
 import ReportsShell from '../../components/ReportsShell.astro';
 import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
-import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES } from '../../data/reports';
+import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES, pick } from '../../data/reports';
+
+const coming = pick('shortlist', 'photo-refurb');
 
 // The pricing page: one tile per product, cheapest first, each with a real
 // crop of the report it sells and one button to reports.salet.uk. The
@@ -11,7 +13,7 @@ import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES } from '../../data
 ---
 <ReportsShell
   title="Property reports and prices | From £0 | Salet"
-  description="Start with a free preview. Buyer Intelligence Report £19, Legal Pack Review £29, Buyer Decision Pack £69, 5 report pack £79. Every figure dated and sourced."
+  description="Start with a free preview. Buyer Intelligence Report £19, Legal Pack Review £29, Decision Pack £69, 5 report pack £79. Every figure dated and sourced."
 >
   <header class="rp-hero">
     <div class="rp-wrap">
@@ -42,12 +44,21 @@ import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES } from '../../data
 
   <section class="rp-section" style="padding-top:0">
     <div class="rp-wrap">
+      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+      <h2 class="rp-h2">Coming soon</h2>
+      <p class="rp-sub">Leave your email and we will tell you the day each one goes live.</p>
+      <div class="rp-tiles">{coming.map((p) => <ProductTile p={p} back="/reports" />)}</div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
       <h2 class="rp-h2">Which one do I need?</h2>
       <p class="rp-sub">Pick by where you are in the purchase.</p>
       <div class="rp-which">
         <a href="/reports/buyer-intelligence"><em>Seen a house and want to know if the price is fair</em><b>Buyer Intelligence, £19</b></a>
         <a href="/reports/legal-pack"><em>Have the legal pack and an auction date</em><b>Legal Pack Review, £29</b></a>
-        <a href="/reports/decision-pack"><em>Serious about one property, pack in hand</em><b>Buyer Decision Pack, £69</b></a>
+        <a href="/reports/decision-pack"><em>Serious about one property and want the full cost at each price</em><b>Decision Pack, £69</b></a>
         <a href="/reports/five-pack"><em>Comparing a shortlist of homes</em><b>5 report pack, £79</b></a>
       </div>
     </div>
@@ -80,3 +91,9 @@ import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL, AUDIENCES } from '../../data
     Want someone to negotiate this for you? Salet also acts as your <a href="/services">buying agent</a>.
   </p>
 </ReportsShell>
+
+<script>
+  if (new URLSearchParams(location.search).has('notified')) {
+    document.getElementById('notified')?.removeAttribute('hidden');
+  }
+</script>

@@ -3,12 +3,13 @@ import ProBase from '../layouts/ProBase.astro';
 import ProductTile from '../../../src/components/ProductTile.astro';
 import ProTrust from '../components/ProTrust.astro';
 import LeadSheet from '../components/LeadSheet.astro';
-import { AUDIENCES, LEADS, PACKS, PASSES, SITE } from '../data/pro';
+import { AUDIENCES, LEADS, PACKS, PASSES, DATA, SITE } from '../data/pro';
 
 const groups = [
   { id: 'leads', h: 'Leads', sub: 'Properties likely to sell, found from public signals, every week.', items: LEADS },
   { id: 'packs', h: 'Packs', sub: 'Address in, a sourced and branded pack out.', items: PACKS },
   { id: 'passes', h: 'Passes', sub: 'Thirty days of packs and leads for one payment.', items: PASSES },
+  { id: 'data', h: 'Data and research', sub: 'District data for agents, lenders and proptech, and bespoke sweeps for funds and family offices.', items: DATA },
 ];
 ---
 <ProBase

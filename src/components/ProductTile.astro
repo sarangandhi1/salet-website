@@ -25,7 +25,7 @@ const page = p.slug ? `/reports/${p.slug}` : null;
     <div class="rp-price-row">
       <span class="rp-price">{p.price}</span>
       <span class="rp-price-note">
-        {p.key === 'free' ? 'no card needed' : p.unit ? `${p.unit}, one payment` : 'one payment, no subscription'}
+        {p.key === 'free' ? 'no card needed' : p.price.startsWith('from') ? p.unit : p.unit ? `${p.unit}, one payment` : 'one payment, no subscription'}
       </span>
     </div>
     {
