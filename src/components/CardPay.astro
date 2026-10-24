@@ -1,0 +1,38 @@
+---
+// "Pay securely by card" with the card marks we take. Apple Pay and Google
+// Pay are added only once PackForge confirms checkout offers them.
+interface Props {
+  tone?: 'light' | 'dark';
+  align?: 'center' | 'start';
+}
+const { tone = 'light', align = 'center' } = Astro.props;
+---
+<p class:list={['cp', `cp--${tone}`, `cp--${align}`]}>
+  <svg class="cp-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />
+  </svg>
+  <span>Pay securely by card</span>
+  <span class="cp-marks">
+    <svg class="cp-card" viewBox="0 0 48 30" role="img" aria-label="Visa">
+      <rect width="48" height="30" rx="4" fill="#fff" stroke="#d5e0ec" />
+      <text x="24" y="20" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="900" font-style="italic" fill="#1a1f71" letter-spacing="0.5">VISA</text>
+    </svg>
+    <svg class="cp-card" viewBox="0 0 48 30" role="img" aria-label="Mastercard">
+      <rect width="48" height="30" rx="4" fill="#fff" stroke="#d5e0ec" />
+      <circle cx="19.5" cy="15" r="8" fill="#eb001b" />
+      <circle cx="28.5" cy="15" r="8" fill="#f79e1b" />
+      <path d="M24 8.4a8 8 0 0 1 0 13.2 8 8 0 0 1 0-13.2z" fill="#ff5f00" />
+    </svg>
+  </span>
+</p>
+
+<style>
+  .cp { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; margin: 0.6rem 0 0; font-size: 0.78rem; font-weight: 600; line-height: 1; }
+  .cp--center { justify-content: center; }
+  .cp--start { justify-content: flex-start; }
+  .cp--light { color: #4f5f74; }
+  .cp--dark { color: rgba(250, 248, 242, 0.75); }
+  .cp-lock { width: 0.9rem; height: 0.9rem; flex: none; }
+  .cp-marks { display: inline-flex; gap: 0.3rem; }
+  .cp-card { width: 2.1rem; height: 1.3rem; display: block; }
+</style>

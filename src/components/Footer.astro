@@ -1,4 +1,7 @@
 ---
+import CardPay from './CardPay.astro';
+import { PAY_INVOICE_URL } from '../lib/sites';
+
 const year = new Date().getFullYear();
 ---
 <footer class="relative overflow-hidden bg-ink text-ivory">
@@ -46,6 +49,7 @@ const year = new Date().getFullYear();
           <li><a class="text-ivory/80 hover:text-ivory" href="/for-uk-nris">For UK-based NRIs</a></li>
           <li><a class="text-ivory/80 hover:text-ivory" href="/for-india-hnis">For India-based buyers</a></li>
           <li><a class="text-ivory/80 hover:text-ivory" href="/contact">Book a discovery call</a></li>
+          <li><a class="text-ivory/80 hover:text-ivory" href={PAY_INVOICE_URL}>Pay an invoice</a></li>
         </ul>
         <div class="mt-6 border border-line-dark px-4 py-3 text-xs leading-relaxed text-mist">
           Professional indemnity insurance held.<br />
@@ -69,6 +73,7 @@ const year = new Date().getFullYear();
         Salet reports are estimates from public records, shown as ranges. They are not RICS valuations, surveys or
         legal advice.
       </p>
+      <CardPay tone="dark" align="start" />
       <p>For property professionals: <a href="https://pro.salet.uk" class="text-ivory/80 underline underline-offset-2 hover:text-ivory">Salet Pro</a></p>
       <p>&copy; {year} Salet Ltd. All rights reserved.</p>
     </div>

@@ -1,5 +1,6 @@
 ---
 import ArtHero from './ArtHero.astro';
+import CardPay from './CardPay.astro';
 import { DETAILS, GUARANTEE, risesTo } from '../data/details';
 
 // One pricing card: the product's artwork with its badges, outcome name,
@@ -73,6 +74,7 @@ const sample = det?.img ?? c.img;
     }
     <p class="pc-risk">{c.risk}</p>
     {paid && <p class="pc-guarantee">{GUARANTEE}</p>}
+    {paid && !c.notify && <CardPay />}
   </div>
   {
     sample && (

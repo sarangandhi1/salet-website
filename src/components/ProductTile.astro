@@ -1,6 +1,7 @@
 ---
 import type { Product } from '../data/reports';
 import ArtHero from './ArtHero.astro';
+import CardPay from './CardPay.astro';
 import { DETAILS, GUARANTEE, risesTo } from '../data/details';
 
 interface Props {
@@ -51,6 +52,7 @@ const sample = det?.img ?? p.img;
       )
     }
     {paid && !p.notify && <p class="pc-guarantee">{GUARANTEE}</p>}
+    {paid && !p.notify && !p.href.startsWith('/') && <CardPay align="start" />}
     {page && <a class="rp-more" href={page}>What is inside</a>}
     {
       sample && (

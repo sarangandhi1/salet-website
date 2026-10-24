@@ -28,3 +28,6 @@ export const PRO_AUDIENCE_LINKS: AudienceLink[] = [
   { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: '/agents', art: 'who-agent' },
   { key: 'data', label: 'Data & research', choose: 'I need data', hook: 'Every district, every month', href: '/pricing#data', art: 'area-data-licence' },
 ];
+
+// Card payment for fees (buying agent, sourcing): PackForge serves the page.
+export const PAY_INVOICE_URL = 'https://reports.salet.uk/pay';
