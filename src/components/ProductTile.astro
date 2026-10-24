@@ -3,7 +3,7 @@ import type { Product } from '../data/reports';
 
 interface Props {
   p: Product;
-  /** Page to come back to after a "tell me" signup. */
+  /** Page to come back to after a "tell me" signup: a path on salet.uk, or a full URL. */
   back?: string;
 }
 const { p, back = '/reports' } = Astro.props;
@@ -34,7 +34,7 @@ const page = p.slug ? `/reports/${p.slug}` : null;
           <input type="hidden" name="form" value="notify" />
           <input type="hidden" name="product" value={p.name} />
           <input type="hidden" name="_subject" value={`Tell me when it is live: ${p.name}`} />
-          <input type="hidden" name="_next" value={`https://salet.uk${back}?notified=1`} />
+          <input type="hidden" name="_next" value={`${back.startsWith('http') ? back : `https://salet.uk${back}`}?notified=1`} />
           <label class="sr-only" for={`notify-${p.key}`}>Email address</label>
           <input id={`notify-${p.key}`} type="email" name="email" required autocomplete="email" placeholder="Your email" />
           <button class="rp-btn is-soon" type="submit">{p.cta}</button>

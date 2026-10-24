@@ -1,0 +1,71 @@
+---
+import ProBase from '../layouts/ProBase.astro';
+import ProductTile from '../../../src/components/ProductTile.astro';
+import ProTrust from '../components/ProTrust.astro';
+import LeadSheet from '../components/LeadSheet.astro';
+import { AUDIENCES, LEADS, PACKS, PASSES, SITE } from '../data/pro';
+
+const groups = [
+  { id: 'leads', h: 'Leads', sub: 'Properties likely to sell, found from public signals, every week.', items: LEADS },
+  { id: 'packs', h: 'Packs', sub: 'Address in, a sourced and branded pack out.', items: PACKS },
+  { id: 'passes', h: 'Passes', sub: 'Thirty days of packs and leads for one payment.', items: PASSES },
+];
+---
+<ProBase
+  title="Salet Pro | Off-market leads and property packs for professionals"
+  description="Motivated seller signals for your area every week, branded investor packs and valuation evidence. For deal sourcers and estate agents."
+>
+  <header class="rp-hero">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow">Salet Pro · for property professionals</p>
+      <h1 class="rp-h1">The leads and the evidence, before anyone else has them</h1>
+      <p class="rp-lede">
+        Weekly motivated seller signals for your area, branded investor packs and valuation evidence, all built from
+        public records. For deal sourcers and estate agents.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+        <a class="rp-btn" href="/sample-leads">See a sample lead sheet</a>
+        <a class="rp-btn is-soon" href="/pricing">Pricing</a>
+      </div>
+    </div>
+  </header>
+
+  <ProTrust />
+
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <p id="notified" class="rp-thanks" hidden>Thank you. We will email you the day it goes live, and only then.</p>
+      <h2 class="rp-h2">Who it is for</h2>
+      <div class="rp-tiles" style="margin-top:1.5rem">
+        {AUDIENCES.map((a) => (
+          <a href={`/${a.slug}`} class="rp-tile" style="text-decoration:none;color:inherit">
+            <span class="rp-tile-img"><img src={a.img} width="800" height="600" alt="" loading="lazy" decoding="async" /></span>
+            <span class="rp-tile-body">
+              <h3>{a.label}</h3>
+              <span class="rp-promise">{a.h1}.</span>
+              <span class="rp-more" style="text-align:left">See the tools &rarr;</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {groups.map((g) => (
+    <section class="rp-section" style="padding-top:0" id={g.id}>
+      <div class="rp-wrap">
+        <h2 class="rp-h2">{g.h}</h2>
+        <p class="rp-sub">{g.sub}</p>
+        <div class="rp-tiles">{g.items.map((p) => <ProductTile p={p} back={`${SITE}/`} />)}</div>
+      </div>
+    </section>
+  ))}
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">What a lead sheet looks like</h2>
+      <LeadSheet limit={3} />
+      <p style="margin-top:1rem"><a class="rp-link" style="color:var(--navy-600)" href="/sample-leads">See the full sample</a></p>
+    </div>
+  </section>
+</ProBase>

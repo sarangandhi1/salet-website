@@ -1,0 +1,5 @@
+/* Salet Pro reuses the salet.uk theme and the report tile styles. */
+@import "../../../src/styles/global.css";
+@import "../../../src/styles/reports.css";
+@source "../../../src/components";
+@source "../";

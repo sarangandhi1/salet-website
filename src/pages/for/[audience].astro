@@ -4,8 +4,9 @@ import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
 import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
 
-// One hub per buyer of Salet products: home buyers, investors, sourcers and
-// estate agents. Same tiles as /reports, filtered to what that audience buys.
+// One hub per kind of buyer: home buyers and investors. Tools for sourcers
+// and estate agents live on Salet Pro, not here. Same tiles as /reports,
+// filtered to what that audience buys.
 export function getStaticPaths() {
   return AUDIENCES.map((a) => ({ params: { audience: a.slug } }));
 }
@@ -15,18 +16,6 @@ const a = AUDIENCES.find((x) => x.slug === audience)!;
 const back = `/for/${a.slug}`;
 const others = AUDIENCES.filter((x) => x.slug !== a.slug);
 
-// A sample of the off-market lead sheet, from a real preview edition
-// (Perry Barr, Birmingham, October 2026). This page is public, so house
-// numbers, street names and the end of each postcode are removed, and
-// deceased-estate leads are left out entirely.
-const leadSample = [
-  { type: 'Energy rating pressure', addr: 'A flat off a residential avenue, B42 1', signal: 'EPC F, private rental', sale: '2021, £125k to £150k', route: 'Letter to the owner at their title address' },
-  { type: 'Pre-auction', addr: 'A house on a lane in Great Barr, B42 1', signal: 'In a regional auction, guide £50k to £75k', sale: 'No sale recorded since 1995', route: 'Pre-auction offer through the auctioneer, legal pack read first' },
-  { type: 'HMO refused', addr: 'A house on an avenue, B20 1', signal: 'HMO change of use refused', sale: '2024, £400k to £425k', route: 'Letter to the owner, title checked first' },
-  { type: 'Energy rating pressure', addr: 'A house in Perry Barr, B42 1', signal: 'EPC F, private rental', sale: '2004, £125k to £150k', route: 'Letter to the owner at their title address' },
-  { type: 'Pre-auction', addr: 'A house in Great Barr, B43 5', signal: 'In a regional auction, guide £75k to £100k', sale: '2008, £100k to £125k', route: 'Pre-auction offer through the auctioneer, legal pack read first' },
-  { type: 'HMO refused', addr: 'A house in Perry Barr, B42 2', signal: 'HMO change of use refused', sale: '2021, £175k to £200k', route: 'Letter to the owner, title checked first' },
-];
 ---
 <ReportsShell title={a.title} description={a.lede}>
   <header class="rp-hero">
@@ -61,42 +50,6 @@ const leadSample = [
           <div class="rp-chips" style="margin-top:1rem">
             {a.free.map((t) => <a href={t.href}>{t.label}</a>)}
           </div>
-        </div>
-      </section>
-    )
-  }
-
-  {
-    a.slug === 'sourcers' && (
-      <section class="rp-section" style="padding-top:0">
-        <div class="rp-wrap">
-          <h2 class="rp-h2">What a lead sheet looks like</h2>
-          <p class="rp-sub">
-            From a real preview edition for Perry Barr, Birmingham, October 2026. On this public page the house
-            numbers, the street names and the end of each postcode are removed. The paid sheet names every property.
-          </p>
-          <div class="rp-stats">
-            <div class="rp-stat"><b>65</b><span>leads within about 2 miles</span></div>
-            <div class="rp-stat"><b>16</b><span>marked top priority</span></div>
-            <div class="rp-stat"><b>4</b><span>lots heading to auction</span></div>
-            <div class="rp-stat"><b>6</b><span>HMO plans refused</span></div>
-          </div>
-          <div class="rp-tiles">
-            {leadSample.map((l) => (
-              <div class="rp-lead">
-                <span class="rp-ltype">{l.type}</span>
-                <p class="rp-laddr">{l.addr}</p>
-                <dl>
-                  <dt>Signal</dt><dd>{l.signal}</dd>
-                  <dt>Last sale</dt><dd>{l.sale}</dd>
-                  <dt>Route in</dt><dd>{l.route}</dd>
-                </dl>
-              </div>
-            ))}
-          </div>
-          <p class="rp-sub" style="margin:1.5rem 0 0;font-size:0.9rem">
-            Every lead is a property and a public signal. No owner names, ever.
-          </p>
         </div>
       </section>
     )

@@ -167,7 +167,9 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-// Products still being built. Each tile shows the real report section the
+// Products still being built. The professional ones (packs, leads, agent
+// tools) are sold only on Salet Pro (pro.salet.uk), never on salet.uk,
+// which acts only for buyers. Each tile shows the real report section the
 // product is built on and collects an email for launch day. When PackForge
 // sells one, move it into PRODUCTS with its real href.
 const soon = (
@@ -209,7 +211,7 @@ export const COMING: Product[] = [
 ];
 
 const ALL = [...PRODUCTS, ...COMING];
-const pick = (...keys: string[]) => keys.map((k) => ALL.find((p) => p.key === k)!);
+export const pick = (...keys: string[]) => keys.map((k) => ALL.find((p) => p.key === k)!);
 
 export interface Audience {
   slug: string;
@@ -268,36 +270,6 @@ export const AUDIENCES: Audience[] = [
       { q: 'Can I get a refund?', a: REFUND },
     ],
     service: 'Want us to find and negotiate the deal? Salet also acts as your',
-  },
-  {
-    slug: 'sourcers',
-    label: 'Deal sourcers',
-    short: 'Off-market signals and investor packs, built from official records.',
-    img: '/images/reports/planning.webp',
-    title: 'Tools for property deal sourcers | Salet',
-    h1: 'Sourcing deals? Find them first, pack them fast',
-    lede: 'Property level motivated seller signals for your area, every week, and a branded investor pack from an address and a price.',
-    products: pick('offmarket', 'pack-builder', 'sourcer-pass', 'intelligence', 'five'),
-    faqs: [
-      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal: an expiring licence, a refused plan, an auction lot, an energy rating a landlord must fix. How you approach the owner is up to you.' },
-      { q: 'Where does the data come from?', a: 'Council licence registers and planning portals, the EPC register, HM Land Registry and auction catalogues. Every lead says where it came from and when.' },
-      { q: 'What is a pass?', a: 'One payment for 30 days of packs and leads. It does not renew.' },
-    ],
-  },
-  {
-    slug: 'agents',
-    label: 'Estate agents',
-    short: 'Seller leads for your patch and evidence for every valuation.',
-    img: '/images/reports/area-activity.webp',
-    title: 'Tools for estate agents | Salet',
-    h1: 'Estate agent? Know who is likely to sell next',
-    lede: 'Homes in your patch likely to come to market, which sectors are getting busier, and the evidence pack for every valuation.',
-    products: pick('seller-leads', 'market-brief', 'valuation-evidence', 'intelligence'),
-    faqs: [
-      { q: 'How do you know a home is likely to sell?', a: 'From public signals: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },
-      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal.' },
-      { q: 'Can I put my branding on the brief?', a: 'Yes. The Area Market Brief is made to send to your vendors and applicants under your name.' },
-    ],
   },
 ];
 
