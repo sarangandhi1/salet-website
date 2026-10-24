@@ -1,0 +1,73 @@
+---
+import ReportsShell from '../../components/ReportsShell.astro';
+import ProductTile from '../../components/ProductTile.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import { PRODUCTS, APP, SAMPLE_INTEL, SAMPLE_LEGAL } from '../../data/reports';
+
+// The pricing page: one tile per product, cheapest first, each with a real
+// crop of the report it sells and one button to reports.salet.uk. The
+// product the reports app actually sells by the address (the £19 report)
+// carries the "Most popular" flag.
+---
+<ReportsShell
+  title="Property reports and prices | From £0 | Salet"
+  description="Start with a free preview. Buyer Intelligence Report £19, Legal Pack Review £29, Buyer Decision Pack £69, 5 report pack £79. Every figure dated and sourced."
+>
+  <header class="rp-hero">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow">Salet property reports</p>
+      <h1 class="rp-h1">Know what you are buying before you offer</h1>
+      <p class="rp-lede">
+        Reports for buyers of UK property, built from official records. Every report starts with a
+        free preview, and you pay once only if you want the rest.
+      </p>
+      <p class="rp-lede" style="font-size:0.95rem;margin:0">
+        Read one first: <a class="rp-link" href={SAMPLE_INTEL}>sample property report</a>
+        or <a class="rp-link" href={SAMPLE_LEGAL}>sample legal pack review</a>.
+      </p>
+    </div>
+  </header>
+
+  <TrustStrip />
+
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">Choose your report</h2>
+      <p class="rp-sub">One payment by card. No subscription. Salet Ltd is not VAT registered, so the price shown is the price you pay.</p>
+      <div class="rp-tiles">
+        {PRODUCTS.map((p) => <ProductTile p={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">Which one do I need?</h2>
+      <p class="rp-sub">Pick by where you are in the purchase.</p>
+      <div class="rp-which">
+        <a href="/reports/buyer-intelligence"><em>Seen a house and want to know if the price is fair</em><b>Buyer Intelligence, £19</b></a>
+        <a href="/reports/legal-pack"><em>Have the legal pack and an auction date</em><b>Legal Pack Review, £29</b></a>
+        <a href="/reports/decision-pack"><em>Serious about one property, pack in hand</em><b>Buyer Decision Pack, £69</b></a>
+        <a href="/reports/five-pack"><em>Comparing a shortlist of homes</em><b>5 report pack, £79</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap">
+      <h2 class="rp-h2" style="font-size:1.3rem">What these reports do not do</h2>
+      <p class="rp-sub" style="margin:0">
+        They report evidence. They do not tell you what to offer, what to bid, or whether to buy. A
+        legal pack review states what the documents say and is not legal advice: a solicitor must
+        review the pack before exchange. A survey and your own viewing complete the picture on any
+        property. A credit you have not used can be cancelled within 14 days of payment for a full
+        refund. If a report fails to run, or comes back with no data, we refund it in full. Once a
+        report has been delivered it is not refundable. <a href={`${APP}/terms#refunds`} style="color:var(--navy-600)">Refund terms</a>.
+      </p>
+    </div>
+  </section>
+
+  <p class="rp-agent">
+    Want someone to negotiate this for you? Salet also acts as your <a href="/services">buying agent</a>.
+  </p>
+</ReportsShell>

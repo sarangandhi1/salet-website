@@ -1,0 +1,87 @@
+---
+import ReportsShell from '../../components/ReportsShell.astro';
+import ProductTile from '../../components/ProductTile.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import { PRODUCTS, PAGES, bySlug } from '../../data/reports';
+
+// One page per paid product. The copy lives in src/data/reports.ts.
+export function getStaticPaths() {
+  return Object.keys(PAGES).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const p = bySlug(slug);
+const pg = PAGES[slug];
+const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
+---
+<ReportsShell title={pg.title} description={pg.lede}>
+  <header class="rp-hero">
+    <div class="rp-wrap">
+      <p class="rp-eyebrow">{p.name}{p.badge ? ` · ${p.badge}` : ''}</p>
+      <h1 class="rp-h1">{pg.h1}</h1>
+      <p class="rp-lede">{pg.lede}</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem 1.25rem">
+        <a class:list={['rp-btn', { 'is-soon': p.soon }]} href={p.href}>{p.cta}</a>
+        <span style="color:#fff"><span class="rp-price" style="color:#fff">{p.price}</span></span>
+      </div>
+      <p class="rp-lede" style="font-size:0.92rem;margin:1rem 0 0">
+        {p.soon ? 'Launching this week. Until then, start with the free property preview.' : 'Free preview first. Pay only if you want the full report.'}
+        <a class="rp-link" href={pg.sample}>See a full sample report</a>
+      </p>
+    </div>
+  </header>
+
+  <TrustStrip />
+
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">What is inside</h2>
+      <p class="rp-sub">Taken from the sample report. Yours looks the same, for your address.</p>
+      <div class="rp-tiles">
+        {
+          pg.features.map((ft) => (
+            <figure class="rp-feature" style="margin:0">
+              <a class="rp-tile-img" href={pg.sample} tabindex="-1">
+                <img src={ft.img} width="800" height="600" alt={`Sample report section: ${ft.title}`} loading="lazy" decoding="async" />
+              </a>
+              <figcaption>
+                <strong>{ft.title}</strong>
+                <span>{ft.line}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" style="padding-top:0">
+    <div class="rp-wrap rp-facts">
+      <div class="rp-fact"><h3>Who it is for</h3><p>{pg.who}</p></div>
+      <div class="rp-fact"><h3>The problem it solves</h3><p>{pg.problem}</p></div>
+      <div class="rp-fact"><h3>How it is produced</h3><p>{pg.how}</p></div>
+      <div class="rp-fact"><h3>Delivery</h3><p>{pg.delivery}</p></div>
+      <div class="rp-fact"><h3>What it is not</h3><ul>{pg.notIncluded.map((n) => <li>{n}</li>)}</ul></div>
+      <div class="rp-fact"><h3>Price</h3><p><strong>{p.price}</strong>, one payment by card, no subscription. Salet Ltd is not VAT registered, so this is the price you pay. If a report fails to run, or comes back with no data, we refund it in full.</p></div>
+    </div>
+  </section>
+
+  <section class="rp-buy">
+    <h2>{p.name}</h2>
+    <span class="rp-price">{p.price}</span>
+    <a class:list={['rp-btn', { 'is-soon': p.soon }]} href={p.href}>{p.cta}</a>
+    <p>{p.soon ? 'Launching this week.' : 'Free preview first. Ready in minutes, on screen, as a PDF and by email.'}</p>
+  </section>
+
+  <section class="rp-section">
+    <div class="rp-wrap">
+      <h2 class="rp-h2">Other reports</h2>
+      <p class="rp-sub"><a href="/reports" style="color:var(--navy-600)">Compare every report and price</a></p>
+      <div class="rp-tiles">{others.map((o) => <ProductTile p={o} />)}</div>
+    </div>
+  </section>
+
+  <p class="rp-agent">
+    Want someone to negotiate this for you? Salet also acts as your <a href="/services">buying agent</a>.
+  </p>
+</ReportsShell>

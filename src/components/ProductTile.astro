@@ -1,0 +1,27 @@
+---
+import type { Product } from '../data/reports';
+
+interface Props {
+  p: Product;
+}
+const { p } = Astro.props;
+const page = p.slug ? `/reports/${p.slug}` : null;
+---
+<article class:list={['rp-tile', { 'is-popular': p.popular }]} id={p.key}>
+  {p.popular && <span class="rp-flag is-popular">Most popular</span>}
+  {!p.popular && p.badge && <span class="rp-flag">{p.badge}</span>}
+  <a class="rp-tile-img" href={page ?? p.href} tabindex="-1" aria-hidden="true">
+    <img src={p.img} width="800" height="600" alt="" loading="lazy" decoding="async" />
+  </a>
+  <div class="rp-tile-body">
+    <h3>{page ? <a href={page}>{p.name}</a> : p.name}</h3>
+    <p class="rp-promise">{p.promise}</p>
+    <ul class="rp-points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+    <div class="rp-price-row">
+      <span class="rp-price">{p.price}</span>
+      <span class="rp-price-note">{p.key === 'free' ? 'no card needed' : 'one payment, no subscription'}</span>
+    </div>
+    <a class:list={['rp-btn', { 'is-soon': p.soon }]} href={p.href}>{p.cta}</a>
+    {page && <a class="rp-more" href={page}>What is inside</a>}
+  </div>
+</article>

@@ -1,16 +1,33 @@
 ---
+import { PRODUCTS, SAMPLE_INTEL } from '../data/reports';
+
 const nav = [
   { href: '/services', label: 'Services' },
-  { href: '/reports', label: 'Reports' },
   { href: '/how-we-work', label: 'How we work' },
   { href: '/why-salet', label: 'Why Salet' },
   { href: '/track-record', label: 'Track record' },
   { href: '/insights', label: 'Insights' },
   { href: '/about', label: 'About' },
 ];
-// The two free tools (refurbishment cost and price check) render as a matched
-// pair of highlighted orange boxes below, set apart from the green discovery
-// call. Kept out of the plain text nav array on purpose.
+// Free tools and paid reports share one highlighted "Property reports" menu,
+// so no two menus list the same things. Kept out of the plain text nav array
+// on purpose. Prices come from the report catalogue.
+const freeTools = [
+  { href: '/deal-check', label: 'What should I offer?' },
+  { href: '/price-check', label: 'What is this property worth?' },
+  { href: '/refurb-check', label: 'What will the refurb cost?' },
+  { href: '/area', label: 'Is my area getting busier?' },
+];
+const reportLinks = [
+  ...PRODUCTS.filter((p) => p.slug).map((p) => ({
+    href: `/reports/${p.slug}`,
+    label: p.name,
+    price: p.price,
+    badge: p.badge,
+  })),
+  { href: '/reports', label: 'Compare all reports', price: '', badge: undefined },
+  { href: SAMPLE_INTEL, label: 'Sample report', price: '', badge: undefined },
+];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header id="site-header" class="fixed inset-x-0 top-0 z-40">
@@ -33,34 +50,36 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         ))
       }
-      {/* Four free tools now, so they group under one prominent box rather
-          than crowding the bar. Pure CSS reveal on hover and keyboard focus,
-          no JS. The inner padding keeps the hover region continuous. */}
       <div class="group relative">
         <button
           type="button"
-          class="flex items-center gap-1.5 border border-[#e0763a]/60 bg-[#c2410c]/20 px-5 py-2.5 text-sm font-medium tracking-wide text-ivory transition-all duration-200 hover:border-[#e0763a] hover:bg-[#c2410c] group-focus-within:border-[#e0763a] group-focus-within:bg-[#c2410c]"
+          class:list={[
+            'flex items-center gap-1.5 border border-[#e0763a]/60 bg-[#c2410c]/20 px-5 py-2.5 text-sm font-medium tracking-wide text-ivory transition-all duration-200 hover:border-[#e0763a] hover:bg-[#c2410c] group-focus-within:border-[#e0763a] group-focus-within:bg-[#c2410c]',
+          ]}
           aria-haspopup="true"
         >
-          Free tools
+          Property reports
           <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
         <div class="invisible absolute right-0 top-full z-50 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-          <div class="w-72 border border-line-dark bg-ink shadow-xl">
-            <a href="/deal-check" class="block border-b border-line-dark/60 px-5 py-3.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">
-              What should I offer?
-            </a>
-            <a href="/price-check" class="block border-b border-line-dark/60 px-5 py-3.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">
-              What is this property worth?
-            </a>
-            <a href="/refurb-check" class="block border-b border-line-dark/60 px-5 py-3.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">
-              What will the refurb cost?
-            </a>
-            <a href="/area" class="block px-5 py-3.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">
-              Is my area getting busier?
-            </a>
+          <div class="w-80 border border-line-dark bg-ink shadow-xl">
+            <p class="px-5 pb-1 pt-4 text-[0.68rem] uppercase tracking-[0.2em] text-mist">Free property check</p>
+            {freeTools.map((t) => (
+              <a href={t.href} class="block px-5 py-2.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">{t.label}</a>
+            ))}
+            <p class="mt-2 border-t border-line-dark/60 px-5 pb-1 pt-4 text-[0.68rem] uppercase tracking-[0.2em] text-mist">Reports</p>
+            {reportLinks.map((r) => (
+              <a href={r.href} class="flex items-center justify-between gap-3 px-5 py-2.5 text-sm text-ivory/90 transition-colors hover:bg-white/5 hover:text-white">
+                <span>
+                  {r.label}
+                  {r.badge && <span class="ml-1.5 bg-[#c2410c] px-1.5 py-0.5 text-[0.62rem] font-semibold uppercase tracking-wider text-ivory">{r.badge}</span>}
+                </span>
+                {r.price && <span class="text-ivory/60">{r.price}</span>}
+              </a>
+            ))}
+            <div class="pb-2"></div>
           </div>
         </div>
       </div>
@@ -94,18 +113,20 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         ))
       }
-      <a href="/deal-check" class="mt-5 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
-        What should I offer?
-      </a>
-      <a href="/price-check" class="mt-3 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
-        What is this property worth?
-      </a>
-      <a href="/refurb-check" class="mt-3 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
-        What will the refurb cost?
-      </a>
-      <a href="/area" class="mt-3 bg-[#c2410c] px-5 py-3.5 text-center text-base font-medium text-ivory">
-        Is my area getting busier?
-      </a>
+      <p class="mt-5 text-[0.68rem] uppercase tracking-[0.2em] text-mist">Property reports</p>
+      {reportLinks.map((r) => (
+        <a href={r.href} class="flex items-center justify-between border-b border-line-dark/60 py-3 text-base text-ivory/90">
+          <span>
+            {r.label}
+            {r.badge && <span class="ml-1.5 bg-[#c2410c] px-1.5 py-0.5 text-[0.62rem] font-semibold uppercase tracking-wider text-ivory">{r.badge}</span>}
+          </span>
+          {r.price && <span class="text-ivory/60">{r.price}</span>}
+        </a>
+      ))}
+      <p class="mt-5 text-[0.68rem] uppercase tracking-[0.2em] text-mist">Free property check</p>
+      {freeTools.map((t) => (
+        <a href={t.href} class="mt-2 bg-[#c2410c] px-5 py-3 text-center text-base font-medium text-ivory">{t.label}</a>
+      ))}
       <a href="/contact" class="mt-3 bg-green-2 px-5 py-3.5 text-center text-base text-ivory">
         Book a discovery call
       </a>
