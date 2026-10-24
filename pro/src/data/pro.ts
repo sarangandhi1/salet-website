@@ -50,11 +50,11 @@ export const AUDIENCES: ProAudience[] = [
     img: '/images/reports/planning.webp',
     title: 'Off-market leads and investor packs for sourcers | Salet Pro',
     h1: 'Find deals first, pack them fast',
-    lede: 'Property level motivated seller signals for your area, every week, and a branded investor pack from an address and a price.',
+    lede: 'Homes in your area whose owners may want to sell, every week, and a branded investor pack from an address and a price.',
     products: pick('offmarket', 'pack-builder', 'sourcer-pass', 'demand-board', 'letter-kit', 'photo-refurb'),
     leads: true,
     faqs: [
-      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal: an expiring licence, a refused plan, an auction lot, an energy rating a landlord must fix. How you approach the owner is up to you.' },
+      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and the public record that put it on the list: a licence ending, a refused plan, an auction lot, an energy rating a landlord must improve. How you approach the owner is up to you.' },
       { q: 'Where does the data come from?', a: 'Council licence registers and planning portals, the EPC register, HM Land Registry and auction catalogues. Every lead says where it came from and when.' },
       { q: 'Which areas do you cover?', a: LEADS_SCOPE },
       { q: 'What is a pass?', a: 'One payment for 30 days of packs and leads. It does not renew.' },
@@ -70,8 +70,8 @@ export const AUDIENCES: ProAudience[] = [
     products: pick('seller-leads', 'market-brief', 'valuation-evidence', 'letter-kit', 'data-licence'),
     leads: true,
     faqs: [
-      { q: 'How do you know a home is likely to sell?', a: 'From public signals: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },
-      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal.' },
+      { q: 'How do you know a home is likely to sell?', a: 'From public records: HMO licences ending, planning permissions lapsing or refused, lots that failed at auction, and how fast energy certificates are being lodged in each sector. It is a lean, not a certainty, and we say how often it has been right.' },
+      { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and the public record behind it.' },
       { q: 'Which areas do you cover?', a: LEADS_SCOPE },
       { q: 'Can I put my branding on the brief?', a: 'Yes. The Area Market Brief is made to send to your vendors and applicants under your name.' },
     ],
@@ -90,10 +90,10 @@ export const LEAD_STATS = [
 ];
 
 export const LEAD_SAMPLE = [
-  { type: 'Energy rating pressure', addr: 'A flat off a residential avenue, B42 1', signal: 'EPC F, private rental', sale: '2021, £125k to £150k', route: 'Letter to the owner at their title address' },
+  { type: 'Landlord must improve energy rating', addr: 'A flat off a residential avenue, B42 1', signal: 'EPC F, private rental', sale: '2021, £125k to £150k', route: 'Letter to the owner at their title address' },
   { type: 'Pre-auction', addr: 'A house on a lane in Great Barr, B42 1', signal: 'In a regional auction, guide £50k to £75k', sale: 'No sale recorded since 1995', route: 'Pre-auction offer through the auctioneer, legal pack read first' },
   { type: 'HMO refused', addr: 'A house on an avenue, B20 1', signal: 'HMO change of use refused', sale: '2024, £400k to £425k', route: 'Letter to the owner, title checked first' },
-  { type: 'Energy rating pressure', addr: 'A house in Perry Barr, B42 1', signal: 'EPC F, private rental', sale: '2004, £125k to £150k', route: 'Letter to the owner at their title address' },
+  { type: 'Landlord must improve energy rating', addr: 'A house in Perry Barr, B42 1', signal: 'EPC F, private rental', sale: '2004, £125k to £150k', route: 'Letter to the owner at their title address' },
   { type: 'Pre-auction', addr: 'A house in Great Barr, B43 5', signal: 'In a regional auction, guide £75k to £100k', sale: '2008, £100k to £125k', route: 'Pre-auction offer through the auctioneer, legal pack read first' },
   { type: 'HMO refused', addr: 'A house in Perry Barr, B42 2', signal: 'HMO change of use refused', sale: '2021, £175k to £200k', route: 'Letter to the owner, title checked first' },
 ];
@@ -124,9 +124,9 @@ export const PRO_TABS: Tab[] = [
         cta: 'Start my pass', href: o('sourcer-pass').href, risk: PER_30, img: '/images/reports/planning.webp',
       },
       {
-        id: 'offmarket', name: 'Find sellers before the portals', promise: 'Off-market leads: motivated seller signals for one area.',
+        id: 'offmarket', name: 'Find sellers before the portals', promise: 'Off-market leads: homes in your area whose owners may want to sell.',
         price: '£49', unit: '30 days per area',
-        ticks: ['Expiring licences and refused plans', 'Pre-auction lots and energy rating pressure', 'Property level, never owner names'],
+        ticks: ['Licences ending and refused plans', 'Auction lots and energy rating deadlines', 'Addresses only, never owner names'],
         cta: 'Get leads for my area', href: o('offmarket').href, risk: PER_30, img: '/images/reports/price-paid.webp',
       },
     ],
@@ -150,7 +150,7 @@ export const PRO_TABS: Tab[] = [
       {
         id: 'market-brief', name: 'Win the instruction', promise: 'A monthly Area Market Brief, branded for your vendors.',
         price: '£49', unit: '30 days',
-        ticks: ['Activity in your sectors against a year ago', 'Sold evidence and local signals', 'Your branding, ready to send'],
+        ticks: ['Activity in your sectors against a year ago', 'Recent sales and what is changing locally', 'Your branding, ready to send'],
         cta: 'Tell me when it is live', notify: 'Area Market Brief', risk: 'Coming soon. ' + PER_30, img: '/images/reports/crime.webp',
       },
     ],
@@ -166,9 +166,9 @@ export const PRO_TABS: Tab[] = [
         cta: 'Tell me when it is live', notify: 'Buyer Demand Board', risk: 'Coming soon. ' + PER_30, img: '/images/reports/area-type.webp',
       },
       {
-        id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The Area Data Licence, as CSV or API.',
+        id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The Area Data Licence, as a spreadsheet or a direct connection.',
         price: '£199', unit: 'per month',
-        ticks: ['Sales volume and EPC lodgements by district', 'The area activity call for every sector', 'CSV download or API'],
+        ticks: ['Sales and new energy certificates by district', 'How busy each postcode sector is against a year ago', 'As a spreadsheet or a direct connection'],
         cta: 'Tell me when it is live', notify: 'Area Data Licence', risk: 'Coming soon. Terms set out in full before launch.', img: '/images/reports/area-activity.webp',
       },
       {
@@ -184,27 +184,27 @@ export const PRO_TABS: Tab[] = [
 export const PRO_COMPARE = [
   { name: 'Investor Pack Builder', price: '£15 a pack', what: 'Branded PDF pack and a one page summary from an address and a price.' },
   { name: 'Valuation Evidence Pack', price: '£15', what: 'Comparables, energy certificate and area for one instruction.' },
-  { name: 'Letter Kit (soon)', price: '£19 / 30 days', what: 'Ready letters per signal type and a mail merge file. Free with the Sourcer Pass.' },
+  { name: 'Letter Kit (soon)', price: '£19 / 30 days', what: 'A ready letter for each reason an owner might sell, and a mail merge file. Free with the Sourcer Pass.' },
   { name: 'Buyer Demand Board (soon)', price: '£29 / 30 days', what: 'What investors are asking for, by area. No names.' },
-  { name: 'Off-market leads', price: '£49 / 30 days', what: 'Weekly motivated seller signals for one area.' },
+  { name: 'Off-market leads', price: '£49 / 30 days', what: 'Each week, homes in one area whose owners may want to sell.' },
   { name: 'Area Market Brief (soon)', price: '£49 / 30 days', what: 'Monthly branded brief for vendors and applicants.' },
   { name: 'Photo Refurb Estimate (soon)', price: '£15', what: 'A costed refurbishment from the listing photos.' },
   { name: 'Seller Leads', price: '£79 / 30 days', what: 'Homes in one patch likely to come to market.' },
   { name: 'Sourcer Pass', price: '£99 / 30 days', what: 'Ten packs, weekly leads for one area and the Letter Kit.' },
-  { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District data as CSV or API.' },
+  { name: 'Area Data Licence (soon)', price: '£199 / month', what: 'District figures as a spreadsheet or a direct connection.' },
   { name: 'Bespoke Research', price: 'from £500', what: 'Freehold, block and portfolio sweeps, scoped and priced first.', href: '/contact?topic=research' },
 ];
 
 export const PRO_FAQS = [
   { q: 'Does anything renew?', a: 'No. Passes and leads are one payment for 30 days and then they end. Real subscriptions come later, and only if you ask for them.' },
-  { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and a public signal.' },
+  { q: 'Do the leads name owners?', a: 'No, never. Every lead is a property and the public record behind it.' },
   { q: 'Which areas do you cover?', a: LEADS_SCOPE },
   { q: 'How do I pay?', a: 'By card, once, at checkout. Salet Ltd is not VAT registered, so the price shown is the price you pay.' },
   { q: 'Can I see a sample first?', a: 'Yes. <a href="/sample-leads">See a real lead sheet</a> with the addresses masked.' },
 ];
 
 export const PRO_PROOF = [
-  'Built from HM Land Registry, the EPC register, council registers and planning portals',
+  'From HM Land Registry, the EPC register, council registers and planning records',
   'Every lead dated and sourced',
   'No owner names, ever',
 ];

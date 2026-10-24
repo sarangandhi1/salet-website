@@ -74,9 +74,9 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
           <thead class="hidden sm:table-header-group">
             <tr class="border-b border-ink/20 text-xs uppercase tracking-[0.18em] text-stone">
               <th class="py-3 pr-4 font-medium">Sector</th>
-              <th class="py-3 pr-4 font-medium">Call</th>
+              <th class="py-3 pr-4 font-medium">Busier or quieter</th>
               <th class="py-3 pr-4 font-medium">What we see</th>
-              <th class="py-3 font-medium">Signal</th>
+              <th class="py-3 font-medium">How clear</th>
             </tr>
           </thead>
           <tbody>
@@ -98,7 +98,7 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
                   </td>
                   <td class="mt-2 block leading-relaxed text-slate sm:table-cell sm:py-4 sm:pr-4 sm:align-top">{s.sentence}</td>
                   <td class="mt-2 block sm:table-cell sm:whitespace-nowrap sm:py-4 sm:align-top">
-                    <span class="inline-flex items-center gap-1.5 text-stone" title={`${strengthLabel[s.strength]} signal`}>
+                    <span class="inline-flex items-center gap-1.5 text-stone" title={`${strengthLabel[s.strength]}`}>
                       {[1, 2, 3].map((n) => (
                         <span
                           class:list={['inline-block h-2 w-2 rounded-full', n <= strengthDots[s.strength] ? 'bg-green-2' : 'bg-line']}
@@ -132,7 +132,7 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
             Get the full report for a home here, £19
           </p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            The Salet report reads the evidence on one specific home, including this area call
+            The Salet report reads the evidence on one specific home, including how busy this area is,
             for its exact postcode sector, so you know where you stand before you offer.
           </p>
           <a
@@ -186,7 +186,7 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
       <p>Updated: {asOfLong}. Refreshed every month.</p>
       <p>Source: {activity.source}.</p>
       <p>How accurate is this? {activity.accuracy}</p>
-      <p>This is a call on how many homes come to market. It says nothing about where prices will go.</p>
+      <p>This is a view on how many homes come to market. It says nothing about where prices will go.</p>
     </div>
   </section>
 </Base>

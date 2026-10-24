@@ -1,0 +1,56 @@
+---
+import type { Device, Icon } from '../data/details';
+
+// The picture at the top of every tile: a real crop of the report, shown as
+// a printed page (slight tilt, soft shadow) or, for weekly lead lists, on a
+// phone. Products with nothing to show yet (the buying agent, bespoke work)
+// get their icon large instead. A small line icon names the product.
+interface Props {
+  device: Device;
+  icon: Icon;
+  img?: string;
+  alt?: string;
+}
+const { device, icon, img, alt = '' } = Astro.props;
+
+// 24px line icons, stroke only, drawn for this set.
+const PATHS: Record<Icon, string> = {
+  eye: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+  house: 'M3 11l9-7 9 7 M5 10v10h14V10 M10 20v-6h4v6',
+  scales: 'M12 3v18 M5 21h14 M6 7h12 M6 7l-3 7a3 3 0 0 0 6 0z M18 7l-3 7a3 3 0 0 0 6 0z',
+  stack: 'M12 3l9 5-9 5-9-5z M3 13l9 5 9-5 M3 17l9 5 9-5',
+  document: 'M6 2h9l5 5v15H6z M15 2v5h5 M9 12h8 M9 16h8',
+  docs: 'M8 2h8l4 4v12H8z M16 2v4h4 M4 6v16h12',
+  search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5',
+  handshake: 'M2 12l4-4 4 2 4-3 4 1 4 4 M6 8v6l4 4 2-2 2 2 4-4 M10 18l-2 2',
+  camera: 'M3 7h4l2-3h6l2 3h4v13H3z M12 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',
+  calculator: 'M5 2h14v20H5z M8 6h8v4H8z M8 14h2 M14 14h2 M8 18h2 M14 18h2',
+  rooms: 'M3 3h18v18H3z M3 12h18 M12 3v18',
+  gavel: 'M14 3l7 7 M11 6l7 7 M9 8l6 6 M12 11l-9 9 M3 21h8',
+  ticket: 'M3 6h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4z M14 6v12',
+  briefcase: 'M3 7h18v13H3z M9 7V4h6v3 M3 12h18',
+  pin: 'M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+  bell: 'M6 16V11a6 6 0 1 1 12 0v5l2 2H4z M10 21h4',
+  chart: 'M3 3v18h18 M7 15l4-4 3 3 6-7',
+  clipboard: 'M8 4h8v3H8z M6 5H4v17h16V5h-2 M8 13l3 3 5-6',
+  envelope: 'M3 5h18v14H3z M3 6l9 7 9-7',
+  people: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M2 21a7 7 0 0 1 14 0 M17 11a3 3 0 1 0 0-6 M22 21a6 6 0 0 0-4-5.6',
+  grid: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+  compass: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M16 8l-2 6-6 2 2-6z',
+};
+const d = PATHS[icon];
+---
+<div class:list={['tv', `tv--${device}`]}>
+  {
+    device === 'icon' ? (
+      <svg class="tv-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={d} /></svg>
+    ) : (
+      <div class="tv-frame">
+        <img src={img} alt={alt} width={device === 'phone' ? 540 : 800} height={device === 'phone' ? 960 : 600} loading="lazy" decoding="async" />
+      </div>
+    )
+  }
+  <span class="tv-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d={d} /></svg>
+  </span>
+</div>

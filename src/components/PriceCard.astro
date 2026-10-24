@@ -1,4 +1,7 @@
 ---
+import TileVisual from './TileVisual.astro';
+import { DETAILS } from '../data/details';
+
 // One pricing card: outcome name, promise, big price with its unit, a real
 // saving only where the arithmetic is true, three ticks, one action, and a
 // risk-reversal line under the button. Used by PricingBoard and on product
@@ -30,9 +33,13 @@ interface Props {
 }
 const { c, back, primary = false } = Astro.props;
 const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
+// What you get comes from the shared product details when there are any.
+const det = DETAILS[c.id];
+const gets = det?.deliverables ?? c.ticks;
 ---
 <article class:list={['pc', { 'is-flag': c.flag }]} data-card={c.id}>
   {c.flag && <span class="pc-flag">{c.flag}</span>}
+  {det && <TileVisual device={det.device} icon={det.icon} img={det.img ?? c.img} alt={c.imgAlt ?? `A real page from the ${c.name.toLowerCase()} sample`} />}
   <h3 class="pc-name">{c.name}</h3>
   <p class="pc-promise">{c.promise}</p>
   <div class="pc-price">
@@ -41,7 +48,10 @@ const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
     {c.unit && <span class="pc-unit">{c.unit}</span>}
   </div>
   <p class="pc-per">{c.perUnit ?? ' '}</p>
-  <ul class="pc-ticks">{c.ticks.map((t) => <li>{t}</li>)}</ul>
+  <div class="pc-gets">
+    <ul class="pc-ticks">{gets.map((t) => <li>{t}</li>)}</ul>
+    {det && <p class="pc-format">{det.format}</p>}
+  </div>
   <div class="pc-action">
     {
       c.notify ? (
@@ -60,12 +70,4 @@ const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
     }
     <p class="pc-risk">{c.risk}</p>
   </div>
-  {
-    c.img && (
-      <details class="pc-peek">
-        <summary>See a real example</summary>
-        <img src={c.img} width="800" height="600" alt={c.imgAlt ?? `Real report section for ${c.name}`} loading="lazy" decoding="async" />
-      </details>
-    )
-  }
 </article>

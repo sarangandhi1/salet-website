@@ -279,3 +279,69 @@
   .reports-page .rp-pricebox { background: var(--rp-paper); border-top: 1px solid var(--rp-line); border-bottom: 1px solid var(--rp-line); }
   .reports-page .rp-pricebox-card { max-width: 24rem; margin: 1.5rem auto 0; }
   .reports-page .rp-pricebox-card .pc { display: flex; flex-direction: column; }
+
+  /* Tile visuals: a real report page as a printed sheet, or on a phone. */
+  .reports-page .tv {
+    position: relative; aspect-ratio: 16 / 10; overflow: hidden; margin: -1.75rem -1.5rem 1.25rem;
+    background: radial-gradient(120% 90% at 20% 0%, #eef4fb 0%, #e3ecf6 60%, #dae5f1 100%);
+    border-bottom: 1px solid var(--rp-line);
+  }
+  .reports-page .tv-frame { position: absolute; overflow: hidden; background: #fff; }
+  .reports-page .tv-frame img { display: block; width: 100%; height: auto; }
+  .reports-page .tv--doc .tv-frame {
+    left: 12%; right: 12%; top: 14%; bottom: -30%; transform: rotate(-2.5deg);
+    box-shadow: 0 1px 2px rgba(8, 21, 44, 0.08), 0 14px 30px -8px rgba(8, 21, 44, 0.28);
+    transition: transform 0.35s ease;
+  }
+  .reports-page .tv--phone .tv-frame {
+    left: 50%; width: 46%; top: 10%; bottom: -40%; transform: translateX(-50%) rotate(-3deg);
+    border: 7px solid #0b1626; border-radius: 26px;
+    box-shadow: 0 16px 34px -10px rgba(8, 21, 44, 0.45);
+    transition: transform 0.35s ease;
+  }
+  .reports-page .tv--phone .tv-frame::before {
+    content: ""; position: absolute; top: 5px; left: 50%; width: 34%; height: 6px; border-radius: 6px;
+    transform: translateX(-50%); background: #0b1626; z-index: 1;
+  }
+  .reports-page .tv-big {
+    position: absolute; left: 50%; top: 50%; width: 34%; height: auto; transform: translate(-50%, -50%); color: var(--navy-600); opacity: 0.85;
+  }
+  .reports-page .tv-icon {
+    position: absolute; left: 0.9rem; bottom: 0.9rem; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    background: #fff; color: var(--navy-700); display: grid; place-items: center;
+    box-shadow: 0 4px 12px -4px rgba(8, 21, 44, 0.35); z-index: 2;
+  }
+  .reports-page .tv-icon svg { width: 1.3rem; height: 1.3rem; }
+  .reports-page .tv--icon .tv-icon { display: none; }
+
+  /* Hover lift on every card. */
+  .reports-page .pc, .reports-page .rp-tile { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  @media (hover: hover) {
+    .reports-page .pc:hover, .reports-page .rp-tile:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -18px rgba(8, 21, 44, 0.35); }
+    .reports-page .pc.is-flag:hover { transform: scale(1.035) translateY(-4px); }
+    .reports-page .pc:hover .tv--doc .tv-frame, .reports-page .rp-tile:hover .tv--doc .tv-frame { transform: rotate(0deg) translateY(-4px); }
+    .reports-page .pc:hover .tv--phone .tv-frame, .reports-page .rp-tile:hover .tv--phone .tv-frame { transform: translateX(-50%) rotate(0deg) translateY(-4px); }
+  }
+
+  .reports-page .pc { overflow: hidden; grid-row: span 8; }
+  .reports-page .pb-cards { grid-template-rows: repeat(8, auto); }
+  .reports-page .pc.is-flag { overflow: visible; }
+  .reports-page .pc.is-flag .tv { margin-top: -1.75rem; }
+  .reports-page .pc-flag { z-index: 3; }
+  .reports-page .pc-gets { margin-bottom: 1.3rem; }
+  .reports-page .pc-gets .pc-ticks { margin-bottom: 0.6rem; }
+  .reports-page .pc-format {
+    font-size: 0.82rem; color: var(--navy-600); margin: 0; padding-left: 1.6rem; position: relative; line-height: 1.4;
+  }
+  .reports-page .pc-format::before {
+    content: ""; position: absolute; left: 0.15rem; top: 0.15rem; width: 0.85rem; height: 0.85rem; border-radius: 50%;
+    border: 1.5px solid var(--navy-600);
+    background: linear-gradient(var(--navy-600), var(--navy-600)) 50% 30% / 1.5px 35% no-repeat,
+                linear-gradient(var(--navy-600), var(--navy-600)) 62% 55% / 30% 1.5px no-repeat;
+  }
+
+  /* Product tiles share the visual header. */
+  .reports-page .rp-tile { overflow: hidden; }
+  .reports-page .rp-tile-vis { display: block; }
+  .reports-page .rp-tile-vis .tv { margin: 0; }
+  .reports-page .rp-tile .pc-format { margin: -0.4rem 0 1.25rem; }

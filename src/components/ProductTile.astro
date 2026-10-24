@@ -1,5 +1,7 @@
 ---
 import type { Product } from '../data/reports';
+import TileVisual from './TileVisual.astro';
+import { DETAILS } from '../data/details';
 
 interface Props {
   p: Product;
@@ -11,17 +13,20 @@ const { p, back = '/reports' } = Astro.props;
 // the product, so no new vendor is involved.
 const NOTIFY_ACTION = 'https://formspree.io/f/mrewjydk';
 const page = p.slug ? `/reports/${p.slug}` : null;
+const det = DETAILS[p.key];
+const gets = det?.deliverables ?? p.points;
 ---
 <article class:list={['rp-tile', { 'is-popular': p.popular }]} id={p.key}>
-  {p.popular && <span class="rp-flag is-popular">Most popular</span>}
+  {p.popular && <span class="rp-flag is-popular">Recommended</span>}
   {!p.popular && p.badge && <span class:list={['rp-flag', { 'is-soon': p.notify }]}>{p.badge}</span>}
-  <a class="rp-tile-img" href={page ?? (p.href || undefined)} tabindex="-1" aria-hidden="true">
-    <img src={p.img} width="800" height="600" alt="" loading="lazy" decoding="async" />
+  <a class="rp-tile-vis" href={page ?? (p.href || undefined)} tabindex="-1" aria-hidden="true">
+    {det ? <TileVisual device={det.device} icon={det.icon} img={det.img ?? p.img} /> : <TileVisual device="doc" icon="document" img={p.img} />}
   </a>
   <div class="rp-tile-body">
     <h3>{page ? <a href={page}>{p.name}</a> : p.name}</h3>
     <p class="rp-promise">{p.promise}</p>
-    <ul class="rp-points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+    <ul class="rp-points">{gets.map((pt) => <li>{pt}</li>)}</ul>
+    {det && <p class="pc-format">{det.format}</p>}
     <div class="rp-price-row">
       <span class="rp-price">{p.price}</span>
       <span class="rp-price-note">
