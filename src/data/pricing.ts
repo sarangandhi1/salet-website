@@ -89,7 +89,7 @@ export const SALET_TABS: Tab[] = [
         cta: 'Start my search',
         href: `${APP}/home-search`,
         risk: ONE_PAYMENT,
-        img: '/images/reports/area-type.webp',
+        img: '/images/reports/home-search-shortlist.webp',
       },
     ],
   },
@@ -155,7 +155,7 @@ export const SALET_FAQS = [
   { q: 'Is this a subscription?', a: 'No. Every report is one payment by card. Nothing renews.' },
   { q: 'How fast is it?', a: 'Minutes. The preview usually takes under a minute, the full report a minute or two more, on screen, as a PDF and by email.' },
   { q: 'What if there is no data for my address?', a: 'Where a source has nothing, the report says so. If a report fails to run, or comes back with no data, we refund it in full.' },
-  { q: 'Can I get a refund?', a: `A credit you have not used can be cancelled within 14 days of payment for a full refund. Once a report has been delivered it is not refundable. <a href="${APP}/terms#refunds">Refund terms</a>.` },
+  { q: 'Can I get a refund?', a: `Yes. Not useful? Full refund, no questions: ask within 30 days of paying and we refund the full amount, with no reason needed. A credit you have not used can also be cancelled within 14 days, and a report that fails to run or comes back with no data is refunded in full. <a href="${APP}/terms#refunds">Refund terms</a>.` },
 ];
 
 export const SALET_PROOF = [

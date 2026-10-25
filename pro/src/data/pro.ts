@@ -99,7 +99,7 @@ export const PRO_TABS: Tab[] = [
         id: 'pack-builder', name: 'Your next deal, packaged in minutes', promise: 'Address and price in. A branded pack your investors will read, out.',
         price: '£15', unit: 'per pack',
         ticks: ['Your branding on a full PDF pack', 'A one page summary to share', 'Returns, comparables and area, sourced'],
-        cta: o('pack-builder').cta, href: o('pack-builder').href, risk: PER_PACK, img: '/images/reports/valuation.webp',
+        cta: o('pack-builder').cta, href: o('pack-builder').href, risk: PER_PACK, img: '/images/reports/investor-pack.webp',
       },
       {
         id: 'sourcer-pass', flag: 'Best value', name: 'Your next 10 deals, packaged',
@@ -148,7 +148,7 @@ export const PRO_TABS: Tab[] = [
         id: 'demand-board', name: 'See exactly what investors want', promise: 'Live buyer briefs, area by area. Source to order.',
         price: '£29', unit: '30 days',
         ticks: ['Strategy and budget by area', 'Updated as briefs come in', 'No names, ever'],
-        cta: o('demand-board').cta, href: o('demand-board').href, risk: PER_30, img: '/images/reports/area-type.webp',
+        cta: o('demand-board').cta, href: o('demand-board').href, risk: PER_30, img: '/images/reports/demand-board.webp',
       },
       {
         id: 'data-licence', flag: 'Best value', name: 'Every district, every month', promise: 'The market data your team needs, ready to use.',

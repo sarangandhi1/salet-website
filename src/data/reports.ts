@@ -267,7 +267,7 @@ export interface Audience {
 }
 
 const REFUND =
-  'A credit you have not used can be cancelled within 14 days of payment for a full refund. If a report fails to run, or comes back with no data, we refund it in full. Once a report has been delivered it is not refundable.';
+  'Yes. Not useful? Full refund, no questions: ask within 30 days of paying and we refund the full amount, with no reason needed. A credit you have not used can also be cancelled within 14 days, and a report that fails to run or comes back with no data is refunded in full.';
 
 export const AUDIENCES: Audience[] = [
   {

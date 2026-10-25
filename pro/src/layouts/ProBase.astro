@@ -2,6 +2,7 @@
 import '../styles/pro.css';
 import { SALET_URL } from '../../../src/lib/sites';
 import CardPay from '../../../src/components/CardPay.astro';
+import CarryUtm from '../../../src/components/CarryUtm.astro';
 
 // Salet Pro frame: the Salet wordmark with a "Pro" mark, its own short nav,
 // and a plain footer. Separate from salet.uk on purpose: Salet acts only for
@@ -36,10 +37,16 @@ const year = new Date().getFullYear();
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Salet Pro" />
+    <meta property="og:image" content="https://pro.salet.uk/og/salet-pro-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://pro.salet.uk/og/salet-pro-og.png" />
     <meta name="theme-color" content="#08152c" />
     <!-- Cloudflare Web Analytics: cookieless visitor counts -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2278d8715f9946f285963d0f6a556eb3"}'></script>
+    <CarryUtm />
   </head>
   <body>
     <div class="reports-page">
@@ -73,6 +80,7 @@ const year = new Date().getFullYear();
             <a href="mailto:saran@salet.uk">saran@salet.uk</a>
           </p>
           <CardPay tone="dark" align="start" />
+          <p>Property Redress Scheme member PRS059995<span class="pro-sep">·</span>ICO registered ZC208284<span class="pro-sep">·</span>HMRC anti-money laundering supervision, ref. XEML00000223515</p>
           <p>Salet Ltd, company no. 16662600. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ. &copy; {year} Salet Ltd.</p>
         </div>
       </footer>

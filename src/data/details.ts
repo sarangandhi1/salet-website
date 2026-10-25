@@ -81,12 +81,12 @@ export const DETAILS: Record<string, Detail> = {
     format: PDF,
   },
   shortlist: {
-    icon: 'search', device: 'doc', img: img('area-type'),
+    icon: 'search', device: 'doc', img: img('home-search-shortlist'),
     deliverables: ['Homes for sale that match your brief', 'Each one priced against recent sales nearby', 'Flood risk, schools and the area for each'],
     format: 'A written shortlist by email',
   },
   'photo-refurb': {
-    icon: 'camera', device: 'doc', img: img('epc'),
+    icon: 'camera', device: 'doc', img: img('photo-refurb-estimate'),
     deliverables: ['Send us the listing photos', 'A costed refurbishment, room by room', 'A range, with what drives the cost'],
     format: 'On screen and as a PDF',
   },
@@ -116,7 +116,7 @@ export const DETAILS: Record<string, Detail> = {
     format: 'Each report on screen and as a PDF',
   },
   'pack-builder': {
-    icon: 'briefcase', device: 'doc', img: img('valuation'),
+    icon: 'briefcase', device: 'doc', img: img('investor-pack'),
     deliverables: ['A branded PDF pack you can send to investors', 'A one page summary for WhatsApp', 'Returns, recent sales and the area, each with its source'],
     format: 'PDF, ready in minutes',
   },
@@ -131,12 +131,12 @@ export const DETAILS: Record<string, Detail> = {
     format: 'A weekly list by email for 30 days',
   },
   'letter-kit': {
-    icon: 'envelope', device: 'doc', img: img('planning'),
+    icon: 'envelope', device: 'doc', img: img('letter-kit'),
     deliverables: ['A ready letter for each reason an owner might sell', 'This week’s homes as a mail merge spreadsheet', 'Free with the Sourcer Pass'],
     format: 'Download each week for 30 days',
   },
   'demand-board': {
-    icon: 'people', device: 'doc', img: img('area-type'),
+    icon: 'people', device: 'doc', img: img('demand-board'),
     deliverables: ['What investors are looking for, area by area', 'Their strategy and budget', 'No names, ever'],
     format: 'Updated as new briefs come in',
   },
