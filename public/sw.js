@@ -3,8 +3,8 @@
 // cached copy is only for when there is no signal. Nothing from
 // reports.salet.uk (previews, reports, payments) is ever touched: those are
 // another origin and go straight to the network.
-const VERSION = 'salet-v1';
-const SHELL = ['/offline.html', '/for/home-buyers', '/favicon.svg', '/icons/icon-192.png'];
+const VERSION = 'salet-v2';
+const SHELL = ['/offline.html', '/for/home-buyers/', '/favicon.svg', '/icons/icon-192.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -32,7 +32,8 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          if (res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)); }
+          // A redirected page cannot be replayed to a navigation, so it is not kept.
+          if (res.ok && !res.redirected) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)); }
           return res;
         })
         .catch(() => caches.match(req).then((hit) => hit || caches.match('/offline.html')))

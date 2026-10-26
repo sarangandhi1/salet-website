@@ -4,7 +4,7 @@
   "short_name": "Salet",
   "description": "Free preview of any UK home: what it is worth, what sold nearby and what to offer.",
   "lang": "en-GB",
-  "start_url": "/for/home-buyers?utm_source=pwa&utm_medium=app",
+  "start_url": "/for/home-buyers/?utm_source=pwa&utm_medium=app",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
