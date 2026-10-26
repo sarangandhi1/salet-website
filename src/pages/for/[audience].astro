@@ -4,6 +4,7 @@ import ProductTile from '../../components/ProductTile.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
 import AudienceBar from '../../components/AudienceBar.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import StartBox from '../../components/StartBox.astro';
 import { AUDIENCES } from '../../data/reports';
 import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
 
@@ -26,6 +27,7 @@ const others = AUDIENCES.filter((x) => x.slug !== a.slug);
       <Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: `For ${a.label.toLowerCase()}` }]} back={{ label: 'All reports', href: '/reports' }} />
       <h1 class="rp-h1">{a.h1}</h1>
       <p class="rp-lede" style="margin:0">{a.lede}</p>
+      <StartBox />
     </div>
   </header>
 

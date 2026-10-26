@@ -1,0 +1,60 @@
+---
+// The free preview, started from the page a visitor lands on: postcode and
+// house number go straight to the property report form on reports.salet.uk,
+// which fills them in from the link. Ad visitors used to get a button here,
+// then a second page with the form two phone screens down. Sits on a dark
+// hero. Ad tags saved by CarryUtm ride along as hidden fields.
+interface Props {
+  button?: string;
+  note?: string;
+}
+const { button = 'See it free', note = 'Free preview first, no card. Full report £19 only if you want it.' } = Astro.props;
+---
+<form class="sb" method="get" action="https://reports.salet.uk/intelligence" data-start-box>
+  <div class="sb-row">
+    <label class="sb-field sb-pc">
+      <span>Postcode</span>
+      <input name="postcode" required maxlength="10" autocomplete="postal-code" placeholder="N14 5QL" />
+    </label>
+    <label class="sb-field sb-no">
+      <span>House number or name</span>
+      <input name="address" maxlength="80" placeholder="12" />
+    </label>
+    <button type="submit">{button}</button>
+  </div>
+  <p class="sb-note">{note}</p>
+</form>
+
+<script is:inline>
+  (function () {
+    var tags = {};
+    try { tags = JSON.parse(sessionStorage.getItem('salet_utm') || '{}') || {}; } catch (e) {}
+    document.querySelectorAll('form[data-start-box]').forEach(function (f) {
+      Object.keys(tags).forEach(function (k) {
+        var i = document.createElement('input');
+        i.type = 'hidden'; i.name = k; i.value = tags[k];
+        f.appendChild(i);
+      });
+    });
+  })();
+</script>
+
+<style>
+  .sb { margin: 1.75rem 0 0; max-width: 40rem; }
+  .sb-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-end; }
+  .sb-field { display: flex; flex-direction: column; gap: 0.3rem; flex: 1 1 8rem; }
+  .sb-no { flex: 1 1 10rem; }
+  .sb-field span { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.85); }
+  .sb-field input {
+    width: 100%; padding: 0.95rem 0.9rem; font-size: 1.05rem; color: #0b1626;
+    background: #fff; border: 2px solid transparent; border-radius: 0;
+  }
+  .sb-field input:focus { outline: none; border-color: #f1d58a; }
+  .sb button {
+    flex: 1 1 100%; padding: 1rem 1.6rem; font-size: 1.1rem; font-weight: 600; color: #fff;
+    background: #c2410c; border: 0; cursor: pointer; transition: background 0.2s;
+  }
+  .sb button:hover { background: #a6370a; }
+  @media (min-width: 40rem) { .sb button { flex: 0 0 auto; } }
+  .sb-note { margin: 0.7rem 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.75); }
+</style>

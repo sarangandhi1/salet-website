@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { INTEL_FEATURES } from '../data/reports';
 import CardPay from '../components/CardPay.astro';
+import StartBox from '../components/StartBox.astro';
 
 // Ad landing page for the £19 property report. Deliberately not in the main
 // nav: paid traffic lands here and the page has one job, which is to get a
@@ -9,10 +10,8 @@ import CardPay from '../components/CardPay.astro';
 // pitch above the fold, and the hero carries no reveal animation so the
 // button is on screen the moment the page paints on a phone.
 //
-// The report app (reports.salet.uk) does not take a postcode in the URL yet:
-// /intelligence asks a visitor to create an account first, then shows the
-// form. So the call to action is a button, not a postcode box that would
-// throw what was typed away.
+// The postcode box sends the address straight to the report form on
+// reports.salet.uk, which fills it in from the link (StartBox).
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
 const PRICE = '£19';
@@ -42,8 +41,8 @@ const faqs = [
     link: { href: 'https://reports.salet.uk/privacy', label: 'Privacy notice' },
   },
   {
-    q: 'Why do I need an account?',
-    a: 'So your report has somewhere to live. The account is free, and every report you run stays in it.',
+    q: 'Do I need an account?',
+    a: 'No password and no sign-up page. You give your email with the address, and your report link and receipt go there.',
   },
 ];
 ---
@@ -64,16 +63,8 @@ const faqs = [
         flood risk, crime, planning and schools. One address, ready in minutes.
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-        <a
-          href={REPORT_URL}
-          class="ck-cta inline-flex items-center justify-center bg-[#c2410c] px-8 py-4 text-lg font-medium text-ivory transition-colors duration-200 hover:bg-[#a6370a]"
-        >
-          Check a property
-          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
+      <StartBox button="Check this property" />
+      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
         <p class="leading-tight">
           <span class="font-display text-4xl font-medium">{PRICE}</span>
           <span class="ml-2 inline-block rounded-full border border-[#f1d58a] bg-[#fff4d6] px-2 py-0.5 align-middle text-[0.68rem] font-bold uppercase tracking-wider text-[#8a5a00]">Launch price</span>
