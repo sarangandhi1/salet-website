@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Salet: know what to pay",
+  "short_name": "Salet",
+  "description": "Free preview of any UK home: what it is worth, what sold nearby and what to offer.",
+  "lang": "en-GB",
+  "start_url": "/for/home-buyers?utm_source=pwa&utm_medium=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1b1a17",
+  "theme_color": "#1b1a17",
+  "categories": ["business", "finance", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -89,8 +89,23 @@ const website = {
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(website)} />}
     <meta name="theme-color" content="#1b1a17" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Salet" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="generator" content={Astro.generator} />
     <CarryUtm />
+    <script is:inline>
+      // Salet installs as a phone app. The offer to add it to the home screen
+      // comes after a free preview on reports.salet.uk, never on landing, so
+      // Chrome's own install banner is held back here.
+      addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); });
+      if ('serviceWorker' in navigator) {
+        addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+      }
+    </script>
   </head>
   <body>
     <div id="scroll-progress" aria-hidden="true"></div>
