@@ -91,3 +91,44 @@ export function districtsByArea() {
 }
 
 export const slug = (district: string) => district.toLowerCase();
+
+// Sold prices per district from Land Registry Price Paid Data (standard
+// sales), built by scripts/build_area_prices.py. Historical facts only:
+// what homes sold for, never a forecast.
+import priceData from '../data/area_prices.json';
+
+export interface TypePrice {
+  sales: number;
+  share_pct: number;
+  median: number | null;
+}
+
+export interface DistrictPrices {
+  sales: number;
+  sales_prev: number;
+  median: number;
+  lower_quartile: number;
+  upper_quartile: number;
+  median_change_pct: number | null;
+  new_build_pct: number;
+  leasehold_pct: number;
+  rank_in_area?: number;
+  districts_in_area?: number;
+  types: Partial<Record<'detached' | 'semi' | 'terraced' | 'flat', TypePrice>>;
+}
+
+export const prices = priceData as {
+  period: string;
+  period_end: string;
+  previous_period: string;
+  built: string;
+  source: string;
+  areas: Record<string, { sales: number; median: number }>;
+  districts: Record<string, DistrictPrices>;
+};
+
+/** £258,000 */
+export const gbp = (n: number) => `£${Math.round(n).toLocaleString('en-GB')}`;
+/** £258k or £2.5m, for titles */
+export const gbpShort = (n: number) =>
+  n >= 1_000_000 ? `£${(n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1).replace(/\.0$/, '')}m` : `£${Math.round(n / 1000)}k`;

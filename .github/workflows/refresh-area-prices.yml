@@ -1,0 +1,50 @@
+# Refreshes the sold prices on every /area/ page from Land Registry Price
+# Paid Data each month, commits the new figures and publishes the site.
+# Land Registry releases new data around the 20th working day of the month.
+name: Refresh area prices
+on:
+  schedule:
+    - cron: '17 6 27 * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Land Registry price paid data (last three calendar years)
+        run: |
+          y=$(date -u +%Y)
+          for yr in $((y-2)) $((y-1)) $y; do
+            curl -fsSL -o /tmp/pp-$yr.csv "http://prod1.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-$yr.csv"
+          done
+          ls -la /tmp/pp-*.csv
+      - name: Build district figures
+        run: python3 scripts/build_area_prices.py /tmp/pp-*.csv
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet src/data/area_prices.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "salet-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/data/area_prices.json
+            git commit -m "Refresh area prices from Land Registry"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      # A push made by this workflow does not trigger deploy.yml, so publish here.
+      - uses: actions/setup-node@v4
+        if: steps.commit.outputs.changed == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.commit.outputs.changed == 'true'
+        run: npm ci && npm run build
+      - if: steps.commit.outputs.changed == 'true'
+        run: npx wrangler@3 pages deploy dist --project-name=salet --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 2df6421c22654c6b1dd45fea33940036

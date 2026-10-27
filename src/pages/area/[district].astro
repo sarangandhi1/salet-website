@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import { faqSchema } from '../../lib/schema';
 import {
   activity,
   allDistricts,
@@ -8,6 +9,9 @@ import {
   asOfLong,
   asOfShort,
   compareDistricts,
+  gbp,
+  gbpShort,
+  prices,
   slug,
   type District,
 } from '../../lib/areas';
@@ -39,16 +43,89 @@ const neighbours = allDistricts
 const strengthLabel = { strong: 'Strong', moderate: 'Moderate', weak: 'Weak' } as const;
 const strengthDots = { strong: 3, moderate: 2, weak: 1 } as const;
 
-const title = `${d.district} housing market ${asOfShort}: busier or quieter? | Salet`;
-const description = busier
-  ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`
-  : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`;
+// Sold prices (Land Registry). Some tiny or business-only districts have too
+// few sales to say anything honest; for those the price section is left out.
+const p = prices.districts[d.district];
+const areaP = prices.areas[d.area];
+const periodEnd = prices.period_end;
+const ordinal = (n: number) => {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
+const TYPE_LABEL = { detached: 'Detached', semi: 'Semi-detached', terraced: 'Terraced', flat: 'Flats' } as const;
+const typeRows = p
+  ? (Object.keys(TYPE_LABEL) as (keyof typeof TYPE_LABEL)[])
+      .filter((k) => p.types[k])
+      .map((k) => ({ key: k, label: TYPE_LABEL[k], ...p.types[k]! }))
+  : [];
+const biggest = [...typeRows].sort((a, b) => b.share_pct - a.share_pct)[0];
+
+let changeLine = '';
+if (p && p.median_change_pct !== null) {
+  const c = p.median_change_pct;
+  changeLine =
+    Math.abs(c) < 1
+      ? ', about the same as the year before'
+      : `, ${Math.abs(c).toLocaleString('en-GB')}% ${c > 0 ? 'up on' : 'down on'} the year before`;
+}
+let areaLine = '';
+if (p && areaP && d.area !== d.district) {
+  const diff = Math.round(100 * (p.median / areaP.median - 1));
+  const rank =
+    p.rank_in_area && p.districts_in_area && p.districts_in_area > 1
+      ? ` It is the ${ordinal(p.rank_in_area)} most expensive of ${p.districts_in_area} districts in ${d.area}.`
+      : '';
+  areaLine =
+    Math.abs(diff) < 3
+      ? `That is close to the typical price across ${areaLabel}, ${gbp(areaP.median)}.${rank}`
+      : `That is ${Math.abs(diff)}% ${diff > 0 ? 'above' : 'below'} the typical price across ${areaLabel}, ${gbp(areaP.median)}.${rank}`;
+}
+const priceSummary = p
+  ? `Homes in ${d.district} sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}.`
+  : '';
+const faqs = p
+  ? [
+      {
+        q: `How much does a house cost in ${d.district}?`,
+        a: `${priceSummary} Half of all sales were between ${gbp(p.lower_quartile)} and ${gbp(p.upper_quartile)}.${
+          typeRows.filter((t) => t.median).length
+            ? ' By type: ' +
+              typeRows
+                .filter((t) => t.median)
+                .map((t) => `${t.label.toLowerCase()} ${gbp(t.median!)}`)
+                .join(', ') +
+              '.'
+            : ''
+        }`,
+      },
+      {
+        q: `Are more homes coming up for sale in ${d.district}?`,
+        a: `${answer} ${sectorLine} Based on energy certificates lodged, updated ${asOfLong}.`,
+      },
+    ]
+  : [];
+
+const title = p
+  ? `${d.district} house prices: ${gbpShort(p.median)} typical, ${busier ? 'busier' : 'quieter'} market | Salet`
+  : `${d.district} housing market ${asOfShort}: busier or quieter? | Salet`;
+const description = p
+  ? `${d.district} ${town}: homes sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}. Prices by property type, and whether more homes are coming to market. Free, updated monthly.`
+  : busier
+    ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`
+    : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`;
 
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
 ---
-<Base title={title} description={description}>
-  <PageHero eyebrow={`Area check · ${d.district} · ${town}`} title={`Is ${d.district} getting busier?`} compact>
+<Base title={title} description={description} schema={faqs.length ? [faqSchema(faqs)] : []}>
+  <PageHero eyebrow={`Area check · ${d.district} · ${town}`} title={p ? `${d.district} house prices and market activity` : `Is ${d.district} getting busier?`} compact>
+    {p && (
+      <p class="reveal reveal-d2 mt-7 max-w-2xl text-xl leading-relaxed text-ivory">
+        Typical price <span class="font-display text-3xl font-medium">{gbp(p.median)}</span>
+        <span class="block text-base text-mist">In the 12 months to {periodEnd}{changeLine}. Source: Land Registry.</span>
+      </p>
+    )}
     <p class="reveal reveal-d2 mt-7 max-w-2xl text-xl leading-relaxed text-ivory">
       <span class:list={['mr-2 inline-block px-2.5 py-0.5 text-sm font-medium uppercase tracking-wider', busier ? 'bg-green-2 text-ivory' : 'bg-ivory/15 text-ivory']}>
         {busier ? 'Busier' : 'Quieter'}
@@ -60,10 +137,55 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
     </p>
   </PageHero>
 
+  {
+    p && (
+      <section class="mx-auto max-w-6xl px-6 pt-16 lg:px-8 lg:pt-20">
+        <div class="max-w-3xl">
+          <h2 class="font-display text-3xl font-medium">What homes sell for in {d.district}</h2>
+          <p class="mt-5 text-lg leading-relaxed text-slate">
+            {priceSummary} Half of all sales were between {gbp(p.lower_quartile)} and {gbp(p.upper_quartile)}. {areaLine}
+          </p>
+
+          {typeRows.length > 0 && (
+            <table class="mt-8 w-full border-collapse text-left text-sm">
+              <thead>
+                <tr class="border-b border-ink/20 text-xs uppercase tracking-[0.18em] text-stone">
+                  <th class="py-3 pr-4 font-medium">Type</th>
+                  <th class="py-3 pr-4 font-medium">Share of sales</th>
+                  <th class="py-3 font-medium">Typical price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {typeRows.map((t) => (
+                  <tr class="border-b border-line">
+                    <td class="py-3 pr-4 font-medium">{t.label}</td>
+                    <td class="py-3 pr-4 text-slate">{t.share_pct}% ({t.sales.toLocaleString('en-GB')} sales)</td>
+                    <td class="py-3 text-slate">{t.median ? gbp(t.median) : 'Too few sales to say'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          <p class="mt-6 text-base leading-relaxed text-slate">
+            {biggest && <>{biggest.key === 'flat' ? 'Flats' : `${biggest.label} homes`} made up the biggest share of sales ({biggest.share_pct}%). </>}
+            {p.leasehold_pct}% of sales were leasehold and {p.new_build_pct}% were new build.
+          </p>
+          <p class="mt-4 text-sm leading-relaxed text-stone">
+            The typical price is the median: half the homes sold for more, half for less. It moves with the mix of
+            homes that sold, so a change does not mean every home in {d.district} is worth that much more or less.
+            The figures for a single street can be very different, which is what the
+            <a href={REPORT_URL} class="text-green-2 underline">report for one home</a> is for.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   <section class="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
     <div class="grid gap-14 lg:grid-cols-12">
       <div class="lg:col-span-8">
-        <h2 class="font-display text-3xl font-medium">Street by street: the postcode sectors in {d.district}</h2>
+        <h2 class="font-display text-3xl font-medium">Is {d.district} getting busier? Street by street: the postcode sectors in {d.district}</h2>
         <p class="mt-4 max-w-2xl text-sm leading-relaxed text-stone">
           Each sector is ranked against every other sector in {areaLabel}. Busier means more homes
           to choose from over the next three to six months. Quieter means fewer. This is about how
@@ -185,6 +307,7 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
     <div class="max-w-3xl space-y-2 text-xs leading-relaxed text-stone">
       <p>Updated: {asOfLong}. Refreshed every month.</p>
       <p>Source: {activity.source}.</p>
+      {p && <p>Sold prices: {prices.source}. Standard open-market sales only, {prices.period}.</p>}
       <p>How accurate is this? {activity.accuracy}</p>
       <p>This is a view on how many homes come to market. It says nothing about where prices will go.</p>
     </div>
