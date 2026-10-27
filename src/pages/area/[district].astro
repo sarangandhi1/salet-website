@@ -39,10 +39,10 @@ const neighbours = allDistricts
 const strengthLabel = { strong: 'Strong', moderate: 'Moderate', weak: 'Weak' } as const;
 const strengthDots = { strong: 3, moderate: 2, weak: 1 } as const;
 
-const title = `Is ${d.district} getting busier? Homes coming to market, ${asOfShort} | Salet`;
+const title = `${d.district} housing market ${asOfShort}: busier or quieter? | Salet`;
 const description = busier
-  ? `${d.district} (${town}): more homes are coming to market here than in most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Free monthly area check from energy certificate data, updated ${asOfLong}.`
-  : `${d.district} (${town}): quieter than most of ${d.area}, with fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Free monthly area check from energy certificate data, updated ${asOfLong}.`;
+  ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`
+  : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`;
 
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';

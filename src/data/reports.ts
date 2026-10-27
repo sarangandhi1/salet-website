@@ -258,6 +258,8 @@ export interface Audience {
   short: string; // homepage tile line
   img: string;
   title: string;
+  description: string; // meta description, about 150 characters
+  explainer?: boolean; // show the "how much should I offer?" answers
   h1: string;
   lede: string;
   products: Product[];
@@ -275,7 +277,9 @@ export const AUDIENCES: Audience[] = [
     label: 'Home buyers',
     short: 'Is this house worth the asking price, and is the paperwork clean?',
     img: '/images/reports/valuation.webp',
-    title: 'Reports for home buyers | From free | Salet',
+    title: 'How much should I offer on a house? Buyer reports | Salet',
+    description: 'Is the house overpriced? See sold prices on the street, your stamp duty and every catch in the legal pack before you offer. Free preview, then from £19.',
+    explainer: true,
     h1: 'Never overpay for your next home',
     lede: 'See what every home nearby really sold for, your stamp duty, and every catch in the legal pack. In minutes, before you make an offer. Free preview first.',
     products: pick('free', 'intelligence', 'legal', 'bundle', 'decision', 'shortlist', 'photo-refurb'),
@@ -298,7 +302,8 @@ export const AUDIENCES: Audience[] = [
     label: 'Investors',
     short: 'Rent, yield, HMO rules and auction lots, checked before you buy.',
     img: '/images/reports/rent.webp',
-    title: 'Reports for property investors | Salet',
+    title: 'Property investor reports: sold prices, rent, yield | Salet',
+    description: 'Real sold prices, local rents, HMO rules and auction legal packs checked on any address in England, in minutes. Free preview, reports from £19.',
     h1: 'Know the numbers before anyone else does',
     lede: 'Real sold prices, real local rents and the full picture on any address, in minutes. Walk into every viewing already knowing if it works.',
     products: pick('intelligence', 'five', 'legal', 'deal-analyser', 'hmo', 'auction-lot', 'investor-pass', 'shortlist', 'photo-refurb'),
@@ -331,7 +336,7 @@ export interface ProductPage {
 
 export const PAGES: Record<string, ProductPage> = {
   'buyer-intelligence': {
-    title: 'Buyer Intelligence Report | £19 | Is this house worth the asking price? | Salet',
+    title: 'Buyer Intelligence Report, £19: house price check | Salet',
     h1: 'Never overpay for a home again',
     lede: 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools. One address, ready in minutes. Free preview, then £19 launch price.',
     who: 'Anyone about to offer on a home in England or Wales, whether to live in or to let, who wants the evidence before they name a number.',
@@ -347,7 +352,7 @@ export const PAGES: Record<string, ProductPage> = {
     sample: SAMPLE_INTEL,
   },
   'legal-pack': {
-    title: 'Legal Pack Review | £29 | What the auction pack really says | Salet',
+    title: 'Auction legal pack review, £29: spot the traps | Salet',
     h1: 'Spot the trap before you bid',
     lede: 'Upload the legal pack. We find every hidden cost, missing search and nasty clause, with the page it is on. Free preview, then £29.',
     who: 'Buyers at auction and anyone handed a legal pack with days, not weeks, to decide. Especially leasehold flats, where the costs hide in the lease.',
@@ -363,7 +368,7 @@ export const PAGES: Record<string, ProductPage> = {
     sample: SAMPLE_LEGAL,
   },
   'decision-pack': {
-    title: 'Decision Pack | £69 | Should I buy it, and for how much? | Salet',
+    title: 'Decision Pack, £69: how much should I offer? | Salet',
     h1: 'Walk in knowing your number',
     lede: 'The full Buyer Intelligence Report plus every likely price costed to the pound: stamp duty, works and fees. No nasty surprises. Free preview, then £69 launch price.',
     who: 'Buyers who are serious about one property and want to know what it would really cost them at each price, before they make an offer.',
@@ -386,7 +391,7 @@ export const PAGES: Record<string, ProductPage> = {
     sample: `${APP}/sample/decision-pack`,
   },
   'five-pack': {
-    title: '5 report pack | £79 | Five Buyer Intelligence Reports | Salet',
+    title: '5 house price reports for £79: compare a shortlist | Salet',
     h1: 'Check your whole shortlist. Pick the winner.',
     lede: 'Five full Buyer Intelligence Reports to use on any five homes within 12 months. Just £15.80 a report.',
     who: 'Buyers weighing several homes at once, and investors screening a shortlist before viewings.',

@@ -5,8 +5,11 @@ interface Props {
   trail: { label: string; href?: string }[];
   back?: { label: string; href: string };
 }
+import { breadcrumbSchema } from '../lib/schema';
 const { trail, back } = Astro.props;
+const ld = JSON.stringify(breadcrumbSchema(trail, new URL(Astro.url.pathname, Astro.site)));
 ---
+<script type="application/ld+json" set:html={ld} />
 <div class="bc">
   {back && <a class="bc-back" href={back.href}>&larr; {back.label}</a>}
   <nav aria-label="Breadcrumb">

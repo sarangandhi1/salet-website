@@ -1,0 +1,57 @@
+# Salet
+
+> Salet (Salet Ltd, Companies House number 16662600, London) sells property reports to home buyers and investors in England. Type any address in England and get a free property preview, then unlock a full report: what every home nearby really sold for, the stamp duty you will pay, local rents, flood risk, crime, planning and schools. Every paid report carries a 30-day full refund, no questions. Salet also works as a buyer-only buying agent.
+
+## Products and prices
+
+- Free property preview, £0: for any address in England. The street, the energy certificate, what HM Land Registry has recorded, the neighbourhood type and local rents. Usually under a minute. No card needed.
+- Buyer Intelligence Report, £19 (launch price, rising to £29 on 1 December 2026): the price range recent sold prices support at this floor area, stamp duty, rent, flood, crime, planning, schools and how busy the area is. On screen, as a PDF and by email, in minutes.
+- Decision Pack, £69 (launch price, rising to £99 on 1 December 2026): the full Buyer Intelligence Report plus five likely prices costed to the pound, each with stamp duty, an indicative works budget and the usual fees. Answers "how much should I offer on this house?" with the cost at each price.
+- Legal Pack Review, £29: upload an auction or sale legal pack and get every hidden cost, missing search and onerous clause, with the document and page it is on.
+- Auction bundle, £39: one Buyer Intelligence Report and one Legal Pack Review.
+- 5 report pack, £79: five Buyer Intelligence Reports for a shortlist, £15.80 a report, used within 12 months.
+- Refunds: not useful? Full refund within 30 days of paying, no reason needed.
+- One payment by card. No subscription.
+
+## Who it is for
+
+- Home buyers in England about to make an offer who want to know if the house is overpriced, what similar homes sold for, and what stamp duty they will pay.
+- Property investors checking sold prices, rents, yield, HMO rules and auction legal packs before they buy.
+- Buyers who want someone to search, negotiate and manage the purchase for them (buyer-only buying agent service).
+
+## What the reports are not
+
+- Not a RICS valuation or a survey: nobody visits the property.
+- Not legal advice: a solicitor should review any legal pack before exchange.
+- Sources: HM Land Registry price paid data, the EPC register, ONS, the Environment Agency and local planning records. Every figure is dated and sourced.
+
+## Key pages
+
+- [Check a property: is this house worth the asking price?](https://salet.uk/check/): the £19 Buyer Intelligence Report, with a plain answer to "how much should I offer on a house?"
+- [Reports for home buyers](https://salet.uk/for/home-buyers/)
+- [Reports for property investors](https://salet.uk/for/investors/)
+- [All reports and prices](https://salet.uk/reports/)
+- [Buyer Intelligence Report](https://salet.uk/reports/buyer-intelligence/)
+- [Decision Pack](https://salet.uk/reports/decision-pack/)
+- [Legal Pack Review](https://salet.uk/reports/legal-pack/)
+- [5 report pack](https://salet.uk/reports/five-pack/)
+- [Start the free property preview](https://reports.salet.uk/intelligence)
+- [Sample Buyer Intelligence Report](https://reports.salet.uk/sample/intelligence)
+
+## Free tools
+
+- [Local housing market by postcode district](https://salet.uk/area/): about 2,000 free pages, one per postcode district in England, showing whether more homes are coming to market than usual, updated monthly. Example: https://salet.uk/area/al1/
+- [Free house price check: what should I offer?](https://salet.uk/price-check/)
+- [Doer-upper offer calculator](https://salet.uk/deal-check/)
+- [Refurb cost calculator](https://salet.uk/refurb-check/)
+
+## Buying agent service
+
+- [Services](https://salet.uk/services/): buyer-only search, analysis, negotiation and purchase management.
+- [How we work](https://salet.uk/how-we-work/)
+- [About Salet](https://salet.uk/about/)
+- [Contact](https://salet.uk/contact/): saran@salet.uk
+
+## Company
+
+Salet Ltd, registered in England and Wales, company number 16662600. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ.

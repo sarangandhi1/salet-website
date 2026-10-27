@@ -7,6 +7,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import StartBox from '../../components/StartBox.astro';
 import { AUDIENCES } from '../../data/reports';
 import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
+import { OFFER_EXPLAINER, faqSchema, productSchema } from '../../lib/schema';
 
 // One hub per kind of buyer: home buyers and investors (sourcers and estate
 // agents are on Salet Pro). The page opens with that audience's product
@@ -19,9 +20,17 @@ const { audience } = Astro.params as { audience: string };
 const a = AUDIENCES.find((x) => x.slug === audience)!;
 const back = `/for/${a.slug}`;
 const others = AUDIENCES.filter((x) => x.slug !== a.slug);
+const pageUrl = `https://salet.uk/for/${a.slug}/`;
+const explainerFaqs = a.explainer
+  ? [{ q: OFFER_EXPLAINER.heading, a: OFFER_EXPLAINER.answer }, ...OFFER_EXPLAINER.faqs]
+  : [];
+const schema = [
+  ...a.products.map((p) => productSchema(p, p.slug ? `https://salet.uk/reports/${p.slug}/` : pageUrl)),
+  faqSchema([...explainerFaqs, ...a.faqs]),
+];
 
 ---
-<ReportsShell title={a.title} description={a.lede}>
+<ReportsShell title={a.title} description={a.description} schema={schema}>
   <header class="rp-hero rp-hero--compact">
     <div class="rp-wrap">
       <Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: `For ${a.label.toLowerCase()}` }]} back={{ label: 'All reports', href: '/reports' }} />
@@ -51,6 +60,25 @@ const others = AUDIENCES.filter((x) => x.slug !== a.slug);
           <h2 class="rp-h2" style="font-size:1.5rem">Free checks, no account needed</h2>
           <div class="rp-chips" style="margin-top:1rem">
             {a.free.map((t) => <a href={t.href}>{t.label}</a>)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    a.explainer && (
+      <section class="rp-section" style="padding-top:0" id="how-much-to-offer">
+        <div class="rp-wrap" style="max-width:48rem">
+          <h2 class="rp-h2">{OFFER_EXPLAINER.heading}</h2>
+          <p class="rp-sub" style="max-width:none">{OFFER_EXPLAINER.answer}</p>
+          <div class="rp-answers">
+            {OFFER_EXPLAINER.faqs.map((f) => (
+              <div>
+                <h3>{f.q}</h3>
+                <p>{f.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -89,6 +117,12 @@ const others = AUDIENCES.filter((x) => x.slug !== a.slug);
     )
   }
 </ReportsShell>
+
+<style>
+  .rp-answers { display: grid; gap: 1.25rem; margin-top: 0; }
+  .rp-answers h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--rp-ink); }
+  .rp-answers p { margin: 0.4rem 0 0; font-size: 0.95rem; line-height: 1.6; color: var(--rp-slate); }
+</style>
 
 <script>
   if (new URLSearchParams(location.search).has('notified')) {

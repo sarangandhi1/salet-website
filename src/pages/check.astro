@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import { INTEL_FEATURES } from '../data/reports';
+import { INTEL_FEATURES, bySlug } from '../data/reports';
+import { OFFER_EXPLAINER, faqSchema, productSchema } from '../lib/schema';
 import CardPay from '../components/CardPay.astro';
 import StartBox from '../components/StartBox.astro';
 
@@ -47,8 +48,12 @@ const faqs = [
 ];
 ---
 <Base
-  title="Is this house worth the asking price? | £19 property report | Salet"
-  description="Every recent sale nearby, the stamp duty, rent, flood, crime, planning and schools for one address. Free preview first, full report £19."
+  title="Is this house overpriced? House price check, £19 | Salet"
+  description="Check any house in England before you offer: sold prices on the street, stamp duty, rent, flood, crime and schools. Free preview, full report £19."
+  schema={[
+    productSchema(bySlug('buyer-intelligence'), 'https://salet.uk/check/', 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools for one address in England. Free preview first, 30-day full refund.'),
+    faqSchema([{ q: OFFER_EXPLAINER.heading, a: OFFER_EXPLAINER.answer }, ...OFFER_EXPLAINER.faqs, ...faqs]),
+  ]}
 >
   <section class="relative overflow-hidden bg-ink pb-14 pt-28 text-ivory sm:pb-20 sm:pt-36">
     <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
@@ -140,6 +145,21 @@ const faqs = [
           <CardPay />
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 pt-14 lg:px-8 lg:pt-20" id="how-much-to-offer">
+    <h2 class="font-display text-3xl font-medium leading-tight">{OFFER_EXPLAINER.heading}</h2>
+    <p class="mt-5 text-base leading-relaxed text-stone">{OFFER_EXPLAINER.answer}</p>
+    <div class="mt-8 space-y-6">
+      {
+        OFFER_EXPLAINER.faqs.map((f) => (
+          <div>
+            <h3 class="text-lg font-medium text-ink">{f.q}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-stone">{f.a}</p>
+          </div>
+        ))
+      }
     </div>
   </section>
 

@@ -10,12 +10,14 @@ interface Props {
   noindex?: boolean;
   /** Page-specific share image. Defaults to the brand card. */
   image?: string;
+  /** Extra JSON-LD blocks for this page (Product, FAQPage, BreadcrumbList). Nulls are skipped. */
+  schema?: (object | null | undefined)[];
 }
 
-const { title, description, noindex = false, image = '/og/salet-og.png' } = Astro.props;
+const { title, description, noindex = false, image = '/og/salet-og.png', schema = [] } = Astro.props;
+const extraSchema = schema.filter(Boolean) as object[];
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
-const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
 // Structured data. Salet is a professional service, not a shop or a local
 // storefront, so ProfessionalService is the honest type. Only facts that are
@@ -25,7 +27,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 // action rather than a rich result.
 const org = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': 'https://salet.uk/#organisation',
   name: 'Salet',
   legalName: 'Salet Ltd',
@@ -33,7 +35,12 @@ const org = {
   logo: 'https://salet.uk/og/salet-og.png',
   image: 'https://salet.uk/og/salet-og.png',
   description:
-    'Buyer-only property concierge for UK property. Salet searches, analyses, negotiates and manages the purchase, acting only for the buyer.',
+    'Property reports and buyer-only buying agent for England. A free property preview for any address, the Buyer Intelligence Report (£19) with sold prices, stamp duty, rent, flood, crime, planning and schools, and the Decision Pack (£69) costing every likely price. 30-day full refund.',
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'Companies House company number',
+    value: '16662600',
+  },
   email: 'saran@salet.uk',
   telephone: '+44 7878 781100',
   areaServed: { '@type': 'Country', name: 'United Kingdom' },
@@ -45,6 +52,10 @@ const org = {
     addressCountry: 'GB',
   },
   knowsAbout: [
+    'House price check',
+    'Sold house prices',
+    'Stamp duty',
+    'How much to offer on a house',
     'Buying agent',
     'Buyer representation',
     'UK property purchase',
@@ -59,6 +70,7 @@ const website = {
   '@id': 'https://salet.uk/#website',
   url: 'https://salet.uk',
   name: 'Salet',
+  description: 'Property reports for home buyers and investors in England: free property preview, sold prices, stamp duty and what to offer.',
   publisher: { '@id': 'https://salet.uk/#organisation' },
   inLanguage: 'en-GB',
 };
@@ -87,7 +99,8 @@ const website = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
-    {isHome && <script type="application/ld+json" set:html={JSON.stringify(website)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    {extraSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
     <meta name="theme-color" content="#1b1a17" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />

@@ -8,6 +8,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { risesTo } from '../../data/details';
 import { PRODUCTS, PAGES, bySlug } from '../../data/reports';
 import { PAGE_CARD } from '../../data/pricing';
+import { productSchema } from '../../lib/schema';
 
 // One page per paid product. The copy lives in src/data/reports.ts.
 export function getStaticPaths() {
@@ -19,8 +20,9 @@ const p = bySlug(slug);
 const pg = PAGES[slug];
 const card = { ...PAGE_CARD[slug], flag: undefined };
 const others = PRODUCTS.filter((o) => o.slug && o.slug !== slug);
+const schema = [productSchema(p, `https://salet.uk/reports/${slug}/`, pg.lede)];
 ---
-<ReportsShell title={pg.title} description={pg.lede}>
+<ReportsShell title={pg.title} description={pg.lede} schema={schema}>
   <header class="rp-hero">
     <div class="rp-wrap rp-hero-grid">
       <div>

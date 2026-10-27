@@ -9,10 +9,11 @@ import '../styles/reports.css';
 interface Props {
   title: string;
   description: string;
+  schema?: (object | null | undefined)[];
 }
-const { title, description } = Astro.props;
+const { title, description, schema } = Astro.props;
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} schema={schema}>
   <div class="reports-page">
     <slot />
   </div>

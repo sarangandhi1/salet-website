@@ -1,4 +1,57 @@
+# salet.uk: open to search engines and answer engines.
 User-agent: *
+Allow: /
+Disallow: /guide/read
+
+User-agent: Googlebot
+Allow: /
+Disallow: /guide/read
+
+User-agent: Bingbot
+Allow: /
+Disallow: /guide/read
+
+User-agent: Applebot
+Allow: /
+Disallow: /guide/read
+
+User-agent: GPTBot
+Allow: /
+Disallow: /guide/read
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /guide/read
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /guide/read
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /guide/read
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /guide/read
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /guide/read
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /guide/read
+
+User-agent: Claude-User
+Allow: /
+Disallow: /guide/read
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /guide/read
+
+User-agent: Applebot-Extended
 Allow: /
 Disallow: /guide/read
 

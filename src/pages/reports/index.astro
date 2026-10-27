@@ -6,14 +6,22 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
 import { AUDIENCES, SAMPLE_INTEL } from '../../data/reports';
 import { SALET_TABS, SALET_COMPARE, SALET_FAQS, SALET_PROOF, SALET_BANNER } from '../../data/pricing';
+import { PRODUCTS } from '../../data/reports';
+import { faqSchema, productSchema } from '../../lib/schema';
+
+const schema = [
+  ...PRODUCTS.map((p) => productSchema(p, p.slug ? `https://salet.uk/reports/${p.slug}/` : 'https://salet.uk/reports/')),
+  faqSchema(SALET_FAQS),
+];
 
 // The pricing page. The visitor picks the job first ("Checking one home",
 // "Comparing a few", "Buying with help") and sees three cards for it.
 // Everything else is one tap away in "Compare everything".
 ---
 <ReportsShell
-  title="Pricing | Property reports from £19, free preview first | Salet"
+  title="Property report prices from £19, free preview | Salet"
   description="Check one home for £19, see the full cost of buying it, or compare a shortlist. Every report starts with a free preview. One payment, no subscription."
+  schema={schema}
 >
   <header class="rp-hero" style="padding-bottom:3rem">
     <div class="rp-wrap" style="text-align:center">
