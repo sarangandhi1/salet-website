@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import trailingSlashLinks from '../build/trailing-slash-links.mjs';
 
 // Salet Pro: tools for property professionals (sourcers, estate agents),
 // kept apart from salet.uk, which acts only for buyers. It lives in this repo
@@ -11,7 +12,7 @@ export default defineConfig({
   site: 'https://pro.salet.uk',
   output: 'static',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [sitemap(), trailingSlashLinks()],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -4,7 +4,6 @@ import AudienceChooser from '../components/AudienceChooser.astro';
 import { SALET_AUDIENCE_LINKS } from '../lib/sites';
 import CTABand from '../components/CTABand.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import TestimonialSlot from '../components/TestimonialSlot.astro';
 ---
 <Base
   title="House price check and buyer-only buying agent | Salet"
@@ -468,12 +467,9 @@ import TestimonialSlot from '../components/TestimonialSlot.astro';
     </div>
   </section>
 
-  <!-- Testimonial slot + insights teaser -->
+  <!-- Insights teaser (client testimonials return here once real ones exist: see TestimonialSlot.astro) -->
   <section class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
-    <div class="grid gap-14 lg:grid-cols-2">
-      <div class="reveal">
-        <TestimonialSlot />
-      </div>
+    <div class="grid max-w-3xl gap-14">
       <div class="reveal reveal-d1">
         <p class="text-xs uppercase tracking-[0.28em] text-green-2">From the insights desk</p>
         <ul class="mt-6 space-y-5">

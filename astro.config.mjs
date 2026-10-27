@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import trailingSlashLinks from './build/trailing-slash-links.mjs';
 
 export default defineConfig({
   site: 'https://salet.uk',
@@ -10,8 +11,10 @@ export default defineConfig({
     sitemap({
       // /guide/read is the gated thank-you page: robots.txt disallows it, so
       // listing it in the sitemap would contradict that.
-      filter: (page) => !page.includes('/guide/read'),
+      // /track-record is held out of search until real case studies exist.
+      filter: (page) => !page.includes('/guide/read') && !page.includes('/track-record'),
     }),
+    trailingSlashLinks(),
   ],
   vite: {
     plugins: [tailwindcss()],

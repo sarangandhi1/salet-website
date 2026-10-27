@@ -62,6 +62,25 @@ const org = {
     'Auction legal pack review',
     'Property due diligence',
   ],
+  founder: { '@id': 'https://salet.uk/about#saran-gandhi' },
+};
+
+// The founder as a named, checkable person: Google and AI answer engines tie
+// the business to a real operator through this, which is the main trust
+// signal a young site can give.
+const founder = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://salet.uk/about#saran-gandhi',
+  name: 'Saran Gandhi',
+  jobTitle: 'Founder',
+  url: 'https://salet.uk/about',
+  worksFor: { '@id': 'https://salet.uk/#organisation' },
+  sameAs: ['https://www.linkedin.com/in/saran-gandhi/', 'https://sarangandhi.com'],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Symbiosis International University' },
+    { '@type': 'CollegeOrUniversity', name: 'Jawaharlal Nehru University' },
+  ],
 };
 
 const website = {
@@ -100,6 +119,7 @@ const website = {
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    <script type="application/ld+json" set:html={JSON.stringify(founder)} />
     {extraSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
     <meta name="theme-color" content="#1b1a17" />
     <link rel="manifest" href="/manifest.webmanifest" />
