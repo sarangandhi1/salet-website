@@ -15,6 +15,14 @@ import ServiceCard from '../components/ServiceCard.astro';
     <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
     <div class="grain" aria-hidden="true"></div>
     <div class="relative mx-auto w-full max-w-6xl px-4 pb-12 pt-28 sm:px-6 lg:px-8 lg:pb-14 lg:pt-32">
+      <a href="/brief" class="group mb-10 flex flex-col gap-4 border border-[#c8a95e]/60 bg-white/[0.06] p-5 transition-colors hover:border-[#c8a95e] hover:bg-white/[0.1] sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <span class="block">
+          <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">Looking for a home?</span>
+          <span class="mt-1.5 block font-display text-2xl font-medium leading-snug text-white sm:text-[1.7rem]">Tell us the home you want. We take it from there.</span>
+          <span class="mt-1.5 block text-sm text-ivory/75">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day, free.</span>
+        </span>
+        <span class="inline-flex shrink-0 items-center justify-center gap-2 bg-[#c2410c] px-6 py-3.5 text-base font-semibold text-white transition-colors group-hover:bg-[#a6370a]">Find my home <span aria-hidden="true">&rarr;</span></span>
+      </a>
       <AudienceChooser items={SALET_AUDIENCE_LINKS} level={1} />
       <div class="mt-10 flex flex-col items-center gap-5 text-center sm:mt-12">
         <p class="max-w-3xl font-display text-2xl font-medium leading-snug text-white sm:text-3xl">
@@ -26,7 +34,7 @@ import ServiceCard from '../components/ServiceCard.astro';
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
           </a>
           <a href="/brief" class="inline-flex items-center gap-3 border border-ivory/40 px-7 py-4 text-base tracking-wide text-ivory transition-colors hover:border-ivory hover:bg-white/5">
-            Send your brief in 60 seconds
+            Find my home
           </a>
           <a href="/how-we-work" class="link-line text-sm tracking-wide text-ivory/80 hover:text-ivory">See how we work</a>
         </div>
