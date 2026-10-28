@@ -1,0 +1,134 @@
+---
+// Budget 2026 first-home carousel (28 Oct 2026): the eight slides shared on
+// WhatsApp and social, as a page that actually swipes, with real buttons.
+// Share as salet.uk/budget?utm_source=whatsapp (or linkedin, instagram).
+// Slide images are rendered from SALET/Social/2026-10-28 Budget - Your First Home carousel.
+import Base from '../layouts/Base.astro';
+
+const slides = [
+  'Your first London home, from a 2.5% deposit. Today\'s Budget confirmed the new Your First Home scheme.',
+  'On a £500,000 new-build: your 2.5% deposit is £12,500, the 20% government equity loan is £100,000 and the 77.5% mortgage is £387,500.',
+  'The London limits: £650,000 inner London price cap, £500,000 outer London price cap, £140,000 household income cap (£110,000 outside London), 2.5% minimum deposit. First-time buyers, main home, new-builds from participating developers, England.',
+  'Outer London £500,000: deposit £12,500, loan £100,000, mortgage £387,500, about £2,080 a month. Inner London £650,000: deposit £16,250, loan £130,000, mortgage £503,750, about £2,704 a month. Repayment mortgage at an illustrative 5% over 30 years.',
+  'At £650,000 stamp duty costs more than the deposit. £500,000: £12,500 deposit plus £10,000 first-time buyer stamp duty, £22,500 cash before fees. £650,000: £16,250 deposit plus £22,500 stamp duty with no relief, £38,750 before fees.',
+  'The catch: you repay a share, not the sum. On a £500,000 home with a £100,000 loan you repay £96,000 if it is worth £480,000, £100,000 at £500,000, and £110,000 at £550,000. Interest-free for 5 years, then the rate rises gradually.',
+  'Timeline: pre-registration by end of December 2026, full applications from February 2027, first loans from April 2027. £4.7bn of lending, about 70,000 households.',
+  'Also in the Budget: Lifetime ISA charge for first homes above £450,000 falls from 25% to 20% from 29 October 2026; a First Time Buyer ISA replaces the LISA from April 2029; stamp duty unchanged; tax on property income rises 2 points from April 2027.',
+  'Developers have sales teams. Now you have one too. Salet shortlists the developments in the scheme, checks each price against what has sold nearby, and negotiates the price and the extras for you.',
+];
+const WA_TEXT = encodeURIComponent('Hi Saran, I saw your Budget slides. I am looking at a first home in London.');
+const SHARE_TEXT = encodeURIComponent('Your first London home from a 2.5% deposit: the Budget numbers and the catch, in 9 slides. https://salet.uk/budget?utm_source=whatsapp&utm_medium=share&utm_campaign=budget-2026');
+---
+<Base
+  title="Budget 2026: Your First Home Scheme in London, 2.5% Deposit | Salet"
+  description="The new Your First Home scheme in 9 slides: a 2.5% deposit and 20% government loan on London new-builds up to £650,000, what it costs at £500k and £650k, the catch, and the dates."
+  image="/images/budget-2026/share.jpg"
+>
+  <section class="bud">
+    <div class="bud-in">
+      <p class="bud-eyebrow">Autumn Budget &middot; 28 October 2026</p>
+      <h1 class="bud-h1">Your first London home, from a 2.5% deposit</h1>
+      <p class="bud-sub">The new Your First Home scheme in nine slides. Swipe, or use the arrows.</p>
+
+      <div class="car" data-car>
+        <div class="track" data-track tabindex="0" aria-label="Budget slides, swipe to move" role="region">
+          {slides.map((alt, i) => (
+            <figure class="sl">
+              {i === slides.length - 1 ? (
+                <a href="/contact/" aria-label="Book a free call with Salet">
+                  <img src={`/images/budget-2026/slide-${i + 1}.webp`} alt={alt} width="1080" height="1350" loading="lazy" decoding="async" />
+                </a>
+              ) : (
+                <img src={`/images/budget-2026/slide-${i + 1}.webp`} alt={alt} width="1080" height="1350" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+              )}
+            </figure>
+          ))}
+        </div>
+        <button class="arw prev" data-prev aria-label="Previous slide" disabled>&larr;</button>
+        <button class="arw next" data-next aria-label="Next slide">&rarr;</button>
+        <div class="dots" data-dots>
+          {slides.map((_, i) => <button aria-label={`Slide ${i + 1}`} class={i === 0 ? 'on' : ''}></button>)}
+        </div>
+        <p class="count" data-pos>1 / {slides.length}</p>
+      </div>
+
+      <div class="ctas">
+        <a class="btn-main" href="/contact/">Book a free call</a>
+        <a class="btn-alt" href={`https://wa.me/447878781100?text=${WA_TEXT}`}>WhatsApp Saran</a>
+        <a class="btn-alt" href={`https://wa.me/?text=${SHARE_TEXT}`}>Send to a friend</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts">
+    <h2>The scheme in plain words</h2>
+    <ul>
+      <li><strong>2.5% deposit, 20% government loan.</strong> On a £500,000 new-build that is £12,500 from you, £100,000 from the government and a £387,500 mortgage.</li>
+      <li><strong>London caps.</strong> £650,000 in inner London, £500,000 in outer London. Household income up to £140,000 in London, £110,000 elsewhere.</li>
+      <li><strong>New-builds only,</strong> from developers taking part, for first-time buyers buying their main home in England.</li>
+      <li><strong>Stamp duty.</strong> First-time buyer relief stops at £500,000. At £500,000 you pay £10,000; at £650,000 there is no relief and the bill is £22,500, more than the £16,250 deposit.</li>
+      <li><strong>The catch.</strong> The loan is repaid as 20% of the home's value when you repay, not the amount borrowed. Interest-free for five years, then the rate rises gradually.</li>
+      <li><strong>Dates.</strong> Pre-registration by the end of December 2026, applications from February 2027, first loans from April 2027.</li>
+    </ul>
+    <p class="fine">Figures from the Autumn Budget, 28 October 2026. Final scheme rules are still to be published. Monthly costs are illustrations, not advice. Salet works only for buyers and is not the scheme administrator or a lender.</p>
+    <p class="more">Already looking at a home? <a href="/price-check/">Run the free price check</a> to see what has really sold nearby.</p>
+  </section>
+
+  <style>
+    .bud{background:#0f2244;color:#faf8f2;padding:7.5rem 1rem 3rem}
+    .bud-in{max-width:560px;margin:0 auto;text-align:center}
+    .bud-eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#c8a95e;font-weight:700}
+    .bud-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:.6rem 0 .5rem;letter-spacing:-.02em}
+    .bud-sub{color:#c9d3e3;font-size:1rem;margin-bottom:1.4rem}
+    .car{position:relative}
+    .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-radius:14px;outline:none;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+    .track::-webkit-scrollbar{display:none}
+    .sl{flex:0 0 100%;scroll-snap-align:center;margin:0}
+    .sl img{display:block;width:100%;height:auto;aspect-ratio:1080/1350}
+    .arw{position:absolute;top:calc(50% - 40px);width:44px;height:44px;border-radius:50%;border:0;background:rgba(250,248,242,.92);color:#1b1a17;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+    .arw:disabled{opacity:0;pointer-events:none}
+    .prev{left:-8px}.next{right:-8px}
+    @media (min-width:640px){.prev{left:-58px}.next{right:-58px}}
+    .dots{display:flex;justify-content:center;gap:8px;margin-top:1rem}
+    .dots button{width:9px;height:9px;border-radius:9px;border:0;padding:0;background:rgba(255,255,255,.3);cursor:pointer;transition:width .2s}
+    .dots button.on{width:26px;background:#c2410c}
+    .count{font-size:.8rem;color:#9fb0c8;margin-top:.5rem}
+    .ctas{display:flex;flex-direction:column;gap:.7rem;margin-top:1.6rem}
+    .ctas a{display:block;padding:.95rem 1rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:1.02rem}
+    .btn-main{background:#c2410c;color:#fff}
+    .btn-alt{border:2px solid rgba(250,248,242,.5);color:#faf8f2}
+    .facts{max-width:640px;margin:0 auto;padding:2.5rem 1rem 3.5rem}
+    .facts h2{font-family:var(--font-display);font-size:1.7rem;font-weight:500;margin-bottom:1rem}
+    .facts li{margin:0 0 .8rem 1.1rem;line-height:1.55;list-style:disc}
+    .fine{font-size:.82rem;color:#6d6a5e;margin-top:1.2rem;line-height:1.5}
+    .more{margin-top:1.2rem}.more a{color:#c2410c;font-weight:700}
+  </style>
+
+  <script>
+    for (const car of document.querySelectorAll<HTMLElement>('[data-car]')) {
+      const track = car.querySelector<HTMLElement>('[data-track]')!;
+      const dots = [...car.querySelectorAll<HTMLButtonElement>('[data-dots] button')];
+      const prev = car.querySelector<HTMLButtonElement>('[data-prev]')!;
+      const next = car.querySelector<HTMLButtonElement>('[data-next]')!;
+      const count = car.querySelector<HTMLElement>('[data-pos]')!;
+      const n = dots.length;
+      const current = () => Math.round(track.scrollLeft / track.clientWidth);
+      const go = (i: number) => track.scrollTo({ left: Math.max(0, Math.min(n - 1, i)) * track.clientWidth });
+      const paint = () => {
+        const i = current();
+        dots.forEach((d, k) => d.classList.toggle('on', k === i));
+        prev.disabled = i === 0;
+        next.disabled = i === n - 1;
+        count.textContent = `${i + 1} / ${n}`;
+      };
+      track.addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
+      prev.addEventListener('click', () => go(current() - 1));
+      next.addEventListener('click', () => go(current() + 1));
+      dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(current() + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(current() - 1); }
+      });
+    }
+  </script>
+</Base>
