@@ -1,0 +1,232 @@
+---
+// Buyer brief survey (28 Oct 2026): one tap per question, then free text and an
+// optional voice note (recorded here or attached). Posts to PackForge
+// /api/public/brief, which stores it, emails Saran and thanks the buyer.
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Tell Us What You Want to Buy | Free Property Brief | Salet"
+  description="Tell Salet what home you are looking for in under a minute: area, budget, bedrooms and timing. Type it or leave a voice note. Saran replies within one working day."
+>
+  <section class="bf-wrap">
+    <div class="bf">
+      <p class="bf-eyebrow">Your property brief</p>
+      <h1 class="bf-h1">Tell us what you are looking for</h1>
+      <p class="bf-sub">About a minute. Tap your answers, then type or record anything else.</p>
+      <div class="bf-bar"><i data-bar></i></div>
+      <div class="bf-card" data-card></div>
+      <p class="bf-fine">Salet works only for buyers. We use your answers to help with your search and nothing else.</p>
+    </div>
+  </section>
+
+  <style is:global>
+    .bf-wrap{background:#0f2244;padding:7.5rem 1rem 3rem;min-height:100vh}
+    .bf{max-width:560px;margin:0 auto;color:#faf8f2}
+    .bf-eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#c8a95e;font-weight:700;text-align:center}
+    .bf-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,6vw,2.4rem);line-height:1.1;text-align:center;margin:.5rem 0 .4rem;letter-spacing:-.02em}
+    .bf-sub{text-align:center;color:#c9d3e3;margin-bottom:1.3rem}
+    .bf-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.15);overflow:hidden;margin-bottom:1rem}
+    .bf-bar i{display:block;height:100%;width:0;background:#c2410c;transition:width .3s}
+    .bf-card{background:#faf8f2;color:#1b1a17;border-radius:16px;padding:1.5rem 1.25rem;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+    .bf-step{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#2e5a40;font-weight:700}
+    .bf-q{font-family:var(--font-display);font-weight:500;font-size:1.45rem;line-height:1.2;margin:.35rem 0 1rem}
+    .bf-hint{font-size:.88rem;color:#6d6a5e;margin:-.6rem 0 .9rem}
+    .bf-opts{display:grid;gap:.6rem}
+    .bf-opt{display:block;width:100%;text-align:left;padding:.95rem 1rem;border:2px solid #e4dfd2;border-radius:12px;background:#fff;font-size:1rem;font-weight:600;color:#1b1a17;cursor:pointer;transition:border-color .15s,background .15s}
+    .bf-opt:hover{border-color:#2e5a40}
+    .bf-opt.on{border-color:#2e5a40;background:#e9f0eb}
+    .bf-opt.on:after{content:"\2713";float:right;color:#2e5a40}
+    .bf-in,.bf-ta{width:100%;padding:.9rem 1rem;border:2px solid #e4dfd2;border-radius:12px;font-size:1rem;background:#fff;color:#1b1a17;font-family:inherit}
+    .bf-in:focus,.bf-ta:focus{outline:none;border-color:#2e5a40}
+    .bf-ta{min-height:110px;resize:vertical}
+    .bf-lab{display:block;font-size:.8rem;font-weight:700;color:#6d6a5e;margin:.9rem 0 .35rem}
+    .bf-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem;gap:.8rem}
+    .bf-back{background:none;border:0;color:#6d6a5e;font-weight:600;cursor:pointer;padding:.6rem 0}
+    .bf-next{background:#c2410c;color:#fff;border:0;border-radius:999px;padding:.9rem 1.6rem;font-weight:700;font-size:1rem;cursor:pointer}
+    .bf-next:disabled{opacity:.45;cursor:default}
+    .bf-skip{background:none;border:0;color:#2e5a40;font-weight:700;cursor:pointer}
+    .bf-voice{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+    .bf-vbtn{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1rem;border-radius:999px;border:2px solid #2e5a40;background:#fff;color:#2e5a40;font-weight:700;cursor:pointer;font-size:.95rem}
+    .bf-vbtn.rec{background:#c2410c;border-color:#c2410c;color:#fff}
+    .bf-dot{width:10px;height:10px;border-radius:50%;background:currentColor}
+    .bf-vbtn.rec .bf-dot{animation:bfp 1s infinite}
+    @keyframes bfp{50%{opacity:.25}}
+    .bf-vout{margin-top:.8rem;font-size:.9rem;color:#2e5a40}
+    .bf-vout audio{width:100%;margin-top:.4rem}
+    .bf-rm{background:none;border:0;color:#c2410c;font-weight:700;cursor:pointer;margin-left:.4rem}
+    .bf-check{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;color:#6d6a5e;margin-top:1rem}
+    .bf-check input{margin-top:.2rem;width:18px;height:18px;flex:none}
+    .bf-err{color:#c2410c;font-weight:600;font-size:.92rem;margin-top:.8rem}
+    .bf-hp{position:absolute;left:-9999px}
+    .bf-done{text-align:center}
+    .bf-done .bf-q{margin-top:.6rem}
+    .bf-done a{display:block;margin-top:.7rem;padding:.95rem;border-radius:999px;font-weight:700;text-decoration:none}
+    .bf-wa{background:#c2410c;color:#fff}
+    .bf-pc{border:2px solid #2e5a40;color:#2e5a40}
+    .bf-fine{font-size:.8rem;color:#9fb0c8;text-align:center;margin-top:1rem}
+  </style>
+
+  <script is:inline>
+  (function () {
+    var API = 'https://reports.salet.uk/api/public/brief';
+    var Q = [
+      { k: 'goal', q: 'What are you looking to do?', o: ['Buy my first home', 'Move to a new home', 'Buy to let', 'Just exploring'] },
+      { k: 'area', q: 'Where are you looking?', text: 'e.g. Croydon, E17, or near the Elizabeth line', hint: 'An area, postcode or station is plenty.' },
+      { k: 'budget', q: 'What is your budget?', o: ['Up to £250k', '£250k to £400k', '£400k to £600k', '£600k to £1m', 'Over £1m'] },
+      { k: 'beds', q: 'How many bedrooms?', o: ['1', '2', '3', '4 or more'] },
+      { k: 'types', q: 'What kind of home?', multi: true, hint: 'Pick all that fit.', o: ['Flat', 'House', 'New-build', 'Period home', 'Open to anything'] },
+      { k: 'funds', q: 'How much deposit do you have?', o: ['Under 5%', '5% to 10%', '10% to 25%', 'Over 25%', 'Cash buyer'] },
+      { k: 'mortgage', q: 'Where are you with a mortgage?', o: ['Agreement in principle done', 'Working on it', 'Not started yet', 'Not needed'] },
+      { k: 'timeline', q: 'When do you want to buy?', o: ['Ready now', 'Within 3 months', '3 to 12 months', 'Just looking for now'] },
+      { k: 'scheme', q: 'Interested in the new 2.5% deposit scheme?', hint: 'Your First Home: new-builds, 20% government loan.', o: ['Yes', 'Maybe, tell me more', 'No'],
+        when: function (a) { return a.goal === 'Buy my first home' && ['£600k to £1m', 'Over £1m'].indexOf(a.budget) < 0; } },
+      { k: 'musts', q: 'Any must-haves?', multi: true, hint: 'Pick all that matter.', o: ['Garden or outside space', 'Parking', 'Near a station', 'Good schools', 'Room to work from home', 'Quiet street', 'Room to extend'] },
+      { k: 'help', q: 'Where would help be most useful?', multi: true, o: ['Finding the right homes', 'Checking the price', 'Negotiating the deal', 'Checking a home I have found'] },
+      { k: '_words', words: true },
+      { k: '_contact', contact: true },
+    ];
+    var a = {}, notes = '', voice = null, name = '', email = '', phone = '', consent = false, i = 0;
+    var card = document.querySelector('[data-card]'), bar = document.querySelector('[data-bar]');
+    var steps = function () { return Q.filter(function (s) { return !s.when || s.when(a); }); };
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var utm = (function () {
+      var p = new URLSearchParams(location.search), o = {};
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) { if (p.get(k)) o[k] = p.get(k).slice(0, 60); });
+      try { if (Object.keys(o).length) sessionStorage.setItem('bf_utm', JSON.stringify(o)); else o = JSON.parse(sessionStorage.getItem('bf_utm') || '{}'); } catch (e) {}
+      return o;
+    })();
+
+    function nav(canNext, label) {
+      return '<div class="bf-nav">' + (i > 0 ? '<button class="bf-back" data-back>&larr; Back</button>' : '<span></span>') +
+        (canNext === null ? '' : '<button class="bf-next" data-next' + (canNext ? '' : ' disabled') + '>' + (label || 'Next') + '</button>') + '</div>';
+    }
+    function render() {
+      var S = steps(), s = S[i];
+      bar.style.width = Math.round(i / S.length * 100) + '%';
+      var head = '<div class="bf-step">Step ' + (i + 1) + ' of ' + S.length + '</div>';
+      if (s.words) {
+        card.innerHTML = head + '<div class="bf-q">Anything else we should know?</div><p class="bf-hint">Optional. Type it, or record a voice note up to 3 minutes, or attach an mp3 or mp4.</p>' +
+          '<textarea class="bf-ta" data-notes placeholder="e.g. we need to be near my parents in Bromley, and a second bedroom for an office">' + esc(notes) + '</textarea>' +
+          '<div class="bf-voice"><button class="bf-vbtn" data-rec><span class="bf-dot"></span><span data-rect>Record a voice note</span></button>' +
+          '<button class="bf-vbtn" data-pick>Attach a file</button><input type="file" data-file accept="audio/*,video/mp4,video/quicktime,.mp3,.m4a,.mp4,.wav,.aac" hidden></div>' +
+          '<div class="bf-vout" data-vout></div>' + nav(true, notes || voice ? 'Next' : 'Skip');
+        bindWords();
+      } else if (s.contact) {
+        card.innerHTML = head + '<div class="bf-q">Where should Saran send his reply?</div>' +
+          '<label class="bf-lab">Your name</label><input class="bf-in" data-name autocomplete="name" value="' + esc(name) + '">' +
+          '<label class="bf-lab">Email</label><input class="bf-in" type="email" data-email autocomplete="email" value="' + esc(email) + '">' +
+          '<label class="bf-lab">Phone or WhatsApp (optional, fastest)</label><input class="bf-in" type="tel" data-phone autocomplete="tel" value="' + esc(phone) + '">' +
+          '<input class="bf-hp" tabindex="-1" autocomplete="off" data-hp aria-hidden="true">' +
+          '<label class="bf-check"><input type="checkbox" data-consent' + (consent ? ' checked' : '') + '><span>Salet may contact me about my search. I can opt out at any time.</span></label>' +
+          '<div class="bf-err" data-err></div>' + nav(false, 'Send my brief');
+        bindContact();
+      } else if (s.text) {
+        card.innerHTML = head + '<div class="bf-q">' + s.q + '</div>' + (s.hint ? '<p class="bf-hint">' + s.hint + '</p>' : '') +
+          '<input class="bf-in" data-text placeholder="' + esc(s.text) + '" value="' + esc(a[s.k] || '') + '">' + nav(!!a[s.k]);
+        var t = card.querySelector('[data-text]');
+        t.focus();
+        t.addEventListener('input', function () { a[s.k] = t.value.trim(); card.querySelector('[data-next]').disabled = !a[s.k]; });
+        t.addEventListener('keydown', function (e) { if (e.key === 'Enter' && a[s.k]) go(1); });
+      } else {
+        var cur = a[s.k] || (s.multi ? [] : '');
+        card.innerHTML = head + '<div class="bf-q">' + s.q + '</div>' + (s.hint ? '<p class="bf-hint">' + s.hint + '</p>' : '') +
+          '<div class="bf-opts">' + s.o.map(function (o) {
+            var on = s.multi ? cur.indexOf(o) >= 0 : cur === o;
+            return '<button class="bf-opt' + (on ? ' on' : '') + '" data-o="' + esc(o) + '">' + esc(o) + '</button>';
+          }).join('') + '</div>' + nav(s.multi ? (cur.length > 0) : (cur ? true : null));
+        card.querySelectorAll('[data-o]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var o = b.getAttribute('data-o');
+            if (s.multi) {
+              var l = a[s.k] || [];
+              a[s.k] = l.indexOf(o) >= 0 ? l.filter(function (x) { return x !== o; }) : l.concat([o]);
+              render();
+            } else { a[s.k] = o; render(); setTimeout(function () { go(1); }, 180); }
+          });
+        });
+      }
+      var nb = card.querySelector('[data-next]'), bb = card.querySelector('[data-back]');
+      if (nb && !s.contact) nb.addEventListener('click', function () { go(1); });
+      if (bb) bb.addEventListener('click', function () { go(-1); });
+    }
+    function go(d) { var n = steps().length; i = Math.max(0, Math.min(n - 1, i + d)); render(); window.scrollTo({ top: card.getBoundingClientRect().top + scrollY - 140, behavior: 'smooth' }); }
+
+    var rec = null, chunks = [], timer = null;
+    function showVoice() {
+      var out = card.querySelector('[data-vout]');
+      if (!out) return;
+      if (!voice) { out.innerHTML = ''; return; }
+      out.innerHTML = '&#10003; ' + esc(voice.name) + ' (' + Math.max(1, Math.round(voice.size / 1024)) + ' KB)<button class="bf-rm" data-rm>Remove</button><audio controls src="' + URL.createObjectURL(voice) + '"></audio>';
+      out.querySelector('[data-rm]').addEventListener('click', function () { voice = null; render(); });
+    }
+    function bindWords() {
+      var ta = card.querySelector('[data-notes]'), nb = card.querySelector('[data-next]');
+      ta.addEventListener('input', function () { notes = ta.value; nb.textContent = notes || voice ? 'Next' : 'Skip'; });
+      var file = card.querySelector('[data-file]');
+      card.querySelector('[data-pick]').addEventListener('click', function () { file.click(); });
+      file.addEventListener('change', function () {
+        var f = file.files[0]; if (!f) return;
+        if (f.size > 15 * 1024 * 1024) { alert('That file is over 15 MB. Please attach a shorter recording.'); return; }
+        voice = f; render();
+      });
+      var rb = card.querySelector('[data-rec]'), rt = card.querySelector('[data-rect]');
+      if (!window.MediaRecorder || !navigator.mediaDevices) { rb.style.display = 'none'; }
+      rb.addEventListener('click', function () {
+        if (rec && rec.state === 'recording') { rec.stop(); return; }
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+          var type = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'].filter(function (t) { return MediaRecorder.isTypeSupported(t); })[0] || '';
+          rec = new MediaRecorder(stream, type ? { mimeType: type } : undefined); chunks = [];
+          rec.ondataavailable = function (e) { if (e.data.size) chunks.push(e.data); };
+          rec.onstop = function () {
+            clearInterval(timer); stream.getTracks().forEach(function (t) { t.stop(); });
+            var mt = rec.mimeType || 'audio/webm', ext = mt.indexOf('mp4') >= 0 ? 'm4a' : 'webm';
+            voice = new File(chunks, 'voice-note.' + ext, { type: mt.split(';')[0] });
+            render();
+          };
+          rec.start(); rb.classList.add('rec');
+          var secs = 0; rt.textContent = 'Stop recording 0:00';
+          timer = setInterval(function () {
+            secs++; rt.textContent = 'Stop recording ' + Math.floor(secs / 60) + ':' + ('0' + secs % 60).slice(-2);
+            if (secs >= 180) rec.stop();
+          }, 1000);
+        }).catch(function () { alert('We could not use your microphone. You can attach a recording instead.'); });
+      });
+      showVoice();
+    }
+    function bindContact() {
+      var get = function (s) { return card.querySelector(s); };
+      var nb = get('[data-next]'), err = get('[data-err]');
+      var check = function () {
+        name = get('[data-name]').value; email = get('[data-email]').value; phone = get('[data-phone]').value; consent = get('[data-consent]').checked;
+        nb.disabled = !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && consent);
+      };
+      ['[data-name]', '[data-email]', '[data-phone]', '[data-consent]'].forEach(function (s) { get(s).addEventListener('input', check); get(s).addEventListener('change', check); });
+      check();
+      nb.addEventListener('click', function () {
+        nb.disabled = true; nb.textContent = voice ? 'Uploading your voice note...' : 'Sending...'; err.textContent = '';
+        var fd = new FormData();
+        var send = {}; steps().forEach(function (s) { if (a[s.k] && (s.o || s.text)) send[s.k] = a[s.k]; });
+        fd.append('answers', JSON.stringify(send)); fd.append('notes', notes); fd.append('name', name); fd.append('email', email);
+        fd.append('phone', phone); fd.append('consent', 'true'); fd.append('website', get('[data-hp]').value); fd.append('utm', JSON.stringify(utm));
+        if (voice) fd.append('voice', voice, voice.name);
+        fetch(API, { method: 'POST', body: fd }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.j.error || 'Something went wrong.');
+            done();
+          }).catch(function (e) {
+            err.textContent = e.message && e.message !== 'Failed to fetch' ? e.message : 'We could not send that. Please check your connection and try again.';
+            nb.disabled = false; nb.textContent = 'Send my brief';
+          });
+      });
+    }
+    function done() {
+      bar.style.width = '100%';
+      var wa = 'https://wa.me/447878781100?text=' + encodeURIComponent('Hi Saran, I have just sent my property brief' + (a.area ? ' for ' + a.area : '') + '.');
+      card.innerHTML = '<div class="bf-done"><div class="bf-step">All sent</div><div class="bf-q">Thanks' + (name ? ' ' + esc(name.split(' ')[0]) : '') + ', we have your brief</div>' +
+        '<p>Saran will read it and reply within one working day. A copy of the confirmation is on its way to your inbox.</p>' +
+        '<a class="bf-wa" href="' + wa + '">Message Saran on WhatsApp</a><a class="bf-pc" href="/price-check/">Seen a home already? Free price check</a></div>';
+    }
+    render();
+  })();
+  </script>
+</Base>
