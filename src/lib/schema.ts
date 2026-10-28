@@ -7,6 +7,7 @@ import type { Product } from '../data/reports';
 const SITE = 'https://salet.uk';
 export const ORG_ID = `${SITE}/#organisation`;
 const RISE_DATE_ISO = '2026-11-30'; // launch prices hold until 1 December 2026
+const LAUNCH_DATE_ISO = '2026-10-15'; // paid reports went on sale
 
 /** Plain text for schema fields: drop any HTML and collapse whitespace. */
 export const plain = (s: string) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -28,11 +29,28 @@ export function productSchema(p: Product, url?: string, description?: string) {
     availability: 'https://schema.org/InStock',
     url: p.href || url,
     seller: { '@id': ORG_ID },
+    validFrom: LAUNCH_DATE_ISO,
+    // Digital reports: nothing ships, so delivery is free and same day. Google
+    // flags merchant listings without these fields.
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: { '@type': 'MonetaryAmount', value: '0.00', currency: 'GBP' },
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'GB' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+      },
+    },
+    // The 30-day refund: asked for by email, nothing to send back, no fee.
     hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
       applicableCountry: 'GB',
       returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
       merchantReturnDays: 30,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/FreeReturn',
+      refundType: 'https://schema.org/FullRefund',
     },
   };
   if (p.rises) offer.priceValidUntil = RISE_DATE_ISO;
