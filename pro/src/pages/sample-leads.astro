@@ -2,6 +2,7 @@
 import ProBase from '../layouts/ProBase.astro';
 import ProTrust from '../components/ProTrust.astro';
 import LeadSheet from '../components/LeadSheet.astro';
+import { ORDER } from '../../../src/data/reports';
 ---
 <ProBase
   title="Sample off-market lead sheet | Salet Pro"
@@ -15,12 +16,19 @@ import LeadSheet from '../components/LeadSheet.astro';
         Every lead is a property and the public record that put it on the list, with the last recorded sale and a route in. This is
         what arrives each week for your area.
       </p>
+      <p class="jump"><a href="#buy">Get this for your area, £49 &darr;</a></p>
     </div>
   </header>
   <ProTrust />
   <section class="rp-section">
     <div class="rp-wrap">
       <LeadSheet />
+      <div class="buy" id="buy">
+        <p class="buy-h">Get this list for your area, every week</p>
+        <p class="buy-p">£49 for 30 days, one payment. Nothing renews. Not useful? Full refund, no questions.</p>
+        <a class="rp-btn" href={ORDER.offmarket.href}>{ORDER.offmarket.cta}</a>
+        <p class="buy-alt">Want packs and letters too? <a href={ORDER['sourcer-pass'].href}>The Sourcer Pass</a> adds 10 investor packs and ready letters, £99.</p>
+      </div>
       <div class="rp-chips" style="margin-top:2rem">
         <a href="/sourcers">Off-market leads for sourcers</a>
         <a href="/agents">Seller leads for estate agents</a>
@@ -28,4 +36,12 @@ import LeadSheet from '../components/LeadSheet.astro';
       </div>
     </div>
   </section>
+  <style>
+    .jump{margin-top:1.2rem}.jump a{color:#c8a95e;font-weight:700;text-decoration:none}
+    .buy{margin-top:2rem;padding:1.6rem 1.4rem;border-radius:16px;background:#0f2244;color:#faf8f2;text-align:center}
+    .buy-h{font-family:var(--font-display);font-size:1.6rem;line-height:1.2;margin-bottom:.5rem}
+    .buy-p{color:#c9d3e3;margin-bottom:1.1rem}
+    .buy-alt{margin-top:1rem;font-size:.9rem;color:#c9d3e3}
+    .buy-alt a{color:#faf8f2;text-decoration:underline}
+  </style>
 </ProBase>
