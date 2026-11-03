@@ -47,6 +47,9 @@ const year = new Date().getFullYear();
     <!-- Cloudflare Web Analytics: cookieless visitor counts -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2278d8715f9946f285963d0f6a556eb3"}'></script>
     <CarryUtm />
+    {/* The Meta pixel, after the visitor's yes. Same file as salet.uk and reports.salet.uk. */}
+    <script is:inline>window.SALET_PIXEL = { id: '2358715848213055', events: [] };</script>
+    <script is:inline src="/pixel.js" defer></script>
   </head>
   <body>
     <div class="reports-page">
