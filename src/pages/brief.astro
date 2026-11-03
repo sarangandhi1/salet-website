@@ -212,6 +212,7 @@ import Base from '../layouts/Base.astro';
         fetch(API, { method: 'POST', body: fd }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
           .then(function (res) {
             if (!res.ok) throw new Error(res.j.error || 'Something went wrong.');
+            if (window.saletTrack) window.saletTrack('Lead', { content_name: 'buyer_brief' });
             done();
           }).catch(function (e) {
             err.textContent = e.message && e.message !== 'Failed to fetch' ? e.message : 'We could not send that. Please check your connection and try again.';
