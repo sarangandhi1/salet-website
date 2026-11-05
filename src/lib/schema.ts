@@ -8,6 +8,9 @@ const SITE = 'https://salet.uk';
 export const ORG_ID = `${SITE}/#organisation`;
 const RISE_DATE_ISO = '2026-11-30'; // launch prices hold until 1 December 2026
 const LAUNCH_DATE_ISO = '2026-10-15'; // paid reports went on sale
+// Prices with no planned change: Google's merchant listings want an end date on
+// every offer, so give a year-end one. Move it on each December.
+const STANDING_PRICE_UNTIL_ISO = '2027-12-31';
 
 /** Plain text for schema fields: drop any HTML and collapse whitespace. */
 export const plain = (s: string) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -53,7 +56,7 @@ export function productSchema(p: Product, url?: string, description?: string) {
       refundType: 'https://schema.org/FullRefund',
     },
   };
-  if (p.rises) offer.priceValidUntil = RISE_DATE_ISO;
+  offer.priceValidUntil = p.rises ? RISE_DATE_ISO : STANDING_PRICE_UNTIL_ISO;
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
