@@ -15,7 +15,6 @@ const report = {
   name: 'Never overpay again',
   promise: 'See what every home nearby really sold for, before you make an offer.',
   price: '£19',
-  rises: '£29',
   unit: 'per report',
   ticks: ['The price range recent sales support', 'Stamp duty you will really pay', 'Rent, flood, crime, planning, schools'],
   cta: 'Check a property',
@@ -48,7 +47,6 @@ export const SALET_TABS: Tab[] = [
         name: 'Walk in knowing your number',
         promise: 'Every likely price, fully costed with stamp duty, works and fees. No nasty surprises.',
         price: '£69',
-        rises: '£99',
         unit: 'per property',
         ticks: ['The full Buyer Intelligence Report', 'Five prices, each with stamp duty, works and fees', 'A works budget, line by line'],
         cta: 'Get my Decision Pack',
@@ -154,10 +152,10 @@ export const PAGE_CARD: Record<string, ReturnType<typeof cardFor>> = {
 
 export const SALET_COMPARE = [
   { name: 'Free preview', price: '£0', what: 'The street, energy certificate, Land Registry record, neighbourhood type and local rents for one address.' },
-  { name: 'Buyer Intelligence Report', price: '£19 (£29 from 1 Dec 2026)', what: 'Price range from recent sales, comparables, stamp duty, rent, flood, crime, planning, schools, area activity.', href: '/reports/buyer-intelligence' },
+  { name: 'Buyer Intelligence Report', price: '£19', what: 'Price range from recent sales, comparables, stamp duty, rent, flood, crime, planning, schools, area activity.', href: '/reports/buyer-intelligence' },
   { name: 'Legal Pack Review', price: '£29', what: 'Every finding with its page, what the pack leaves out, questions for your solicitor.', href: '/reports/legal-pack' },
   { name: 'Auction bundle', price: '£39', what: 'One Buyer Intelligence Report and one Legal Pack Review.' },
-  { name: 'Decision Pack', price: '£69 (£99 from 1 Dec 2026)', what: 'The full report plus five costed prices, a works budget and fees.', href: '/reports/decision-pack' },
+  { name: 'Decision Pack', price: '£69', what: 'The full report plus five costed prices, a works budget and fees.', href: '/reports/decision-pack' },
   { name: '5 report pack', price: '£79', what: 'Five Buyer Intelligence Reports, used within 12 months.', href: '/reports/five-pack' },
   { name: 'Compare Homes', price: '£28', what: 'Up to five homes side by side, the best buy named first, with questions for the agent.' },
   { name: 'Home Search Shortlist', price: '£149', what: 'Homes that fit your brief, each checked.' },

@@ -16,7 +16,6 @@ import StartBox from '../components/StartBox.astro';
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
 const PRICE = '£19';
-const RISES = '£29'; // from 1 December 2026
 
 // What you get, as tiles: each a crop of the live sample report section it
 // describes, with one line on what it tells you.
@@ -72,8 +71,6 @@ const faqs = [
       <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
         <p class="leading-tight">
           <span class="font-display text-4xl font-medium">{PRICE}</span>
-          <span class="ml-2 inline-block rounded-full border border-[#f1d58a] bg-[#fff4d6] px-2 py-0.5 align-middle text-[0.68rem] font-bold uppercase tracking-wider text-[#8a5a00]">Launch price</span>
-          <span class="mt-1 block text-xs text-ivory/70">Rising to {RISES} on 1 December 2026</span>
         </p>
       </div>
       <p class="mt-4 text-sm text-ivory/80">

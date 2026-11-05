@@ -90,7 +90,6 @@ export const PRODUCTS: Product[] = [
     name: 'Buyer Intelligence Report',
     price: '£19',
     promise: 'Never overpay again. See what every home nearby really sold for.',
-    rises: '£29',
     points: [
       'The price range recent sales support',
       'Stamp duty you will really pay',
@@ -139,7 +138,6 @@ export const PRODUCTS: Product[] = [
     name: 'Decision Pack',
     price: '£69',
     promise: 'Walk in knowing your number. Every likely price, fully costed.',
-    rises: '£99',
     points: [
       'The full Buyer Intelligence Report',
       'Five price scenarios, each with stamp duty, works and fees',
