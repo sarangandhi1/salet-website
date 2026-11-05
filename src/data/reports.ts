@@ -209,6 +209,7 @@ const BUILT: Product[] = [
     href: `${APP}/pro/research`,
     cta: 'Scope a project',
   },
+  soon('compare-homes', 'Compare Homes', '£28', 'up to 5 homes', 'Compare 2 or more of your home choices, and see which one is the best buy.', ['Up to five homes side by side on the same sold evidence', 'The one priced best against its evidence, named first', 'What to ask the agent about each home'], 'comparables'),
   soon('shortlist', 'Home Search Shortlist', '£149', 'one search', 'Tell us what you want. We find the homes, you pick your favourite.', ['Homes on the market that match your brief', 'Each one priced against its sold evidence', 'Area, flood and schools for every one'], 'area-type'),
   soon('deal-analyser', 'Deal Analyser', '£29', 'per deal', 'Know in minutes if the deal really stacks up.', ['Yield, cash left in and return', 'A stress test on rate and rent', 'Built from local lettings and sold prices'], 'rent'),
   soon('hmo', 'HMO Viability Report', '£29', 'per address', 'Will it work as an HMO? Find out before you buy, not after.', ['Article 4 and licensing for the address', 'Local housing allowance and room rents', 'Licensed HMOs and refusals nearby'], 'hmo'),
@@ -228,6 +229,7 @@ const BUILT: Product[] = [
 
 // Order pages for the products in BUILT, all on reports.salet.uk.
 export const ORDER: Record<string, { href: string; cta: string }> = {
+  'compare-homes': { href: `${APP}/compare-homes`, cta: 'Compare my homes' },
   shortlist: { href: `${APP}/home-search`, cta: 'Start my search' },
   'deal-analyser': { href: `${APP}/deal-analyser`, cta: 'Analyse a deal' },
   hmo: { href: `${APP}/hmo-viability`, cta: 'Check an HMO' },
@@ -282,7 +284,7 @@ export const AUDIENCES: Audience[] = [
     explainer: true,
     h1: 'Never overpay for your next home',
     lede: 'See what every home nearby really sold for, your stamp duty, and every catch in the legal pack. In minutes, before you make an offer. Free preview first.',
-    products: pick('free', 'intelligence', 'legal', 'bundle', 'decision', 'shortlist', 'photo-refurb'),
+    products: pick('free', 'intelligence', 'legal', 'bundle', 'decision', 'compare-homes', 'shortlist', 'photo-refurb'),
     free: [
       { href: '/deal-check', label: 'What should I offer?' },
       { href: '/price-check', label: 'What is this property worth?' },

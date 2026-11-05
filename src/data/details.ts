@@ -24,6 +24,7 @@ const ART: Record<string, string> = {
   free: 'free-preview', bundle: 'bundle', 'investor-pass': 'investor-pass', agent: 'buying-agent',
   intelligence: 'buyer-intelligence', legal: 'legal-pack', decision: 'decision-pack', five: 'five-pack',
   'deal-analyser': 'deal-analyser', hmo: 'hmo-viability', 'auction-lot': 'auction-lot', shortlist: 'home-search',
+  'compare-homes': 'five-pack',
   'photo-refurb': 'photo-refurb', 'pack-builder': 'investor-pack', offmarket: 'offmarket-leads',
   'seller-leads': 'seller-leads', 'sourcer-pass': 'sourcer-pass', 'valuation-evidence': 'valuation-evidence',
   'market-brief': 'area-market-brief', 'demand-board': 'buyer-demand-board', 'letter-kit': 'letter-kit',
@@ -79,6 +80,11 @@ export const DETAILS: Record<string, Detail> = {
     icon: 'stack', device: 'doc', img: img('comparables'),
     deliverables: ['Five full Buyer Intelligence Reports', 'Use them on any five homes within 12 months', 'The same layout every time, so they compare side by side'],
     format: PDF,
+  },
+  'compare-homes': {
+    icon: 'scales', device: 'doc', img: img('comparables'),
+    deliverables: ['Two to five homes side by side on the same sold evidence', 'The one priced best against its evidence, named first', 'Tenure, energy rating, stamp duty, flood risk and schools for each', 'What to ask the agent about each home before you view'],
+    format: 'On screen and as a PDF',
   },
   shortlist: {
     icon: 'search', device: 'doc', img: img('home-search-shortlist'),

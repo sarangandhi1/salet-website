@@ -65,6 +65,19 @@ export const SALET_TABS: Tab[] = [
     cards: [
       { ...report, name: 'Check one home', promise: 'The full report on the one you love.' },
       {
+        id: 'compare-homes',
+        flag: 'New',
+        name: 'Compare 2 or more of your home choices',
+        promise: 'Up to five homes side by side. We name the one priced best against what similar homes really sold for.',
+        price: '£28',
+        unit: 'for up to 5 homes',
+        ticks: ['Every home on the same sold evidence', 'Tenure, energy rating, stamp duty, flood and schools', 'What to ask the agent about each one'],
+        cta: 'Compare my homes',
+        href: `${APP}/compare-homes`,
+        risk: ONE_PAYMENT,
+        img: '/images/reports/comparables.webp',
+      },
+      {
         id: 'five',
         flag: 'Best value',
         name: 'Check your whole shortlist',
@@ -146,6 +159,7 @@ export const SALET_COMPARE = [
   { name: 'Auction bundle', price: '£39', what: 'One Buyer Intelligence Report and one Legal Pack Review.' },
   { name: 'Decision Pack', price: '£69 (£99 from 1 Dec 2026)', what: 'The full report plus five costed prices, a works budget and fees.', href: '/reports/decision-pack' },
   { name: '5 report pack', price: '£79', what: 'Five Buyer Intelligence Reports, used within 12 months.', href: '/reports/five-pack' },
+  { name: 'Compare Homes', price: '£28', what: 'Up to five homes side by side, the best buy named first, with questions for the agent.' },
   { name: 'Home Search Shortlist', price: '£149', what: 'Homes that fit your brief, each checked.' },
   { name: 'Buying agent', price: 'Agreed upfront', what: 'Search, negotiation and the whole purchase, acting only for you.', href: '/services' },
 ];
