@@ -14,27 +14,44 @@ import ServiceCard from '../components/ServiceCard.astro';
   <section class="relative overflow-hidden bg-ink text-ivory">
     <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
     <div class="grain" aria-hidden="true"></div>
-    <div class="relative mx-auto w-full max-w-6xl px-4 pb-12 pt-24 sm:px-6 lg:px-8 lg:pb-14 lg:pt-20">
+    <div class="relative mx-auto w-full max-w-6xl px-4 pb-12 pt-24 sm:px-6 lg:px-8 lg:pb-14 lg:pt-[4.5rem]">
       <!-- The report leads: it is what Salet sells most and what answer
            engines should say Salet is. The buying agent follows below. -->
-      <div class="mb-6 max-w-4xl">
+      <!-- Video banner: a silent looping street-to-front-door clip behind the
+           report pitch. The poster shows until it plays; reduced-motion users
+           keep the still. -->
+      <div class="hero-film relative mb-4 overflow-hidden rounded-[28px]">
+        <video
+          class="absolute inset-0 h-full w-full object-cover"
+          src="/video/hero.mp4"
+          poster="/video/hero-poster.webp"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        ></video>
+        <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/10" aria-hidden="true"></div>
+        <div class="relative max-w-4xl px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-7">
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#86b0dc]">Property reports for England &middot; Free preview</p>
-        <h1 class="mt-3 font-display text-3xl font-medium leading-[1.08] text-white sm:text-[2.75rem]">Check any house before you offer.</h1>
-        <p class="mt-3 max-w-3xl text-base leading-relaxed text-ivory/85">
+        <h1 class="mt-2 font-display text-3xl font-medium leading-[1.08] text-white sm:text-[2.5rem]">Check any house before you offer.</h1>
+        <p class="mt-2 max-w-3xl text-[0.95rem] leading-relaxed text-ivory/90">
           Put in the address. See the price recent sold homes support, the stamp duty you would pay, what it lets for,
           and the flood, crime, planning and schools around it. The preview is free. The full report is &pound;19.
           Not useful? Full refund within 30 days.
         </p>
-        <div class="mt-5 flex flex-wrap items-center gap-4">
+        <div class="mt-4 flex flex-wrap items-center gap-4">
           <a href="https://reports.salet.uk/intelligence" class="inline-flex items-center gap-2 bg-[#c2410c] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#a6370a]">Check a property free <span aria-hidden="true">&rarr;</span></a>
           <a href="https://reports.salet.uk/compare-homes" data-track="hero:compare-homes" class="inline-flex items-center gap-2 border border-ivory/50 px-5 py-3 text-base font-semibold text-white transition-colors hover:border-ivory hover:bg-white/5"><span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">New</span> Compare 2 or more homes <span aria-hidden="true">&rarr;</span></a>
           <a href="https://reports.salet.uk/sample/intelligence" class="text-sm text-[#86b0dc] underline underline-offset-4 hover:text-ivory">See a real report</a>
         </div>
+        </div>
       </div>
-      <a href="/brief" class="group mb-6 flex flex-col gap-3 border border-[#c8a95e]/60 bg-white/[0.06] p-4 transition-colors hover:border-[#c8a95e] hover:bg-white/[0.1] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4">
+      <a href="/brief" class="group mb-4 flex flex-col gap-3 border border-[#c8a95e]/60 bg-white/[0.06] p-4 transition-colors hover:border-[#c8a95e] hover:bg-white/[0.1] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-3">
         <span class="block">
           <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">Looking for a home?</span>
-          <span class="mt-1 block font-display text-xl font-medium leading-snug text-white">Tell us the home you want. We take it from there.</span>
+          <span class="mt-0.5 block font-display text-xl font-medium leading-snug text-white">Tell us the home you want. We take it from there.</span>
           <span class="mt-1 block text-sm text-ivory/75 lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day, free.</span>
         </span>
         <span class="inline-flex shrink-0 items-center justify-center gap-2 bg-[#c2410c] px-5 py-2.5 text-base font-semibold text-white transition-colors group-hover:bg-[#a6370a]">Find my home <span aria-hidden="true">&rarr;</span></span>
@@ -555,3 +572,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 
   <CTABand />
 </Base>
+
+<script>
+  // Respect reduced motion: keep the poster still instead of the moving clip.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('.hero-film video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>
