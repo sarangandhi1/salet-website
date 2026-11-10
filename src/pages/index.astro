@@ -7,7 +7,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 ---
 <Base
   title="Check any house before you offer: property reports for England | Salet"
-  description="Property reports for any house in England: the price sold homes support, stamp duty, rent, flood, crime, planning and schools. Free preview, full report £19, 30-day refund. Or a buyer-only agent to do it all."
+  description="Property reports for any house in England: the price sold homes support, stamp duty, rent, flood, crime, planning and schools. Basic report £9, full report £19, 30-day refund. Or a buyer-only agent to do it all."
 >
   <!-- Hero: "Which one are you?" Every kind of visitor sees their category
        first. The buying-agent message sits right under the chooser. -->
@@ -34,15 +34,15 @@ import ServiceCard from '../components/ServiceCard.astro';
         ></video>
         <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/10" aria-hidden="true"></div>
         <div class="relative max-w-4xl px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-7">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#86b0dc]">Property reports for England &middot; Free preview</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#86b0dc]">Property reports for England &middot; From &pound;9</p>
         <h1 class="mt-2 font-display text-3xl font-medium leading-[1.08] text-white sm:text-[2.5rem]">Check any house before you offer.</h1>
         <p class="mt-2 max-w-3xl text-[0.95rem] leading-relaxed text-ivory/90">
           Put in the address. See the price recent sold homes support, the stamp duty you would pay, what it lets for,
-          and the flood, crime, planning and schools around it. The preview is free. The full report is &pound;19.
+          and the flood, crime, planning and schools around it. The Basic report is &pound;9. The full report is &pound;19.
           Not useful? Full refund within 30 days.
         </p>
         <div class="mt-4 flex flex-wrap items-center gap-4">
-          <a href="https://reports.salet.uk/intelligence" class="inline-flex items-center gap-2 bg-[#c2410c] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#a6370a]">Check a property free <span aria-hidden="true">&rarr;</span></a>
+          <a href="https://reports.salet.uk/intelligence" class="inline-flex items-center gap-2 bg-[#c2410c] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#a6370a]">Check a property <span aria-hidden="true">&rarr;</span></a>
           <a href="https://reports.salet.uk/compare-homes" data-track="hero:compare-homes" class="inline-flex items-center gap-2 border border-ivory/50 px-5 py-3 text-base font-semibold text-white transition-colors hover:border-ivory hover:bg-white/5"><span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">New</span> Compare 2 or more homes <span aria-hidden="true">&rarr;</span></a>
           <a href="https://reports.salet.uk/sample/intelligence" class="text-sm text-[#86b0dc] underline underline-offset-4 hover:text-ivory">See a real report</a>
         </div>
@@ -52,7 +52,7 @@ import ServiceCard from '../components/ServiceCard.astro';
         <span class="block">
           <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">Looking for a home?</span>
           <span class="mt-0.5 block font-display text-xl font-medium leading-snug text-white">Tell us the home you want. We take it from there.</span>
-          <span class="mt-1 block text-sm text-ivory/75 lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day, free.</span>
+          <span class="mt-1 block text-sm text-ivory/75 lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day.</span>
         </span>
         <span class="inline-flex shrink-0 items-center justify-center gap-2 bg-[#c2410c] px-5 py-2.5 text-base font-semibold text-white transition-colors group-hover:bg-[#a6370a]">Find my home <span aria-hidden="true">&rarr;</span></span>
       </a>
@@ -121,16 +121,15 @@ import ServiceCard from '../components/ServiceCard.astro';
     </div>
   </section>
 
-  <!-- Free price check: the lead-magnet marquee feature -->
-  <!-- THE flagship tool. Three near-identical "free tool" bands used to sit
-       here; they are consolidated into one compact row below so the Buyer
-       Intelligence Report gets the prime slot on its own. -->
+  <!-- The Buyer Intelligence Report: the flagship product, in the prime slot.
+       The three quick calculator tools that used to follow it were retired
+       on 10 Nov 2026: every product is now paid for before it runs. -->
   <section id="buyer-intelligence" class="relative overflow-hidden bg-ink text-ivory">
     <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
     <div class="grain" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
       <p class="reveal text-xs uppercase tracking-[0.28em] text-[#86b0dc]">
-        What should I know about this property? &middot; Free preview
+        What should I know about this property? &middot; Basic &pound;9 or full &pound;19
       </p>
       <h2 class="reveal reveal-d1 mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] sm:text-5xl">
         Everything the evidence says about a UK property, in one report.
@@ -178,50 +177,6 @@ import ServiceCard from '../components/ServiceCard.astro';
         </a>
         <a href="https://reports.salet.uk/sample/intelligence" class="text-sm text-[#86b0dc] underline underline-offset-4 hover:text-ivory">
           Read a full sample report first
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- The three quick tools, condensed. They were three full-width bands with
-       the same eyebrow and the same closing line; as a row they read as a set
-       and stop competing with the report above. -->
-  <section class="relative overflow-hidden border-t border-line-dark bg-ink text-ivory">
-    <div class="grain" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
-      <p class="reveal text-xs uppercase tracking-[0.28em] text-[#e8a06b]">
-        Three quick tools &middot; No account needed
-      </p>
-      <h2 class="reveal reveal-d1 mt-4 max-w-2xl font-display text-3xl font-medium leading-[1.1]">
-        Or answer one question in under a minute.
-      </h2>
-
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <a href="/price-check" class="reveal reveal-d1 group block border border-line-dark p-6 transition-colors hover:border-[#e8a06b]">
-          <h3 class="font-display text-xl font-medium">What is this property worth?</h3>
-          <p class="mt-3 text-sm leading-relaxed text-ivory/75">
-            A postcode and an asking price. We answer from recent sold prices nearby, and the full
-            negotiation playbook lands in your inbox.
-          </p>
-          <span class="mt-4 inline-block text-sm text-[#e8a06b] group-hover:underline">Check what it is worth &rarr;</span>
-        </a>
-
-        <a href="/deal-check" class="reveal reveal-d2 group block border border-line-dark p-6 transition-colors hover:border-[#e8a06b]">
-          <h3 class="font-display text-xl font-medium">What should I offer?</h3>
-          <p class="mt-3 text-sm leading-relaxed text-ivory/75">
-            For a home that needs work. We value it from sold prices, cost the work, and take one
-            off the other. No buffers, just the arithmetic.
-          </p>
-          <span class="mt-4 inline-block text-sm text-[#e8a06b] group-hover:underline">Work out an offer &rarr;</span>
-        </a>
-
-        <a href="/refurb-check" class="reveal reveal-d3 group block border border-line-dark p-6 transition-colors hover:border-[#e8a06b]">
-          <h3 class="font-display text-xl font-medium">What will the refurb cost?</h3>
-          <p class="mt-3 text-sm leading-relaxed text-ivory/75">
-            Tick what the property needs, from a new kitchen to a full rewire. Costed from our
-            standing cost book, line by line.
-          </p>
-          <span class="mt-4 inline-block text-sm text-[#e8a06b] group-hover:underline">Cost a refurb &rarr;</span>
         </a>
       </div>
     </div>

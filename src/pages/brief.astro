@@ -5,7 +5,7 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="Tell Us What You Want to Buy | Free Property Brief | Salet"
+  title="Tell Us What You Want to Buy | Property Brief | Salet"
   description="Tell Salet what home you are looking for in under a minute: area, budget, bedrooms and timing. Type it or leave a voice note. Saran replies within one working day."
 >
   <section class="bf-wrap">
@@ -225,7 +225,7 @@ import Base from '../layouts/Base.astro';
       var wa = 'https://wa.me/447878781100?text=' + encodeURIComponent('Hi Saran, I have just sent my property brief' + (a.area ? ' for ' + a.area : '') + '.');
       card.innerHTML = '<div class="bf-done"><div class="bf-step">All sent</div><div class="bf-q">Thanks' + (name ? ' ' + esc(name.split(' ')[0]) : '') + ', we have your brief</div>' +
         '<p>Saran will read it and reply within one working day. A copy of the confirmation is on its way to your inbox.</p>' +
-        '<a class="bf-wa" href="' + wa + '">Message Saran on WhatsApp</a><a class="bf-pc" href="/price-check/">Seen a home already? Free price check</a></div>';
+        '<a class="bf-wa" href="' + wa + '">Message Saran on WhatsApp</a><a class="bf-pc" href="https://reports.salet.uk/intelligence">Seen a home already? Check it from £9</a></div>';
     }
     render();
   })();

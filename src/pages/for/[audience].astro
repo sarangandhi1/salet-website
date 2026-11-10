@@ -54,19 +54,6 @@ const schema = [
   <TrustStrip />
 
   {
-    a.free && (
-      <section class="rp-section" style="padding-top:0" id="free">
-        <div class="rp-wrap">
-          <h2 class="rp-h2" style="font-size:1.5rem">Free checks, no account needed</h2>
-          <div class="rp-chips" style="margin-top:1rem">
-            {a.free.map((t) => <a href={t.href}>{t.label}</a>)}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  {
     a.explainer && (
       <section class="rp-section" style="padding-top:0" id="how-much-to-offer">
         <div class="rp-wrap" style="max-width:48rem">

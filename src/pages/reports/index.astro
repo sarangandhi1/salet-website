@@ -19,15 +19,15 @@ const schema = [
 // Everything else is one tap away in "Compare everything".
 ---
 <ReportsShell
-  title="Property report prices from £19, free preview | Salet"
-  description="Check one home for £19, see the full cost of buying it, or compare a shortlist. Every report starts with a free preview. One payment, no subscription."
+  title="Property report prices from £9 | Salet"
+  description="Check one home from £9, see the full cost of buying it, or compare a shortlist. One payment, no subscription, full refund within 30 days if not useful."
   schema={schema}
 >
   <header class="rp-hero" style="padding-bottom:3rem">
     <div class="rp-wrap" style="text-align:center">
       <div style="display:flex;justify-content:center"><Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: 'Reports and prices' }]} /></div>
       <p class="rp-eyebrow">Pricing</p>
-      <h1 class="rp-h1" style="margin-left:auto;margin-right:auto">Simple prices. Free preview first.</h1>
+      <h1 class="rp-h1" style="margin-left:auto;margin-right:auto">Simple prices. From £9.</h1>
       <p class="rp-lede" style="margin:0 auto">
         Pick what you are doing. Every report shows you real data on your address before you pay, and you pay once.
         <a class="rp-link" href={SAMPLE_INTEL}>See a sample report</a>
@@ -46,7 +46,7 @@ const schema = [
         proof={SALET_PROOF}
         banner={SALET_BANNER}
         back="https://salet.uk/reports"
-        sticky={{ label: 'Check a property: free preview', href: 'https://reports.salet.uk/intelligence' }}
+        sticky={{ label: 'Check a property from £9', href: 'https://reports.salet.uk/intelligence' }}
       />
     </div>
   </section>

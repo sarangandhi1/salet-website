@@ -1,5 +1,5 @@
 ---
-// The free preview, started from the page a visitor lands on: postcode and
+// The property report, started from the page a visitor lands on: postcode and
 // house number go straight to the property report form on reports.salet.uk,
 // which fills them in from the link. Ad visitors used to get a button here,
 // then a second page with the form two phone screens down. Sits on a dark
@@ -8,7 +8,7 @@ interface Props {
   button?: string;
   note?: string;
 }
-const { button = 'See it free', note = 'Free preview first, no card. Full report £19 only if you want it.' } = Astro.props;
+const { button = 'Check this home', note = 'Basic report £9 or full report £19. Full refund within 30 days if not useful.' } = Astro.props;
 ---
 <form class="sb" method="get" action="https://reports.salet.uk/intelligence" data-start-box>
   <div class="sb-row">

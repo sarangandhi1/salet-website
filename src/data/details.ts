@@ -21,7 +21,7 @@ export const risesTo = (to: string) => `Rising to ${to} on ${RISE_DATE}`;
 // /images/art/<slug>-800.webp and -1168.webp on both sites. Products without
 // art fall back to the report page visual.
 const ART: Record<string, string> = {
-  free: 'free-preview', bundle: 'bundle', 'investor-pass': 'investor-pass', agent: 'buying-agent',
+  basic: 'free-preview', bundle: 'bundle', 'investor-pass': 'investor-pass', agent: 'buying-agent',
   intelligence: 'buyer-intelligence', legal: 'legal-pack', decision: 'decision-pack', five: 'five-pack',
   'deal-analyser': 'deal-analyser', hmo: 'hmo-viability', 'auction-lot': 'auction-lot', shortlist: 'home-search',
   'compare-homes': 'five-pack',
@@ -51,10 +51,10 @@ const img = (n: string) => `/images/reports/${n}.webp`;
 const PDF = 'On screen and as a PDF by email, ready in minutes';
 
 export const DETAILS: Record<string, Detail> = {
-  free: {
+  basic: {
     icon: 'eye', device: 'doc', img: img('price-paid'),
-    deliverables: ['Your street and its energy certificate', 'What the Land Registry has recorded there', 'Who lives around here', 'What homes nearby rent for'],
-    format: 'On screen, usually in under a minute',
+    deliverables: ['The energy certificate and floor area', 'Every Land Registry sale at the address and in the postcode', 'Who lives around here', 'What homes nearby rent for'],
+    format: 'On screen and by email, ready in minutes. Upgrade to the full report for £10',
   },
   intelligence: {
     icon: 'house', device: 'doc', img: img('valuation'),
@@ -99,7 +99,7 @@ export const DETAILS: Record<string, Detail> = {
   agent: {
     icon: 'handshake', device: 'icon',
     deliverables: ['We search, view and check homes for you', 'We negotiate the price on your side', 'We manage the purchase through to completion'],
-    format: 'Starts with a free call',
+    format: 'Starts with a 30 minute call, no obligation',
   },
   'deal-analyser': {
     icon: 'calculator', device: 'doc', img: img('rent'),
@@ -138,7 +138,7 @@ export const DETAILS: Record<string, Detail> = {
   },
   'letter-kit': {
     icon: 'envelope', device: 'doc', img: img('letter-kit'),
-    deliverables: ['A ready letter for each reason an owner might sell', 'This week’s homes as a mail merge spreadsheet', 'Free with the Sourcer Pass'],
+    deliverables: ['A ready letter for each reason an owner might sell', 'This week’s homes as a mail merge spreadsheet', 'Included in the Sourcer Pass'],
     format: 'Download each week for 30 days',
   },
   'demand-board': {

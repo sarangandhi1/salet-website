@@ -7,7 +7,7 @@ import StartBox from '../components/StartBox.astro';
 
 // Ad landing page for the £19 property report. Deliberately not in the main
 // nav: paid traffic lands here and the page has one job, which is to get a
-// stranger from "is this house worth it?" to the free preview. No consulting
+// stranger from "is this house worth it?" to the order page. No consulting
 // pitch above the fold, and the hero carries no reveal animation so the
 // button is on screen the moment the page paints on a phone.
 //
@@ -24,11 +24,11 @@ const tiles = INTEL_FEATURES.slice(0, 9);
 const faqs = [
   {
     q: 'How fast is it?',
-    a: 'Minutes. The free preview usually takes under a minute. Once you unlock the full report it takes a minute or two more. It lands in your account and in your inbox.',
+    a: 'Minutes. Pay, and the report usually lands in a minute or two, in your account and in your inbox.',
   },
   {
     q: 'What if there is no data for my address?',
-    a: 'Where a source has nothing for an address, the report says so rather than leaving it out. You see the free preview before you pay anything. If a report fails to run, or comes back with no data, we refund it in full.',
+    a: 'Where a source has nothing for an address, the report says so rather than leaving it out. If a report fails to run, or comes back with no data, we refund it in full.',
   },
   {
     q: 'Can I get a refund?',
@@ -48,9 +48,9 @@ const faqs = [
 ---
 <Base
   title="Is this house overpriced? House price check, £19 | Salet"
-  description="Check any house in England before you offer: sold prices on the street, stamp duty, rent, flood, crime and schools. Free preview, full report £19."
+  description="Check any house in England before you offer: sold prices on the street, stamp duty, rent, flood, crime and schools. Basic report £9, full report £19."
   schema={[
-    productSchema(bySlug('buyer-intelligence'), 'https://salet.uk/check/', 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools for one address in England. Free preview first, 30-day full refund.'),
+    productSchema(bySlug('buyer-intelligence'), 'https://salet.uk/check/', 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools for one address in England. Full report £19, 30-day full refund.'),
     faqSchema([{ q: OFFER_EXPLAINER.heading, a: OFFER_EXPLAINER.answer }, ...OFFER_EXPLAINER.faqs, ...faqs]),
   ]}
 >
@@ -74,7 +74,7 @@ const faqs = [
         </p>
       </div>
       <p class="mt-4 text-sm text-ivory/80">
-        <strong class="font-medium text-ivory">Free preview first.</strong> Not useful? Full refund, no questions.
+        <strong class="font-medium text-ivory">Or the Basic report for £9.</strong> Not useful? Full refund within 30 days, no questions.
       </p>
       <CardPay tone="dark" align="start" />
       <p class="mt-5 text-sm">
@@ -128,17 +128,17 @@ const faqs = [
         <div class="border border-line bg-ivory p-7 sm:p-9">
           <h2 class="font-display text-2xl font-medium">How it works</h2>
           <ol class="mt-6 space-y-5 text-sm leading-relaxed text-stone">
-            <li><strong class="text-ink">1. Enter the postcode.</strong> And the house number if you have it. A free account keeps your reports together.</li>
-            <li><strong class="text-ink">2. Read the free preview.</strong> The street, the energy certificate, what the Land Registry has recorded and the local rents. Usually under a minute.</li>
-            <li><strong class="text-ink">3. Unlock the full report for {PRICE}.</strong> Only if you want it. Ready in a minute or two, with a PDF by email.</li>
+            <li><strong class="text-ink">1. Enter the postcode.</strong> And the house number if you have it. Your account keeps your reports together.</li>
+            <li><strong class="text-ink">2. Pick Basic or full.</strong> The Basic report (£9) is the public record: the energy certificate and floor area, every Land Registry sale at the address and in the postcode, the neighbourhood type and local rents. The full report ({PRICE}) adds the price range, every comparable sale, stamp duty, flood, crime, planning and schools.</li>
+            <li><strong class="text-ink">3. Pay and read it.</strong> Ready in a minute or two, with a PDF by email. Started with Basic? Upgrade to full for £10.</li>
           </ol>
           <a
             href={REPORT_URL}
             class="ck-cta mt-8 flex items-center justify-center bg-[#c2410c] px-6 py-4 text-base font-medium text-ivory transition-colors duration-200 hover:bg-[#a6370a]"
           >
-            Start the free preview
+            Check this home
           </a>
-          <p class="mt-3 text-center text-xs text-stone">Full report {PRICE}. No subscription.</p>
+          <p class="mt-3 text-center text-xs text-stone">Basic £9, full report {PRICE}. No subscription.</p>
           <CardPay />
         </div>
       </div>
@@ -194,7 +194,7 @@ const faqs = [
       >
         Check a property
       </a>
-      <p class="mt-4 text-sm text-ivory/75">Free preview first. Full report {PRICE}.</p>
+      <p class="mt-4 text-sm text-ivory/75">Basic £9 or full {PRICE}. Full refund within 30 days if not useful.</p>
       <CardPay tone="dark" />
     </div>
   </section>

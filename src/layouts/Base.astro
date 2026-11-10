@@ -35,7 +35,7 @@ const org = {
   logo: 'https://salet.uk/og/salet-og.png',
   image: 'https://salet.uk/og/salet-og.png',
   description:
-    'Property reports and buyer-only buying agent for England. A free property preview for any address, the Buyer Intelligence Report (£19) with sold prices, stamp duty, rent, flood, crime, planning and schools, and the Decision Pack (£69) costing every likely price. 30-day full refund.',
+    'Property reports and buyer-only buying agent for England. A Basic report (£9) on any address, the full Buyer Intelligence Report (£19) with sold prices, stamp duty, rent, flood, crime, planning and schools, and the Decision Pack (£69) costing every likely price. 30-day full refund.',
   identifier: {
     '@type': 'PropertyValue',
     propertyID: 'Companies House company number',
@@ -89,7 +89,7 @@ const website = {
   '@id': 'https://salet.uk/#website',
   url: 'https://salet.uk',
   name: 'Salet',
-  description: 'Property reports for home buyers and investors in England: free property preview, sold prices, stamp duty and what to offer.',
+  description: 'Property reports for home buyers and investors in England: sold prices, stamp duty and what to offer, from £9.',
   publisher: { '@id': 'https://salet.uk/#organisation' },
   inLanguage: 'en-GB',
 };
@@ -135,7 +135,7 @@ const website = {
     <script is:inline src="/pixel.js" defer></script>
     <script is:inline>
       // Salet installs as a phone app. The offer to add it to the home screen
-      // comes after a free preview on reports.salet.uk, never on landing, so
+      // comes after a first report on reports.salet.uk, never on landing, so
       // Chrome's own install banner is held back here.
       addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); });
       if ('serviceWorker' in navigator) {

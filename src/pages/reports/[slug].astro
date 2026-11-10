@@ -39,7 +39,7 @@ const schema = [productSchema(p, `https://salet.uk/reports/${slug}/`, pg.lede)];
       </div>
       {p.rises && <p class="rp-lede" style="font-size:0.85rem;margin:0.6rem 0 0;color:#f1d58a">Launch price. {risesTo(p.rises)}.</p>}
       <p class="rp-lede" style="font-size:0.92rem;margin:1rem 0 0">
-        {p.soon ? 'Launching this week. Until then, start with the free property preview.' : 'Free preview first. Pay only if you want the full report.'}
+        {p.soon ? 'Launching this week. Until then, start with the £9 Basic report.' : 'Paid before it runs. Full refund within 30 days if not useful.'}
         <a class="rp-link" href={pg.sample}>See a full sample report</a>
       </p>
       </div>
@@ -79,7 +79,7 @@ const schema = [productSchema(p, `https://salet.uk/reports/${slug}/`, pg.lede)];
       <div class="rp-fact"><h3>The problem it solves</h3><p>{pg.problem}</p></div>
       <div class="rp-fact"><h3>How it is produced</h3><p>{pg.how}</p></div>
       <div class="rp-fact"><h3>Delivery</h3><p>{pg.delivery}</p></div>
-      <div class="rp-fact"><h3>Our promise</h3><p><strong>Not useful? Full refund, no questions.</strong> And you see a free preview of your own address before you pay a penny.</p></div>
+      <div class="rp-fact"><h3>Our promise</h3><p><strong>Not useful? Full refund, no questions.</strong> Ask within 30 days of paying and you get every penny back.</p></div>
       <div class="rp-fact"><h3>Price</h3><p><strong>{p.price}</strong>{p.rises ? ` launch price, rising to ${p.rises} on 1 December 2026` : ''}. One payment by card, no subscription.</p></div>
     </div>
   </section>

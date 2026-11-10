@@ -17,19 +17,12 @@ const groups = AUDIENCES.map((a) => ({
   href: `/for/${a.slug}`,
   label: `For ${a.label.toLowerCase()}`,
   items: [
-    ...(a.free
-      ? [
-          { href: `/for/${a.slug}#free`, label: 'Free checks', price: 'Free' },
-          { href: '/area', label: 'Is my area getting busier?', price: 'Free' },
-        ]
-      : []),
-    ...a.products
-      .filter((p) => p.key !== 'free')
-      .map((p) => ({
-        href: p.slug ? `/reports/${p.slug}` : `/for/${a.slug}#${p.key}`,
-        label: p.name,
-        price: p.notify ? 'Soon' : p.price,
-      })),
+    ...a.products.map((p) => ({
+      href: p.slug ? `/reports/${p.slug}` : `/for/${a.slug}#${p.key}`,
+      label: p.name,
+      price: p.notify ? 'Soon' : p.price,
+    })),
+    ...(a.area ? [{ href: '/area', label: 'Is my area getting busier?', price: 'Area data' }] : []),
   ],
 })).concat(
   [

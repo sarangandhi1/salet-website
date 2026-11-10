@@ -112,7 +112,7 @@ export const OFFER_EXPLAINER = {
     },
     {
       q: 'How do I find the sold prices on my street?',
-      a: 'HM Land Registry records the price paid for every home sold in England since 1995. The free Salet preview pulls those sales for your address, and the full report sets them against floor area from the energy certificate register, so you compare like with like.',
+      a: 'HM Land Registry records the price paid for every home sold in England since 1995. The Salet Basic report (£9) lists those sales for the address, and the full report (£19) sets them against floor area from the energy certificate register, so you compare like with like.',
     },
     {
       q: 'Should I offer below the asking price?',

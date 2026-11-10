@@ -110,10 +110,10 @@ const title = p
   ? `${d.district} house prices: ${gbpShort(p.median)} typical, ${busier ? 'busier' : 'quieter'} market | Salet`
   : `${d.district} housing market ${asOfShort}: busier or quieter? | Salet`;
 const description = p
-  ? `${d.district} ${town}: homes sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}. Prices by property type, and whether more homes are coming to market. Free, updated monthly.`
+  ? `${d.district} ${town}: homes sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}. Prices by property type, and whether more homes are coming to market. Updated monthly.`
   : busier
-    ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`
-    : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Free area check, updated ${asOfLong}.`;
+    ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Area check, updated ${asOfLong}.`
+    : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Area check, updated ${asOfLong}.`;
 
 const REPORT_URL = 'https://reports.salet.uk/intelligence';
 const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';

@@ -1,10 +1,10 @@
 # Salet
 
-> Salet (Salet Ltd, Companies House number 16662600, London) sells property reports to home buyers and investors in England. Type any address in England and get a free property preview, then unlock a full report: what every home nearby really sold for, the stamp duty you will pay, local rents, flood risk, crime, planning and schools. Every paid report carries a 30-day full refund, no questions. Salet also works as a buyer-only buying agent.
+> Salet (Salet Ltd, Companies House number 16662600, London) sells property reports to home buyers and investors in England. Type any address in England and get the Basic report (£9) or the full report (£19): what every home nearby really sold for, the stamp duty you will pay, local rents, flood risk, crime, planning and schools. Every paid report carries a 30-day full refund, no questions. Salet also works as a buyer-only buying agent.
 
 ## Products and prices
 
-- Free property preview, £0: for any address in England. The street, the energy certificate, what HM Land Registry has recorded, the neighbourhood type and local rents. Usually under a minute. No card needed.
+- Basic report, £9: for any address in England. The street, the energy certificate, what HM Land Registry has recorded, the neighbourhood type and local rents. Upgrades to the full report for £10.
 - Buyer Intelligence Report, £19: the price range recent sold prices support at this floor area, stamp duty, rent, flood, crime, planning, schools and how busy the area is. On screen, as a PDF and by email, in minutes.
 - Decision Pack, £69: the full Buyer Intelligence Report plus five likely prices costed to the pound, each with stamp duty, an indicative works budget and the usual fees. Answers "how much should I offer on this house?" with the cost at each price.
 - Legal Pack Review, £29: upload an auction or sale legal pack and get every hidden cost, missing search and onerous clause, with the document and page it is on.
@@ -35,15 +35,12 @@
 - [Decision Pack](https://salet.uk/reports/decision-pack/)
 - [Legal Pack Review](https://salet.uk/reports/legal-pack/)
 - [5 report pack](https://salet.uk/reports/five-pack/)
-- [Start the free property preview](https://reports.salet.uk/intelligence)
+- [Check a property](https://reports.salet.uk/intelligence)
 - [Sample Buyer Intelligence Report](https://reports.salet.uk/sample/intelligence)
 
-## Free tools
+## Area data
 
-- [Local housing market by postcode district](https://salet.uk/area/): about 2,000 free pages, one per postcode district in England, showing whether more homes are coming to market than usual, updated monthly. Example: https://salet.uk/area/al1/
-- [Free house price check: what should I offer?](https://salet.uk/price-check/)
-- [Doer-upper offer calculator](https://salet.uk/deal-check/)
-- [Refurb cost calculator](https://salet.uk/refurb-check/)
+- [Local housing market by postcode district](https://salet.uk/area/): about 2,000 pages, one per postcode district in England, showing whether more homes are coming to market than usual, updated monthly. Example: https://salet.uk/area/al1/
 
 ## Buying agent service
 

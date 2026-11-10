@@ -7,8 +7,22 @@
 import type { Tab } from '../components/PricingBoard.astro';
 import { APP, SAMPLE_INTEL, SAMPLE_LEGAL } from './reports';
 
-const FREE_FIRST = 'Free preview first. Pay only if you want the rest.';
+const RISK = 'Basic £9 or full £19. Full refund within 30 days if not useful.';
+const REFUND_30 = 'Paid before it runs. Full refund within 30 days if not useful.';
 const ONE_PAYMENT = 'One payment by card. No subscription, no auto renew.';
+
+const basic = {
+  id: 'basic',
+  name: 'Start with the public record',
+  promise: 'The facts on any address for £9. Upgrade to the full report for £10 whenever you like.',
+  price: '£9',
+  unit: 'per report',
+  ticks: ['Energy certificate and floor area', 'Every Land Registry sale at the address and in the postcode', 'Neighbourhood type and local rents'],
+  cta: 'Get the Basic report',
+  href: `${APP}/intelligence`,
+  risk: RISK,
+  img: '/images/reports/price-paid.webp',
+};
 
 const report = {
   id: 'intelligence',
@@ -19,7 +33,7 @@ const report = {
   ticks: ['The price range recent sales support', 'Stamp duty you will really pay', 'Rent, flood, crime, planning, schools'],
   cta: 'Check a property',
   href: `${APP}/intelligence`,
-  risk: FREE_FIRST,
+  risk: RISK,
   img: '/images/reports/valuation.webp',
 };
 
@@ -27,10 +41,10 @@ const agent = {
   id: 'agent',
   name: 'Let a pro fight on price for you',
   promise: 'We find it, check it and negotiate hard. You just move in.',
-  price: 'Free call',
-  unit: 'fee agreed before we start',
+  price: '30 min call',
+  unit: 'no obligation, fee agreed before we start',
   ticks: ['Search, viewings and checks done for you', 'We negotiate the price on your side', 'Managed through to completion'],
-  cta: 'Book a free call',
+  cta: 'Book a call',
   href: '/contact',
   risk: 'Retainer deducted from the success fee, which is due only at exchange.',
 };
@@ -40,6 +54,7 @@ export const SALET_TABS: Tab[] = [
     id: 'one-home',
     label: 'Checking one home',
     cards: [
+      basic,
       report,
       {
         id: 'decision',
@@ -51,7 +66,7 @@ export const SALET_TABS: Tab[] = [
         ticks: ['The full Buyer Intelligence Report', 'Five prices, each with stamp duty, works and fees', 'A works budget, line by line'],
         cta: 'Get my Decision Pack',
         href: `${APP}/decision-pack`,
-        risk: FREE_FIRST,
+        risk: REFUND_30,
         img: '/images/reports/dp-scenarios.webp',
       },
       agent,
@@ -117,7 +132,7 @@ export const SALET_TABS: Tab[] = [
         ticks: ['Every finding cited to its page', 'What the pack leaves out', 'Questions to send your solicitor'],
         cta: 'Upload a legal pack',
         href: `${APP}/legal-pack`,
-        risk: FREE_FIRST,
+        risk: REFUND_30,
         img: '/images/reports/legal-findings.webp',
       },
       {
@@ -151,7 +166,7 @@ export const PAGE_CARD: Record<string, ReturnType<typeof cardFor>> = {
 };
 
 export const SALET_COMPARE = [
-  { name: 'Free preview', price: '£0', what: 'The street, energy certificate, Land Registry record, neighbourhood type and local rents for one address.' },
+  { name: 'Basic report', price: '£9', what: 'Energy certificate and floor area, every Land Registry sale at the address and in the postcode, neighbourhood type and local rents. Upgrade to full for £10.' },
   { name: 'Buyer Intelligence Report', price: '£19', what: 'Price range from recent sales, comparables, stamp duty, rent, flood, crime, planning, schools, area activity.', href: '/reports/buyer-intelligence' },
   { name: 'Legal Pack Review', price: '£29', what: 'Every finding with its page, what the pack leaves out, questions for your solicitor.', href: '/reports/legal-pack' },
   { name: 'Auction bundle', price: '£39', what: 'One Buyer Intelligence Report and one Legal Pack Review.' },
@@ -163,9 +178,9 @@ export const SALET_COMPARE = [
 ];
 
 export const SALET_FAQS = [
-  { q: 'What do I get for free?', a: 'A real preview of your address: the street, the energy certificate, what the Land Registry has recorded, the neighbourhood type and local rents. You pay only if you want the full report.' },
+  { q: 'Basic or full?', a: 'The Basic report (£9) is the public record on the address: the energy certificate and floor area, every Land Registry sale at the address and in the postcode, the neighbourhood type and local rents. The full report (£19) adds the price range the sold evidence supports, every comparable sale, stamp duty, flood, crime, planning and schools. You pick on the order page after you enter the address, and a Basic report upgrades to full for £10.' },
   { q: 'Is this a subscription?', a: 'No. Every report is one payment by card. Nothing renews.' },
-  { q: 'How fast is it?', a: 'Minutes. The preview usually takes under a minute, the full report a minute or two more, on screen, as a PDF and by email.' },
+  { q: 'How fast is it?', a: 'Minutes. Pay, and the report usually lands in a minute or two, on screen, as a PDF and by email.' },
   { q: 'What if there is no data for my address?', a: 'Where a source has nothing, the report says so. If a report fails to run, or comes back with no data, we refund it in full.' },
   { q: 'Can I get a refund?', a: `Yes. Not useful? Full refund, no questions: ask within 30 days of paying and we refund the full amount, with no reason needed. A credit you have not used can also be cancelled within 14 days, and a report that fails to run or comes back with no data is refunded in full. <a href="${APP}/terms#refunds">Refund terms</a>.` },
 ];
