@@ -35,8 +35,8 @@
 - [Decision Pack](https://salet.uk/reports/decision-pack/)
 - [Legal Pack Review](https://salet.uk/reports/legal-pack/)
 - [5 report pack](https://salet.uk/reports/five-pack/)
-- [Check a property](https://reports.salet.uk/intelligence)
-- [Sample Buyer Intelligence Report](https://reports.salet.uk/sample/intelligence)
+- [Check a property](https://salet.uk/intelligence)
+- [Sample Buyer Intelligence Report](https://salet.uk/sample/intelligence)
 
 ## Area data
 

@@ -110,6 +110,8 @@ export interface DistrictPrices {
   lower_quartile: number;
   upper_quartile: number;
   median_change_pct: number | null;
+  /** Median for the 12 months to prices.baseline_2020, new builds left out. */
+  median_2020?: number;
   new_build_pct: number;
   leasehold_pct: number;
   rank_in_area?: number;
@@ -121,6 +123,7 @@ export const prices = priceData as {
   period: string;
   period_end: string;
   previous_period: string;
+  baseline_2020?: string;
   built: string;
   source: string;
   areas: Record<string, { sales: number; median: number }>;

@@ -1,6 +1,7 @@
 ---
 // Ad and campaign tags (utm_*, and Meta's fbclid) on the link that brought a
-// visitor are carried onto every link to reports.salet.uk, which keeps them
+// visitor are carried onto every link to the reports app (its paths on
+// salet.uk since 11 Nov 2026; see router/index.js), which keeps them
 // on the order, so a sale can be traced to the ad that made it. Kept for the
 // visit only (sessionStorage), never sent anywhere else.
 ---
@@ -14,16 +15,17 @@
     KEYS.forEach(function (k) { if (q.get(k)) fresh[k] = q.get(k).slice(0, 200); });
     if (Object.keys(fresh).length) { tags = fresh; try { sessionStorage.setItem('salet_utm', JSON.stringify(tags)); } catch (e) {} }
     if (!Object.keys(tags).length) return;
+    var APP = /^\/(account|api|auth|checkout|decision-pack|intelligence|legal-pack|library|login|pay|pricing|pro|report|sample|signup|watch|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
     function carry(a) {
       if (!a || !a.href) return;
       var u;
       try { u = new URL(a.href); } catch (e) { return; }
-      if (u.hostname !== 'reports.salet.uk') return;
+      if (!/(^|\.)salet\.uk$/.test(u.hostname) || !APP.test(u.pathname)) return;
       var changed = false;
       Object.keys(tags).forEach(function (k) { if (!u.searchParams.has(k)) { u.searchParams.set(k, tags[k]); changed = true; } });
       if (changed) a.href = u.toString();
     }
-    document.addEventListener('DOMContentLoaded', function () { document.querySelectorAll('a[href*="reports.salet.uk"]').forEach(carry); });
+    document.addEventListener('DOMContentLoaded', function () { document.querySelectorAll('a[href]').forEach(carry); });
     document.addEventListener('click', function (e) { carry(e.target.closest && e.target.closest('a')); }, true);
   })();
 </script>

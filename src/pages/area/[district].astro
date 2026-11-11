@@ -84,21 +84,43 @@ if (p && areaP && d.area !== d.district) {
 const priceSummary = p
   ? `Homes in ${d.district} sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}.`
   : '';
+const typeList = typeRows
+  .filter((t) => t.median)
+  .map((t) => `${t.label.toLowerCase()} ${gbp(t.median!)}`)
+  .join(', ');
+
+// "Have prices gone up since 2020?" Only where the 2020 baseline exists.
+let since2020 = '';
+let since2020Short = '';
+if (p && p.median_2020 && prices.baseline_2020) {
+  const c = Math.round(100 * (p.median / p.median_2020 - 1));
+  const verdict = Math.abs(c) < 2 ? 'Barely.' : c > 0 ? 'Yes.' : 'No.';
+  const move = Math.abs(c) < 2 ? 'about the same' : c > 0 ? `a rise of ${c}%` : `a fall of ${Math.abs(c)}%`;
+  since2020 = `${verdict} Homes in ${d.district} sold for a typical ${gbp(p.median_2020)} in the 12 months to ${prices.baseline_2020} and ${gbp(p.median)} in the 12 months to ${periodEnd}, ${move}. The 2020 figure leaves out new builds, and the mix of homes sold changes from year to year.`;
+  since2020Short = Math.abs(c) < 2 ? 'About the same as in 2020.' : `${c > 0 ? 'Up' : 'Down'} ${Math.abs(c)}% since 2020.`;
+}
+
+let goodPlace = '';
+if (p) {
+  const rank =
+    p.rank_in_area && p.districts_in_area && p.districts_in_area > 1
+      ? `, the ${ordinal(p.rank_in_area)} most expensive of ${p.districts_in_area} districts in ${areaLabel}`
+      : '';
+  goodPlace = `Buyers pay a typical ${gbp(p.median)} for a home in ${d.district}${rank}${changeLine}. Price shows how much people want to live here. Flood risk, crime and schools change from street to street, so check them for the exact address: the full Salet report covers all three for £19.`;
+}
+
 const faqs = p
   ? [
       {
-        q: `How much does a house cost in ${d.district}?`,
-        a: `${priceSummary} Half of all sales were between ${gbp(p.lower_quartile)} and ${gbp(p.upper_quartile)}.${
-          typeRows.filter((t) => t.median).length
-            ? ' By type: ' +
-              typeRows
-                .filter((t) => t.median)
-                .map((t) => `${t.label.toLowerCase()} ${gbp(t.median!)}`)
-                .join(', ') +
-              '.'
-            : ''
-        }`,
+        q: `What is the average house price in ${d.district}?`,
+        a: `${priceSummary} Half of all sales were between ${gbp(p.lower_quartile)} and ${gbp(p.upper_quartile)}.${typeList ? ` By type: ${typeList}.` : ''}`,
       },
+      ...(since2020 ? [{ q: `Have house prices in ${d.district} gone up since 2020?`, a: since2020 }] : []),
+      {
+        q: `How much is my home worth in ${d.district}?`,
+        a: `Half of the homes sold in ${d.district} went for between ${gbp(p.lower_quartile)} and ${gbp(p.upper_quartile)} in the 12 months to ${periodEnd}.${typeList ? ` Typical prices by type: ${typeList}.` : ''} One home can sit well above or below that. The Basic report shows every Land Registry sale at your address and in your postcode for £9.`,
+      },
+      { q: `Is ${d.district} a good place to live?`, a: goodPlace },
       {
         q: `Are more homes coming up for sale in ${d.district}?`,
         a: `${answer} ${sectorLine} Based on energy certificates lodged, updated ${asOfLong}.`,
@@ -106,17 +128,25 @@ const faqs = p
     ]
   : [];
 
+const priceYear = periodEnd.split(' ').pop();
+let titleChange = '';
+if (p && p.median_change_pct !== null) {
+  const c = p.median_change_pct;
+  titleChange = Math.abs(c) < 1 ? ', flat in a year' : `, ${c > 0 ? 'up' : 'down'} ${Math.abs(c).toLocaleString('en-GB')}% in a year`;
+}
+// Keep the price and the change inside what Google shows: drop the brand when long.
+const priceTitle = p ? `${d.district} house prices ${priceYear}: ${gbpShort(p.median)} typical${titleChange}` : '';
 const title = p
-  ? `${d.district} house prices: ${gbpShort(p.median)} typical, ${busier ? 'busier' : 'quieter'} market | Salet`
+  ? priceTitle.length > 54 ? priceTitle : `${priceTitle} | Salet`
   : `${d.district} housing market ${asOfShort}: busier or quieter? | Salet`;
 const description = p
-  ? `${d.district} ${town}: homes sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}. Prices by property type, and whether more homes are coming to market. Updated monthly.`
+  ? `${d.district} ${town}: homes sold for a typical ${gbp(p.median)} in the 12 months to ${periodEnd}${changeLine}. ${since2020Short} Prices by property type, and whether more homes are coming to market. Updated monthly.`.replace('.  ', '. ')
   : busier
     ? `${d.district} ${town}: more homes coming to market than most of ${d.area}. ${d.busier_sectors} of ${total} postcode sectors busier. Area check, updated ${asOfLong}.`
     : `${d.district} ${town}: quieter than most of ${d.area}, fewer homes coming to market. ${d.busier_sectors} of ${total} postcode sectors busier. Area check, updated ${asOfLong}.`;
 
-const REPORT_URL = 'https://reports.salet.uk/intelligence';
-const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
+const REPORT_URL = 'https://salet.uk/intelligence';
+const SAMPLE_URL = 'https://salet.uk/sample/intelligence';
 ---
 <Base title={title} description={description} schema={faqs.length ? [faqSchema(faqs)] : []}>
   <PageHero eyebrow={`Area check · ${d.district} · ${town}`} title={p ? `${d.district} house prices and market activity` : `Is ${d.district} getting busier?`} compact>
@@ -272,6 +302,22 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
   </section>
 
   {
+    faqs.length > 0 && (
+      <section class="mx-auto max-w-3xl px-6 pb-16 lg:px-8 lg:pb-20">
+        <h2 class="font-display text-3xl font-medium leading-tight">Questions about {d.district}</h2>
+        <div class="mt-7 divide-y divide-line border-y border-line">
+          {faqs.map((f) => (
+            <div class="py-5">
+              <h3 class="text-base font-medium text-ink">{f.q}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-stone">{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
     neighbours.length > 0 && (
       <section class="border-t border-line bg-ivory-2/40">
         <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
@@ -308,6 +354,7 @@ const SAMPLE_URL = 'https://reports.salet.uk/sample/intelligence';
       <p>Updated: {asOfLong}. Refreshed every month.</p>
       <p>Source: {activity.source}.</p>
       {p && <p>Sold prices: {prices.source}. Standard open-market sales only, {prices.period}.</p>}
+      {since2020 && <p>The 2020 comparison uses sales in the 12 months to {prices.baseline_2020}, with new builds left out.</p>}
       <p>How accurate is this? {activity.accuracy}</p>
       <p>This is a view on how many homes come to market. It says nothing about where prices will go.</p>
     </div>

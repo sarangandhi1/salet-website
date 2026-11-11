@@ -51,7 +51,7 @@
     bar.className = 'consent-bar';
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Cookies');
-    bar.innerHTML = '<p>Can we use an advertising cookie to see which of our ads brought you here? Nothing else changes either way. <a href="https://reports.salet.uk/privacy#cookies">Privacy</a></p>'
+    bar.innerHTML = '<p>Can we use an advertising cookie to see which of our ads brought you here? Nothing else changes either way. <a href="https://salet.uk/privacy#cookies">Privacy</a></p>'
       + '<div><button type="button" data-a="yes">Allow</button> <button type="button" class="ghost" data-a="no">No thanks</button></div>';
     bar.addEventListener('click', function (ev) {
       var a = ev.target && ev.target.getAttribute('data-a');

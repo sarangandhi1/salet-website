@@ -30,4 +30,4 @@ export const PRO_AUDIENCE_LINKS: AudienceLink[] = [
 ];
 
 // Card payment for fees (buying agent, sourcing): PackForge serves the page.
-export const PAY_INVOICE_URL = 'https://reports.salet.uk/pay';
+export const PAY_INVOICE_URL = 'https://salet.uk/pay';

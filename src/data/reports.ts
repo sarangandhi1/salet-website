@@ -9,7 +9,7 @@
 // order page; a product missing from it stays "Coming soon" and its tile
 // collects an email (none today: every product is on sale).
 
-export const APP = 'https://reports.salet.uk';
+export const APP = 'https://salet.uk';
 export const SAMPLE_INTEL = `${APP}/sample/intelligence`;
 export const SAMPLE_LEGAL = `${APP}/sample/legal-pack`;
 
