@@ -10,12 +10,17 @@ interface Props {
   level?: 1 | 2;
   /** 'light' when the chooser sits on a white page (the homepage). */
   tone?: 'dark' | 'light';
+  /** A short nudge shown beside the title, e.g. "Click your tile and see the magic." */
+  hint?: string;
 }
-const { items, title = 'Which one are you?', level = 2, tone = 'dark' } = Astro.props;
+const { items, title = 'Which one are you?', level = 2, tone = 'dark', hint } = Astro.props;
 const Heading = level === 1 ? 'h1' : 'h2';
 ---
 <div class:list={['ch', { 'ch--light': tone === 'light' }]}>
-  <Heading class="ch-title">{title}</Heading>
+  <div class="ch-head">
+    <Heading class="ch-title">{title}</Heading>
+    {hint && <p class="ch-hint">{hint} <span aria-hidden="true">&darr;</span></p>}
+  </div>
   <div class:list={['ch-grid', `n${items.length}`]}>
     {
       items.map((i, k) => (
@@ -48,6 +53,10 @@ const Heading = level === 1 ? 'h1' : 'h2';
     font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1;
     letter-spacing: -0.02em; color: #fff; margin: 0 0 0.75rem; text-align: center;
   }
+  .ch-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0.2rem 1rem; margin: 0 0 0.75rem; }
+  .ch-head .ch-title { margin: 0; }
+  .ch-hint { margin: 0; font-size: 1.05rem; font-weight: 600; color: #e0763a; }
+  .ch--light .ch-hint { color: #c2410c; }
   .ch--light .ch-title { color: #1b1a17; }
   .ch--light .ch-tile { border-width: 1px; border-color: #d9dee6; box-shadow: 0 14px 34px -22px rgba(15, 34, 68, 0.35); }
   .ch-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
