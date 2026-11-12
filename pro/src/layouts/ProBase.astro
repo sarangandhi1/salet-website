@@ -3,6 +3,7 @@ import '../styles/pro.css';
 import { SALET_URL } from '../../../src/lib/sites';
 import CardPay from '../../../src/components/CardPay.astro';
 import CarryUtm from '../../../src/components/CarryUtm.astro';
+import LogoMark from '../../../src/components/LogoMark.astro';
 
 // Salet Pro frame: the Salet wordmark with a "Pro" mark, its own short nav,
 // and a plain footer. Separate from salet.uk on purpose: Salet acts only for
@@ -56,11 +57,14 @@ const year = new Date().getFullYear();
       <header class="pro-bar">
         <div class="rp-wrap pro-bar-in">
           <a href="/" class="pro-mark" aria-label="Salet Pro home">
-            <span class="font-display">Salet<span class="text-dot">.</span></span>
+            <span class="font-display"><LogoMark />Salet<span class="text-dot">.</span></span>
             <span class="pro-badge">Pro</span>
           </a>
           <nav class="pro-nav" aria-label="Main">
-            <a href={SALET_URL} class="pro-nav-back">&larr; Salet for buyers</a>
+            <a href={SALET_URL} class="pro-nav-home">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2.5 2 9.2h2.2V17h4.3v-4.6h3V17h4.3V9.2H18z" /></svg>
+              Home
+            </a>
             {nav.map((n) => (
               <a href={n.href} class:list={{ 'is-on': path.startsWith(n.href) }}>{n.label}</a>
             ))}
@@ -115,7 +119,11 @@ const year = new Date().getFullYear();
   .reports-page .pro-foot strong { color: #fff; }
   .reports-page .pro-foot a { color: var(--sky-400); }
   .reports-page .pro-sep { opacity: 0.5; margin: 0 0.4rem; }
-  .reports-page .pro-nav-back { color: #f1d58a !important; font-weight: 600; }
+  /* Home goes back to salet.uk, the page with every kind of visitor on it. */
+  .reports-page .pro-nav { align-items: center; }
+  .reports-page .pro-nav a.pro-nav-home { display: inline-flex; align-items: center; gap: 0.4rem; color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); padding: 0.3rem 0.7rem; }
+  .reports-page .pro-nav a.pro-nav-home:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+  .reports-page .pro-nav-home svg { width: 0.9rem; height: 0.9rem; }
   .reports-page .pro-who { display: none; }
   @media (min-width: 56rem) {
     .reports-page .pro-who { display: block; width: 100%; max-width: 420px; justify-self: end; border-radius: 18px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); }
