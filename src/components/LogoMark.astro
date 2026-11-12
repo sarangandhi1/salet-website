@@ -1,0 +1,16 @@
+---
+// The Salet house mark, drawn from the brand logo (SALET/Brand): the roof,
+// the block and its twelve windows. The purple is the lighter brand purple
+// the wordmark's dot uses, so it reads on the dark header.
+interface Props { size?: string }
+const { size = '1.15em' } = Astro.props;
+---
+<svg viewBox="0 0 560 620" style={`height:${size};width:auto;display:inline-block;vertical-align:-0.16em;margin-right:0.35em`} fill="none" aria-hidden="true">
+  <g stroke="#b47dff" stroke-width="22" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M280 25 535 210H25Z" />
+    <path d="M88 210V595H472V210" />
+  </g>
+  <g stroke="#a3abb8" stroke-width="13" stroke-linejoin="round">
+    {[290, 367, 443, 520].map((y) => [178, 280, 381].map((x) => <rect x={x - 28} y={y - 20} width="56" height="40" rx="4" />))}
+  </g>
+</svg>

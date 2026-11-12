@@ -1,6 +1,7 @@
 ---
 import { AUDIENCES, SAMPLE_INTEL, pick } from '../data/reports';
 import { PRO_URL, PAY_INVOICE_URL } from '../lib/sites';
+import LogoMark from './LogoMark.astro';
 
 const nav = [
   { href: '/services', label: 'Services' },
@@ -42,11 +43,15 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header id="site-header" class="fixed inset-x-0 top-0 z-40">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 lg:px-8">
-    <a href="/" class="font-display text-2xl font-medium tracking-tight text-ivory" aria-label="Salet home">
-      Salet<span class="text-dot">.</span>
+    <a href="/" class="whitespace-nowrap font-display text-2xl font-medium tracking-tight text-ivory" aria-label="Salet home">
+      <LogoMark />Salet<span class="text-dot">.</span>
     </a>
 
-    <nav class="hidden items-center gap-8 lg:flex" aria-label="Main">
+    <nav class="hidden items-center gap-4 whitespace-nowrap lg:flex xl:gap-8" aria-label="Main">
+      <a href="/" class:list={['inline-flex items-center gap-1.5 border px-3 py-1.5 text-sm tracking-wide transition-colors duration-200', path === '/' ? 'border-ivory/60 text-white' : 'border-ivory/30 text-ivory/90 hover:border-ivory hover:text-white']}>
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2.5 2 9.2h2.2V17h4.3v-4.6h3V17h4.3V9.2H18z" /></svg>
+        Home
+      </a>
       {
         nav.map((item) => (
           <a
@@ -99,27 +104,34 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       <a href="/brief" class="bg-[#c2410c] px-5 py-2.5 text-sm font-semibold tracking-wide text-white transition-colors hover:bg-[#a6370a]">Find my home</a>
       <a
         href="/contact"
-        class="border border-green-3/40 bg-green-2/20 px-5 py-2.5 text-sm tracking-wide text-ivory transition-all duration-200 hover:border-green-3 hover:bg-green-2"
+        class="hidden border border-green-3/40 bg-green-2/20 px-5 py-2.5 text-sm tracking-wide text-ivory transition-all duration-200 hover:border-green-3 hover:bg-green-2 xl:inline-block"
       >
         Book a discovery call
       </a>
     </nav>
 
-    <button
-      id="menu-toggle"
-      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
-      <span class="block h-px w-6 bg-ivory transition-opacity duration-300"></span>
-      <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
-    </button>
+    <div class="flex items-center gap-3 lg:hidden">
+      <a href="/" class="inline-flex items-center gap-1.5 border border-ivory/40 px-3 py-2 text-sm text-ivory">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2.5 2 9.2h2.2V17h4.3v-4.6h3V17h4.3V9.2H18z" /></svg>
+        Home
+      </a>
+      <button
+        id="menu-toggle"
+        class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
+        <span class="block h-px w-6 bg-ivory transition-opacity duration-300"></span>
+        <span class="block h-px w-6 bg-ivory transition-transform duration-300"></span>
+      </button>
+    </div>
   </div>
 
   <div id="mobile-menu" class="hidden border-t border-line-dark bg-ink px-6 pb-8 pt-4 lg:hidden">
     <nav class="flex flex-col gap-1" aria-label="Mobile">
+      <a href="/" class="border-b border-line-dark/60 py-3.5 text-base font-semibold text-white">Home</a>
       {
         nav.map((item) => (
           <a href={item.href} class="border-b border-line-dark/60 py-3.5 text-base text-ivory/90">
