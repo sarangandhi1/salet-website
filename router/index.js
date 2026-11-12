@@ -11,7 +11,7 @@
 const APP_ORIGIN = 'https://packforge-0liu.onrender.com';
 const SITE_ORIGIN = 'https://salet.pages.dev';
 
-const APP_PATHS = /^\/(account|api|auth|checkout|decision-pack|healthz|intelligence|legal-pack|library|login|logout|operator|pay|pricing|privacy|pro|push|refund|report|sample|signup|terms|thanks|unsubscribe|watch|webhooks|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
+const APP_PATHS = /^\/(account|api|auth|checkout|decision-pack|healthz|intelligence|landlord|legal-pack|library|login|logout|operator|pay|pricing|privacy|pro|push|refund|report|sample|signup|terms|thanks|unsubscribe|watch|webhooks|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
 // The app's own files. The site keeps /icons, /pixel.js (the same file),
 // /sw.js (one worker for both), /offline.html, /manifest.webmanifest and /robots.txt.
 const APP_FILES = /^\/(app\.css|app\.js|wallet\.js|img\/|fonts\/|\.well-known\/apple-developer-merchantid-domain-association$)/;

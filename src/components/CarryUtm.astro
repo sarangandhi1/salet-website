@@ -15,7 +15,7 @@
     KEYS.forEach(function (k) { if (q.get(k)) fresh[k] = q.get(k).slice(0, 200); });
     if (Object.keys(fresh).length) { tags = fresh; try { sessionStorage.setItem('salet_utm', JSON.stringify(tags)); } catch (e) {} }
     if (!Object.keys(tags).length) return;
-    var APP = /^\/(account|api|auth|checkout|decision-pack|intelligence|legal-pack|library|login|pay|pricing|pro|report|sample|signup|watch|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
+    var APP = /^\/(account|api|auth|checkout|decision-pack|intelligence|landlord|legal-pack|library|login|pay|pricing|pro|report|sample|signup|watch|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
     function carry(a) {
       if (!a || !a.href) return;
       var u;

@@ -5,11 +5,11 @@
 // previews, checkout, payment, accounts) and every POST are never cached and
 // never answered from a cache; with no signal they get the offline page.
 // Street alerts (push) arrive here too.
-const VERSION = 'salet-v3';
+const VERSION = 'salet-v4';
 const SHELL = ['/offline.html', '/for/home-buyers/', '/favicon.svg', '/icons/icon-192.png'];
 
 // The app's paths: the same list the router sends to the app.
-const APP = /^\/(account|api|auth|checkout|decision-pack|healthz|intelligence|legal-pack|library|login|logout|operator|pay|pricing|privacy|pro|push|refund|report|sample|signup|terms|thanks|unsubscribe|watch|webhooks|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
+const APP = /^\/(account|api|auth|checkout|decision-pack|healthz|intelligence|landlord|legal-pack|library|login|logout|operator|pay|pricing|privacy|pro|push|refund|report|sample|signup|terms|thanks|unsubscribe|watch|webhooks|deal-analyser|hmo-viability|auction-lot|home-search|photo-refurb|compare-homes)(\/|$)/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
