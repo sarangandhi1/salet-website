@@ -250,7 +250,27 @@ export const MORE: Product[] = BUILT.map((p) =>
   ORDER[p.key] ? { ...p, ...ORDER[p.key], soon: false, notify: false, badge: 'New' } : p,
 );
 
-const ALL = [...PRODUCTS, ...MORE];
+// The landlord sell-or-keep page: no price, it runs on the page itself.
+const LANDLORD: Product = {
+  slug: null,
+  key: 'sell-or-keep',
+  name: 'Sell or keep?',
+  price: 'No charge',
+  unit: 'about a minute, no sign-up',
+  promise: 'Keep it, sell it with the tenant in place, or sell it empty: see all three in pounds.',
+  points: [
+    'What it would sell for, empty and tenanted',
+    'What is left after fees, tax and the mortgage',
+    'The income it earns you if you keep it',
+    'One line on which way the figures lean',
+  ],
+  img: '/images/reports/valuation.webp',
+  href: `${APP}/landlord`,
+  cta: 'Show my three options',
+  popular: true,
+};
+
+const ALL = [...PRODUCTS, ...MORE, LANDLORD];
 export const pick = (...keys: string[]) => keys.map((k) => ALL.find((p) => p.key === k)!);
 
 export interface Audience {
@@ -310,6 +330,23 @@ export const AUDIENCES: Audience[] = [
       { q: 'Can I get a refund?', a: REFUND },
     ],
     service: 'Want us to find and negotiate the deal? Salet also acts as your',
+  },
+  {
+    slug: 'landlords',
+    label: 'Landlords',
+    short: 'Sell or keep? The numbers on your rental, side by side.',
+    img: '/images/reports/rent.webp',
+    title: 'Should I sell my rental property or keep it? Landlord reports | Salet',
+    description: 'See what your rental would sell for, tenanted or empty, what is left after tax and the mortgage, and what it earns if you keep it. Reports from £9.',
+    h1: 'Sell it or keep it? See the numbers first',
+    lede: 'What your rental would sell for with the tenant in place or empty, what is left after fees, tax and the mortgage, and what it earns you each year if you keep it.',
+    products: pick('sell-or-keep', 'intelligence', 'basic', 'hmo', 'deal-analyser', 'photo-refurb'),
+    faqs: [
+      { q: 'Should I sell my rental property or keep it?', a: 'It depends on what the money tied up in it earns you. Compare the yearly income after letting costs and mortgage interest with what you would have in your hand after a sale, once fees, capital gains tax and the mortgage are paid. The sell or keep page works all three options out for your property.' },
+      { q: 'Does a tenant in place lower the sale price?', a: 'Usually, yes. Homes sold with a tenant in place are mostly bought by investors and tend to be priced 10% to 20% under the same home sold empty. The page shows both, and you can change the figure.' },
+      { q: 'How much notice must I give a tenant to sell?', a: 'In England, since 1 May 2026, a landlord who wants to sell gives four months notice on the selling ground, and that notice cannot normally end in the first 12 months of the tenancy. Take advice before you serve it.' },
+      { q: 'Is this tax advice?', a: 'No. The capital gains tax figure is an estimate from the rates and allowance in force, and your own position may differ. Check it with an accountant before you decide.' },
+    ],
   },
 ];
 

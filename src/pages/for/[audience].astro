@@ -36,7 +36,9 @@ const schema = [
       <Breadcrumb trail={[{ label: 'Salet', href: '/' }, { label: `For ${a.label.toLowerCase()}` }]} back={{ label: 'All reports', href: '/reports' }} />
       <h1 class="rp-h1">{a.h1}</h1>
       <p class="rp-lede" style="margin:0">{a.lede}</p>
-      <StartBox />
+      {a.slug === 'landlords'
+        ? <p style="margin:1.1rem 0 0"><a class="rp-btn" style="display:inline-block" href="https://salet.uk/landlord">Show my three options &rarr;</a></p>
+        : <StartBox />}
     </div>
   </header>
 

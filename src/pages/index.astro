@@ -11,9 +11,9 @@ import ServiceCard from '../components/ServiceCard.astro';
 >
   <!-- Hero: "Which one are you?" Every kind of visitor sees their category
        first. The buying-agent message sits right under the chooser. -->
-  <section class="relative overflow-hidden bg-ink text-ivory">
-    <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
-    <div class="grain" aria-hidden="true"></div>
+  <section id="home-white" class="relative overflow-hidden bg-white text-ink">
+
+
     <div class="relative mx-auto w-full max-w-6xl px-4 pb-12 pt-24 sm:px-6 lg:px-8 lg:pb-14 lg:pt-[4.5rem]">
       <!-- The report leads: it is what Salet sells most and what answer
            engines should say Salet is. The buying agent follows below. -->
@@ -48,28 +48,28 @@ import ServiceCard from '../components/ServiceCard.astro';
         </div>
         </div>
       </div>
-      <a href="/brief" class="group mb-4 flex flex-col gap-3 border border-[#c8a95e]/60 bg-white/[0.06] p-4 transition-colors hover:border-[#c8a95e] hover:bg-white/[0.1] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-3">
+      <a href="/brief" class="group mb-4 flex flex-col gap-3 border border-[#c8a95e] bg-[#fbf7ec] p-4 transition-colors hover:border-[#c8a95e] hover:bg-[#f6efdc] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-3">
         <span class="block">
-          <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#c8a95e]">Looking for a home?</span>
-          <span class="mt-0.5 block font-display text-xl font-medium leading-snug text-white">Tell us the home you want. We take it from there.</span>
-          <span class="mt-1 block text-sm text-ivory/75 lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day.</span>
+          <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6d1f]">Looking for a home?</span>
+          <span class="mt-0.5 block font-display text-xl font-medium leading-snug text-ink">Tell us the home you want. We take it from there.</span>
+          <span class="mt-1 block text-sm text-stone lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day.</span>
         </span>
         <span class="inline-flex shrink-0 items-center justify-center gap-2 bg-[#c2410c] px-5 py-2.5 text-base font-semibold text-white transition-colors group-hover:bg-[#a6370a]">Find my home <span aria-hidden="true">&rarr;</span></span>
       </a>
-      <AudienceChooser items={SALET_AUDIENCE_LINKS} />
+      <AudienceChooser items={SALET_AUDIENCE_LINKS} tone="light" />
       <div class="mt-10 flex flex-col items-center gap-5 text-center sm:mt-12">
-        <p class="max-w-3xl font-display text-2xl font-medium leading-snug text-white sm:text-3xl">
-          Want someone to do it all for you? Salet is a UK buying agent that acts <span class="grad-text">only for you.</span>
+        <p class="max-w-3xl font-display text-2xl font-medium leading-snug text-ink sm:text-3xl">
+          Want someone to do it all for you? Salet is a UK buying agent that acts <span class="text-green-2">only for you.</span>
         </p>
         <div class="flex flex-wrap items-center justify-center gap-6">
           <a href="/contact" class="btn-glow group inline-flex items-center gap-4 px-8 py-4 text-base tracking-wide text-ivory">
             Book a discovery call
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
           </a>
-          <a href="/brief" class="inline-flex items-center gap-3 border border-ivory/40 px-7 py-4 text-base tracking-wide text-ivory transition-colors hover:border-ivory hover:bg-white/5">
+          <a href="/brief" class="inline-flex items-center gap-3 border border-ink/30 px-7 py-4 text-base tracking-wide text-ink transition-colors hover:border-ink hover:bg-ink/5">
             Find my home
           </a>
-          <a href="/how-we-work" class="link-line text-sm tracking-wide text-ivory/80 hover:text-ivory">See how we work</a>
+          <a href="/how-we-work" class="link-line text-sm tracking-wide text-stone hover:text-ink">See how we work</a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 
   <!-- Compare Homes: the marquee feature (5 Nov 2026). Up to five homes side
        by side, the best buy named first; ordered on reports.salet.uk. -->
-  <section id="compare-homes" class="border-b border-line bg-ivory">
+  <section id="compare-homes" class="border-b border-line bg-white">
     <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-20">
       <a href="https://salet.uk/compare-homes" class="block border border-line bg-white" aria-label="Compare Homes">
         <img src="/images/art/five-pack-800.webp" srcset="/images/art/five-pack-800.webp 800w, /images/art/five-pack-1168.webp 1168w" sizes="(min-width: 1024px) 560px, 100vw" alt="Five homes side by side" width="800" height="603" loading="eager" class="block h-auto w-full" />
@@ -100,7 +100,7 @@ import ServiceCard from '../components/ServiceCard.astro';
   </section>
 
   <!-- Marquee -->
-  <section class="overflow-hidden border-y border-line bg-ivory py-5" aria-hidden="true">
+  <section class="overflow-hidden border-y border-line bg-white py-5" aria-hidden="true">
     <div class="marquee gap-14 whitespace-nowrap">
       {
         [0, 1].map(() => (
@@ -124,46 +124,46 @@ import ServiceCard from '../components/ServiceCard.astro';
   <!-- The Buyer Intelligence Report: the flagship product, in the prime slot.
        The three quick calculator tools that used to follow it were retired
        on 10 Nov 2026: every product is now paid for before it runs. -->
-  <section id="buyer-intelligence" class="relative overflow-hidden bg-ink text-ivory">
-    <div class="aurora" aria-hidden="true"><span class="blob"></span></div>
-    <div class="grain" aria-hidden="true"></div>
+  <section id="buyer-intelligence" class="relative overflow-hidden bg-[#f5f7fa] text-ink">
+
+
     <div class="relative mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-      <p class="reveal text-xs uppercase tracking-[0.28em] text-[#86b0dc]">
+      <p class="reveal text-xs uppercase tracking-[0.28em] text-[#1f437c]">
         What should I know about this property? &middot; Basic &pound;9 or full &pound;19
       </p>
       <h2 class="reveal reveal-d1 mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] sm:text-5xl">
         Everything the evidence says about a UK property, in one report.
       </h2>
-      <p class="reveal reveal-d2 mt-6 max-w-3xl text-lg leading-relaxed text-ivory/85">
+      <p class="reveal reveal-d2 mt-6 max-w-3xl text-lg leading-relaxed text-ink-3">
         Put in an address. Get back what recent sold prices support as a range, the comparable sales
         behind it, the stamp duty you would actually pay, the official energy certificate, what it
         lets for locally, and the area around it: planning applications, flood risk, crime by
         offence, named schools and licensed shared housing nearby.
       </p>
 
-      <div class="reveal reveal-d2 mt-10 grid gap-x-10 gap-y-5 border-t border-line-dark pt-8 sm:grid-cols-2 lg:grid-cols-3">
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Every figure is a range.</strong> Never a single
+      <div class="reveal reveal-d2 mt-10 grid gap-x-10 gap-y-5 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-3">
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Every figure is a range.</strong> Never a single
           number pretending to be certain.
         </p>
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Every block names its source</strong> and the date
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Every block names its source</strong> and the date
           it was pulled.
         </p>
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Rent from actual local lettings</strong>, not a
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Rent from actual local lettings</strong>, not a
           whole-city average that says nothing about the street.
         </p>
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Stamp duty on both bases</strong>, as your only
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Stamp duty on both bases</strong>, as your only
           home and as an additional dwelling.
         </p>
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Like-for-like sales</strong>, the true peers by
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Like-for-like sales</strong>, the true peers by
           type and size, as a cross-check.
         </p>
-        <p class="border-l-2 border-[#86b0dc] pl-4 text-sm leading-relaxed text-ivory/80">
-          <strong class="font-medium text-ivory">Where a source returns nothing</strong>, the report
+        <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
+          <strong class="font-medium text-ink">Where a source returns nothing</strong>, the report
           says so rather than leaving it out.
         </p>
       </div>
@@ -175,7 +175,7 @@ import ServiceCard from '../components/ServiceCard.astro';
         >
           Run a report on any address &rarr;
         </a>
-        <a href="https://salet.uk/sample/intelligence" class="text-sm text-[#86b0dc] underline underline-offset-4 hover:text-ivory">
+        <a href="https://salet.uk/sample/intelligence" class="text-sm text-[#1f437c] underline underline-offset-4 hover:text-ink">
           Read a full sample report first
         </a>
       </div>
@@ -247,7 +247,7 @@ import ServiceCard from '../components/ServiceCard.astro';
     </div>
     <a
       href="/services/managed-sale"
-      class="reveal group mt-6 flex flex-wrap items-center justify-between gap-4 border border-line bg-ivory px-10 py-7 transition-all duration-300 hover:border-green-2/50"
+      class="reveal group mt-6 flex flex-wrap items-center justify-between gap-4 border border-line bg-white px-10 py-7 transition-all duration-300 hover:border-green-2/50"
     >
       <p class="max-w-2xl text-sm leading-relaxed text-stone">
         <span class="font-display text-base font-medium text-ink">Selling a property?</span>
@@ -262,7 +262,7 @@ import ServiceCard from '../components/ServiceCard.astro';
   </section>
 
   <!-- Service pillars -->
-  <section class="bg-ivory-2/50">
+  <section class="bg-[#f5f7fa]">
     <div class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
       <div class="flex flex-wrap items-end justify-between gap-6">
         <div>
@@ -449,7 +449,7 @@ import ServiceCard from '../components/ServiceCard.astro';
   </section>
 
   <!-- Founder credibility -->
-  <section class="bg-ivory-2/50">
+  <section class="bg-[#f5f7fa]">
     <div class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
       <div class="grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-7">
@@ -478,7 +478,7 @@ import ServiceCard from '../components/ServiceCard.astro';
                 ['Amazon EU, nine years', 'Senior operations leadership at continental scale.'],
                 ['Founder, Salet', 'Independent, buyer-only, personally accountable.'],
               ].map(([title, body]) => (
-                <div class="border border-line bg-ivory p-6">
+                <div class="border border-line bg-white p-6">
                   <p class="font-display text-lg font-medium">{title}</p>
                   <p class="mt-2 text-sm leading-relaxed text-stone">{body}</p>
                 </div>
@@ -527,6 +527,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 
   <CTABand />
 </Base>
+
+<style is:global>
+  /* The homepage is white (12 Nov 2026). Its header keeps the dark bar from
+     the first pixel, since there is no dark hero behind it any more. */
+  body:has(#home-white) { background-color: #fff; }
+  body:has(#home-white) #site-header { background: rgba(27, 26, 23, 0.96); }
+</style>
 
 <script>
   // Respect reduced motion: keep the poster still instead of the moving clip.

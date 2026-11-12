@@ -29,6 +29,7 @@ const ART: Record<string, string> = {
   'seller-leads': 'seller-leads', 'sourcer-pass': 'sourcer-pass', 'valuation-evidence': 'valuation-evidence',
   'market-brief': 'area-market-brief', 'demand-board': 'buyer-demand-board', 'letter-kit': 'letter-kit',
   'data-licence': 'area-data-licence', bespoke: 'bespoke-research',
+  'sell-or-keep': 'who-landlord',
 };
 export const artFor = (key: string) => (ART[key] ? `/images/art/${ART[key]}` : undefined);
 
@@ -100,6 +101,11 @@ export const DETAILS: Record<string, Detail> = {
     icon: 'handshake', device: 'icon',
     deliverables: ['We search, view and check homes for you', 'We negotiate the price on your side', 'We manage the purchase through to completion'],
     format: 'Starts with a 30 minute call, no obligation',
+  },
+  'sell-or-keep': {
+    icon: 'scales', device: 'doc', img: img('valuation'),
+    deliverables: ['Keep, sell tenanted and sell empty, side by side', 'Fees, capital gains tax and the mortgage taken off', 'Every assumption shown, and yours to change'],
+    format: 'On screen in about a minute, and as a PDF by email if you ask',
   },
   'deal-analyser': {
     icon: 'calculator', device: 'doc', img: img('rent'),

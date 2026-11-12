@@ -18,6 +18,7 @@ export interface AudienceLink {
 export const SALET_AUDIENCE_LINKS: AudienceLink[] = [
   { key: 'home-buyers', label: 'Home buyers', choose: 'I’m buying a home', hook: 'Know what to pay before you offer', href: '/for/home-buyers', art: 'who-home-buyer' },
   { key: 'investors', label: 'Investors', choose: 'I’m an investor', hook: 'Run the numbers in minutes', href: '/for/investors', art: 'who-investor' },
+  { key: 'landlords', label: 'Landlords', choose: 'I’m a landlord', hook: 'Sell or keep? See the numbers', href: '/for/landlords', art: 'who-landlord' },
   { key: 'sourcers', label: 'Deal sourcers', choose: 'I source deals', hook: 'Find and package deals first', href: `${PRO_URL}/sourcers`, art: 'who-sourcer' },
   { key: 'agents', label: 'Estate agents', choose: 'I’m an estate agent', hook: 'Win instructions before rivals', href: `${PRO_URL}/agents`, art: 'who-agent' },
 ];

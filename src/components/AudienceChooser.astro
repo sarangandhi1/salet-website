@@ -8,11 +8,13 @@ interface Props {
   title?: string;
   /** 1 when the chooser is the page's main heading (the homepage). */
   level?: 1 | 2;
+  /** 'light' when the chooser sits on a white page (the homepage). */
+  tone?: 'dark' | 'light';
 }
-const { items, title = 'Which one are you?', level = 2 } = Astro.props;
+const { items, title = 'Which one are you?', level = 2, tone = 'dark' } = Astro.props;
 const Heading = level === 1 ? 'h1' : 'h2';
 ---
-<div class="ch">
+<div class:list={['ch', { 'ch--light': tone === 'light' }]}>
   <Heading class="ch-title">{title}</Heading>
   <div class:list={['ch-grid', `n${items.length}`]}>
     {
@@ -46,8 +48,16 @@ const Heading = level === 1 ? 'h1' : 'h2';
     font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1;
     letter-spacing: -0.02em; color: #fff; margin: 0 0 0.75rem; text-align: center;
   }
+  .ch--light .ch-title { color: #1b1a17; }
+  .ch--light .ch-tile { border-width: 1px; border-color: #d9dee6; box-shadow: 0 14px 34px -22px rgba(15, 34, 68, 0.35); }
   .ch-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  @media (min-width: 64rem) { .ch-grid.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .ch-grid.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .ch-grid.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .ch-grid.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ch-grid.n5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  /* Five tiles in two columns leave one over: it takes the full row, picture beside the words. */
+  @media (max-width: 63.99rem) {
+    .ch-grid.n5 > :last-child { grid-column: 1 / -1; flex-direction: row; }
+    .ch-grid.n5 > :last-child .ch-img { flex: 0 0 42%; aspect-ratio: auto; }
+    .ch-grid.n5 > :last-child .ch-body { justify-content: center; }
+  }
   @media (max-width: 30rem) { .ch-grid { gap: 0.7rem; } }
   .ch-tile {
     display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; text-decoration: none;
