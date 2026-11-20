@@ -37,9 +37,8 @@ import ServiceCard from '../components/ServiceCard.astro';
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#86b0dc]">Property reports for England &middot; From &pound;9</p>
         <h1 class="mt-2 font-display text-3xl font-medium leading-[1.08] text-white sm:text-[2.5rem]">Check any house before you offer.</h1>
         <p class="mt-2 max-w-3xl text-[0.95rem] leading-relaxed text-ivory/90">
-          Put in the address. See the price recent sold homes support, the stamp duty you would pay, what it lets for,
-          and the flood, crime, planning and schools around it. The Basic report is &pound;9. The full report is &pound;19.
-          Not useful? Full refund within 30 days.
+          Price, stamp duty, rent, flood, crime, planning and schools for any address.
+          Basic &pound;9, full &pound;19. Full refund within 30 days.
         </p>
         <div class="mt-4 flex flex-wrap items-center gap-4">
           <a href="https://salet.uk/intelligence" class="inline-flex items-center gap-2 bg-[#c2410c] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#a6370a]">Check a property <span aria-hidden="true">&rarr;</span></a>
@@ -52,7 +51,6 @@ import ServiceCard from '../components/ServiceCard.astro';
         <span class="block">
           <span class="block text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6d1f]">Looking for a home?</span>
           <span class="mt-0.5 block font-display text-xl font-medium leading-snug text-ink">Tell us the home you want. We take it from there.</span>
-          <span class="mt-1 block text-sm text-stone lg:hidden">60 seconds: tap your answers, type or leave a voice note. Saran replies within one working day.</span>
         </span>
         <span class="inline-flex shrink-0 items-center justify-center gap-2 bg-[#c2410c] px-5 py-2.5 text-base font-semibold text-white transition-colors group-hover:bg-[#a6370a]">Find my home <span aria-hidden="true">&rarr;</span></span>
       </a>
@@ -65,9 +63,6 @@ import ServiceCard from '../components/ServiceCard.astro';
           <a href="/contact" class="btn-glow group inline-flex items-center gap-4 px-8 py-4 text-base tracking-wide text-ivory">
             Book a discovery call
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
-          </a>
-          <a href="/brief" class="inline-flex items-center gap-3 border border-ink/30 px-7 py-4 text-base tracking-wide text-ink transition-colors hover:border-ink hover:bg-ink/5">
-            Find my home
           </a>
           <a href="/how-we-work" class="link-line text-sm tracking-wide text-stone hover:text-ink">See how we work</a>
         </div>
@@ -85,15 +80,15 @@ import ServiceCard from '../components/ServiceCard.astro';
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#c2410c]">New &middot; Compare Homes &middot; £28</p>
         <h2 class="mt-3 font-display text-3xl font-medium leading-[1.1] text-ink sm:text-5xl">Compare 2 or more of your home choices.</h2>
-        <p class="mt-5 text-lg leading-relaxed text-stone">Torn between a few homes? Put up to five side by side on the same sold evidence. We name the one priced best against what similar homes really sold for, and tell you what to ask the agent about each.</p>
+        <p class="mt-5 text-lg leading-relaxed text-stone">Up to five homes side by side. We name the best buy.</p>
         <ul class="mt-6 space-y-3 border-t border-line pt-6 text-base text-ink">
-          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>Every home priced against its own sold evidence, best first</li>
-          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>Tenure, last sale, energy rating, stamp duty, flood risk and schools for each</li>
-          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>The questions to ask before you book a viewing</li>
+          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>Each home priced on sold evidence, best first</li>
+          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>Tenure, last sale, energy rating, stamp duty, flood and schools</li>
+          <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]"></span>Questions to ask before you view</li>
         </ul>
         <div class="mt-8 flex flex-wrap items-center gap-5">
           <a href="https://salet.uk/compare-homes" data-track="home:compare-homes" class="inline-flex items-center gap-2 bg-[#c2410c] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#a6370a]">Compare my homes <span aria-hidden="true">&rarr;</span></a>
-          <span class="text-sm text-stone">£28 for up to five homes. One payment, nothing renews.</span>
+          <span class="text-sm text-stone">One payment. Nothing renews.</span>
         </div>
       </div>
     </div>
@@ -129,42 +124,30 @@ import ServiceCard from '../components/ServiceCard.astro';
 
     <div class="relative mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
       <p class="reveal text-xs uppercase tracking-[0.28em] text-[#1f437c]">
-        What should I know about this property? &middot; Basic &pound;9 or full &pound;19
+        The property report &middot; Basic &pound;9 or full &pound;19
       </p>
       <h2 class="reveal reveal-d1 mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] sm:text-5xl">
         Everything the evidence says about a UK property, in one report.
       </h2>
-      <p class="reveal reveal-d2 mt-6 max-w-3xl text-lg leading-relaxed text-ink-3">
-        Put in an address. Get back what recent sold prices support as a range, the comparable sales
-        behind it, the stamp duty you would actually pay, the official energy certificate, what it
-        lets for locally, and the area around it: planning applications, flood risk, crime by
-        offence, named schools and licensed shared housing nearby.
-      </p>
 
       <div class="reveal reveal-d2 mt-10 grid gap-x-10 gap-y-5 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-3">
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Every figure is a range.</strong> Never a single
-          number pretending to be certain.
+          <strong class="font-medium text-ink">A price range from sold homes</strong>
         </p>
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Every block names its source</strong> and the date
-          it was pulled.
+          <strong class="font-medium text-ink">The comparable sales behind it</strong>
         </p>
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Rent from actual local lettings</strong>, not a
-          whole-city average that says nothing about the street.
+          <strong class="font-medium text-ink">Rent from local lettings</strong>
         </p>
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Stamp duty on both bases</strong>, as your only
-          home and as an additional dwelling.
+          <strong class="font-medium text-ink">Stamp duty, first or second home</strong>
         </p>
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Like-for-like sales</strong>, the true peers by
-          type and size, as a cross-check.
+          <strong class="font-medium text-ink">Flood, crime, planning and schools</strong>
         </p>
         <p class="border-l-2 border-[#1f437c] pl-4 text-sm leading-relaxed text-ink-3">
-          <strong class="font-medium text-ink">Where a source returns nothing</strong>, the report
-          says so rather than leaving it out.
+          <strong class="font-medium text-ink">Every figure sourced and dated</strong>
         </p>
       </div>
 
@@ -176,7 +159,7 @@ import ServiceCard from '../components/ServiceCard.astro';
           Run a report on any address &rarr;
         </a>
         <a href="https://salet.uk/sample/intelligence" class="text-sm text-[#1f437c] underline underline-offset-4 hover:text-ink">
-          Read a full sample report first
+          Read a sample report
         </a>
       </div>
     </div>
@@ -202,13 +185,8 @@ import ServiceCard from '../components/ServiceCard.astro';
         <div class="relative p-9 text-ivory lg:p-12">
           <p class="text-xs uppercase tracking-[0.24em] text-green-3">You live in the UK</p>
           <h3 class="mt-4 font-display text-2xl font-medium leading-snug sm:text-3xl">
-            Buying here, wanting the process handled properly
+            Buying here, and want it handled properly
           </h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-ivory/80">
-            First purchase or fifth, the process does not get friendlier: leasehold, gazumping, chains, surveys, and
-            an agent who works for the seller. Many of our clients came to the UK before buying in it, NRIs among
-            them, and we level the field for all of them.
-          </p>
           <span class="link-line mt-7 inline-flex items-center gap-2 text-sm text-green-3">
             Start here
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true"
@@ -232,10 +210,6 @@ import ServiceCard from '../components/ServiceCard.astro';
           <h3 class="mt-4 font-display text-2xl font-medium leading-snug sm:text-3xl">
             Buying in the UK from thousands of miles away
           </h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-ivory/80">
-            A child at university, a future move, or a sterling asset. Wherever home is right now, the question is
-            trust: who views, who verifies, who negotiates, who holds the keys. That is precisely what we do.
-          </p>
           <span class="link-line mt-7 inline-flex items-center gap-2 text-sm text-green-3">
             Start here
             <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true"
@@ -251,8 +225,7 @@ import ServiceCard from '../components/ServiceCard.astro';
     >
       <p class="max-w-2xl text-sm leading-relaxed text-stone">
         <span class="font-display text-base font-medium text-ink">Selling a property?</span>
-        &nbsp;We advise owners too: pricing research, agent selection and sale oversight, with your appointed agent
-        doing the marketing.
+        &nbsp;We advise owners too.
       </p>
       <span class="inline-flex items-center gap-2 text-sm text-green-2">
         Sale advisory
@@ -278,20 +251,20 @@ import ServiceCard from '../components/ServiceCard.astro';
           href="/services/acquisition-search"
           number="01"
           title="Acquisition search and representation"
-          body="A written brief, a full market search including off-market homes, institutional-grade analysis of every candidate, and negotiation by someone on your side of the table."
+          body="Search, analysis and negotiation on your side."
         />
         <ServiceCard
           href="/services/purchase-concierge"
           number="02"
           title="End to end purchase concierge"
-          body="Solicitors chased, introductions made, paperwork signposted, utilities live on completion day. One accountable point of contact from offer to keys."
+          body="One contact from offer to keys."
           delay="reveal-d1"
         />
         <ServiceCard
           href="/services/management-oversight"
           number="03"
           title="Management oversight"
-          body="After completion we appoint and supervise the letting agent, review every statement and inspect the property, so ownership from abroad feels like ownership from nearby."
+          body="We appoint and check the letting agent."
           status="coming"
           delay="reveal-d2"
         />
@@ -299,21 +272,21 @@ import ServiceCard from '../components/ServiceCard.astro';
           href="/services/vacant-property-care"
           number="04"
           title="Vacant property care"
-          body="Regular inspections with photo reports, key-holding, a vetted contractor network, and bills and mail handled while your property stands empty."
+          body="Inspections, keys, contractors and bills."
           status="coming"
         />
         <ServiceCard
           href="/services/managed-sale"
           number="05"
           title="Sale advisory and managed sale"
-          body="Sellers get the same discipline: pricing research, exit strategy, estate agent selection and sale oversight. Your agent markets the property; Salet advises you."
+          body="Pricing, agent choice and sale oversight."
           delay="reveal-d1"
         />
         <ServiceCard
           href="/services/institutional"
           number="06"
           title="For institutions"
-          body="Deal sourcing, screening and analysis for institutional clients, delivered privately under contract. A separate practice with the same standards."
+          body="Sourcing and analysis, under contract."
           delay="reveal-d2"
         />
       </div>
@@ -326,10 +299,6 @@ import ServiceCard from '../components/ServiceCard.astro';
     <h2 class="reveal reveal-d1 mt-4 max-w-2xl font-display text-3xl font-medium leading-tight sm:text-4xl">
       Traditional or modern, the discipline is the same
     </h2>
-    <p class="reveal reveal-d2 mt-5 max-w-2xl leading-relaxed text-stone">
-      Georgian terraces, Canary Wharf glass, Manchester's new skyline. We judge property by evidence, not by era,
-      and represent buyers across the whole of the UK market.
-    </p>
     <div class="mt-12 grid gap-6 md:grid-cols-3">
       <figure class="reveal-scale group relative overflow-hidden">
         <img
@@ -391,10 +360,7 @@ import ServiceCard from '../components/ServiceCard.astro';
             One side of the table, <span class="grad-text">always yours.</span>
           </h2>
           <p class="reveal reveal-d2 mt-6 max-w-xl leading-relaxed text-ivory/80">
-            In every purchase we act only for the buyer: no listings, no marketing mandates, no referral payments
-            that would compromise the advice you receive. When owners engage us to sell, the roles stay just as
-            clean: we advise you and oversee your appointed estate agent, who markets the property. Salet never acts
-            for both sides of a transaction.
+            We act only for the buyer. No listings, no referral payments, never both sides of a sale.
           </p>
           <div class="reveal reveal-d3 mt-8">
             <a href="/why-salet" class="link-line inline-flex items-center gap-2 text-sm text-green-3 hover:text-ivory">
@@ -427,10 +393,10 @@ import ServiceCard from '../components/ServiceCard.astro';
     <div class="mt-14 grid gap-10 md:grid-cols-4">
       {
         [
-          ['Discovery', 'A 30 minute call. Your situation, your brief, and whether we are the right fit. Honest both ways.'],
-          ['Search', 'We shortlist areas, search the whole market including off-market homes, and analyse every candidate before you see it.'],
-          ['Negotiation', 'We attend viewings for you or with you, verify what agents claim, and negotiate as your sole representative.'],
-          ['Completion and beyond', 'Solicitors chased, completion handled, keys held. Then oversight, care and eventually the sale, if you want us to stay.'],
+          ['Discovery', 'A 30 minute call.'],
+          ['Search', 'The whole market, off-market included.'],
+          ['Negotiation', 'We view, verify and negotiate.'],
+          ['Completion and beyond', 'Solicitors chased, keys held.'],
         ].map(([title, body], i) => (
           <div class={`reveal ${['', 'reveal-d1', 'reveal-d2', 'reveal-d3'][i]}`}>
             <div class="flex items-center gap-4">
@@ -458,13 +424,7 @@ import ServiceCard from '../components/ServiceCard.astro';
             Run by an operator, not a salesman
           </h2>
           <p class="reveal reveal-d2 mt-6 max-w-xl leading-relaxed text-stone">
-            Salet is led by its founder, Saran Gandhi: a former Indian Army officer and nine years a senior leader at
-            Amazon in Europe, responsible for operations serving over 100,000 frontline colleagues. He has lived the
-            journey his clients are on, from India to the UK, and buys and analyses property with the same operational
-            discipline he ran at scale.
-          </p>
-          <p class="reveal reveal-d2 mt-4 max-w-xl leading-relaxed text-stone">
-            You deal with him directly. No handoffs, no junior staff, no call centre.
+            Saran Gandhi, founder. You deal with him directly.
           </p>
           <div class="reveal reveal-d3 mt-8">
             <a href="/about" class="text-sm text-green-2 underline underline-offset-4">The full story</a>
@@ -474,9 +434,9 @@ import ServiceCard from '../components/ServiceCard.astro';
           <div class="grid gap-4">
             {
               [
-                ['Indian Army', 'Commissioned officer. Standards, discipline, calm under pressure.'],
-                ['Amazon EU, nine years', 'Senior operations leadership at continental scale.'],
-                ['Founder, Salet', 'Independent, buyer-only, personally accountable.'],
+                ['Indian Army', 'Commissioned officer.'],
+                ['Amazon EU, nine years', 'Senior operations leadership.'],
+                ['Founder, Salet', 'Buyer-only, personally accountable.'],
               ].map(([title, body]) => (
                 <div class="border border-line bg-white p-6">
                   <p class="font-display text-lg font-medium">{title}</p>
@@ -525,7 +485,7 @@ import ServiceCard from '../components/ServiceCard.astro';
     </div>
   </section>
 
-  <CTABand />
+  <CTABand body="30 minutes. No obligation." />
 </Base>
 
 <style is:global>
