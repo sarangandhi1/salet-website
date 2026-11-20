@@ -49,47 +49,47 @@ export interface Detail {
 }
 
 const img = (n: string) => `/images/reports/${n}.webp`;
-const PDF = 'On screen and as a PDF by email, ready in minutes';
+const PDF = 'On screen and as a PDF, in minutes';
 
 export const DETAILS: Record<string, Detail> = {
   basic: {
     icon: 'eye', device: 'doc', img: img('price-paid'),
-    deliverables: ['The energy certificate and floor area', 'Every Land Registry sale at the address and in the postcode', 'Who lives around here', 'What homes nearby rent for'],
-    format: 'On screen and by email, ready in minutes. Upgrade to the full report for £10',
+    deliverables: ['Energy certificate and floor area', 'Every sale at the address and postcode', 'Local rents'],
+    format: 'Ready in minutes. Upgrade to full for £10',
   },
   intelligence: {
     icon: 'house', device: 'doc', img: img('valuation'),
-    deliverables: ['The price range recent sales near you support', 'Those sales, with their prices and dates', 'Your stamp duty, worked out', 'Rent, flood risk, crime, planning and schools nearby'],
+    deliverables: ['The price range recent sales support', 'Your stamp duty', 'Rent, flood, crime, planning and schools'],
     format: PDF,
   },
   legal: {
     icon: 'document', device: 'doc', img: img('legal-findings'),
-    deliverables: ['Every finding, with the page it is on', 'What the pack leaves out', 'Special conditions read clause by clause', 'Questions to send your solicitor'],
-    format: 'On screen and as a PDF, ready in a few minutes',
+    deliverables: ['Every finding, with its page', 'What the pack leaves out', 'Questions for your solicitor'],
+    format: 'On screen and as a PDF, in minutes',
   },
   bundle: {
     icon: 'docs', device: 'doc', img: img('legal-summary'),
-    deliverables: ['The full Buyer Intelligence Report', 'The full Legal Pack Review', 'Made for buying at auction'],
+    deliverables: ['The full Buyer Intelligence Report', 'The full Legal Pack Review'],
     format: PDF,
   },
   decision: {
     icon: 'scales', device: 'doc', img: img('dp-scenarios'),
-    deliverables: ['The full Buyer Intelligence Report', 'Five prices, each with stamp duty, works and fees added up', 'A works budget, line by line, with contingency', 'A plain read of what the figures say'],
+    deliverables: ['The full Buyer Intelligence Report', 'Five prices with stamp duty, works and fees', 'A works budget, line by line'],
     format: PDF,
   },
   five: {
     icon: 'stack', device: 'doc', img: img('comparables'),
-    deliverables: ['Five full Buyer Intelligence Reports', 'Use them on any five homes within 12 months', 'The same layout every time, so they compare side by side'],
+    deliverables: ['Five full reports', 'Any five homes, within 12 months'],
     format: PDF,
   },
   'compare-homes': {
     icon: 'scales', device: 'doc', img: img('comparables'),
-    deliverables: ['Two to five homes side by side on the same sold evidence', 'The one priced best against its evidence, named first', 'Tenure, energy rating, stamp duty, flood risk and schools for each', 'What to ask the agent about each home before you view'],
+    deliverables: ['Two to five homes side by side', 'The best buy named first', 'What to ask each agent'],
     format: 'On screen and as a PDF',
   },
   shortlist: {
     icon: 'search', device: 'doc', img: img('home-search-shortlist'),
-    deliverables: ['Homes for sale that match your brief', 'Each one priced against recent sales nearby', 'Flood risk, schools and the area for each'],
+    deliverables: ['Homes for sale that match your brief', 'Each priced against recent sales'],
     format: 'A written shortlist by email',
   },
   'photo-refurb': {
@@ -99,27 +99,27 @@ export const DETAILS: Record<string, Detail> = {
   },
   agent: {
     icon: 'handshake', device: 'icon',
-    deliverables: ['We search, view and check homes for you', 'We negotiate the price on your side', 'We manage the purchase through to completion'],
-    format: 'Starts with a 30 minute call, no obligation',
+    deliverables: ['We search, view and check', 'We negotiate on your side', 'We manage it to completion'],
+    format: 'Starts with a 30 minute call',
   },
   'sell-or-keep': {
     icon: 'scales', device: 'doc', img: img('valuation'),
-    deliverables: ['Keep, sell tenanted and sell empty, side by side', 'Fees, capital gains tax and the mortgage taken off', 'Every assumption shown, and yours to change'],
-    format: 'On screen in about a minute, and as a PDF by email if you ask',
+    deliverables: ['Keep, sell tenanted or sell empty', 'After fees, tax and the mortgage', 'Every assumption yours to change'],
+    format: 'On screen in about a minute',
   },
   'deal-analyser': {
     icon: 'calculator', device: 'doc', img: img('rent'),
-    deliverables: ['Rental yield and the cash left in the deal', 'What happens if rates or rents move', 'Based on local lettings and recent sales'],
+    deliverables: ['Yield and the cash left in', 'What happens if rates or rents move'],
     format: PDF,
   },
   hmo: {
     icon: 'rooms', device: 'doc', img: img('hmo'),
-    deliverables: ['Whether you need planning for an HMO here', 'The licensing rules for the address', 'Room rents and housing allowance locally'],
+    deliverables: ['Planning rules for an HMO here', 'Licensing for the address', 'Local room rents'],
     format: PDF,
   },
   'auction-lot': {
     icon: 'gavel', device: 'doc', img: img('legal-findings'),
-    deliverables: ['What recent sales say the lot is worth', 'The highest bid the evidence supports', 'The legal pack read, with page references'],
+    deliverables: ['What the lot is worth', 'The highest bid the evidence supports', 'The legal pack read, with pages'],
     format: PDF,
   },
   'investor-pass': {

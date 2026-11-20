@@ -4,11 +4,11 @@ import PageHero from '../../components/PageHero.astro';
 import CTABand from '../../components/CTABand.astro';
 
 const steps = [
-  ['Exit strategy and research', 'Timing, target buyer profile, street-level pricing research from sold-price evidence, works worth doing before sale and works that would never pay back. Evidence first, then the decision.'],
-  ['Agent selection', 'We shortlist estate agents on performance data, interview them with you or for you, and negotiate their terms before you sign. Your appointed agent markets the property and introduces buyers; that is their job, under their licence.'],
-  ['Preparation', 'Presentation, paperwork and legal file assembled before listing, so the sale does not stall in week six on a missing document.'],
-  ['Sale oversight', 'We stay on your side of the table while the agent runs the market: offers reviewed against the evidence, buyer credibility questioned, progression chased weekly. You receive one clear note, not a dozen calls.'],
-  ['Completion and repatriation signposting', 'Completion handled; for overseas sellers we signpost the currency and reporting practicalities to raise with your advisers. We do not give tax advice.'],
+  ['Exit strategy and research', 'Timing, pricing from sold evidence, and which works are worth doing.'],
+  ['Agent selection', 'Agents shortlisted on performance, terms negotiated before you sign. Your agent markets the property.'],
+  ['Preparation', 'Paperwork and legal file ready before listing.'],
+  ['Sale oversight', 'Offers checked against the evidence, progression chased weekly.'],
+  ['Completion and repatriation signposting', 'Completion handled. We do not give tax advice.'],
 ];
 ---
 <Base
@@ -18,7 +18,7 @@ const steps = [
   <PageHero
     eyebrow="Service 05 · Advisory live now"
     title="Sale advisory and managed sale"
-    lede="Owners get the same discipline buyers get. We research your exit, help you choose and manage the right estate agent, and oversee the sale to completion. Your agent markets the property; Salet advises you."
+    lede="We research your exit, help you choose the right estate agent and oversee the sale. Your agent markets the property; Salet advises you."
     compact
   />
 
@@ -44,13 +44,11 @@ const steps = [
         <div class="reveal border border-line bg-ivory-2/60 p-8 lg:sticky lg:top-8 lg:p-10">
           <p class="text-xs uppercase tracking-[0.24em] text-green-2">Status</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            Sale advisory and research support are available now. Full end to end sale management is offered as
-            engagements allow, existing clients first.
+            Advisory available now. Full sale management as engagements allow.
           </p>
           <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">Who it is for</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            Owners selling UK property, at home or from abroad, who want evidence and representation on their side
-            before and after they appoint an estate agent.
+            Owners selling UK property, at home or from abroad.
           </p>
           <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">How we charge</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
@@ -58,9 +56,7 @@ const steps = [
           </p>
           <p class="mt-8 text-xs uppercase tracking-[0.24em] text-green-2">The clean-roles principle</p>
           <p class="mt-4 text-sm leading-relaxed text-stone">
-            Salet does not market your property, list it or introduce buyers to it; your appointed estate agent does
-            that under their own licence. We advise you, and only you. Salet never acts for both sides of a
-            transaction.
+            Your estate agent markets the property under their own licence. We advise you, and only you.
           </p>
           <a
             href="/contact"
@@ -75,6 +71,6 @@ const steps = [
 
   <CTABand invoice
     title="Selling well starts before the agent"
-    body="A 30 minute discovery call on your exit: what the evidence says about price and timing, and how to choose the agent who will actually earn their commission."
+    body="30 minutes on your exit: price, timing and the right agent."
   />
 </Base>

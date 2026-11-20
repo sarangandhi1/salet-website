@@ -63,8 +63,7 @@ const faqs = [
         Is this house worth the asking price?
       </h1>
       <p class="mt-5 max-w-2xl text-base leading-relaxed text-ivory/80 sm:text-lg">
-        Never overpay again. See what every home nearby really sold for, your stamp duty, rent,
-        flood risk, crime, planning and schools. One address, ready in minutes.
+        Sold prices nearby, stamp duty, rent, flood, crime, planning and schools. Ready in minutes.
       </p>
 
       <StartBox button="Check this property" />
@@ -104,8 +103,7 @@ const faqs = [
       }
     </div>
     <p class="mt-8 text-sm">
-      Plus who lives around here, what has sold at the address and licensed shared housing nearby.
-      Every figure dated and sourced, with a PDF copy by email.
+      Every figure dated and sourced.
       <a href={SAMPLE_URL} class="text-green-2 underline underline-offset-4">See a full sample report</a>
     </p>
   </section>
@@ -115,9 +113,7 @@ const faqs = [
       <div class="lg:col-span-7">
         <h2 class="font-display text-3xl font-medium leading-tight">Built on 30 years of Land Registry sales</h2>
         <p class="mt-5 text-base leading-relaxed text-stone">
-          Every home in England covered, and more than 2,000 areas tracked every month. We bring
-          together the Land Registry, the EPC register, ONS, the Environment Agency and local planning
-          records, so you see everything the agent already knows.
+          Every home in England. You see everything the agent already knows.
         </p>
         <p class="mt-8 border-l-2 border-green-2 pl-4 text-sm font-medium leading-relaxed text-ink">
           Not useful? Full refund, no questions.
@@ -128,9 +124,9 @@ const faqs = [
         <div class="border border-line bg-ivory p-7 sm:p-9">
           <h2 class="font-display text-2xl font-medium">How it works</h2>
           <ol class="mt-6 space-y-5 text-sm leading-relaxed text-stone">
-            <li><strong class="text-ink">1. Enter the postcode.</strong> And the house number if you have it. Your account keeps your reports together.</li>
-            <li><strong class="text-ink">2. Pick Basic or full.</strong> The Basic report (£9) is the public record: the energy certificate and floor area, every Land Registry sale at the address and in the postcode, the neighbourhood type and local rents. The full report ({PRICE}) adds the price range, every comparable sale, stamp duty, flood, crime, planning and schools.</li>
-            <li><strong class="text-ink">3. Pay and read it.</strong> Ready in a minute or two, with a PDF by email. Started with Basic? Upgrade to full for £10.</li>
+            <li><strong class="text-ink">1. Enter the postcode.</strong></li>
+            <li><strong class="text-ink">2. Pick Basic or full.</strong> Basic (£9) is the public record. Full ({PRICE}) adds the price range, stamp duty and the area checks.</li>
+            <li><strong class="text-ink">3. Pay and read it.</strong> Ready in a minute or two.</li>
           </ol>
           <a
             href={REPORT_URL}
@@ -148,13 +144,16 @@ const faqs = [
   <section class="mx-auto max-w-3xl px-6 pt-14 lg:px-8 lg:pt-20" id="how-much-to-offer">
     <h2 class="font-display text-3xl font-medium leading-tight">{OFFER_EXPLAINER.heading}</h2>
     <p class="mt-5 text-base leading-relaxed text-stone">{OFFER_EXPLAINER.answer}</p>
-    <div class="mt-8 space-y-6">
+    <div class="mt-8 divide-y divide-line border-y border-line">
       {
         OFFER_EXPLAINER.faqs.map((f) => (
-          <div>
-            <h3 class="text-lg font-medium text-ink">{f.q}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-stone">{f.a}</p>
-          </div>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-ink">
+              {f.q}
+              <span class="text-xl leading-none text-green-2 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-stone">{f.a}</p>
+          </details>
         ))
       }
     </div>
@@ -200,7 +199,7 @@ const faqs = [
   </section>
 
   <p class="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-stone lg:px-8">
-    Want someone to negotiate for you? Salet also acts as your
+    Want it negotiated for you? Salet is also a
     <a href="/services" class="text-green-2 underline underline-offset-2">buying agent</a>.
   </p>
 </Base>

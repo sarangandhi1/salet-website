@@ -61,12 +61,12 @@ const schema = [
         <div class="rp-wrap" style="max-width:48rem">
           <h2 class="rp-h2">{OFFER_EXPLAINER.heading}</h2>
           <p class="rp-sub" style="max-width:none">{OFFER_EXPLAINER.answer}</p>
-          <div class="rp-answers">
+          <div class="rp-faq">
             {OFFER_EXPLAINER.faqs.map((f) => (
-              <div>
-                <h3>{f.q}</h3>
+              <details>
+                <summary>{f.q}</summary>
                 <p>{f.a}</p>
-              </div>
+              </details>
             ))}
           </div>
         </div>

@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
     name: 'Basic report',
     price: '£9',
     unit: 'per report',
-    promise: 'The public record on any address, in minutes. Upgrade to the full report for £10.',
+    promise: 'The public record on any address. Upgrade to full for £10.',
     points: [
       'The energy certificate and floor area',
       'Every Land Registry sale at the address and in the postcode',
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     key: 'intelligence',
     name: 'Buyer Intelligence Report',
     price: '£19',
-    promise: 'Never overpay again. See what every home nearby really sold for.',
+    promise: 'See what every home nearby really sold for.',
     points: [
       'The price range recent sales support',
       'Stamp duty you will really pay',
@@ -107,7 +107,7 @@ export const PRODUCTS: Product[] = [
     key: 'legal',
     name: 'Legal Pack Review',
     price: '£29',
-    promise: 'Spot the trap before you bid. Every hidden cost, with the page it is on.',
+    promise: 'Spot the trap before you bid.',
     points: [
       'Every finding cited to its document and page',
       'What the pack leaves out',
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     key: 'bundle',
     name: 'Auction bundle',
     price: '£39',
-    promise: 'Bid at auction with confidence: the home and the paperwork, both checked.',
+    promise: 'The home and the paperwork, both checked.',
     points: [
       'One Buyer Intelligence Report',
       'One Legal Pack Review',
@@ -138,7 +138,7 @@ export const PRODUCTS: Product[] = [
     key: 'decision',
     name: 'Decision Pack',
     price: '£69',
-    promise: 'Walk in knowing your number. Every likely price, fully costed.',
+    promise: 'Every likely price, fully costed.',
     points: [
       'The full Buyer Intelligence Report',
       'Five price scenarios, each with stamp duty, works and fees',
@@ -155,7 +155,7 @@ export const PRODUCTS: Product[] = [
     key: 'five',
     name: '5 report pack',
     price: '£79',
-    promise: 'Check your whole shortlist and pick the winner. £15.80 a report.',
+    promise: 'Check your whole shortlist. £15.80 a report.',
     points: [
       'Five Buyer Intelligence Reports',
       'Use them on any five addresses within 12 months',
@@ -208,8 +208,8 @@ const BUILT: Product[] = [
     href: `${APP}/pro/research`,
     cta: 'Scope a project',
   },
-  soon('compare-homes', 'Compare Homes', '£28', 'up to 5 homes', 'Compare 2 or more of your home choices, and see which one is the best buy.', ['Up to five homes side by side on the same sold evidence', 'The one priced best against its evidence, named first', 'What to ask the agent about each home'], 'comparables'),
-  soon('shortlist', 'Home Search Shortlist', '£149', 'one search', 'Tell us what you want. We find the homes, you pick your favourite.', ['Homes on the market that match your brief', 'Each one priced against its sold evidence', 'Area, flood and schools for every one'], 'area-type'),
+  soon('compare-homes', 'Compare Homes', '£28', 'up to 5 homes', 'See which of your homes is the best buy.', ['Up to five homes side by side on the same sold evidence', 'The one priced best against its evidence, named first', 'What to ask the agent about each home'], 'comparables'),
+  soon('shortlist', 'Home Search Shortlist', '£149', 'one search', 'We find the homes. You pick.', ['Homes on the market that match your brief', 'Each one priced against its sold evidence', 'Area, flood and schools for every one'], 'area-type'),
   soon('deal-analyser', 'Deal Analyser', '£29', 'per deal', 'Know in minutes if the deal really stacks up.', ['Yield, cash left in and return', 'A stress test on rate and rent', 'Built from local lettings and sold prices'], 'rent'),
   soon('hmo', 'HMO Viability Report', '£29', 'per address', 'Will it work as an HMO? Find out before you buy, not after.', ['Article 4 and licensing for the address', 'Local housing allowance and room rents', 'Licensed HMOs and refusals nearby'], 'hmo'),
   soon('auction-lot', 'Auction Lot Report', '£39', 'per lot', 'Know your maximum bid before the gavel drops.', ['Sold evidence for the lot', 'The highest bid the evidence supports', 'The legal pack read with page references'], 'legal-findings'),
@@ -257,7 +257,7 @@ const LANDLORD: Product = {
   name: 'Sell or keep?',
   price: 'No charge',
   unit: 'about a minute, no sign-up',
-  promise: 'Keep it, sell it with the tenant in place, or sell it empty: see all three in pounds.',
+  promise: 'Keep, sell tenanted or sell empty: all three in pounds.',
   points: [
     'What it would sell for, empty and tenanted',
     'What is left after fees, tax and the mortgage',
@@ -302,7 +302,7 @@ export const AUDIENCES: Audience[] = [
     description: 'Is the house overpriced? See sold prices on the street, your stamp duty and every catch in the legal pack before you offer. Reports from £9.',
     explainer: true,
     h1: 'Never overpay for your next home',
-    lede: 'See what every home nearby really sold for, your stamp duty, and every catch in the legal pack. In minutes, before you make an offer. Basic report £9, full report £19.',
+    lede: 'Sold prices nearby, your stamp duty and every catch in the legal pack, in minutes. Basic £9, full £19.',
     products: pick('basic', 'intelligence', 'legal', 'bundle', 'decision', 'compare-homes', 'shortlist', 'photo-refurb'),
     area: true,
     faqs: [
@@ -321,7 +321,7 @@ export const AUDIENCES: Audience[] = [
     title: 'Property investor reports: sold prices, rent, yield | Salet',
     description: 'Real sold prices, local rents, HMO rules and auction legal packs checked on any address in England, in minutes. Reports from £9.',
     h1: 'Know the numbers before anyone else does',
-    lede: 'Real sold prices, real local rents and the full picture on any address, in minutes. Walk into every viewing already knowing if it works.',
+    lede: 'Real sold prices and local rents on any address, in minutes.',
     products: pick('intelligence', 'five', 'legal', 'deal-analyser', 'hmo', 'auction-lot', 'investor-pass', 'shortlist', 'photo-refurb'),
     faqs: [
       { q: 'Where do the rents come from?', a: 'Actual lettings near the address lead, with wider area figures beside them as a cross check. Every figure says where it came from and when.' },
@@ -339,7 +339,7 @@ export const AUDIENCES: Audience[] = [
     title: 'Should I sell my rental property or keep it? Landlord reports | Salet',
     description: 'See what your rental would sell for, tenanted or empty, what is left after tax and the mortgage, and what it earns if you keep it. Reports from £9.',
     h1: 'Sell it or keep it? See the numbers first',
-    lede: 'What your rental would sell for with the tenant in place or empty, what is left after fees, tax and the mortgage, and what it earns you each year if you keep it.',
+    lede: 'What it would sell for, what is left after tax and the mortgage, and what it earns if you keep it.',
     products: pick('sell-or-keep', 'intelligence', 'basic', 'hmo', 'deal-analyser', 'photo-refurb'),
     faqs: [
       { q: 'Should I sell my rental property or keep it?', a: 'It depends on what the money tied up in it earns you. Compare the yearly income after letting costs and mortgage interest with what you would have in your hand after a sale, once fees, capital gains tax and the mortgage are paid. The sell or keep page works all three options out for your property.' },
@@ -358,6 +358,7 @@ export interface ProductPage {
   title: string;
   h1: string;
   lede: string;
+  desc: string; // meta description and structured data; the lede is the short line on the page
   who: string;
   problem: string;
   notIncluded: string[]; // limits, kept for reference; the footer carries the disclaimer
@@ -371,48 +372,51 @@ export const PAGES: Record<string, ProductPage> = {
   'buyer-intelligence': {
     title: 'Buyer Intelligence Report, £19: house price check | Salet',
     h1: 'Never overpay for a home again',
-    lede: 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools. One address, ready in minutes. £19 launch price, or the Basic report for £9.',
-    who: 'Anyone about to offer on a home in England or Wales, whether to live in or to let, who wants the evidence before they name a number.',
-    problem: 'The asking price is the seller’s opinion. The sold prices around it are facts, but they are scattered across a dozen public sources. This report brings them together for one address.',
+    lede: 'Sold prices nearby, stamp duty, rent, flood, crime, planning and schools for one address. Full £19, Basic £9.',
+    desc: 'What every home nearby really sold for, your stamp duty, rent, flood risk, crime, planning and schools. One address, ready in minutes. £19 launch price, or the Basic report for £9.',
+    who: 'Anyone about to offer on a home in England or Wales.',
+    problem: 'The asking price is an opinion. Sold prices are facts. This puts them in one place.',
     notIncluded: [
       'Not a RICS valuation or a survey: nobody visits the property',
       'Not advice on what to offer or whether to buy',
       'It cannot see work done since the home last sold, such as an extension',
     ],
-    how: 'You type the postcode and house number. We gather the sold prices, the energy certificate, local lettings and the area from the official records, date each one, and set the price range from the recent sales at this floor area.',
-    delivery: 'A minute or two after you pay, on screen, as a PDF and by email. Started with the £9 Basic report? Upgrade to the full report for £10.',
+    how: 'You give the postcode and house number. We gather the official records, date each one and set the range.',
+    delivery: 'A minute or two after you pay: on screen, PDF and email.',
     features: INTEL_FEATURES,
     sample: SAMPLE_INTEL,
   },
   'legal-pack': {
     title: 'Auction legal pack review, £29: spot the traps | Salet',
     h1: 'Spot the trap before you bid',
-    lede: 'Upload the legal pack. We find every hidden cost, missing search and nasty clause, with the page it is on. £29, paid before it runs.',
-    who: 'Buyers at auction and anyone handed a legal pack with days, not weeks, to decide. Especially leasehold flats, where the costs hide in the lease.',
-    problem: 'Special conditions move costs to the buyer, and a pack can be 300 pages. The expensive part is often what is missing: searches, service charge accounts, answers to title questions.',
+    lede: 'Upload the pack. We find every hidden cost, missing search and nasty clause, with its page. £29.',
+    desc: 'Upload the legal pack. We find every hidden cost, missing search and nasty clause, with the page it is on. £29, paid before it runs.',
+    who: 'Auction buyers, and anyone with days to decide.',
+    problem: 'A pack can be 300 pages, and the costly part is often what is missing.',
     notIncluded: [
       'Not legal advice: a solicitor must review the pack before you exchange',
       'It reads only the documents you upload',
       'It does not tell you what to bid or whether to buy',
     ],
-    how: 'You upload the pack as PDFs. We read it against a named risk checklist and report each finding with the document and page it rests on, graded by whether it changes the price, needs an answer before exchange, or is worth knowing.',
-    delivery: 'A few minutes after you pay, as the pack takes time to read properly. On screen, as a PDF and by email.',
+    how: 'You upload the PDFs. Each finding comes with its document and page, graded by how much it matters.',
+    delivery: 'A few minutes after you pay: on screen, PDF and email.',
     features: LEGAL_FEATURES,
     sample: SAMPLE_LEGAL,
   },
   'decision-pack': {
     title: 'Decision Pack, £69: how much should I offer? | Salet',
     h1: 'Walk in knowing your number',
-    lede: 'The full Buyer Intelligence Report plus every likely price costed to the pound: stamp duty, works and fees. No nasty surprises. £69 launch price.',
-    who: 'Buyers who are serious about one property and want to know what it would really cost them at each price, before they make an offer.',
-    problem: 'The price is only part of the cost. Stamp duty, the works and the fees move with it, and they are rarely added up before an offer. This pack adds them up at every likely price.',
+    lede: 'The full report plus every likely price costed: stamp duty, works and fees. £69.',
+    desc: 'The full Buyer Intelligence Report plus every likely price costed to the pound: stamp duty, works and fees. No nasty surprises. £69 launch price.',
+    who: 'Buyers serious about one property.',
+    problem: 'Stamp duty, works and fees move with the price. This adds them up at every likely price.',
     notIncluded: [
       'Not a recommended offer: it never names one right price',
       'Not a RICS valuation, a survey or legal advice',
       'No legal pack review: that is a separate report',
     ],
-    how: 'You give the address and tick the works you expect. We build the Buyer Intelligence Report, then cost five prices: the low, middle and top of the sold evidence, the asking price, and the low end less the top of the works. Each carries stamp duty on your basis (only home, first time buyer or additional property; Land Transaction Tax in Wales), an indicative works budget with contingency, and the usual fees.',
-    delivery: 'On screen and as a PDF, minutes after you pay. Already bought the £19 report? Upgrade from the report page for £50.',
+    how: 'You give the address and tick the works. We cost five prices, from the low end of the sold evidence to the asking price.',
+    delivery: 'Minutes after you pay. Have the £19 report? Upgrade for £50.',
     features: [
       f('dp-scenarios', 'What each price would cost you', 'Five prices, each with stamp duty, works and fees, and the total.'),
       f('dp-decision', 'What the figures say', 'Where the asking price sits against the evidence, and any warnings.'),
@@ -426,17 +430,18 @@ export const PAGES: Record<string, ProductPage> = {
   'five-pack': {
     title: '5 house price reports for £79: compare a shortlist | Salet',
     h1: 'Check your whole shortlist. Pick the winner.',
-    lede: 'Five full Buyer Intelligence Reports to use on any five homes within 12 months. Just £15.80 a report.',
-    who: 'Buyers weighing several homes at once, and investors screening a shortlist before viewings.',
-    problem: 'One report tells you about one house. A shortlist needs the same evidence on each, laid out the same way, so you can compare like with like.',
+    lede: 'Five full reports for any five homes, within 12 months. £15.80 a report.',
+    desc: 'Five full Buyer Intelligence Reports to use on any five homes within 12 months. Just £15.80 a report.',
+    who: 'Buyers and investors weighing several homes.',
+    problem: 'A shortlist needs the same evidence on each home, laid out the same way.',
     notIncluded: [
       'Not a RICS valuation, a survey or legal advice',
       'Each credit runs one Buyer Intelligence Report on one address',
       'Credits last 12 months from payment; any left then expire without a refund',
       'No legal pack reviews or Decision Packs in this pack',
     ],
-    how: 'Each report is the full Buyer Intelligence Report: sold prices, stamp duty, rent and area data from the official sources, every figure dated and sourced.',
-    delivery: 'Each report in a minute or two, on screen, as a PDF and by email.',
+    how: 'Each is the full Buyer Intelligence Report, every figure dated and sourced.',
+    delivery: 'Each in a minute or two: on screen, PDF and email.',
     features: INTEL_FEATURES.slice(0, 8),
     sample: SAMPLE_INTEL,
   },
