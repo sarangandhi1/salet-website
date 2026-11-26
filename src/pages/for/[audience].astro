@@ -5,6 +5,7 @@ import TrustStrip from '../../components/TrustStrip.astro';
 import AudienceBar from '../../components/AudienceBar.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import StartBox from '../../components/StartBox.astro';
+import InvestorNote from '../../components/InvestorNote.astro';
 import { AUDIENCES } from '../../data/reports';
 import { SALET_AUDIENCE_LINKS } from '../../lib/sites';
 import { OFFER_EXPLAINER, faqSchema, productSchema } from '../../lib/schema';
@@ -54,6 +55,8 @@ const schema = [
   </section>
 
   <TrustStrip />
+
+  {a.slug === 'investors' && <InvestorNote />}
 
   {
     a.explainer && (

@@ -1,0 +1,53 @@
+---
+// A monthly email for investors: the one place on the investor hub that keeps
+// a visitor who is not ready to buy a report today. It follows the compliance
+// guardrails (no deal marketing, no investment selling, no advice): the note
+// carries area activity, rule changes and new tools only. Anyone who wants a
+// search run for them is pointed to the buyer brief instead.
+// Addresses go to the site's existing Formspree inbox, tagged "investor-note",
+// until an email tool is chosen (same arrangement as the buying guide).
+const ACTION = 'https://formspree.io/f/mrewjydk';
+const NEXT = 'https://salet.uk/for/investors?joined=1#investor-note';
+---
+<section class="rp-section inote" id="investor-note">
+  <div class="rp-wrap" style="max-width:48rem">
+    <h2 class="rp-h2">Get the investor note</h2>
+    <p class="rp-sub" style="max-width:none;margin-bottom:1.25rem">
+      One short email a month: which areas are getting busier, what has changed in the rules for landlords and HMOs,
+      and new tools the day they go live. No deals pushed and no advice. Unsubscribe any time.
+    </p>
+    <p id="joined" class="rp-thanks" hidden>
+      Thank you, you are on the list. If you would like us to look for a property for you,
+      <a href="/brief/">tell us what you are after</a>.
+    </p>
+    <form class="rp-notify inote-form" method="POST" action={ACTION} data-track="signup:investor-note">
+      <input type="hidden" name="form" value="investor-note" />
+      <input type="hidden" name="_subject" value="Investor note signup" />
+      <input type="hidden" name="_next" value={NEXT} />
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true" />
+      <label class="sr-only" for="inote-email">Email address</label>
+      <input id="inote-email" type="email" name="email" required autocomplete="email" placeholder="Your email" />
+      <label class="sr-only" for="inote-area">Where you buy (optional)</label>
+      <input id="inote-area" type="text" name="area" maxlength="80" autocomplete="off" placeholder="Where you buy (optional)" />
+      <button class="rp-btn" type="submit">Send me the note</button>
+    </form>
+    <p class="inote-small">Your details stay with Salet. No third parties, no lists sold, ever.</p>
+  </div>
+</section>
+
+<style>
+  .inote { padding-top: 0; }
+  .inote-form { max-width: 30rem; }
+  .inote-form input[type="text"] {
+    width: 100%; border: 1px solid var(--rp-line); background: var(--rp-paper); padding: 0.8rem 0.9rem; font-size: 0.95rem;
+  }
+  .inote-form input[type="text"]:focus { outline: 2px solid var(--sky-500); outline-offset: -1px; }
+  .inote .rp-thanks a { text-decoration: underline; text-underline-offset: 3px; }
+  .inote-small { margin: 0.9rem 0 0; font-size: 0.8rem; color: var(--rp-slate); }
+</style>
+
+<script>
+  if (new URLSearchParams(location.search).has('joined')) {
+    document.getElementById('joined')?.removeAttribute('hidden');
+  }
+</script>
